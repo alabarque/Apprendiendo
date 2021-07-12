@@ -12,7 +12,7 @@ public class NewProjectService {
     public void execute(NewProjectDTO newProjectDTO) {
         Project project = Project.builder()
                                  .methodologyId(newProjectDTO.getMethodologyId())
-                                 .retoId(newProjectDTO.getRetoId())
+                                 .challengeId(newProjectDTO.getChallengeId())
                                  .classroomId(newProjectDTO.getClassroomId())
                                  .name(newProjectDTO.getName())
                                  .build();

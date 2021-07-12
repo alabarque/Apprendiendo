@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Project {
     private Long id;
     private Long methodologyId;
-    private Long retoId;
+    private Long challengeId;
     private Long classroomId;
     private String name;
 }

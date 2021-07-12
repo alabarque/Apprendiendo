@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 public class NewProjectDTO {
     private Long methodologyId;
-    private Long retoId;
+    private Long challengeId;
     private Long classroomId;
     private String name;
 }
