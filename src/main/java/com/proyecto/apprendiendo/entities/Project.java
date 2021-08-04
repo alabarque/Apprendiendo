@@ -1,12 +1,15 @@
 package com.proyecto.apprendiendo.entities;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import javax.persistence.Entity;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
+@Entity
 public class Project {
     private Long id;
     private Long methodologyId;

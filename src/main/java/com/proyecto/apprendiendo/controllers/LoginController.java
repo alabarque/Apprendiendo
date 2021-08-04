@@ -1,7 +1,7 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.config.security.JwtTokenUtil;
-import com.proyecto.apprendiendo.entities.dtos.UserDTO;
+import com.proyecto.apprendiendo.entities.dtos.UserDTO.LoginUserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +24,7 @@ public class LoginController {
     private final JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody UserDTO request) {
+    public ResponseEntity<String> login(@RequestBody LoginUserDTO request) {
         try {
             Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
             UserDetails user = (UserDetails) authenticate.getPrincipal();

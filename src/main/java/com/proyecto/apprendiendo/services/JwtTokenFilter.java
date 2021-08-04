@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.services;
 
 import com.proyecto.apprendiendo.config.security.JwtTokenUtil;
+import com.proyecto.apprendiendo.services.UserService.FindUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;

@@ -1,7 +1,7 @@
-package com.proyecto.apprendiendo.services;
+package com.proyecto.apprendiendo.services.ClassroomService;
 
 import com.proyecto.apprendiendo.entities.Classroom;
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
+import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO.ClassroomDTO;
 import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

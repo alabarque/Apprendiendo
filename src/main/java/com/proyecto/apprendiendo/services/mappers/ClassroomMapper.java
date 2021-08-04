@@ -1,7 +1,7 @@
 package com.proyecto.apprendiendo.services.mappers;
 
 import com.proyecto.apprendiendo.entities.Classroom;
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
+import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO.ClassroomDTO;
 
 public class ClassroomMapper {
 

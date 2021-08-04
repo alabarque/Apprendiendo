@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.services;
+package com.proyecto.apprendiendo.services.UserService;
 
 import com.proyecto.apprendiendo.config.security.DefaultUserDetails;
 import com.proyecto.apprendiendo.repositories.UserRepository;

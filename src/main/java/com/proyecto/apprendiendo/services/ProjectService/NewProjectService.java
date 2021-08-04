@@ -1,7 +1,7 @@
-package com.proyecto.apprendiendo.services;
+package com.proyecto.apprendiendo.services.ProjectService;
 
 import com.proyecto.apprendiendo.entities.Project;
-import com.proyecto.apprendiendo.entities.dtos.NewProjectDTO;
+import com.proyecto.apprendiendo.entities.dtos.ProjectDTO.NewProjectDTO;
 import com.proyecto.apprendiendo.repositories.ProjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

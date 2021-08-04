@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.services;
+package com.proyecto.apprendiendo.services.ClassroomService;
 
 import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import lombok.AllArgsConstructor;
