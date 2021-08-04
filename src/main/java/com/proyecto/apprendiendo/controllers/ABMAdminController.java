@@ -6,10 +6,9 @@ import com.proyecto.apprendiendo.services.GetClassroomService;
 import com.proyecto.apprendiendo.services.NewClassroomService;
 import com.proyecto.apprendiendo.services.UpdateClassroomService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @AllArgsConstructor
 public class ABMAdminController {
 
@@ -23,12 +22,12 @@ public class ABMAdminController {
         newClassroomService.execute(classroomDTO);
     }
 
-    @GetMapping (path = "/class/{id}")
-    public ClassroomDTO getClassroom(@PathVariable Long idClass){
-        return getClassroomService.execute(idClass);
+    @GetMapping (path = "/class/{classroomId}")
+    public ClassroomDTO getClassroom(@PathVariable Long classroomId){
+        return getClassroomService.execute(classroomId);
     }
 
-    @DeleteMapping(path = "/class/{id}")
+    @DeleteMapping(path = "/class/{classroomId}")
     public void deleteClassroom(@PathVariable Long classroomId){
         deleteClassroomService.execute(classroomId);
     }

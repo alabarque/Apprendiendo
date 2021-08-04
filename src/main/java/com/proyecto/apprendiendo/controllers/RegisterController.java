@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.controllers;
 
+import com.proyecto.apprendiendo.entities.dtos.ResponseIdDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.services.CreateUserService;
@@ -15,13 +16,23 @@ public class RegisterController {
     CreateUserService createUserService;
 
     @PostMapping(value = "/register/student")
-    public void registerStudent(@RequestBody UserDTO userDTO){
-        createUserService.execute(userDTO, UserType.STUDENT);
+    public ResponseIdDTO registerStudent(@RequestBody UserDTO userDTO){
+         Long id = createUserService.execute(userDTO, UserType.STUDENT);
+         return ResponseIdDTO.builder().id(id).build();
     }
 
     @PostMapping(value = "/register/teacher")
-    public void registerTeacher(@RequestBody UserDTO userDTO){
-        createUserService.execute(userDTO, UserType.TEACHER);
+    public ResponseIdDTO registerTeacher(@RequestBody UserDTO userDTO){
+        Long id = createUserService.execute(userDTO, UserType.TEACHER);
+        return ResponseIdDTO.builder().id(id).build();
+    }
+
+
+    //Temporal, de momento esta para tests
+    @PostMapping(value = "/register/admin")
+    public ResponseIdDTO registerAdmin(@RequestBody UserDTO userDTO){
+        Long id = createUserService.execute(userDTO, UserType.ADMIN);
+        return ResponseIdDTO.builder().id(id).build();
     }
 
 }
