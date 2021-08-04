@@ -13,6 +13,6 @@ public class ABMProjectController {
     private NewProjectService newProjectService;
 
     @PostMapping(path = "/classroom/{classroomId}/project")
-    public void newProject(@RequestBody NewProjectDTO newProjectDTO){ newProjectService.execute(newProjectDTO); }
+    public void newProject(@RequestBody NewProjectDTO newProjectDTO, @PathVariable Long classroomId){ newProjectService.execute(newProjectDTO, classroomId); }
 
 }

@@ -10,6 +10,5 @@ import lombok.Setter;
 public class NewProjectDTO {
     private Long methodologyId;
     private Long challengeId;
-    private Long classroomId;
     private String name;
 }
