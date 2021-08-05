@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.services;
+package com.proyecto.apprendiendo.services.abm_services.classroom_services;
 
 import com.proyecto.apprendiendo.entities.Classroom;
 import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;

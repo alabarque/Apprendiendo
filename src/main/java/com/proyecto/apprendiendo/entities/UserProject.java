@@ -9,15 +9,16 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-public class Classroom {
+public class UserProject {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String name;
-    private Long teacherId;
-    private String teacherName;
+
+    private Long userId;
+    private Long projectId;
+
 }
