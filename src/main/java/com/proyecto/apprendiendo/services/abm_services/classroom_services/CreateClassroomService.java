@@ -1,14 +1,14 @@
-package com.proyecto.apprendiendo.services.ClassroomService;
+package com.proyecto.apprendiendo.services.abm_services.classroom_services;
 
 import com.proyecto.apprendiendo.entities.Classroom;
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO.ClassroomDTO;
+import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
 import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class NewClassroomService {
+public class CreateClassroomService {
 
     private ClassroomRepository classroomRepository;
 

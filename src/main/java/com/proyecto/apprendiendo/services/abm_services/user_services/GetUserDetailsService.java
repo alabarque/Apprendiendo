@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.services.UserService;
+package com.proyecto.apprendiendo.services.abm_services.user_services;
 
 import com.proyecto.apprendiendo.config.security.DefaultUserDetails;
 import com.proyecto.apprendiendo.repositories.UserRepository;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class FindUserDetailsService implements UserDetailsService {
+public class GetUserDetailsService implements UserDetailsService {
 
     private UserRepository userRepository;
 

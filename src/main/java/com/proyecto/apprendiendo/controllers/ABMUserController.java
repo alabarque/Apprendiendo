@@ -1,10 +1,10 @@
 package com.proyecto.apprendiendo.controllers;
 
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO.ClassroomDTO;
-import com.proyecto.apprendiendo.services.ClassroomService.DeleteClassroomService;
-import com.proyecto.apprendiendo.services.ClassroomService.GetClassroomService;
-import com.proyecto.apprendiendo.services.ClassroomService.NewClassroomService;
-import com.proyecto.apprendiendo.services.ClassroomService.UpdateClassroomService;
+import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
+import com.proyecto.apprendiendo.services.abm_services.classroom_services.DeleteClassroomService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_services.UpdateClassroomService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class ABMUserController {
 
-    private NewClassroomService newClassroomService;
+    private CreateClassroomService createClassroomService;
     private GetClassroomService getClassroomService;
     private DeleteClassroomService deleteClassroomService;
     private UpdateClassroomService updateClassroomService;
 
     @PostMapping(path = "/user")
     public void newClassroom(@RequestBody ClassroomDTO classroomDTO){
-        newClassroomService.execute(classroomDTO);
+        createClassroomService.execute(classroomDTO);
     }
 
     @GetMapping (path = "/user/{userId}")

@@ -1,7 +1,7 @@
 package com.proyecto.apprendiendo.config.security;
 
 import com.proyecto.apprendiendo.entities.enums.UserType;
-import com.proyecto.apprendiendo.services.UserService.FindUserDetailsService;
+import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserDetailsService;
 import com.proyecto.apprendiendo.services.JwtTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,17 +31,17 @@ import static java.lang.String.format;
 )
 public class AuthorizedRoutes extends WebSecurityConfigurerAdapter {
     private final JwtTokenFilter jwtTokenFilter;
-    private final FindUserDetailsService findUserDetailsService;
+    private final GetUserDetailsService getUserDetailsService;
 
     @Autowired
-    public AuthorizedRoutes(JwtTokenFilter jwtTokenFilter, FindUserDetailsService findUserDetailsService) {
+    public AuthorizedRoutes(JwtTokenFilter jwtTokenFilter, GetUserDetailsService getUserDetailsService) {
         this.jwtTokenFilter = jwtTokenFilter;
-        this.findUserDetailsService = findUserDetailsService;
+        this.getUserDetailsService = getUserDetailsService;
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(findUserDetailsService);
+        auth.userDetailsService(getUserDetailsService);
     }
 
     // Set password encoding schema

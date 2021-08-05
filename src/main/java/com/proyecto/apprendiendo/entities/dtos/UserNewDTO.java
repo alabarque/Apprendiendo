@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.entities.dtos.UserDTO;
+package com.proyecto.apprendiendo.entities.dtos;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class NewUserDTO {
+public class UserNewDTO {
     private String username;
     private String password;
     private String role;

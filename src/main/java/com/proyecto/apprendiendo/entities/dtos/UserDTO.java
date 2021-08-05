@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.entities.dtos.UserDTO;
+package com.proyecto.apprendiendo.entities.dtos;
 
 import lombok.Builder;
 import lombok.Getter;

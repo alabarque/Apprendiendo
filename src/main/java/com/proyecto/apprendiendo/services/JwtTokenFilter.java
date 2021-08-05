@@ -1,7 +1,7 @@
 package com.proyecto.apprendiendo.services;
 
 import com.proyecto.apprendiendo.config.security.JwtTokenUtil;
-import com.proyecto.apprendiendo.services.UserService.FindUserDetailsService;
+import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +26,7 @@ import static org.apache.logging.log4j.util.Strings.isEmpty;
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final JwtTokenUtil jwtTokenUtil;
-    private final FindUserDetailsService findUserDetailsService;
+    private final GetUserDetailsService getUserDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -50,7 +50,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
         // Get user identity and set it on the spring security context
-        UserDetails userDetails = findUserDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = getUserDetailsService.loadUserByUsername(username);
         // Get jwt token and validate
         if (!jwtTokenUtil.validateToken(token, userDetails) || SecurityContextHolder.getContext().getAuthentication() != null) {
             chain.doFilter(request, response);

@@ -1,6 +1,5 @@
-package com.proyecto.apprendiendo.services.ProjectService;
+package com.proyecto.apprendiendo.services.abm_services.project_services;
 
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import com.proyecto.apprendiendo.repositories.ProjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

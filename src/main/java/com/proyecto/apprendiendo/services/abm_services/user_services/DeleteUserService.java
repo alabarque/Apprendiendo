@@ -1,6 +1,5 @@
-package com.proyecto.apprendiendo.services.UserService;
+package com.proyecto.apprendiendo.services.abm_services.user_services;
 
-import com.proyecto.apprendiendo.repositories.ProjectRepository;
 import com.proyecto.apprendiendo.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

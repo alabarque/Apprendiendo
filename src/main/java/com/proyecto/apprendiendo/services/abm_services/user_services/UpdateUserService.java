@@ -1,10 +1,7 @@
-package com.proyecto.apprendiendo.services.UserService;
+package com.proyecto.apprendiendo.services.abm_services.user_services;
 
-import com.proyecto.apprendiendo.entities.Project;
 import com.proyecto.apprendiendo.entities.User;
-import com.proyecto.apprendiendo.entities.dtos.ProjectDTO.ProjectDTO;
-import com.proyecto.apprendiendo.entities.dtos.UserDTO.UserDTO;
-import com.proyecto.apprendiendo.repositories.ProjectRepository;
+import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

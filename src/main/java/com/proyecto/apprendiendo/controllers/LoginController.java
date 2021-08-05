@@ -1,7 +1,7 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.config.security.JwtTokenUtil;
-import com.proyecto.apprendiendo.entities.dtos.UserDTO.LoginUserDTO;
+import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class LoginController {
     private final JwtTokenUtil jwtTokenUtil;
 
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody LoginUserDTO request) {
+    public ResponseEntity<String> login(@RequestBody UserLoginDTO request) {
         try {
             Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
             UserDetails user = (UserDetails) authenticate.getPrincipal();

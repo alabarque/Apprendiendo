@@ -1,11 +1,9 @@
 package com.proyecto.apprendiendo.services.mappers;
 
 
-import com.proyecto.apprendiendo.entities.Project;
 import com.proyecto.apprendiendo.entities.User;
-import com.proyecto.apprendiendo.entities.dtos.ProjectDTO.ProjectDTO;
-import com.proyecto.apprendiendo.entities.dtos.UserDTO.LoginUserDTO;
-import com.proyecto.apprendiendo.entities.dtos.UserDTO.UserDTO;
+import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
+import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 
 public class UserMapper {
     public static User DTOtoEntity(UserDTO userDTO){
@@ -16,8 +14,8 @@ public class UserMapper {
                              .build();
 
     }
-    public static User DTOtoEntity(LoginUserDTO loginUserDTO){
-        return User.builder().username(loginUserDTO.getUsername()).password(loginUserDTO.getPassword()).build();
+    public static User DTOtoEntity(UserLoginDTO userLoginDTO){
+        return User.builder().username(userLoginDTO.getUsername()).password(userLoginDTO.getPassword()).build();
     }
     public static UserDTO entityToDto(User user){
 
