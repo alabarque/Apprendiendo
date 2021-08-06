@@ -1,8 +1,9 @@
 package com.proyecto.apprendiendo.config.security;
 
+import com.proyecto.apprendiendo.repositories.UserTokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -13,18 +14,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@AllArgsConstructor
 public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = 234234523523L;
 
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
+    private final UserTokenRepository userTokenRepository;
     private final SecretKey key; //TODO esto genera una pw distinta cada vez que se levanta la aplicacion
-
-    @Autowired
-    public JwtTokenUtil(SecretKey key) {
-        this.key = key;
-    }
 
 
     //retrieve username from jwt token
@@ -77,7 +75,6 @@ public class JwtTokenUtil implements Serializable {
 
     //validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = getUsernameFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return !isTokenExpired(token) && userTokenRepository.findByUsername(userDetails.getUsername()).isPresent();
     }
 }

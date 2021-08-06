@@ -17,22 +17,22 @@ public class ABMClassroomController {
     private DeleteClassroomService deleteClassroomService;
     private UpdateClassroomService updateClassroomService;
 
-    @PostMapping(path = "/classroom")
+    @PostMapping(path = "classroom")
     public void newClassroom(@RequestBody ClassroomDTO classroomDTO){
         createClassroomService.execute(classroomDTO);
     }
 
-    @GetMapping (path = "/classroom/{classroomId}")
+    @GetMapping (path = "classroom/{classroomId}")
     public ClassroomDTO getClassroom(@PathVariable Long classroomId){
         return getClassroomService.execute(classroomId);
     }
 
-    @DeleteMapping(path = "/classroom/{classroomId}")
+    @DeleteMapping(path = "classroom/{classroomId}")
     public void deleteClassroom(@PathVariable Long classroomId){
         deleteClassroomService.execute(classroomId);
     }
 
-    @PutMapping(path = "/classroom")
+    @PutMapping(path = "classroom")
     public void updateClassroom(@RequestBody ClassroomDTO classroomDTO){
         updateClassroomService.execute(classroomDTO);
     }

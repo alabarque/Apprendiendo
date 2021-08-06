@@ -17,22 +17,22 @@ public class ABMUserController {
     private DeleteClassroomService deleteClassroomService;
     private UpdateClassroomService updateClassroomService;
 
-    @PostMapping(path = "/user")
+    @PostMapping(path = "user")
     public void newClassroom(@RequestBody ClassroomDTO classroomDTO){
         createClassroomService.execute(classroomDTO);
     }
 
-    @GetMapping (path = "/user/{userId}")
+    @GetMapping (path = "user/{userId}")
     public ClassroomDTO getClassroom(@PathVariable Long classroomId){
         return getClassroomService.execute(classroomId);
     }
 
-    @DeleteMapping(path = "/user/{userId}")
+    @DeleteMapping(path = "user/{userId}")
     public void deleteClassroom(@PathVariable Long classroomId){
         deleteClassroomService.execute(classroomId);
     }
 
-    @PutMapping(path = "/class")
+    @PutMapping(path = "class")
     public void updateClassroom(@RequestBody ClassroomDTO classroomDTO){
         updateClassroomService.execute(classroomDTO);
     }

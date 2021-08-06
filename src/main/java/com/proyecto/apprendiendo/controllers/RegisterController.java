@@ -15,13 +15,13 @@ public class RegisterController {
 
     CreateUserService createUserService;
 
-    @PostMapping(value = "/register/student")
+    @PostMapping(value = "register/student")
     public ResponseIdDTO registerStudent(@RequestBody UserLoginDTO userLoginDTO){
          Long id = createUserService.execute(userLoginDTO, UserType.STUDENT);
          return ResponseIdDTO.builder().id(id).build();
     }
 
-    @PostMapping(value = "/register/teacher")
+    @PostMapping(value = "register/teacher")
     public ResponseIdDTO registerTeacher(@RequestBody UserLoginDTO userLoginDTO){
         Long id = createUserService.execute(userLoginDTO, UserType.TEACHER);
         return ResponseIdDTO.builder().id(id).build();
@@ -29,7 +29,7 @@ public class RegisterController {
 
 
     //Temporal, de momento esta para tests
-    @PostMapping(value = "/register/admin")
+    @PostMapping(value = "register/admin")
     public ResponseIdDTO registerAdmin(@RequestBody UserLoginDTO userLoginDTO){
         Long id = createUserService.execute(userLoginDTO, UserType.ADMIN);
         return ResponseIdDTO.builder().id(id).build();

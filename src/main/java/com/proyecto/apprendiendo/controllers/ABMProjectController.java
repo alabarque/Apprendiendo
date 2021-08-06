@@ -19,20 +19,20 @@ public class ABMProjectController {
     private DeleteProjectService deleteProjectService;
     private UpdateProjectService updateProjectService;
 
-    @PostMapping(path = "/classroom/{classroomId}/project")
+    @PostMapping(path = "classroom/{classroomId}/project")
     public void newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId){ createProjectService.execute(projectNewDTO, classroomId); }
 
-    @GetMapping (path = "/classroom/{classroomId}/project/{projectId}")
+    @GetMapping (path = "classroom/{classroomId}/project/{projectId}")
     public ProjectDTO getProject(@PathVariable("projectId") Long projectId){
         return getProjectService.execute(projectId);
     }
 
-    @DeleteMapping(path = "/classroom/{classroomId}/project/{projectId}")
+    @DeleteMapping(path = "classroom/{classroomId}/project/{projectId}")
     public void deleteProject(@PathVariable("projectId") Long projectId){
         deleteProjectService.execute(projectId);
     }
 
-    @PutMapping(path = "/classroom/{classroomId}/project")
+    @PutMapping(path = "classroom/{classroomId}/project")
     public void updateProject(@RequestBody ProjectDTO projectDTO){
         updateProjectService.execute(projectDTO);
     }
