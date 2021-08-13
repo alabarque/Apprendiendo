@@ -28,7 +28,7 @@ public class CreateUserService {
 
     private Long saveUser(UserLoginDTO userLoginDTO, UserType userType) {
         User user = UserMapper.DTOtoEntity(userLoginDTO);
-        user.setRole("ROLE_" + userType.getValue());
+        user.setRole(userType);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user).getId();
     }

@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.entities;
 
+import com.proyecto.apprendiendo.entities.enums.UserType;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,6 +20,5 @@ public class User {
     protected Long id;
     protected String username;
     protected String password;
-    protected String role;
-
+    protected UserType role;
 }
