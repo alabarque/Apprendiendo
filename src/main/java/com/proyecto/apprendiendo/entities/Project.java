@@ -17,8 +17,8 @@ public class Project {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long methodologyId;
-    private Long challengeId;
-    private Long classroomId;
+    private Long methodologyId; //FK a Methodology
+    private Long challengeId; //FK a Challenge
+    private Long classroomId; //FK a Classroom
     private String name;
 }
