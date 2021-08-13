@@ -6,11 +6,14 @@ import com.proyecto.apprendiendo.repositories.ProjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
 public class CreateProjectService {
     private ProjectRepository projectRepository;
 
+    @Transactional(rollbackOn = Exception.class)
     public void execute(ProjectNewDTO projectNewDTO, Long classRoomId) {
         Project project = Project.builder()
                                  .methodologyId(projectNewDTO.getMethodologyId())

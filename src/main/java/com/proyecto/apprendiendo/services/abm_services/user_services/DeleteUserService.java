@@ -4,12 +4,15 @@ import com.proyecto.apprendiendo.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
 public class DeleteUserService {
 
     private UserRepository userRepository;
 
+    @Transactional(rollbackOn = Exception.class)
     public void execute(Long projectId){
         userRepository.deleteById(projectId);
     }
