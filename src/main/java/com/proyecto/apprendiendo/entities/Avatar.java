@@ -9,16 +9,19 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-public class Project {
+public class Avatar {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long methodologyId; //FK a Methodology
-    private Long challengeId; //FK a Challenge
-    private Long classroomId; //FK a Classroom
-    private String name;
+    private String type;
+    private String path;
+    private Long headId; //FK a AvatarBodypart
+    private Long bodyId; //FK a AvatarBodypart
+    private Long legsId; //FK a AvatarBodypart
+    private Long feetId; //FK a AvatarBodypart
+
 }

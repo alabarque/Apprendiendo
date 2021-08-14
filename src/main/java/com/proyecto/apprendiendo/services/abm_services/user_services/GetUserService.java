@@ -13,8 +13,15 @@ public class GetUserService {
 
     private UserRepository userRepository;
 
-    public UserDTO execute(Long projectId) {
-        User user = userRepository.getById(projectId);
+    public UserDTO execute(Long usertId) {
+        User user = userRepository.getById(usertId);
         return UserMapper.entityToDto(user);
     }
+
+    public UserDTO execute(String username) {
+        User user = userRepository.findByUsername(username);
+        return UserMapper.entityToDto(user);
+    }
+
+
 }

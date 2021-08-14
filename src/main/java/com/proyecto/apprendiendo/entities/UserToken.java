@@ -7,18 +7,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-public class Project {
+public class UserToken {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long methodologyId; //FK a Methodology
-    private Long challengeId; //FK a Challenge
-    private Long classroomId; //FK a Classroom
-    private String name;
+    private String username;
+    private String token;
 }

@@ -9,16 +9,16 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-public class Project {
+public class AvatarBodypart {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long methodologyId; //FK a Methodology
-    private Long challengeId; //FK a Challenge
-    private Long classroomId; //FK a Classroom
     private String name;
+    private String type; //Enum BodypartType
+    private String path;
+
 }

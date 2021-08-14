@@ -4,6 +4,7 @@ package com.proyecto.apprendiendo.services.mappers;
 import com.proyecto.apprendiendo.entities.User;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
+import lombok.AllArgsConstructor;
 
 public class UserMapper {
     public static User DTOtoEntity(UserDTO userDTO){
@@ -23,7 +24,6 @@ public class UserMapper {
                          .username(user.getUsername())
                          .password(user.getPassword())
                          .role(user.getRole())
-                         .id(user.getId())
                          .build();
 
     }
