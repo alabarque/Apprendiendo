@@ -1,6 +1,6 @@
 package com.proyecto.apprendiendo.entities.enums;
 
-public enum BodyPartType {
+public enum BodypartType {
     HEAD("HEAD"),
     BODY("BODY"),
     LEGS("LEGS"),
@@ -12,7 +12,7 @@ public enum BodyPartType {
         return value;
     }
 
-    BodyPartType(String value){
+    BodypartType(String value){
         this.value = value;
     }
 }
