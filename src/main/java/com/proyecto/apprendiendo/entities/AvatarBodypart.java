@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.entities;
 
-import com.proyecto.apprendiendo.entities.enums.BodyPartType;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,7 +18,7 @@ public class AvatarBodypart {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
-    private BodyPartType type;
+    private String type; //Enum BodypartType
     private String path;
 
 }
