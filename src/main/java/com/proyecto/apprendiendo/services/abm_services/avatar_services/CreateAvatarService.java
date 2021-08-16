@@ -1,8 +1,8 @@
 package com.proyecto.apprendiendo.services.abm_services.avatar_services;
 
-import com.proyecto.apprendiendo.entities.Classroom;
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
+import com.proyecto.apprendiendo.entities.Avatar;
+import com.proyecto.apprendiendo.entities.dtos.AvatarDTO;
+import com.proyecto.apprendiendo.repositories.AvatarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CreateAvatarService {
 
-    private ClassroomRepository classroomRepository;
+    private AvatarRepository avatarRepository;
 
-    public void execute(ClassroomDTO classroomDTO) {
-        Classroom classroom = Classroom.builder().name(classroomDTO.getName()).teacherId(classroomDTO.getTeacherId()).build();
-        classroomRepository.save(classroom);
+    public void execute(AvatarDTO avatarDTO) {
+        Avatar avatar = Avatar.builder().bodyId(avatarDTO.getBodyId()).headId(avatarDTO.getHeadId()).feetId(avatarDTO.getFeetId()).legsId(avatarDTO.getLegsId()).name(avatarDTO.getName()).build();
+        avatarRepository.save(avatar);
     }
 }

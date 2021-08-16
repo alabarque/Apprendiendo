@@ -1,6 +1,6 @@
 package com.proyecto.apprendiendo.services.abm_services.avatar_services;
 
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
+import com.proyecto.apprendiendo.repositories.AvatarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class DeleteAvatarService {
 
-    private ClassroomRepository classroomRepository;
+    private AvatarRepository avatarRepository;
 
-    public void execute(Long clasroomId){
-        classroomRepository.deleteById(clasroomId);
+    public void execute(Long avatarId){
+        avatarRepository.deleteById(avatarId);
     }
 }

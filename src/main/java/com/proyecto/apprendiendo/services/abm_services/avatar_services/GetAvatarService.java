@@ -1,9 +1,9 @@
 package com.proyecto.apprendiendo.services.abm_services.avatar_services;
 
-import com.proyecto.apprendiendo.entities.Classroom;
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
-import com.proyecto.apprendiendo.services.mappers.ClassroomMapper;
+import com.proyecto.apprendiendo.entities.Avatar;
+import com.proyecto.apprendiendo.entities.dtos.AvatarDTO;
+import com.proyecto.apprendiendo.repositories.AvatarRepository;
+import com.proyecto.apprendiendo.services.mappers.AvatarMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class GetAvatarService {
 
-    private ClassroomRepository classroomRepository;
+    private AvatarRepository avatarRepository;
 
-    public ClassroomDTO execute(Long idClass) {
-        Classroom classroom = classroomRepository.getById(idClass);
-        return ClassroomMapper.entityToDto(classroom);
+    public AvatarDTO execute(Long idClass) {
+        Avatar avatar = avatarRepository.getById(idClass);
+        return AvatarMapper.entityToDto(avatar);
     }
 }

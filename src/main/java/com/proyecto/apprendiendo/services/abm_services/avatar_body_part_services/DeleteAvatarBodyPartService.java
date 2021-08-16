@@ -1,6 +1,6 @@
 package com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services;
 
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
+import com.proyecto.apprendiendo.repositories.AvatarBodyPartRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class DeleteAvatarBodyPartService {
 
-    private ClassroomRepository classroomRepository;
+    private AvatarBodyPartRepository avatarBodyPartRepository;
 
-    public void execute(Long clasroomId){
-        classroomRepository.deleteById(clasroomId);
+    public void execute(Long avatarBodyPartId){
+        avatarBodyPartRepository.deleteById(avatarBodyPartId);
     }
 }

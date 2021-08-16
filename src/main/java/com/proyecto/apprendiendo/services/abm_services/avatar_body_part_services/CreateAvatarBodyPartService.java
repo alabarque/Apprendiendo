@@ -1,8 +1,8 @@
 package com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services;
 
-import com.proyecto.apprendiendo.entities.Classroom;
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
+import com.proyecto.apprendiendo.entities.AvatarBodyPart;
+import com.proyecto.apprendiendo.entities.dtos.AvatarBodyPartDTO;
+import com.proyecto.apprendiendo.repositories.AvatarBodyPartRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class CreateAvatarBodyPartService {
 
-    private ClassroomRepository classroomRepository;
+    private AvatarBodyPartRepository avatarBodyPartRepository;
 
-    public void execute(ClassroomDTO classroomDTO) {
-        Classroom classroom = Classroom.builder().name(classroomDTO.getName()).teacherId(classroomDTO.getTeacherId()).build();
-        classroomRepository.save(classroom);
+    public void execute(AvatarBodyPartDTO avatarBodyPartDTO) {
+        AvatarBodyPart avatarBodyPart = AvatarBodyPart.builder().name(avatarBodyPartDTO.getName()).path(avatarBodyPartDTO.getPath()).type(avatarBodyPartDTO.getType()).build();
+        avatarBodyPartRepository.save(avatarBodyPart);
     }
 }

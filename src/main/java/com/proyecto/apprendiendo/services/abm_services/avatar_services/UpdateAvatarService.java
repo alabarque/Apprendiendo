@@ -1,8 +1,8 @@
 package com.proyecto.apprendiendo.services.abm_services.avatar_services;
 
-import com.proyecto.apprendiendo.entities.Classroom;
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
+import com.proyecto.apprendiendo.entities.Avatar;
+import com.proyecto.apprendiendo.entities.dtos.AvatarDTO;
+import com.proyecto.apprendiendo.repositories.AvatarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +10,16 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UpdateAvatarService {
 
-    private ClassroomRepository classroomRepository;
+    private AvatarRepository avatarRepository;
 
-    public void execute(ClassroomDTO classroomDTO){
-        Classroom classroom = classroomRepository.getById(classroomDTO.getId());
-        classroom.setId(classroomDTO.getId());
-        classroom.setName(classroomDTO.getName());
-        classroom.setTeacherId(classroomDTO.getTeacherId());
-        classroom.setTeacherName(classroomDTO.getTeacherName());
-        classroomRepository.save(classroom);
+    public void execute(AvatarDTO avatarDTO){
+        Avatar avatar = avatarRepository.getById(avatarDTO.getId());
+        avatar.setId(avatarDTO.getId());
+        avatar.setName(avatarDTO.getName());
+        avatar.setBodyId(avatarDTO.getBodyId());
+        avatar.setFeetId(avatarDTO.getFeetId());
+        avatar.setHeadId(avatarDTO.getHeadId());
+        avatar.setLegsId(avatarDTO.getLegsId());
+        avatarRepository.save(avatar);
     }
 }

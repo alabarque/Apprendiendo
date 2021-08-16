@@ -17,11 +17,9 @@ public class Avatar {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String type;
-    private String path;
+    private String name;
     private Long headId; //FK a AvatarBodypart
     private Long bodyId; //FK a AvatarBodypart
     private Long legsId; //FK a AvatarBodypart
     private Long feetId; //FK a AvatarBodypart
-
 }
