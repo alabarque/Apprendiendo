@@ -17,7 +17,6 @@ public class UpdateClassroomService {
         classroom.setId(classroomDTO.getId());
         classroom.setName(classroomDTO.getName());
         classroom.setTeacherId(classroomDTO.getTeacherId());
-        classroom.setTeacherName(classroomDTO.getTeacherName());
         classroomRepository.save(classroom);
     }
 }
