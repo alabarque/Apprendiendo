@@ -10,7 +10,7 @@ public class DeleteClassroomService {
 
     private ClassroomRepository classroomRepository;
 
-    public void execute(Long clasroomId){
-        classroomRepository.deleteById(clasroomId);
+    public void execute(Long classroomId){
+        classroomRepository.deleteById(classroomId);
     }
 }
