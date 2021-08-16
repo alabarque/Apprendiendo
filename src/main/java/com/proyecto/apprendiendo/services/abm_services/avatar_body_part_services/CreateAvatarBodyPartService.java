@@ -12,8 +12,8 @@ public class CreateAvatarBodyPartService {
 
     private AvatarBodyPartRepository avatarBodyPartRepository;
 
-    public void execute(AvatarBodyPartDTO avatarBodyPartDTO) {
+    public Long execute(AvatarBodyPartDTO avatarBodyPartDTO) {
         AvatarBodyPart avatarBodyPart = AvatarBodyPart.builder().name(avatarBodyPartDTO.getName()).path(avatarBodyPartDTO.getPath()).type(avatarBodyPartDTO.getType()).build();
-        avatarBodyPartRepository.save(avatarBodyPart);
+        return avatarBodyPartRepository.save(avatarBodyPart).getId();
     }
 }

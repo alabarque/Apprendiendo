@@ -12,8 +12,8 @@ public class CreateAvatarService {
 
     private AvatarRepository avatarRepository;
 
-    public void execute(AvatarDTO avatarDTO) {
+    public Long execute(AvatarDTO avatarDTO) {
         Avatar avatar = Avatar.builder().bodyId(avatarDTO.getBodyId()).headId(avatarDTO.getHeadId()).feetId(avatarDTO.getFeetId()).legsId(avatarDTO.getLegsId()).name(avatarDTO.getName()).build();
-        avatarRepository.save(avatar);
+        return avatarRepository.save(avatar).getId();
     }
 }

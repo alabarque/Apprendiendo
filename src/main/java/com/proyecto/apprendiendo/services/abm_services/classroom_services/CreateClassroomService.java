@@ -12,8 +12,8 @@ public class CreateClassroomService {
 
     private ClassroomRepository classroomRepository;
 
-    public void execute(ClassroomDTO classroomDTO) {
+    public Long execute(ClassroomDTO classroomDTO) {
         Classroom classroom = Classroom.builder().name(classroomDTO.getName()).teacherId(classroomDTO.getTeacherId()).build();
-        classroomRepository.save(classroom);
+        return classroomRepository.save(classroom).getId();
     }
 }
