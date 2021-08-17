@@ -84,6 +84,11 @@ public class AuthorizedRoutes extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers(
+                        "/v3/api-docs",
+                        "/v3/api-docs/**",
+                        "/swagger-ui.html",
+                        "/swagger-ui/**").permitAll() //swagger and open api docs
                 .antMatchers("/login").permitAll()
                 .antMatchers("/register/admin").permitAll()
                 .antMatchers("/class","/class/**").hasAnyRole(UserType.ADMIN.getValue())
