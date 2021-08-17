@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class UpdateProjectStudentsService {
 
     private UserProjectRepository userProjectRepository;

@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class GetProjectService {
 
     private ProjectRepository projectRepository;

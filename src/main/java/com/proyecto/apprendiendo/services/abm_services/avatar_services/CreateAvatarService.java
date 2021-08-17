@@ -6,8 +6,11 @@ import com.proyecto.apprendiendo.repositories.AvatarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
+@Transactional
 public class CreateAvatarService {
 
     private AvatarRepository avatarRepository;

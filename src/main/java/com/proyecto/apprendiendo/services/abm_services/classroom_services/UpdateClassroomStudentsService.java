@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class UpdateClassroomStudentsService {
 
     private UserClassroomRepository userClassroomRepository;

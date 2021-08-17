@@ -7,8 +7,11 @@ import com.proyecto.apprendiendo.services.mappers.AvatarBodyPartMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
+@Transactional
 public class GetAvatarBodyPartService {
 
     private AvatarBodyPartRepository avatarBodyPartRepository;

@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class DeleteProjectService {
 
     private ProjectRepository projectRepository;

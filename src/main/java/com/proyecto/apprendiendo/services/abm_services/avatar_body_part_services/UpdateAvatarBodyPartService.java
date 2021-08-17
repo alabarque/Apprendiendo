@@ -6,8 +6,11 @@ import com.proyecto.apprendiendo.repositories.AvatarBodyPartRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
+@Transactional
 public class UpdateAvatarBodyPartService {
 
     private AvatarBodyPartRepository avatarBodyPartRepository;

@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class CreateUserService {
 
     PasswordEncoder passwordEncoder;
