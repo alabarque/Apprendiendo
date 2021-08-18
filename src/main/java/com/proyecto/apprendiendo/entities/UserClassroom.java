@@ -18,7 +18,7 @@ public class UserClassroom {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private Long userId;
-    private Long classroomId;
+    private Long userId; //FK a User
+    private Long classroomId; //FK a Classroom
 
 }

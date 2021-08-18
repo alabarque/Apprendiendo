@@ -18,7 +18,7 @@ public class UserProject {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private Long userId;
-    private Long projectId;
+    private Long userId; //FK a User
+    private Long projectId; //FK a Project
 
 }
