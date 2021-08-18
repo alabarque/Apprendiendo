@@ -3,6 +3,9 @@ package com.proyecto.apprendiendo.controllers;
 import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.*;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.project_user_services.RemoveProjectStudentsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +20,8 @@ public class ABMClassroomController {
     private DeleteClassroomService deleteClassroomService;
     private UpdateClassroomService updateClassroomService;
     private GetClassroomStudentsService getClassroomStudentsService;
-    private UpdateClassroomStudentsService updateClassroomStudentsService;
+    private AddClassroomStudentsService addClassroomStudentsService;
+    private RemoveProjectStudentsService removeProjectStudentsService;
 
     @PostMapping(path = "classroom")
     public void newClassroom(@RequestBody ClassroomDTO classroomDTO) {
@@ -44,8 +48,13 @@ public class ABMClassroomController {
         return getClassroomStudentsService.execute(classroomId);
     }
 
-    @PutMapping(path = "classroom/{classroomId}/students")
-    public void updateProjectStudents(@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("classroomId") Long classroomId) {
-        updateClassroomStudentsService.execute(classroomId, studentDTOs);
+    @PutMapping(path = "classroom/{classroomId}/students/add")
+    public void addProjectStudents(@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("classroomId") Long classroomId) {
+        addClassroomStudentsService.execute(classroomId, studentDTOs);
+    }
+
+    @PutMapping(path = "classroom/{classroomId}/students/remove")
+    public void removeProjectStudents(@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("classroomId") Long classroomId) {
+        removeProjectStudentsService.execute(classroomId, studentDTOs);
     }
 }

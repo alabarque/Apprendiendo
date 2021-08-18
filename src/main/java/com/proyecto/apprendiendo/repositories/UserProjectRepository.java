@@ -11,5 +11,7 @@ import java.util.ArrayList;
 public interface UserProjectRepository extends JpaRepository<UserProject,Long> {
     ArrayList<UserProject> findByUserId(Long userId);
     ArrayList<UserProject> findByProjectId(Long projectId);
-    ArrayList<UserProject> deleteByProjectId(Long projectId);
+    UserProject findByUserIdAndProjectId(Long userId, Long projectId);
+    ArrayList<UserProject> deleteByProjectIdAndUserId(Long projectId, Long userId);
+
 }

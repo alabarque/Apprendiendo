@@ -1,18 +1,20 @@
 package com.proyecto.apprendiendo.controllers;
 
-import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
-import com.proyecto.apprendiendo.entities.dtos.UserDTO;
-import com.proyecto.apprendiendo.entities.dtos.UserNewDTO;
+import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.DeleteClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.UpdateClassroomService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomsService;
+import com.proyecto.apprendiendo.services.abm_services.project_user_services.GetStudentProjectsService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.DeleteUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.UpdateUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @AllArgsConstructor
@@ -22,6 +24,8 @@ public class ABMUserController {
     private GetUserService getUserService;
     private DeleteUserService deleteUserService;
     private UpdateUserService updateUserService;
+    private GetStudentProjectsService getStudentProjectsService;
+    private GetStudentClassroomsService getStudentClassroomsService;
 
     //Por ahora se usa el /register/
     //@PostMapping(path = "user")
@@ -39,8 +43,18 @@ public class ABMUserController {
         deleteUserService.execute(userId);
     }
 
-    @PutMapping(path = "class")
+    @PutMapping(path = "user")
     public void updateUser(@RequestBody UserDTO userDTO){
         updateUserService.execute(userDTO);
+    }
+
+    @GetMapping(path = "user/{userId}/classroom")
+    public ArrayList<ClassroomDTO> getStudentClassrooms(@PathVariable("userId") Long userId) {
+        return getStudentClassroomsService.execute(userId);
+    }
+
+    @GetMapping(path = "classroom/{userId}/project")
+    public ArrayList<ProjectDTO> getStudentProjects(@PathVariable("userId") Long userId) {
+        return getStudentProjectsService.execute(userId);
     }
 }

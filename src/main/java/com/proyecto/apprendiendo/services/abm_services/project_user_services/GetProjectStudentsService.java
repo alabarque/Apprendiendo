@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.services.abm_services.project_services;
+package com.proyecto.apprendiendo.services.abm_services.project_user_services;
 
 import com.proyecto.apprendiendo.entities.Project;
 import com.proyecto.apprendiendo.entities.UserProject;

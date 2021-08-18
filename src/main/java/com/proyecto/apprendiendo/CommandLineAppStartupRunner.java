@@ -9,11 +9,11 @@ import com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.UpdateClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.UpdateProjectStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.project_user_services.AddProjectStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.project_user_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
@@ -42,29 +42,16 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Autowired
     private GetProjectStudentsService getProjectStudentsService;
     @Autowired
-    private UpdateProjectStudentsService updateProjectStudentsService;
+    private AddProjectStudentsService updateProjectStudentsService;
     @Autowired
     private GetClassroomStudentsService getClassroomStudentsService;
     @Autowired
-    private UpdateClassroomStudentsService updateClassroomStudentsService;
+    private AddClassroomStudentsService updateClassroomStudentsService;
     @Autowired
     private GetStudentService getStudentService;
 
     @Override
-    public void run(String...args) throws Exception {
-
-        this.createUserService = createUserService;
-        this.createProjectService = createProjectService;
-        this.createClassroomService = createClassroomService;
-        this.createAvatarService = createAvatarService;
-        this.createAvatarBodyPartService = createAvatarBodyPartService;
-        this.getUserService = getUserService;
-        this.getClassroomService = getClassroomService;
-        this.getProjectStudentsService = getProjectStudentsService;
-        this.updateProjectStudentsService = updateProjectStudentsService;
-        this.getClassroomStudentsService = getClassroomStudentsService;
-        this.updateClassroomStudentsService = updateClassroomStudentsService;
-        this.getStudentService = getStudentService;
+    public void run(String...args) {
 
         Long adminId = createUserService.execute(UserLoginDTO.builder().username("admin").password("admin").build(),UserType.ADMIN);
         Long andreaId = createUserService.execute(UserLoginDTO.builder().username("andrea").password("andrea").build(),UserType.TEACHER);
