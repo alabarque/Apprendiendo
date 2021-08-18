@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.login_services.LoginService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.io.StringWriter;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -21,17 +24,18 @@ import javax.transaction.Transactional;
 public class LoginController {
 
     private final LoginService loginService;
-    private GetUserService getUserService;
+    private final GetUserService getUserService;
+    private final ObjectMapper objectMapper;
 
     @CrossOrigin
     @PostMapping("login")
-    public ResponseEntity<String> login(@RequestBody UserLoginDTO request) {
+    public ResponseEntity<String> login(@RequestBody UserLoginDTO request) throws IOException {
         try {
             String token = loginService.execute(request);
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, token)
-                    .body(getUserService.execute(request.getUsername()).toString());
+                    .body(objectMapper.writeValueAsString(getUserService.execute(request.getUsername())));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
