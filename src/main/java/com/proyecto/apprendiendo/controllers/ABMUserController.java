@@ -53,7 +53,7 @@ public class ABMUserController {
         return getStudentClassroomsService.execute(userId);
     }
 
-    @GetMapping(path = "classroom/{userId}/project")
+    @GetMapping(path = "user/{userId}/project")
     public ArrayList<ProjectDTO> getStudentProjects(@PathVariable("userId") Long userId) {
         return getStudentProjectsService.execute(userId);
     }
