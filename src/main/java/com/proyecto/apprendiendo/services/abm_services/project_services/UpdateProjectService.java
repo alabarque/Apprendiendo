@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class UpdateProjectService {
 
     private ProjectRepository projectRepository;

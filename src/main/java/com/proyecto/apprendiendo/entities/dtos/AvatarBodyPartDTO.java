@@ -7,8 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ClassroomDTO {
+public class AvatarBodyPartDTO {
     private Long id;
     private String name;
-    private Long teacherId;
+    private String type; //Enum BodypartType
+    private String path;
 }

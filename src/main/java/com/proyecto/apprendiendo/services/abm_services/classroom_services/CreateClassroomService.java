@@ -6,14 +6,17 @@ import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
+@Transactional
 public class CreateClassroomService {
 
     private ClassroomRepository classroomRepository;
 
-    public void execute(ClassroomDTO classroomDTO) {
+    public Long execute(ClassroomDTO classroomDTO) {
         Classroom classroom = Classroom.builder().name(classroomDTO.getName()).teacherId(classroomDTO.getTeacherId()).build();
-        classroomRepository.save(classroom);
+        return classroomRepository.save(classroom).getId();
     }
 }

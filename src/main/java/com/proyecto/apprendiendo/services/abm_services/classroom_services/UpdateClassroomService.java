@@ -6,8 +6,11 @@ import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
+@Transactional
 public class UpdateClassroomService {
 
     private ClassroomRepository classroomRepository;
@@ -17,7 +20,6 @@ public class UpdateClassroomService {
         classroom.setId(classroomDTO.getId());
         classroom.setName(classroomDTO.getName());
         classroom.setTeacherId(classroomDTO.getTeacherId());
-        classroom.setTeacherName(classroomDTO.getTeacherName());
         classroomRepository.save(classroom);
     }
 }

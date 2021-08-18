@@ -10,11 +10,12 @@ import javax.transaction.Transactional;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class CreateProjectService {
     private ProjectRepository projectRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public void execute(ProjectNewDTO projectNewDTO, Long classRoomId) {
+    public Long execute(ProjectNewDTO projectNewDTO, Long classRoomId) {
         Project project = Project.builder()
                                  .methodologyId(projectNewDTO.getMethodologyId())
                                  .challengeId(projectNewDTO.getChallengeId())
@@ -22,6 +23,6 @@ public class CreateProjectService {
                                  .name(projectNewDTO.getName())
                                  .build();
 
-        projectRepository.save(project);
+        return projectRepository.save(project).getId();
     }
 }

@@ -4,13 +4,16 @@ import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
+@Transactional
 public class DeleteClassroomService {
 
     private ClassroomRepository classroomRepository;
 
-    public void execute(Long clasroomId){
-        classroomRepository.deleteById(clasroomId);
+    public void execute(Long classroomId){
+        classroomRepository.deleteById(classroomId);
     }
 }

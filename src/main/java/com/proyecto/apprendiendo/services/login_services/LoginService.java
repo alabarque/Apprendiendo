@@ -12,8 +12,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @AllArgsConstructor
 @Service
+@Transactional
 public class LoginService {
 
     private final AuthenticationManager authenticationManager;

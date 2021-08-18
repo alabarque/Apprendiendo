@@ -7,8 +7,11 @@ import com.proyecto.apprendiendo.services.mappers.ClassroomMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
 @Service
 @AllArgsConstructor
+@Transactional
 public class GetClassroomService {
 
     private ClassroomRepository classroomRepository;

@@ -13,13 +13,12 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Avatar {
+public class UserClassroom {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String name;
-    private Long headId; //FK a AvatarBodypart
-    private Long bodyId; //FK a AvatarBodypart
-    private Long legsId; //FK a AvatarBodypart
-    private Long feetId; //FK a AvatarBodypart
+
+    private Long userId;
+    private Long classroomId;
+
 }

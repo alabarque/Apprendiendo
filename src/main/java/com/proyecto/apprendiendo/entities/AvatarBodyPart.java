@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class AvatarBodypart {
+public class AvatarBodyPart {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
