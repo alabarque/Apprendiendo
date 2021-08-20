@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.entities;
 
+import com.proyecto.apprendiendo.entities.interfaces.Source;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class User {
+public class User implements Source {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     protected Long id;

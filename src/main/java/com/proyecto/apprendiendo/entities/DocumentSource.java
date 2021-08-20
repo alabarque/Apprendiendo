@@ -18,6 +18,6 @@ public class DocumentSource {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long documentId; //FK a Document
-    private Long sourceID; //FK a Source
+    private Long sourceId; //FK a Source
     private String documentSourceType; //Enum DocumentSourceType
 }

@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
+import com.proyecto.apprendiendo.entities.dtos.NewDocumentDTO;
 import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.DeleteDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.GetDocumentService;
@@ -18,22 +19,17 @@ public class ABMDocumentController {
     private UpdateDocumentService updateDocumentService;
 
     @PostMapping(path = "Document")
-    public void newDocument(@RequestBody DocumentDTO DocumentDTO){
-        createDocumentService.execute(DocumentDTO);
-    }
+    public void newDocument(@RequestBody NewDocumentDTO newDocumentDTO){createDocumentService.execute(newDocumentDTO);}
 
     @GetMapping (path = "Document/{DocumentId}")
-    public DocumentDTO getDocument(@PathVariable Long DocumentId){
-        return getDocumentService.execute(DocumentId);
+    public DocumentDTO getDocument(@PathVariable Long documentId){
+        return getDocumentService.execute(documentId);
     }
 
-    @DeleteMapping(path = "Document/{DocumentId}")
-    public void deleteDocument(@PathVariable Long DocumentId){
-        deleteDocumentService.execute(DocumentId);
-    }
+    @DeleteMapping(path = "Document/{documentId}/Source/{sourceId}")
+    public void deleteDocument( @PathVariable("documentId") Long documentId, @PathVariable("sourceId") Long sourceId){ deleteDocumentService.execute(documentId, sourceId);}
 
     @PutMapping(path = "Document")
-    public void updateDocument(@RequestBody DocumentDTO DocumentDTO){
-        updateDocumentService.execute(DocumentDTO);
+    public void updateDocument(@RequestBody DocumentDTO documentDTO){updateDocumentService.execute(documentDTO);
     }
 }
