@@ -67,16 +67,18 @@ public class AuthorizedRoutes extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // Enable CORS and disable CSRF
-        http = http.cors().and().csrf().disable();
+        http.cors().and().csrf().disable();
+
+        http.requiresChannel(channel -> channel.anyRequest().requiresSecure());
 
         // Set session management to stateless
-        http = http
+        http
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and();
 
         // Set unauthorized requests exception handler
-        http = http
+        http
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, ex) ->
                         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage()))
