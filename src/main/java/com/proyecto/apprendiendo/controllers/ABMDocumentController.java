@@ -18,18 +18,18 @@ public class ABMDocumentController {
     private DeleteDocumentService deleteDocumentService;
     private UpdateDocumentService updateDocumentService;
 
-    @PostMapping(path = "Document")
+    @PostMapping(path = "document")
     public void newDocument(@RequestBody NewDocumentDTO newDocumentDTO){createDocumentService.execute(newDocumentDTO);}
 
-    @GetMapping (path = "Document/{DocumentId}")
+    @GetMapping (path = "document/{documentId}")
     public DocumentDTO getDocument(@PathVariable Long documentId){
         return getDocumentService.execute(documentId);
     }
 
-    @DeleteMapping(path = "Document/{documentId}/Source/{sourceId}")
+    @DeleteMapping(path = "document/{documentId}/source/{sourceId}")
     public void deleteDocument( @PathVariable("documentId") Long documentId, @PathVariable("sourceId") Long sourceId){ deleteDocumentService.execute(documentId, sourceId);}
 
-    @PutMapping(path = "Document")
+    @PutMapping(path = "document")
     public void updateDocument(@RequestBody DocumentDTO documentDTO){updateDocumentService.execute(documentDTO);
     }
 }

@@ -17,22 +17,22 @@ public class ABMAvatarController {
     private DeleteAvatarService deleteAvatarService;
     private UpdateAvatarService updateAvatarService;
 
-    @PostMapping(path = "Avatar")
+    @PostMapping(path = "avatar")
     public void newAvatar(@RequestBody AvatarDTO AvatarDTO){
         createAvatarService.execute(AvatarDTO);
     }
 
-    @GetMapping (path = "Avatar/{AvatarId}")
+    @GetMapping (path = "avatar/{AvatarId}")
     public AvatarDTO getAvatar(@PathVariable Long AvatarId){
         return getAvatarService.execute(AvatarId);
     }
 
-    @DeleteMapping(path = "Avatar/{AvatarId}")
+    @DeleteMapping(path = "avatar/{AvatarId}")
     public void deleteAvatar(@PathVariable Long AvatarId){
         deleteAvatarService.execute(AvatarId);
     }
 
-    @PutMapping(path = "Avatar")
+    @PutMapping(path = "avatar")
     public void updateAvatar(@RequestBody AvatarDTO AvatarDTO){
         updateAvatarService.execute(AvatarDTO);
     }

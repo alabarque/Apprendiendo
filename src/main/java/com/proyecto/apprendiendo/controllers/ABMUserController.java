@@ -48,12 +48,12 @@ public class ABMUserController {
         updateUserService.execute(userDTO);
     }
 
-    @GetMapping(path = "user/{userId}/classroom")
+    @GetMapping(path = "user/{userId}/classrooms")
     public ArrayList<ClassroomDTO> getStudentClassrooms(@PathVariable("userId") Long userId) {
         return getStudentClassroomsService.execute(userId);
     }
 
-    @GetMapping(path = "user/{userId}/project")
+    @GetMapping(path = "user/{userId}/projects")
     public ArrayList<ProjectDTO> getStudentProjects(@PathVariable("userId") Long userId) {
         return getStudentProjectsService.execute(userId);
     }
