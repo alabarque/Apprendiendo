@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.login_services.LoginService;
@@ -32,10 +33,12 @@ public class LoginController {
     public ResponseEntity<String> login(@RequestBody UserLoginDTO request) throws IOException {
         try {
             String token = loginService.execute(request);
+            UserDTO userDTO = getUserService.execute(request.getUsername());
+            userDTO.setToken(token);
 
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION, token)
-                    .body(objectMapper.writeValueAsString(getUserService.execute(request.getUsername())));
+                    .body(objectMapper.writeValueAsString(userDTO));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
