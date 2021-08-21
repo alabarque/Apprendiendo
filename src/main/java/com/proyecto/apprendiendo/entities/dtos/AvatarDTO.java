@@ -10,6 +10,7 @@ import lombok.Setter;
 public class AvatarDTO {
     private Long id;
     private String name;
+    private Long userId; //FK a User
     private Long headId; //FK a AvatarBodypart
     private Long bodyId; //FK a AvatarBodypart
     private Long legsId; //FK a AvatarBodypart

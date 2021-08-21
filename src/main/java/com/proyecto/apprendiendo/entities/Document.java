@@ -9,16 +9,16 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
-public class UserClassroom {
+public class Document {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private Long userId; //FK a User
-    private Long classroomId; //FK a Classroom
-
+    private String name;
+    private Long ownerId; //FK a User
+    private String dataType;
+    private String data;
 }

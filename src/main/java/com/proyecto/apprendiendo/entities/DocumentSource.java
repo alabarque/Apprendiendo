@@ -9,16 +9,15 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
-public class UserClassroom {
+public class DocumentSource {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    private Long userId; //FK a User
-    private Long classroomId; //FK a Classroom
-
+    private Long documentId; //FK a Document
+    private Long sourceId; //FK a Source
+    private String documentSourceType; //Enum DocumentSourceType
 }

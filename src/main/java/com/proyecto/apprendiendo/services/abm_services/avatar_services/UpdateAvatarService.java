@@ -18,6 +18,7 @@ public class UpdateAvatarService {
     public void execute(AvatarDTO avatarDTO){
         Avatar avatar = avatarRepository.getById(avatarDTO.getId());
         avatar.setId(avatarDTO.getId());
+        avatar.setUserId(avatarDTO.getUserId());
         avatar.setName(avatarDTO.getName());
         avatar.setBodyId(avatarDTO.getBodyId());
         avatar.setFeetId(avatarDTO.getFeetId());
