@@ -63,7 +63,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long mariId = createUserService.execute(UserLoginDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
 
         Long superCursoId = createClassroomService.execute(ClassroomDTO.builder().name("super curso").teacherId(andreaId).build());
-        Long superCurso2Id = createClassroomService.execute(ClassroomDTO.builder().name("super curso").teacherId(pabloId).build());
+        Long superCurso2Id = createClassroomService.execute(ClassroomDTO.builder().name("mega curso").teacherId(pabloId).build());
 
         Long superProyectoId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("super proyecto").methodologyId(Integer.toUnsignedLong(0)).build(), superCursoId);
         Long ultraProyectoId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("ultra proyecto").methodologyId(Integer.toUnsignedLong(0)).build(),superCurso2Id);

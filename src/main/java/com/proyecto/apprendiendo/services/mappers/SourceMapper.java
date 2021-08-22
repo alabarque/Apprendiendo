@@ -7,6 +7,9 @@ import com.proyecto.apprendiendo.entities.dtos.SourceDTO;
 
 public class SourceMapper {
     public static SourceDTO entityToDto(DocumentSource documentSource){
-        return SourceDTO.builder().id(documentSource.getSourceId()).documentSourceType(documentSource.getDocumentSourceType()).build();
+        return SourceDTO.builder()
+                        .id(documentSource.getSourceId())
+                        .documentSourceType(documentSource.getDocumentSourceType())
+                        .build();
     }
 }
