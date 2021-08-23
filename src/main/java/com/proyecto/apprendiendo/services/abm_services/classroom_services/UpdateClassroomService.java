@@ -18,7 +18,7 @@ public class UpdateClassroomService {
     public void execute(ClassroomDTO classroomDTO){
         Classroom classroom = classroomRepository.getById(classroomDTO.getId());
         classroom.setId(classroomDTO.getId());
-        classroom.setName(classroomDTO.getName());
+        //classroom.setName(classroomDTO.getName());
         classroom.setTeacherId(classroomDTO.getTeacherId());
         classroomRepository.save(classroom);
     }

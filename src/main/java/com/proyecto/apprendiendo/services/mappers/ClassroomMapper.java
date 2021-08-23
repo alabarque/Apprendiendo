@@ -8,7 +8,6 @@ public class ClassroomMapper {
     public static ClassroomDTO entityToDto(Classroom classroom){
         return ClassroomDTO.builder()
                            .id(classroom.getId())
-                           .name(classroom.getName())
                            .teacherId(classroom.getTeacherId())
                            .year(classroom.getYear())
                            .subject(classroom.getSubject())

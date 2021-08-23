@@ -42,11 +42,11 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Autowired
     private GetProjectStudentsService getProjectStudentsService;
     @Autowired
-    private AddProjectStudentsService updateProjectStudentsService;
+    private AddProjectStudentsService addProjectStudentsService;
     @Autowired
     private GetClassroomStudentsService getClassroomStudentsService;
     @Autowired
-    private AddClassroomStudentsService updateClassroomStudentsService;
+    private AddClassroomStudentsService addClassroomStudentsService;
     @Autowired
     private GetStudentService getStudentService;
 
@@ -62,8 +62,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long paoId = createUserService.execute(UserLoginDTO.builder().username("pao").password("pao").build(),UserType.STUDENT);
         Long mariId = createUserService.execute(UserLoginDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
 
-        Long superCursoId = createClassroomService.execute(ClassroomDTO.builder().name("super curso").teacherId(andreaId).division("B").year(3).subject("Matematica").build());
-        Long superCurso2Id = createClassroomService.execute(ClassroomDTO.builder().name("mega curso").teacherId(pabloId).division("A").year(3).subject("Lengua").build());
+        Long superCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Matematica").build());
+        Long superCurso2Id = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Lengua").build());
+        Long otroCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("B").year(1).subject("Matematica").build());
+        Long asdCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(pabloId).division("B").year(3).subject("Sociales").build());
 
         Long superProyectoId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("super proyecto").methodologyId(Integer.toUnsignedLong(0)).build(), superCursoId);
         Long ultraProyectoId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("ultra proyecto").methodologyId(Integer.toUnsignedLong(0)).build(),superCurso2Id);
@@ -93,11 +95,25 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         estudiantesMegaProyecto.add(getStudentService.execute(mariId));
         estudiantesMegaProyecto.add(getStudentService.execute(paoId));
 
-        updateClassroomStudentsService.execute(superCursoId,estudiantesSuperCurso);
-        updateProjectStudentsService.execute(superProyectoId,estudiantesSuperProyecto);
+        ArrayList<StudentDTO> estudiantesOtroCurso = new ArrayList<>();
+        estudiantesOtroCurso.add(getStudentService.execute(mariId));
+        estudiantesOtroCurso.add(getStudentService.execute(paoId));
+        estudiantesOtroCurso.add(getStudentService.execute(nazaId));
 
-        updateClassroomStudentsService.execute(superCurso2Id,estudiantesCurso2);
-        updateProjectStudentsService.execute(megaProyectoId,estudiantesMegaProyecto);
-        updateProjectStudentsService.execute(ultraProyectoId,estudiantesUltraProyecto);
+        ArrayList<StudentDTO> estudiantesAsdCurso = new ArrayList<>();
+        estudiantesAsdCurso.add(getStudentService.execute(mariId));
+        estudiantesAsdCurso.add(getStudentService.execute(paoId));
+        estudiantesAsdCurso.add(getStudentService.execute(nazaId));
+
+
+        addClassroomStudentsService.execute(superCursoId,estudiantesSuperCurso);
+        addProjectStudentsService.execute(superProyectoId,estudiantesSuperProyecto);
+
+        addClassroomStudentsService.execute(superCurso2Id,estudiantesCurso2);
+        addProjectStudentsService.execute(megaProyectoId,estudiantesMegaProyecto);
+        addProjectStudentsService.execute(ultraProyectoId,estudiantesUltraProyecto);
+
+        addClassroomStudentsService.execute(asdCursoId,estudiantesAsdCurso);
+        addClassroomStudentsService.execute(otroCursoId,estudiantesOtroCurso);
     }
 }
