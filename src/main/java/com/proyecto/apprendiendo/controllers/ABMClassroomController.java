@@ -24,7 +24,7 @@ public class ABMClassroomController {
     private GetClassroomStudentsService getClassroomStudentsService;
     private AddClassroomStudentsService addClassroomStudentsService;
     private RemoveProjectStudentsService removeProjectStudentsService;
-    private GetStudentProjectsService getStudentProjectsService;
+    private GetClassroomProjectsService getClassroomProjectsService;
 
     @PostMapping(path = "classroom")
     public void newClassroom(@RequestBody ClassroomDTO classroomDTO) {
@@ -62,5 +62,5 @@ public class ABMClassroomController {
     }
 
     @GetMapping(path = "classroom/{classroomId}/projects")
-    public ArrayList<ProjectDTO> getClassroomProjects (@PathVariable("classroomId") Long classroomId) {return getStudentProjectsService.execute(classroomId);}
+    public ArrayList<ProjectDTO> getClassroomProjects (@PathVariable("classroomId") Long classroomId) {return getClassroomProjectsService.execute(classroomId);}
 }

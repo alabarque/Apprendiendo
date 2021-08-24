@@ -42,8 +42,6 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Autowired
     private GetProjectStudentsService getProjectStudentsService;
     @Autowired
-    private AddProjectStudentsService addProjectStudentsService;
-    @Autowired
     private GetClassroomStudentsService getClassroomStudentsService;
     @Autowired
     private AddClassroomStudentsService addClassroomStudentsService;
@@ -62,58 +60,51 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long paoId = createUserService.execute(UserLoginDTO.builder().username("pao").password("pao").build(),UserType.STUDENT);
         Long mariId = createUserService.execute(UserLoginDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
 
-        Long superCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Matematica").build());
-        Long superCurso2Id = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Lengua").build());
-        Long otroCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("B").year(3).subject("Naturales").build());
-        Long asdCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(pabloId).division("B").year(3).subject("Sociales").build());
+        Long mateCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Matematica").build());
+        Long lenguaCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Lengua").build());
+        Long naturalesCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("B").year(3).subject("Naturales").build());
+        Long socialesCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(pabloId).division("B").year(3).subject("Sociales").build());
 
-        Long superProyectoId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("super proyecto").methodologyId(Integer.toUnsignedLong(0)).build(), superCursoId);
-        Long ultraProyectoId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("ultra proyecto").methodologyId(Integer.toUnsignedLong(0)).build(),superCurso2Id);
-        Long megaProyectoId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("mega proyecto").methodologyId(Integer.toUnsignedLong(0)).build(),superCurso2Id);
-
-
-        ArrayList<StudentDTO> estudiantesSuperCurso = new ArrayList<>();
-        estudiantesSuperCurso.add(getStudentService.execute(javiId));
-        estudiantesSuperCurso.add(getStudentService.execute(agusId));
-        estudiantesSuperCurso.add(getStudentService.execute(nazaId));
-        estudiantesSuperCurso.add(getStudentService.execute(paoId));
-
-        ArrayList<StudentDTO> estudiantesSuperProyecto = new ArrayList<>();
-        estudiantesSuperProyecto.add(getStudentService.execute(javiId));
-        estudiantesSuperProyecto.add(getStudentService.execute(agusId));
-
-        ArrayList<StudentDTO> estudiantesCurso2 = new ArrayList<>();
-        estudiantesCurso2.add(getStudentService.execute(mariId));
-        estudiantesCurso2.add(getStudentService.execute(paoId));
-        estudiantesCurso2.add(getStudentService.execute(nazaId));
-
-        ArrayList<StudentDTO> estudiantesUltraProyecto = new ArrayList<>();
-        estudiantesUltraProyecto.add(getStudentService.execute(paoId));
-        estudiantesUltraProyecto.add(getStudentService.execute(nazaId));
-
-        ArrayList<StudentDTO> estudiantesMegaProyecto = new ArrayList<>();
-        estudiantesMegaProyecto.add(getStudentService.execute(mariId));
-        estudiantesMegaProyecto.add(getStudentService.execute(paoId));
-
-        ArrayList<StudentDTO> estudiantesOtroCurso = new ArrayList<>();
-        estudiantesOtroCurso.add(getStudentService.execute(mariId));
-        estudiantesOtroCurso.add(getStudentService.execute(paoId));
-        estudiantesOtroCurso.add(getStudentService.execute(nazaId));
-
-        ArrayList<StudentDTO> estudiantesAsdCurso = new ArrayList<>();
-        estudiantesAsdCurso.add(getStudentService.execute(mariId));
-        estudiantesAsdCurso.add(getStudentService.execute(paoId));
-        estudiantesAsdCurso.add(getStudentService.execute(nazaId));
+        Long ProyectoN1Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Dinosaurios").methodologyId(Integer.toUnsignedLong(0)).build(), naturalesCursoId);
+        Long ProyectoN2Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Planetas ").methodologyId(Integer.toUnsignedLong(0)).build(),naturalesCursoId);
+        Long ProyectoN3Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: Los Atomos").methodologyId(Integer.toUnsignedLong(0)).build(),naturalesCursoId);
+        Long ProyectoS4Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Projecto: San Martin").methodologyId(Integer.toUnsignedLong(0)).build(),socialesCursoId);
+        Long ProyectoS5Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: El Cabildo").methodologyId(Integer.toUnsignedLong(0)).build(),socialesCursoId);
+        Long ProyectoM6Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Division").methodologyId(Integer.toUnsignedLong(0)).build(),mateCursoId);
+        Long ProyectoM7Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: Multiplicacion").methodologyId(Integer.toUnsignedLong(0)).build(),mateCursoId);
+        Long ProyectoL8Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Oraciones").methodologyId(Integer.toUnsignedLong(0)).build(),lenguaCursoId);
+        Long ProyectoL9Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: Gramatica").methodologyId(Integer.toUnsignedLong(0)).build(),lenguaCursoId);
 
 
-        addClassroomStudentsService.execute(superCursoId,estudiantesSuperCurso);
-        addProjectStudentsService.execute(superProyectoId,estudiantesSuperProyecto);
+        ArrayList<StudentDTO> estudiantesMate = new ArrayList<>();
+        estudiantesMate.add(getStudentService.execute(javiId));
+        estudiantesMate.add(getStudentService.execute(agusId));
+        estudiantesMate.add(getStudentService.execute(nazaId));
+        estudiantesMate.add(getStudentService.execute(paoId));
 
-        addClassroomStudentsService.execute(superCurso2Id,estudiantesCurso2);
-        addProjectStudentsService.execute(megaProyectoId,estudiantesMegaProyecto);
-        addProjectStudentsService.execute(ultraProyectoId,estudiantesUltraProyecto);
+        ArrayList<StudentDTO> estudiantesLengua = new ArrayList<>();
+        estudiantesLengua.add(getStudentService.execute(mariId));
+        estudiantesLengua.add(getStudentService.execute(paoId));
+        estudiantesLengua.add(getStudentService.execute(nazaId));
 
-        addClassroomStudentsService.execute(asdCursoId,estudiantesAsdCurso);
-        addClassroomStudentsService.execute(otroCursoId,estudiantesOtroCurso);
+        ArrayList<StudentDTO> estudiantesNaturales = new ArrayList<>();
+        estudiantesNaturales.add(getStudentService.execute(mariId));
+        estudiantesNaturales.add(getStudentService.execute(paoId));
+        estudiantesNaturales.add(getStudentService.execute(nazaId));
+
+        ArrayList<StudentDTO> estudiantesSociales = new ArrayList<>();
+        estudiantesSociales.add(getStudentService.execute(mariId));
+        estudiantesSociales.add(getStudentService.execute(paoId));
+        estudiantesSociales.add(getStudentService.execute(nazaId));
+
+
+        addClassroomStudentsService.execute(mateCursoId,estudiantesMate);
+
+        addClassroomStudentsService.execute(naturalesCursoId,estudiantesNaturales);
+
+        addClassroomStudentsService.execute(lenguaCursoId,estudiantesLengua);
+
+        addClassroomStudentsService.execute(socialesCursoId,estudiantesSociales);
+
     }
 }

@@ -20,13 +20,9 @@ import java.util.stream.Collectors;
 @Transactional
 public class GetClassroomProjectsService {
 
-    private ClassroomRepository classroomRepository;
     private ProjectRepository projectRepository;
 
-    public ClassroomDTO execute(Long idClass) {
-
-        ArrayList<ProjectDTO> projectDTOs = projectRepository.findByClassroomId(idClass).stream().map(p -> ProjectMapper.entityToDto(p)).collect(Collectors.toCollection(ArrayList:: new));
-        Classroom classroom = classroomRepository.getById(idClass);
-        return ClassroomMapper.entityToDto(classroom);
+    public ArrayList<ProjectDTO> execute(Long idClass) {
+        return projectRepository.findByClassroomId(idClass).stream().map(p -> ProjectMapper.entityToDto(p)).collect(Collectors.toCollection(ArrayList:: new));
     }
 }
