@@ -23,12 +23,12 @@ public class ABMMethodologyController {
         createMethodologyService.execute(methodologyDTO);
     }
 
-    @GetMapping(path = "methodology/{methodologyId}")
-    public ArrayList<MethodologyDTO> getAllMethodologies(@PathVariable Long methodologyId) {
+    @GetMapping(path = "methodologies")
+    public ArrayList<MethodologyDTO> getAllMethodologies() {
         return getAllMethodologiesService.execute();
     }
 
-    @GetMapping(path = "methodologies")
+    @GetMapping(path = "methodology/{methodologyId}")
     public MethodologyDTO getMethodology(@PathVariable Long methodologyId) {
         return getMethodologyService.execute(methodologyId);
     }
