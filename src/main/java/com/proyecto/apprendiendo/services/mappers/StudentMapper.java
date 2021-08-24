@@ -14,7 +14,8 @@ import org.springframework.stereotype.Service;
 public class StudentMapper {
 
     public static StudentDTO entityToDto(User user){
-        return StudentDTO.builder().id(user.getId())
+        return StudentDTO.builder()
+                         .id(user.getId())
                          .username(user.getUsername())
                          .build();
 

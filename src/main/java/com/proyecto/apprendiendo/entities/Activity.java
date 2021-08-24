@@ -10,16 +10,15 @@ import javax.persistence.Id;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
-public class User implements Source {
+public class Activity implements Source {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    protected Long id;
-    protected String username;
-    protected String password;
-    protected String role;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private Long ownerId; //FK a User, Project
+    private Long projectId;
 }

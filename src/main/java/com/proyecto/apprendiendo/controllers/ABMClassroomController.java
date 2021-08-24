@@ -1,10 +1,12 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
+import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.project_user_services.GetStudentProjectsService;
 import com.proyecto.apprendiendo.services.abm_services.project_user_services.RemoveProjectStudentsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,7 @@ public class ABMClassroomController {
     private GetClassroomStudentsService getClassroomStudentsService;
     private AddClassroomStudentsService addClassroomStudentsService;
     private RemoveProjectStudentsService removeProjectStudentsService;
+    private GetClassroomProjectsService getClassroomProjectsService;
 
     @PostMapping(path = "classroom")
     public void newClassroom(@RequestBody ClassroomDTO classroomDTO) {
@@ -57,4 +60,7 @@ public class ABMClassroomController {
     public void removeProjectStudents(@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("classroomId") Long classroomId) {
         removeProjectStudentsService.execute(classroomId, studentDTOs);
     }
+
+    @GetMapping(path = "classroom/{classroomId}/projects")
+    public ArrayList<ProjectDTO> getClassroomProjects (@PathVariable("classroomId") Long classroomId) {return getClassroomProjectsService.execute(classroomId);}
 }

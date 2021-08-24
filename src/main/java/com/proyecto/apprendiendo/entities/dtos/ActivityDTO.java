@@ -7,10 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ClassroomDTO {
+public class ActivityDTO {
     private Long id;
-    private Long teacherId;
-    private String subject;
-    private Integer year;
-    private String division;
+    private String name;
+    private Long ownerId; //FK a User, Project
+    private Long projectId;
 }

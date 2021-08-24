@@ -9,6 +9,11 @@ import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
 
 public class AvatarBodyPartMapper {
     public static AvatarBodyPartDTO entityToDto(AvatarBodyPart avatarBodyPart){
-        return AvatarBodyPartDTO.builder().id(avatarBodyPart.getId()).path(avatarBodyPart.getPath()).type(avatarBodyPart.getType()).name(avatarBodyPart.getName()).build();
+        return AvatarBodyPartDTO.builder()
+                                .id(avatarBodyPart.getId())
+                                .path(avatarBodyPart.getPath())
+                                .type(avatarBodyPart.getType())
+                                .name(avatarBodyPart.getName())
+                                .build();
     }
 }

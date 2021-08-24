@@ -7,10 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class ClassroomDTO {
+public class SourceDTO {
     private Long id;
-    private Long teacherId;
-    private String subject;
-    private Integer year;
-    private String division;
+    private String documentSourceType; //Enum DocumentSourceType
 }

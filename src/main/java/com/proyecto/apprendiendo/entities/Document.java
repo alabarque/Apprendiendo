@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.entities;
 
-import com.proyecto.apprendiendo.entities.interfaces.Source;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -14,13 +13,12 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Classroom implements Source {
+public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long teacherId;
-    private String subject;
-    private Integer year;
-    private String division;
+    private Long ownerId; //FK a User
+    private String dataType;
+    private String data;
 }
