@@ -5,6 +5,8 @@ import com.proyecto.apprendiendo.services.abm_services.methodology_services.*;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 
 @RestController
 @AllArgsConstructor
@@ -14,6 +16,7 @@ public class ABMMethodologyController {
     private GetMethodologyService getMethodologyService;
     private DeleteMethodologyService deleteMethodologyService;
     private UpdateMethodologyService updateMethodologyService;
+    private GetAllMethodologiesService getAllMethodologiesService;
 
     @PostMapping(path = "methodology")
     public void newMethodology(@RequestBody MethodologyDTO methodologyDTO) {
@@ -21,6 +24,11 @@ public class ABMMethodologyController {
     }
 
     @GetMapping(path = "methodology/{methodologyId}")
+    public ArrayList<MethodologyDTO> getAllMethodologies(@PathVariable Long methodologyId) {
+        return getAllMethodologiesService.execute();
+    }
+
+    @GetMapping(path = "methodologies")
     public MethodologyDTO getMethodology(@PathVariable Long methodologyId) {
         return getMethodologyService.execute(methodologyId);
     }
