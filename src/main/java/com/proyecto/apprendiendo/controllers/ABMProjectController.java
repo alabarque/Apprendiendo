@@ -8,6 +8,8 @@ import com.proyecto.apprendiendo.services.abm_services.project_user_services.Add
 import com.proyecto.apprendiendo.services.abm_services.project_user_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.project_user_services.RemoveProjectStudentsService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +28,8 @@ public class ABMProjectController {
     private RemoveProjectStudentsService removeProjectStudentsService;
 
     @PostMapping(path = "classroom/{classroomId}/project")
-    public void newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
-        createProjectService.execute(projectNewDTO,
-                                     classroomId);
+    public ResponseEntity<Long> newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
+        return new ResponseEntity<Long>(createProjectService.execute(projectNewDTO,classroomId), HttpStatus.OK);
     }
 
     @GetMapping(path = "classroom/{classroomId}/project/{projectId}")
