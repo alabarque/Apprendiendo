@@ -13,7 +13,8 @@ public class DeleteAvatarBodyPartService {
 
     private AvatarBodyPartRepository avatarBodyPartRepository;
 
-    public void execute(Long avatarBodyPartId){
+    public Long execute(Long avatarBodyPartId){
         avatarBodyPartRepository.deleteById(avatarBodyPartId);
+        return avatarBodyPartId;
     }
 }

@@ -17,7 +17,8 @@ public class AddProjectStudentsService {
     private UserProjectRepository userProjectRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public void execute(Long projectId, ArrayList<StudentDTO> studentDTOs){
+    public Long execute(Long projectId, ArrayList<StudentDTO> studentDTOs){
         studentDTOs.forEach(s -> userProjectRepository.save(UserProject.builder().projectId(projectId).userId(s.getId()).hasAchievement(false).percentageCompleted(0.00).build()));
+        return projectId;
     }
 }

@@ -15,7 +15,7 @@ public class UpdateUserService {
 
     private UserRepository userRepository;
 
-    public void execute(UserDTO userDTO){
+    public Long execute(UserDTO userDTO){
         User user = userRepository.getById(userDTO.getId());
 
         user.setId(userDTO.getId());
@@ -24,5 +24,6 @@ public class UpdateUserService {
         user.setRole(userDTO.getRole());
 
         userRepository.save(user);
+        return userDTO.getId();
     }
 }

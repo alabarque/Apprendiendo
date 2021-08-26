@@ -15,12 +15,13 @@ public class UpdateAvatarBodyPartService {
 
     private AvatarBodyPartRepository avatarBodyPartRepository;
 
-    public void execute(AvatarBodyPartDTO avatarBodyPartDTO){
+    public Long execute(AvatarBodyPartDTO avatarBodyPartDTO){
         AvatarBodyPart avatarBodyPart = avatarBodyPartRepository.getById(avatarBodyPartDTO.getId());
         avatarBodyPart.setId(avatarBodyPartDTO.getId());
         avatarBodyPart.setName(avatarBodyPartDTO.getName());
         avatarBodyPart.setPath(avatarBodyPartDTO.getPath());
         avatarBodyPart.setType(avatarBodyPartDTO.getType());
         avatarBodyPartRepository.save(avatarBodyPart);
+        return avatarBodyPartDTO.getId();
     }
 }

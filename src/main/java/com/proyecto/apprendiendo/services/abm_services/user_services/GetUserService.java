@@ -16,8 +16,8 @@ public class GetUserService {
 
     private UserRepository userRepository;
 
-    public UserDTO execute(Long usertId) {
-        User user = userRepository.getById(usertId);
+    public UserDTO execute(Long userId) {
+        User user = userRepository.getById(userId);
         return UserMapper.entityToDto(user);
     }
 

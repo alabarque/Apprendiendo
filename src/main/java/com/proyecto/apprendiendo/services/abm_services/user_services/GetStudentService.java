@@ -18,8 +18,8 @@ public class GetStudentService {
 
     private UserRepository userRepository;
 
-    public StudentDTO execute(Long usertId) {
-        User user = userRepository.getById(usertId);
+    public StudentDTO execute(Long userId) {
+        User user = userRepository.getById(userId);
         return StudentMapper.entityToDto(user);
     }
 

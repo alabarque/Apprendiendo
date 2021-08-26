@@ -13,7 +13,8 @@ public class DeleteClassroomService {
 
     private ClassroomRepository classroomRepository;
 
-    public void execute(Long classroomId){
+    public Long execute(Long classroomId){
         classroomRepository.deleteById(classroomId);
+        return classroomId;
     }
 }

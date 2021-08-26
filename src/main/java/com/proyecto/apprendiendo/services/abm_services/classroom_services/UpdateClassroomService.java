@@ -15,11 +15,12 @@ public class UpdateClassroomService {
 
     private ClassroomRepository classroomRepository;
 
-    public void execute(ClassroomDTO classroomDTO){
+    public Long execute(ClassroomDTO classroomDTO){
         Classroom classroom = classroomRepository.getById(classroomDTO.getId());
         classroom.setId(classroomDTO.getId());
         //classroom.setName(classroomDTO.getName());
         classroom.setTeacherId(classroomDTO.getTeacherId());
         classroomRepository.save(classroom);
+        return classroomDTO.getId();
     }
 }

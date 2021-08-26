@@ -2,7 +2,9 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.MethodologyDTO;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.*;
+import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -17,29 +19,30 @@ public class ABMMethodologyController {
     private DeleteMethodologyService deleteMethodologyService;
     private UpdateMethodologyService updateMethodologyService;
     private GetAllMethodologiesService getAllMethodologiesService;
+    private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "methodology")
-    public void newMethodology(@RequestBody MethodologyDTO methodologyDTO) {
-        createMethodologyService.execute(methodologyDTO);
+    public ResponseEntity<Long> newMethodology(@RequestBody MethodologyDTO methodologyDTO) {
+        return responseDecorator.decorate(()->createMethodologyService.execute(methodologyDTO));
     }
 
     @GetMapping(path = "methodologies")
-    public ArrayList<MethodologyDTO> getAllMethodologies() {
-        return getAllMethodologiesService.execute();
+    public ResponseEntity< ArrayList<MethodologyDTO>> getAllMethodologies() {
+        return responseDecorator.decorate(()-> getAllMethodologiesService.execute());
     }
 
     @GetMapping(path = "methodology/{methodologyId}")
-    public MethodologyDTO getMethodology(@PathVariable Long methodologyId) {
-        return getMethodologyService.execute(methodologyId);
+    public ResponseEntity<MethodologyDTO> getMethodology(@PathVariable Long methodologyId) {
+        return responseDecorator.decorate(()-> getMethodologyService.execute(methodologyId));
     }
 
     @DeleteMapping(path = "methodology/{methodologyId}")
-    public void deleteMethodology(@PathVariable Long methodologyId) {
-        deleteMethodologyService.execute(methodologyId);
+    public ResponseEntity<Long> deleteMethodology(@PathVariable Long methodologyId) {
+        return responseDecorator.decorate(()->deleteMethodologyService.execute(methodologyId));
     }
 
     @PutMapping(path = "methodology")
-    public void updateMethodology(@RequestBody MethodologyDTO methodologyDTO) {
-        updateMethodologyService.execute(methodologyDTO);
+    public ResponseEntity<Long> updateMethodology(@RequestBody MethodologyDTO methodologyDTO) {
+        return responseDecorator.decorate(()->updateMethodologyService.execute(methodologyDTO));
     }
 }
