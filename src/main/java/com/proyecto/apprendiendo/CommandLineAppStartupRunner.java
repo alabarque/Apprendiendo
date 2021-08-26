@@ -10,8 +10,7 @@ import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.A
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.CreateMethodologyService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
-import com.proyecto.apprendiendo.services.abm_services.project_user_services.AddProjectStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.project_user_services.GetProjectStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;

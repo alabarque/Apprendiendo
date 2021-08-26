@@ -1,14 +1,8 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.DeleteClassroomService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.UpdateClassroomService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetUserClassroomsService;
-import com.proyecto.apprendiendo.services.abm_services.project_user_services.GetStudentProjectsService;
-import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectsService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.DeleteUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.UpdateUserService;
@@ -58,7 +52,7 @@ public class ABMUserController {
 
 
     @GetMapping(path = "user/{userId}/projects")
-    public ResponseEntity<ArrayList<ProjectDTO>> getUserProjects(@PathVariable("userId") Long userId) {
+    public ResponseEntity<ArrayList<ProjectDTO>> getStudentProjects(@PathVariable("userId") Long userId) {
         return responseDecorator.decorate(()-> getStudentProjectsService.execute(userId));
     }
 }

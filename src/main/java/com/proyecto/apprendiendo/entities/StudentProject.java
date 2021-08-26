@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class UserProject {
+public class StudentProject {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;

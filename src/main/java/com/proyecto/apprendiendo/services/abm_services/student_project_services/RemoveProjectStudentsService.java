@@ -1,8 +1,7 @@
-package com.proyecto.apprendiendo.services.abm_services.project_user_services;
+package com.proyecto.apprendiendo.services.abm_services.student_project_services;
 
-import com.proyecto.apprendiendo.entities.UserProject;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
-import com.proyecto.apprendiendo.repositories.UserProjectRepository;
+import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +13,11 @@ import java.util.ArrayList;
 @Transactional
 public class RemoveProjectStudentsService {
 
-    private UserProjectRepository userProjectRepository;
+    private StudentProjectRepository studentProjectRepository;
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long projectId, ArrayList<StudentDTO> studentDTOs){
-        studentDTOs.forEach(s -> userProjectRepository.deleteByProjectIdAndUserId(projectId,s.getId()));
+        studentDTOs.forEach(s -> studentProjectRepository.deleteByProjectIdAndUserId(projectId,s.getId()));
         return projectId;
     }
 }
