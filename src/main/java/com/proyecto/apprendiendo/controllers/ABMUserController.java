@@ -2,7 +2,9 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetUserClassroomsService;
-import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectsService;
+import com.proyecto.apprendiendo.services.abm_services.student_activity_services.*;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectProgressService;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.UpdateStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.DeleteUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.UpdateUserService;
@@ -21,8 +23,11 @@ public class ABMUserController {
     private DeleteUserService deleteUserService;
     private UpdateUserService updateUserService;
     private GetUserClassroomsService getUserClassroomsService;
-    private GetStudentProjectsService getStudentProjectsService;
     private ResponseDecorator responseDecorator;
+    private GetStudentActivityProgressService getStudentActivityProgressService;
+    private UpdateStudentActivityProgressService updateStudentActivityProgressService;
+    private GetStudentProjectProgressService getStudentProjectProgressService;
+    private UpdateStudentProjectProgressService updateStudentProjectProgressService;
 
     //Por ahora se usa el /register/
     //@PostMapping(path = "user")
@@ -50,9 +55,23 @@ public class ABMUserController {
         return responseDecorator.decorate(()-> getUserClassroomsService.execute(userId));
     }
 
+    @GetMapping(path = "user/{userId}/activity/{activityId}/progress")
+    public ResponseEntity<StudentActivityDTO> getStudentActivityProgress(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(()-> getStudentActivityProgressService.execute(userId, activityId));
+    }
 
-    @GetMapping(path = "user/{userId}/projects")
-    public ResponseEntity<ArrayList<ProjectDTO>> getStudentProjects(@PathVariable("userId") Long userId) {
-        return responseDecorator.decorate(()-> getStudentProjectsService.execute(userId));
+    @PutMapping(path = "user/{userId}/activity/{activityId}/progress")
+    public ResponseEntity<Long> updateStudentActivityProgress(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId, @RequestBody StudentActivityDTO studentActivityDTO) {
+        return responseDecorator.decorate(()-> updateStudentActivityProgressService.execute(userId, activityId, studentActivityDTO));
+    }
+
+    @GetMapping(path = "user/{userId}/project/{projectId}/progress")
+    public ResponseEntity<StudentProjectDTO> getStudentProjectProgress(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(()-> getStudentProjectProgressService.execute(userId, projectId));
+    }
+
+    @PutMapping(path = "user/{userId}/project/{projectId}/progress")
+    public ResponseEntity<Long> updateStudentProjectProgress(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId, @RequestBody StudentProjectDTO studentProjectDTO) {
+        return responseDecorator.decorate(()-> updateStudentProjectProgressService.execute(userId, projectId, studentProjectDTO));
     }
 }

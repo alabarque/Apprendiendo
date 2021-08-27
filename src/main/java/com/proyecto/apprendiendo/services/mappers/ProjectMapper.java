@@ -13,6 +13,8 @@ public class ProjectMapper {
                          .methodologyId(project.getMethodologyId())
                          .challengeId(project.getChallengeId())
                          .classroomId(project.getClassroomId())
+                         .startDate(project.getStartDate())
+                         .dueDate(project.getDueDate())
                          .build();
     }
 }

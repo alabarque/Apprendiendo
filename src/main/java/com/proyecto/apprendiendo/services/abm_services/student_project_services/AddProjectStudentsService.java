@@ -18,8 +18,7 @@ public class AddProjectStudentsService {
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long projectId, ArrayList<StudentDTO> studentDTOs){
-        studentDTOs.forEach(s -> studentProjectRepository.save(StudentProject
-                                                                    .builder().projectId(projectId).userId(s.getId()).hasAchievement(false).percentageCompleted(0.00).build()));
+        studentDTOs.forEach(s -> studentProjectRepository.save(StudentProject.builder().projectId(projectId).userId(s.getId()).challengeCompleted(false).percentageCompleted(0.00).grade(0).build()));
         return projectId;
     }
 }

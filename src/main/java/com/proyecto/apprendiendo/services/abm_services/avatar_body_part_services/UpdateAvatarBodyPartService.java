@@ -19,7 +19,7 @@ public class UpdateAvatarBodyPartService {
         AvatarBodyPart avatarBodyPart = avatarBodyPartRepository.getById(avatarBodyPartDTO.getId());
         avatarBodyPart.setId(avatarBodyPartDTO.getId());
         avatarBodyPart.setName(avatarBodyPartDTO.getName());
-        avatarBodyPart.setPath(avatarBodyPartDTO.getPath());
+        avatarBodyPart.setImageData(avatarBodyPartDTO.getImageData());
         avatarBodyPart.setType(avatarBodyPartDTO.getType());
         avatarBodyPartRepository.save(avatarBodyPart);
         return avatarBodyPartDTO.getId();

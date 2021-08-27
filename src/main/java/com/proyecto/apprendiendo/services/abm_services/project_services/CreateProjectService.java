@@ -21,6 +21,8 @@ public class CreateProjectService {
                                  .challengeId(projectNewDTO.getChallengeId())
                                  .classroomId(classRoomId)
                                  .name(projectNewDTO.getName())
+                                 .startDate(projectNewDTO.getStartDate())
+                                 .dueDate(projectNewDTO.getDueDate())
                                  .build();
 
         return projectRepository.save(project).getId();

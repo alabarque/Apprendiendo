@@ -11,6 +11,6 @@ public interface StudentProjectRepository extends JpaRepository<StudentProject,L
     ArrayList<StudentProject> findByUserId(Long userId);
     ArrayList<StudentProject> findByProjectId(Long projectId);
     StudentProject findByUserIdAndProjectId(Long userId, Long projectId);
-    ArrayList<StudentProject> deleteByProjectIdAndUserId(Long projectId, Long userId);
+    StudentProject deleteByProjectIdAndUserId(Long projectId, Long userId);
 
 }

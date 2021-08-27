@@ -24,6 +24,8 @@ public class UpdateProjectService {
         project.setChallengeId(projectDTO.getChallengeId());
         project.setClassroomId(projectDTO.getClassroomId());
         project.setMethodologyId(projectDTO.getMethodologyId());
+        project.setStartDate(projectDTO.getStartDate());
+        project.setDueDate(projectDTO.getDueDate());
 
         projectRepository.save(project);
         return projectDTO.getId();

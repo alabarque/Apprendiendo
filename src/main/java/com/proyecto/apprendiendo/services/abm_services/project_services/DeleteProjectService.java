@@ -16,6 +16,7 @@ public class DeleteProjectService {
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long projectId){
         projectRepository.deleteById(projectId);
+        //TODO:hacer cascade
         return projectId;
     }
 }
