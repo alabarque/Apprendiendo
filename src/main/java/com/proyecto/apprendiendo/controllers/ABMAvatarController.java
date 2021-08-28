@@ -5,7 +5,9 @@ import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAva
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.DeleteAvatarService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.GetAvatarService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.UpdateAvatarService;
+import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,24 +18,25 @@ public class ABMAvatarController {
     private GetAvatarService getAvatarService;
     private DeleteAvatarService deleteAvatarService;
     private UpdateAvatarService updateAvatarService;
+    private ResponseDecorator responseDecorator;
 
-    @PostMapping(path = "Avatar")
-    public void newAvatar(@RequestBody AvatarDTO AvatarDTO){
-        createAvatarService.execute(AvatarDTO);
+    @PostMapping(path = "avatar")
+    public ResponseEntity<Long> newAvatar(@RequestBody AvatarDTO AvatarDTO){
+        return responseDecorator.decorate(()->createAvatarService.execute(AvatarDTO));
     }
 
-    @GetMapping (path = "Avatar/{AvatarId}")
-    public AvatarDTO getAvatar(@PathVariable Long AvatarId){
-        return getAvatarService.execute(AvatarId);
+    @GetMapping (path = "avatar/{AvatarId}")
+    public ResponseEntity<AvatarDTO> getAvatar(@PathVariable Long AvatarId){
+        return responseDecorator.decorate(()->getAvatarService.execute(AvatarId));
     }
 
-    @DeleteMapping(path = "Avatar/{AvatarId}")
-    public void deleteAvatar(@PathVariable Long AvatarId){
-        deleteAvatarService.execute(AvatarId);
+    @DeleteMapping(path = "avatar/{AvatarId}")
+    public ResponseEntity<Long> deleteAvatar(@PathVariable Long AvatarId){
+        return responseDecorator.decorate(()->deleteAvatarService.execute(AvatarId));
     }
 
-    @PutMapping(path = "Avatar")
-    public void updateAvatar(@RequestBody AvatarDTO AvatarDTO){
-        updateAvatarService.execute(AvatarDTO);
+    @PutMapping(path = "avatar")
+    public ResponseEntity<Long> updateAvatar(@RequestBody AvatarDTO AvatarDTO){
+        return responseDecorator.decorate(()->updateAvatarService.execute(AvatarDTO));
     }
 }

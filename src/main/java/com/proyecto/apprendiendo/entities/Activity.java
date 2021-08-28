@@ -19,6 +19,6 @@ public class Activity implements Source {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long ownerId; //FK a User, Project
-    private Long projectId;
+    private Long challengeId; //FK a Challenge
+    private Long projectId; //FK a Project
 }

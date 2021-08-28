@@ -16,8 +16,9 @@ public class DeleteDocumentService {
     private DocumentRepository documentRepository;
     private DocumentSourceRepository documentSourceRepository;
 
-    public void execute(Long documentId, Long sourceId){
+    public Long execute(Long documentId, Long sourceId){
         documentSourceRepository.deleteBySourceIdAndDocumentId(sourceId, documentId);
         if (documentSourceRepository.findByDocumentId(documentId).size() == 0) documentRepository.deleteById(documentId);
+        return documentId;
     }
 }

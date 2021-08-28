@@ -17,7 +17,8 @@ public class RemoveSourcesDocumentsService {
     private DeleteDocumentService deleteDocumentService;
 
     @Transactional(rollbackOn = Exception.class)
-    public void execute(Long sourceId, ArrayList<DocumentDTO> documentDTOs){
+    public Long execute(Long sourceId, ArrayList<DocumentDTO> documentDTOs){
         documentDTOs.forEach(d -> deleteDocumentService.execute(d.getId(),sourceId));
+        return sourceId;
     }
 }

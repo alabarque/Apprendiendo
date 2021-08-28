@@ -20,4 +20,7 @@ public class Classroom implements Source {
     private Long id;
     private String name;
     private Long teacherId;
+    private String subject;
+    private Integer year;
+    private String division;
 }

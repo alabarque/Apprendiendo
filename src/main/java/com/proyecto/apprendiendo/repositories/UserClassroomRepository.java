@@ -12,5 +12,5 @@ public interface UserClassroomRepository extends JpaRepository<UserClassroom,Lon
     ArrayList<UserClassroom> findByUserId(Long userId);
     ArrayList<UserClassroom> findByClassroomId(Long classroomId);
     UserClassroom findByUserIdAndClassroomId(Long userId, Long classroomId);
-    ArrayList<UserClassroom> deleteByClassroomIdAndUserId(Long classroomId, Long userId);
+    UserClassroom deleteByClassroomIdAndUserId(Long classroomId, Long userId);
 }

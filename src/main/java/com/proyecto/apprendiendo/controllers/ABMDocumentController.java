@@ -6,7 +6,9 @@ import com.proyecto.apprendiendo.services.abm_services.document_services.CreateD
 import com.proyecto.apprendiendo.services.abm_services.document_services.DeleteDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.GetDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.UpdateDocumentService;
+import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,19 +19,25 @@ public class ABMDocumentController {
     private GetDocumentService getDocumentService;
     private DeleteDocumentService deleteDocumentService;
     private UpdateDocumentService updateDocumentService;
+    private ResponseDecorator responseDecorator;
 
-    @PostMapping(path = "Document")
-    public void newDocument(@RequestBody NewDocumentDTO newDocumentDTO){createDocumentService.execute(newDocumentDTO);}
-
-    @GetMapping (path = "Document/{DocumentId}")
-    public DocumentDTO getDocument(@PathVariable Long documentId){
-        return getDocumentService.execute(documentId);
+    @PostMapping(path = "document")
+    public ResponseEntity<Long> newDocument(@RequestBody NewDocumentDTO newDocumentDTO){
+        return responseDecorator.decorate(()->createDocumentService.execute(newDocumentDTO));
     }
 
-    @DeleteMapping(path = "Document/{documentId}/Source/{sourceId}")
-    public void deleteDocument( @PathVariable("documentId") Long documentId, @PathVariable("sourceId") Long sourceId){ deleteDocumentService.execute(documentId, sourceId);}
+    @GetMapping (path = "document/{documentId}")
+    public ResponseEntity< DocumentDTO> getDocument(@PathVariable Long documentId){
+        return responseDecorator.decorate(()->getDocumentService.execute(documentId));
+    }
 
-    @PutMapping(path = "Document")
-    public void updateDocument(@RequestBody DocumentDTO documentDTO){updateDocumentService.execute(documentDTO);
+    @DeleteMapping(path = "document/{documentId}/source/{sourceId}")
+    public ResponseEntity<Long> deleteDocument( @PathVariable("documentId") Long documentId, @PathVariable("sourceId") Long sourceId){
+        return responseDecorator.decorate(()->deleteDocumentService.execute(documentId, sourceId));
+    }
+
+    @PutMapping(path = "document")
+    public ResponseEntity<Long> updateDocument(@RequestBody DocumentDTO documentDTO){
+        return responseDecorator.decorate(()->updateDocumentService.execute(documentDTO));
     }
 }

@@ -1,9 +1,9 @@
-package com.proyecto.apprendiendo.services.abm_services.project_user_services;
+package com.proyecto.apprendiendo.services.abm_services.student_project_services;
 
-import com.proyecto.apprendiendo.entities.UserProject;
+import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
 import com.proyecto.apprendiendo.repositories.ProjectRepository;
-import com.proyecto.apprendiendo.repositories.UserProjectRepository;
+import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
 import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.mappers.ProjectMapper;
 import lombok.AllArgsConstructor;
@@ -19,11 +19,11 @@ import java.util.stream.Collectors;
 public class GetStudentProjectsService {
 
     private ProjectRepository projectRepository;
-    private UserProjectRepository userProjectRepository;
+    private StudentProjectRepository studentProjectRepository;
     private UserRepository userRepository;
 
     public ArrayList<ProjectDTO> execute(Long studentId) {
-        ArrayList<UserProject> studentProjects = userProjectRepository.findByUserId(studentId);
+        ArrayList<StudentProject> studentProjects = studentProjectRepository.findByUserId(studentId);
         return studentProjects.stream().map(ps -> ProjectMapper.entityToDto(projectRepository.getById(ps.getProjectId()))).collect(Collectors.toCollection(ArrayList::new));
     }
 }

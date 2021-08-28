@@ -18,7 +18,7 @@ public class UpdateDocumentService {
 
     private DocumentRepository documentRepository;
 
-    public void execute(DocumentDTO documentDTO){
+    public Long execute(DocumentDTO documentDTO){
         Document document = documentRepository.getById(documentDTO.getId());
         document.setId(documentDTO.getId());
         document.setName(documentDTO.getName());
@@ -26,5 +26,6 @@ public class UpdateDocumentService {
         document.setDataType(documentDTO.getDataType());
         document.setOwnerId(documentDTO.getOwnerId());
         documentRepository.save(document);
+        return documentDTO.getId();
     }
 }

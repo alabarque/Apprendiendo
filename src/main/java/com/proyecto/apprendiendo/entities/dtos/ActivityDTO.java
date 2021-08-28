@@ -10,6 +10,5 @@ import lombok.Setter;
 public class ActivityDTO {
     private Long id;
     private String name;
-    private Long ownerId; //FK a User, Project
     private Long projectId;
 }

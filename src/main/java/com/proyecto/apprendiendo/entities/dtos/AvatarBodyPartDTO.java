@@ -11,5 +11,5 @@ public class AvatarBodyPartDTO {
     private Long id;
     private String name;
     private String type; //Enum BodypartType
-    private String path;
+    private String imageData;
 }

@@ -17,7 +17,8 @@ public class AddClassroomStudentsService {
     private UserClassroomRepository userClassroomRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public void execute(Long classroomId, ArrayList<StudentDTO> studentDTOs){
+    public Long execute(Long classroomId, ArrayList<StudentDTO> studentDTOs){
         studentDTOs.forEach(s -> userClassroomRepository.save(UserClassroom.builder().classroomId(classroomId).userId(s.getId()).build()));
+        return classroomId;
     }
 }

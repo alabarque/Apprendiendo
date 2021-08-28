@@ -5,7 +5,9 @@ import com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services
 import com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services.DeleteAvatarBodyPartService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services.GetAvatarBodyPartService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services.UpdateAvatarBodyPartService;
+import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,24 +18,25 @@ public class ABMAvatarBodyPartController {
     private GetAvatarBodyPartService getAvatarBodyPartService;
     private DeleteAvatarBodyPartService deleteAvatarBodyPartService;
     private UpdateAvatarBodyPartService updateAvatarBodyPartService;
+    private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "AvatarBodyPart")
-    public void newAvatarBodyPart(@RequestBody AvatarBodyPartDTO AvatarBodyPartDTO){
-        createAvatarBodyPartService.execute(AvatarBodyPartDTO);
+    public ResponseEntity<Long> newAvatarBodyPart(@RequestBody AvatarBodyPartDTO AvatarBodyPartDTO){
+        return responseDecorator.decorate(()->createAvatarBodyPartService.execute(AvatarBodyPartDTO));
     }
 
     @GetMapping (path = "AvatarBodyPart/{AvatarBodyPartId}")
-    public AvatarBodyPartDTO getAvatarBodyPart(@PathVariable Long AvatarBodyPartId){
-        return getAvatarBodyPartService.execute(AvatarBodyPartId);
+    public ResponseEntity< AvatarBodyPartDTO> getAvatarBodyPart(@PathVariable Long AvatarBodyPartId){
+        return responseDecorator.decorate(()->getAvatarBodyPartService.execute(AvatarBodyPartId));
     }
 
     @DeleteMapping(path = "AvatarBodyPart/{AvatarBodyPartId}")
-    public void deleteAvatarBodyPart(@PathVariable Long AvatarBodyPartId){
-        deleteAvatarBodyPartService.execute(AvatarBodyPartId);
+    public ResponseEntity<Long> deleteAvatarBodyPart(@PathVariable Long AvatarBodyPartId){
+        return responseDecorator.decorate(()->deleteAvatarBodyPartService.execute(AvatarBodyPartId));
     }
 
     @PutMapping(path = "AvatarBodyPart")
-    public void updateAvatarBodyPart(@RequestBody AvatarBodyPartDTO AvatarBodyPartDTO){
-        updateAvatarBodyPartService.execute(AvatarBodyPartDTO);
+    public ResponseEntity<Long> updateAvatarBodyPart(@RequestBody AvatarBodyPartDTO AvatarBodyPartDTO){
+        return responseDecorator.decorate(()->updateAvatarBodyPartService.execute(AvatarBodyPartDTO));
     }
 }

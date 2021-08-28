@@ -7,12 +7,14 @@ public class ProjectMapper {
 
     public static ProjectDTO entityToDto(Project project){
 
-        return ProjectDTO.builder().id(project.getId())
-                                   .name(project.getName())
-                                   .methodologyId(project.getMethodologyId())
-                                   .challengeId(project.getChallengeId())
-                                   .classroomId(project.getClassroomId())
-                                   .build();
-
+        return ProjectDTO.builder()
+                         .id(project.getId())
+                         .name(project.getName())
+                         .methodologyId(project.getMethodologyId())
+                         .challengeId(project.getChallengeId())
+                         .classroomId(project.getClassroomId())
+                         .startDate(project.getStartDate())
+                         .dueDate(project.getDueDate())
+                         .build();
     }
 }

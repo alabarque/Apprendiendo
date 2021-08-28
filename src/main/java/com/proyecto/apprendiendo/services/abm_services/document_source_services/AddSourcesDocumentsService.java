@@ -18,7 +18,8 @@ public class AddSourcesDocumentsService {
     private DocumentSourceRepository documentSourceRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public void execute(Long sourceId, ArrayList<DocumentDTO> documentDTOs){
+    public Long execute(Long sourceId, ArrayList<DocumentDTO> documentDTOs){
         documentDTOs.forEach(s -> documentSourceRepository.save(DocumentSource.builder().sourceId(sourceId).documentId(s.getId()).build()));
+        return sourceId;
     }
 }

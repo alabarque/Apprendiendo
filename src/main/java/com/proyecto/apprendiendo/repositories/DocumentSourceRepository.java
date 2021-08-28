@@ -13,5 +13,5 @@ public interface DocumentSourceRepository extends JpaRepository<DocumentSource,L
     ArrayList<DocumentSource> findByDocumentId(Long documentId);
     ArrayList<DocumentSource> findBySourceId(Long sourceId);
     DocumentSource findByDocumentIdAndSourceId(Long documentId, Long sourceId);
-    ArrayList<DocumentSource> deleteBySourceIdAndDocumentId(Long sourceId, Long documentId);
+    DocumentSource deleteBySourceIdAndDocumentId(Long sourceId, Long documentId);
 }

@@ -9,7 +9,11 @@ public class DocumentMapper {
 
     public static DocumentDTO entityToDto(Document document){
 
-        return DocumentDTO.builder().id(document.getId()).name(document.getName()).data(document.getData()).dataType(document.getDataType()).ownerId(document.getOwnerId()).build();
-
+        return DocumentDTO.builder().
+                          id(document.getId())
+                          .name(document.getName())
+                          .data(document.getData())
+                          .dataType(document.getDataType())
+                          .ownerId(document.getOwnerId()).build();
     }
 }
