@@ -13,9 +13,10 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Challenge {
+public class StudentReward {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String name;
+    private Long rewardId;
+    private Long studentId;
 }
