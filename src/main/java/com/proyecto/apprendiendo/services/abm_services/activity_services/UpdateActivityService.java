@@ -20,6 +20,8 @@ public class UpdateActivityService {
         activity.setId(activityDTO.getId());
         activity.setName(activityDTO.getName());
         activity.setProjectId(activityDTO.getProjectId());
+        activity.setPreviousActivityId(activityDTO.getPreviousActivityId());
+        activity.setChallengeId(activityDTO.getChallengeId());
         activityRepository.save(activity);
         return activityDTO.getId();
     }

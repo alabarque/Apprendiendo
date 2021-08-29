@@ -10,5 +10,8 @@ import lombok.Setter;
 public class ActivityDTO {
     private Long id;
     private String name;
+    private String description;
+    private Long challengeId;
     private Long projectId;
+    private Long previousActivityId;
 }
