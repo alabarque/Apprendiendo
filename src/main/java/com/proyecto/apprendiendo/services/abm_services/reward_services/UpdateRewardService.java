@@ -17,9 +17,8 @@ public class UpdateRewardService {
 
     public Long execute(RewardDTO rewardDTO){
         Reward reward = rewardRepository.getById(rewardDTO.getId());
-        reward.setId(rewardDTO.getId());
         reward.setName(rewardDTO.getName());
-        reward.setRewardType("SOCIAL");
+        reward.setRewardType(rewardDTO.getRewardType());
         reward.setConditionId(rewardDTO.getConditionId());
         reward.setImageData(rewardDTO.getImageData());
         reward.setTargetId(rewardDTO.getTargetId());

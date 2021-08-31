@@ -21,7 +21,6 @@ public class UpdateStudentActivityProgressService {
     public Long execute(Long studentId, Long activityId, StudentActivityDTO studentActivityDTO){
         StudentActivity studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
         studentActivity.setGrade(studentActivityDTO.getGrade());
-        studentActivity.setChallengeCompleted(studentActivityDTO.getChallengeCompleted());
         studentActivity.setPercentageCompleted(studentActivityDTO.getPercentageCompleted());
         studentActivityRepository.save(studentActivity);
         return studentActivityDTO.getId();

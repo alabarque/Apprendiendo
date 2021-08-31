@@ -20,6 +20,5 @@ public class StudentActivity {
     private Long userId; //FK a User
     private Long activityId; //FK a Activity
     private Double percentageCompleted;
-    private Boolean challengeCompleted;
     private Integer grade;
 }

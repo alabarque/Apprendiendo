@@ -16,7 +16,7 @@ public class CreateRewardService {
     private RewardRepository rewardRepository;
 
     public Long execute(RewardDTO rewardDTO) {
-        Reward reward = Reward.builder().rewardType("SOCIAL").text(rewardDTO.getText()).conditionId(rewardDTO.getConditionId()).name(rewardDTO.getName()).text(rewardDTO.getText()).imageData(rewardDTO.getImageData()).targetId(rewardDTO.getTargetId()).build();
+        Reward reward = Reward.builder().rewardType(rewardDTO.getRewardType()).text(rewardDTO.getText()).conditionId(rewardDTO.getConditionId()).name(rewardDTO.getName()).text(rewardDTO.getText()).imageData(rewardDTO.getImageData()).targetId(rewardDTO.getTargetId()).build();
         return rewardRepository.save(reward).getId();
     }
 }

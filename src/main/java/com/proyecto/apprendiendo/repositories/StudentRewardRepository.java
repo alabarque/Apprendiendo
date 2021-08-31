@@ -10,4 +10,7 @@ import java.util.ArrayList;
 @Repository
 public interface StudentRewardRepository extends JpaRepository<StudentReward, Long> {
     ArrayList<StudentReward> findByStudentIdAndRewardType(Long studentId, String rewardType);
+    StudentReward findByStudentIdAndRewardId(Long studentId, Long rewardId);
+    ArrayList<StudentReward> findByStudentId(Long studentId);
+    StudentReward deleteByStudentIdAndRewardId(Long studentId, Long rewardId);
 }

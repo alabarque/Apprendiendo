@@ -18,6 +18,6 @@ public class GetRewardService {
 
     public RewardDTO execute(Long idClass) {
         Reward reward = rewardRepository.getById(idClass);
-        return RewardMapper.entityToRewardDTO(reward);
+        return RewardMapper.entityToDTO(reward);
     }
 }

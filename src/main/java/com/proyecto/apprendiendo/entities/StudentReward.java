@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.entities;
 
+import com.proyecto.apprendiendo.entities.enums.RewardType;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -19,4 +20,5 @@ public class StudentReward {
     private Long id;
     private Long rewardId;
     private Long studentId;
+    private String rewardType; //ENUM RewardType
 }
