@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Service
 @AllArgsConstructor
 @Transactional
-public class RemoveRewardStudentsService {
+public class RemoveRewardStudentService {
 
     private StudentRewardRepository studentRewardRepository;
 
