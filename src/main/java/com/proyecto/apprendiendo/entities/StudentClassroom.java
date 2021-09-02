@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.entities;
 
+import jdk.jfr.Percentage;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -21,6 +22,6 @@ public class StudentClassroom {
     private Long studentId; //FK a User
     private Long classroomId; //FK a Classroom
     private Integer grade;
-    private Boolean completed;
+    private Double percentageCompleted;
     private LocalDateTime dateCompleted;
 }

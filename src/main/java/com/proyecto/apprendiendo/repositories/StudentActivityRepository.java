@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.repositories;
 
 import com.proyecto.apprendiendo.entities.StudentActivity;
+import com.proyecto.apprendiendo.entities.StudentClassroom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public interface StudentActivityRepository extends JpaRepository<StudentActivity,Long> {
     ArrayList<StudentActivity> findByUserId(Long userId);
     ArrayList<StudentActivity> findByActivityId(Long activityId);
+    ArrayList<StudentActivity> findByUserIdAndPercentageCompleted(Long userId, Double percentageCompleted);
     StudentActivity findByUserIdAndActivityId(Long userId, Long activityId);
     StudentActivity deleteByActivityIdAndUserId(Long activityId, Long userId);
 }
