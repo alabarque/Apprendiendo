@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.nio.channels.CancelledKeyException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 @Service
@@ -50,7 +50,7 @@ public class EvaluateConditionForStudentService {
         Activity activity = activityRepository.getById(reward.getTargetId());
         Condition condition = conditionRepository.getById(reward.getConditionId());
         if ((studentActivity.getPercentageCompleted() >= 100.00) &&
-            (LocalDate.now().isBefore(activity.getDueDate().plusDays(Long.parseLong(condition.getData())))))
+            (LocalDateTime.now().isBefore(activity.getDueDate().plusDays(Long.parseLong(condition.getData())))))
                     return Boolean.TRUE;
         else return Boolean.FALSE;
 
@@ -61,7 +61,7 @@ public class EvaluateConditionForStudentService {
         Project project = projectRepository.getById(reward.getTargetId());
         Condition condition = conditionRepository.getById(reward.getConditionId());
         if ((studentProject.getPercentageCompleted() >= 100.00) &&
-                    (LocalDate.now().isBefore(project.getDueDate().plusDays(Long.parseLong(condition.getData())))))
+                    (LocalDateTime.now().isBefore(project.getDueDate().plusDays(Long.parseLong(condition.getData())))))
             return Boolean.TRUE;
         else return Boolean.FALSE;
 

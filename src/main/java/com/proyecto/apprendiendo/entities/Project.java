@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -23,7 +23,7 @@ public class Project implements Source {
     private Long methodologyId; //FK a Methodology
     private Long challengeId; //FK a Challenge
     private Long classroomId; //FK a Classroom
-    private LocalDate startDate;
-    private LocalDate dueDate;
+    private LocalDateTime startDate;
+    private LocalDateTime dueDate;
     private String name;
 }
