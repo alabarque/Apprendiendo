@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -13,6 +14,6 @@ public class ProjectNewDTO {
     private Long methodologyId;
     private Long challengeId;
     private String name;
-    private Date startDate;
-    private Date dueDate;
+    private LocalDate startDate;
+    private LocalDate dueDate;
 }
