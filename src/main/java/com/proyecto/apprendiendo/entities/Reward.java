@@ -21,6 +21,7 @@ public class Reward {
     private Long conditionId; //FK a Condition
     private String rewardType; //ENUM RewardType
     private String text; //descripcion de la recompenza de existir. Importante que exista para rewardType SOCIAL.
-    private Long targetId; //FK a Classroom, Project o Activity, dependiendo de rewardType. Donde esta disponible, tambien es el target de la condition.
+    private Long targetId; //FK a Classroom, Project o Activity, dependiendo de targetType. Donde esta disponible, tambien es el target de la condition.
+    private String targetType; //ENUM TargetType
     private String imageData; //imagen de existir, importante para los rewardType BADGE, CHALLENGE, ACHIEVEMENT
 }

@@ -23,6 +23,7 @@ public class UpdateRewardService {
         reward.setImageData(rewardDTO.getImageData());
         reward.setTargetId(rewardDTO.getTargetId());
         reward.setText(reward.getText());
+        reward.setTargetType(reward.getTargetType());
         rewardRepository.save(reward);
         return rewardDTO.getId();
     }

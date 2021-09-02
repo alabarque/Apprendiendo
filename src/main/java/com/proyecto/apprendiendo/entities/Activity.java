@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -21,4 +23,6 @@ public class Activity implements Source {
     private String name;
     private Long challengeId; //FK a Challenge
     private Long projectId; //FK a Project
+    private LocalDate startDate;
+    private LocalDate dueDate;
 }

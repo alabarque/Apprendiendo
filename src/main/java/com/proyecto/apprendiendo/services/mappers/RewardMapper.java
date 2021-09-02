@@ -14,6 +14,7 @@ public class RewardMapper {
                         .targetId(reward.getTargetId())
                         .text(reward.getText())
                         .rewardType(reward.getRewardType())
+                        .targetType(reward.getTargetType())
                         .build();
     }
 }

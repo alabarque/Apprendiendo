@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.entities;
 
-import com.proyecto.apprendiendo.entities.interfaces.Source;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -8,22 +7,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
-public class Project implements Source {
+public class StudentClassroom {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long methodologyId; //FK a Methodology
-    private Long challengeId; //FK a Challenge
+    private Long studentId; //FK a User
     private Long classroomId; //FK a Classroom
-    private LocalDate startDate;
-    private LocalDate dueDate;
-    private String name;
+    private Integer grade;
+    private Boolean completed;
+    private LocalDate dateCompleted;
 }
