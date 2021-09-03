@@ -22,6 +22,7 @@ public class UpdateStudentActivityProgressService {
         StudentActivity studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
         studentActivity.setGrade(studentActivityDTO.getGrade());
         studentActivity.setPercentageCompleted(studentActivityDTO.getPercentageCompleted());
+        studentActivity.setDateCompleted(studentActivityDTO.getDateCompleted());
         studentActivityRepository.save(studentActivity);
         return studentActivityDTO.getId();
     }

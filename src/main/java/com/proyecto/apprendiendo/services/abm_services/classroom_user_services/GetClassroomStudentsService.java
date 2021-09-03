@@ -1,8 +1,10 @@
 package com.proyecto.apprendiendo.services.abm_services.classroom_user_services;
 
+import com.proyecto.apprendiendo.entities.StudentClassroom;
 import com.proyecto.apprendiendo.entities.UserClassroom;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.repositories.ClassroomRepository;
+import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
 import com.proyecto.apprendiendo.repositories.UserClassroomRepository;
 import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.mappers.StudentMapper;
@@ -18,12 +20,11 @@ import java.util.stream.Collectors;
 @Transactional
 public class GetClassroomStudentsService {
 
-    private ClassroomRepository classroomRepository;
-    private UserClassroomRepository userClassroomRepository;
+    private StudentClassroomRepository studentClassroomRepository;
     private UserRepository userRepository;
 
     public ArrayList<StudentDTO> execute(Long classroomId) {
-        ArrayList<UserClassroom> classroomStudents = userClassroomRepository.findByClassroomId(classroomId);
-        return classroomStudents.stream().map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getUserId()))).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<StudentClassroom> classroomStudents = studentClassroomRepository.findByClassroomId(classroomId);
+        return classroomStudents.stream().map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getStudentId()))).collect(Collectors.toCollection(ArrayList::new));
     }
 }

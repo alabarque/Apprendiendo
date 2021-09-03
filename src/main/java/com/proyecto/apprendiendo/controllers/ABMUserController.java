@@ -1,7 +1,10 @@
 package com.proyecto.apprendiendo.controllers;
 
+import com.proyecto.apprendiendo.entities.StudentClassroom;
 import com.proyecto.apprendiendo.entities.dtos.*;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetUserClassroomsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.UpdateStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.*;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.UpdateStudentProjectProgressService;
@@ -36,6 +39,8 @@ public class ABMUserController {
     private AddRewardStudentService addRewardStudentService;
     private RemoveRewardStudentService removeRewardStudentService;
     private GetStudentTargetRewardsService getStudentTargetRewardsService;
+    private GetStudentClassroomProgressService getStudentClassroomProgressService;
+    private UpdateStudentClassroomProgressService updateStudentClassroomProgressService;
 
     //Por ahora se usa el /register/
     //@PostMapping(path = "user")
@@ -81,6 +86,16 @@ public class ABMUserController {
     @PutMapping(path = "user/{userId}/project/{projectId}/progress")
     public ResponseEntity<Long> updateStudentProjectProgress(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId, @RequestBody StudentProjectDTO studentProjectDTO) {
         return responseDecorator.decorate(()-> updateStudentProjectProgressService.execute(userId, projectId, studentProjectDTO));
+    }
+
+    @GetMapping(path = "user/{userId}/classroom/{classroomId}/progress")
+    public ResponseEntity<StudentClassroomDTO> getStudentClassroomProgress(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(()-> getStudentClassroomProgressService.execute(userId, classroomId));
+    }
+
+    @PutMapping(path = "user/{userId}/classroom/{classroomId}/progress")
+    public ResponseEntity<Long> updateStudentClassroomProgress(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId, @RequestBody StudentClassroomDTO studentClassroomDTO) {
+        return responseDecorator.decorate(()-> updateStudentClassroomProgressService.execute(userId, classroomId, studentClassroomDTO));
     }
 
     @GetMapping(path = "user/{userId}/socialRewards")
