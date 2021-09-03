@@ -1,15 +1,10 @@
 package com.proyecto.apprendiendo.services.abm_services.classroom_user_services;
 
 import com.proyecto.apprendiendo.entities.StudentClassroom;
-import com.proyecto.apprendiendo.entities.UserClassroom;
 import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
-import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.repositories.ClassroomRepository;
 import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
-import com.proyecto.apprendiendo.repositories.UserClassroomRepository;
-import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.mappers.ClassroomMapper;
-import com.proyecto.apprendiendo.services.mappers.StudentMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
