@@ -6,6 +6,7 @@ import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
 import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
+import com.proyecto.apprendiendo.services.abm_services.reward_services.AutomaticRewardGrantingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import javax.transaction.Transactional;
 public class UpdateStudentActivityProgressService {
 
     private StudentActivityRepository studentActivityRepository;
+    private AutomaticRewardGrantingService automaticRewardGrantingService;
 
     public Long execute(Long studentId, Long activityId, StudentActivityDTO studentActivityDTO){
         StudentActivity studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
@@ -24,6 +26,7 @@ public class UpdateStudentActivityProgressService {
         studentActivity.setPercentageCompleted(studentActivityDTO.getPercentageCompleted());
         studentActivity.setDateCompleted(studentActivityDTO.getDateCompleted());
         studentActivityRepository.save(studentActivity);
+        automaticRewardGrantingService.execute(studentId, activityId, "ACTIVITY");
         return studentActivityDTO.getId();
     }
 }
