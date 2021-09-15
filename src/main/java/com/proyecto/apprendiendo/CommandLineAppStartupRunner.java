@@ -2,12 +2,16 @@ package com.proyecto.apprendiendo;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.entities.enums.UserType;
+import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services.CreateAvatarBodyPartService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
+import com.proyecto.apprendiendo.services.abm_services.document_source_services.AddDocumentToSourceService;
+import com.proyecto.apprendiendo.services.abm_services.document_source_services.AddSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.CreateMethodologyService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
@@ -19,6 +23,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
@@ -46,6 +51,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetStudentService getStudentService;
     @Autowired
     private CreateMethodologyService createMethodologyService;
+    @Autowired
+    private CreateActivityService createActivityService;
+    @Autowired
+    private CreateDocumentService createDocumentService;
 
     @Override
     public void run(String...args) {
@@ -107,6 +116,45 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addClassroomStudentsService.execute(lenguaCursoId,estudiantesLengua);
 
         addClassroomStudentsService.execute(socialesCursoId,estudiantesSociales);
+
+
+        Long proyectoTemplateAulaInvertidaId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto de Aula Invertida").methodologyId(aulaInvertidaMethodologyId).build(), Integer.toUnsignedLong(0));
+
+        Long templateAulaInvertidaClase1Id = createActivityService.execute(ActivityDTO.builder().name("Clase 1").projectId(proyectoTemplateAulaInvertidaId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 1").data("la descripcion del primer dia de aula invertida va aca").sourceId(templateAulaInvertidaClase1Id).documentSourceType("ACTIVITY").build());
+        Long templateAulaInvertidaClase2Id = createActivityService.execute(ActivityDTO.builder().name("Clase 2").projectId(proyectoTemplateAulaInvertidaId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 2").data("la descripcion del segundo dia de aula invertida va aca").sourceId(templateAulaInvertidaClase2Id).documentSourceType("ACTIVITY").build());
+
+
+
+        Long proyectoTemplatePBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto PBL").methodologyId(aulaInvertidaMethodologyId).build(), Integer.toUnsignedLong(0));
+
+        Long templatePBLClase1Id = createActivityService.execute(ActivityDTO.builder().name("Clase 1").projectId(proyectoTemplatePBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Pregunta inicial").data(" En esta etapa, el docente selecciona un tema que esté \nligado a la realidad de los alumnos, y debe plantear una \npregunta abierta que despierte su interés y los motive a \naprender.\n El objetivo en este punto es detectar conocimientos \nprevios y que el alumno  piense qué debe investigar  y cómo\nresolver la cuestión. \\n Mediante la opción \\\"Adjuntar Material\\\" puede proporcionar\\nel material que crea conveniente a sus alumnos, tales como \\ndocumentos en formato word, excel, pdf, o incluso videos!\n\n¿Qué pregunta desea plantear?:").sourceId(templatePBLClase1Id).documentSourceType("ACTIVITY").build());
+
+        Long templatePBLClase2Id = createActivityService.execute(ActivityDTO.builder().name("Clase 2").projectId(proyectoTemplatePBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Formando Equipos").data(" En base a las respuestas obtenidas en la clase \nanterior, el docente deberá formar equipos de 3 o 4\nintegrantes con diversidad de perfiles. Dándoles la \nposibilidad de que cada uno desempeñe un rol.\n También se definirá cuál es el producto o proyecto final \nque los alumnos desarrollaran en función de las \ncompetencias que se quieran alcanzar(Puede ser un folleto,\nuna presentación, una investigación científica). Se \nrecomienda que se les proporciones las rúbricas donde \nfiguren los objetivos a alcanzar y cómo se los va a \nevaluar.\n\nIngrese en el siguiente box la comunicación a los alumnos\nsobre el producto a desarrollar\\n Mediante la opción \\\"Crear equipos\\\" puede definir los \\nintegrantes de cada equipo y asignarles un nombre. Esto \\npermitirá que los alumnos colaboren y compartan tareas.").sourceId(templatePBLClase2Id).documentSourceType("ACTIVITY").build());
+        Long templatePBLClase3Id = createActivityService.execute(ActivityDTO.builder().name("Clase 3").projectId(proyectoTemplatePBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Planificacion").data(" En esta clase se les pide a los alumnos  que armen un \nplan de trabajo, donde presenten las tareas previstas, \nel encargado de realizarlas y las fechas de resolución \nesperadas.\nEsta clase contará con un box de entregas para que los \nalumnos puedan subir el plan que crearon. Recuerde que a\npartir de esta clase, las entregas son por equipo!\nPuede ingresar un texto en el siguiente cuadro que se \nvisualizará en la pantalla de los alumnos junto con la \nconsigna mencionada anteriormente: ").sourceId(templatePBLClase3Id).documentSourceType("ACTIVITY").build());
+        Long templatePBLClase4Id = createActivityService.execute(ActivityDTO.builder().name("Clase 4").projectId(proyectoTemplatePBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Investigacion").data("la descripcion del cuarto dia del PBL va aca").sourceId(templatePBLClase4Id).documentSourceType("ACTIVITY").build());
+        Long templatePBLClase5Id = createActivityService.execute(ActivityDTO.builder().name("Clase 5").projectId(proyectoTemplatePBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Puesta en comun y Debate").data("la descripcion del quinto dia del PBL va aca").sourceId(templatePBLClase5Id).documentSourceType("ACTIVITY").build());
+        Long templatePBLClase6Id = createActivityService.execute(ActivityDTO.builder().name("Clase 6").projectId(proyectoTemplatePBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Elaboracion del producto").data("la descripcion del sexto dia del PBL va aca").sourceId(templatePBLClase6Id).documentSourceType("ACTIVITY").build());
+        Long templatePBLClase7Id = createActivityService.execute(ActivityDTO.builder().name("Presentacion del Producto").projectId(proyectoTemplatePBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 7").data("la descripcion del septimo dia del PBL va aca").sourceId(templatePBLClase7Id).documentSourceType("ACTIVITY").build());
+
+
+
+
+
+        Long proyectoTemplateTBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto TBL").methodologyId(aulaInvertidaMethodologyId).build(), Integer.toUnsignedLong(0));
+
+        Long templateTBLClase1Id = createActivityService.execute(ActivityDTO.builder().name("Clase 1").projectId(proyectoTemplateTBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 1").data("la descripcion del primer dia del TBL va aca").sourceId(templateTBLClase1Id).documentSourceType("ACTIVITY").build());
+        Long templateTBLClase2Id = createActivityService.execute(ActivityDTO.builder().name("Clase 2").projectId(proyectoTemplateTBLId).build());
+        createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 2").data("la descripcion del segundo dia del TBL va aca").sourceId(templateTBLClase2Id).documentSourceType("ACTIVITY").build());
 
     }
 }

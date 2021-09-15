@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 @Controller
 @AllArgsConstructor
-public class ABMProjectController {
+public class ProjectController {
 
     private CreateProjectService createProjectService;
     private GetProjectService getProjectService;

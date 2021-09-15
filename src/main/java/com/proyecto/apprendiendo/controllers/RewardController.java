@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-public class ABMRewardController {
+public class RewardController {
 
     private CreateRewardService createRewardService;
     private GetRewardService getRewardService;

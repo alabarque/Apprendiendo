@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @RestController
 @AllArgsConstructor
-public class ABMClassroomController {
+public class ClassroomController {
 
     private CreateClassroomService createClassroomService;
     private GetClassroomService getClassroomService;

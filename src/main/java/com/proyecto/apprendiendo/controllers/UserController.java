@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 @RestController
 @AllArgsConstructor
-public class ABMUserController {
+public class UserController {
 
     private GetUserService getUserService;
     private DeleteUserService deleteUserService;

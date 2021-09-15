@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-public class ABMActivityController {
+public class ActivityController {
 
     private CreateActivityService createActivityService;
     private GetActivityService getActivityService;
