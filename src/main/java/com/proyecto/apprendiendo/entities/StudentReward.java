@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.entities;
 
+import com.proyecto.apprendiendo.entities.enums.RewardType;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -13,9 +14,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Challenge {
+public class StudentReward {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private String name;
+    private Long rewardId;
+    private Long studentId;
+    private String rewardType; //ENUM RewardType
 }

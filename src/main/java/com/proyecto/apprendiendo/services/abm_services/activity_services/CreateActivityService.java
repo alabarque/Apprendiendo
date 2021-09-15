@@ -16,7 +16,7 @@ public class CreateActivityService {
     private ActivityRepository activityRepository;
 
     public Long execute(ActivityDTO activityDTO) {
-        Activity activity = Activity.builder().name(activityDTO.getName()).projectId(activityDTO.getProjectId()).previousActivityId(activityDTO.getPreviousActivityId()).challengeId(activityDTO.getChallengeId()).description(activityDTO.getDescription()).build();
+        Activity activity = Activity.builder().name(activityDTO.getName()).projectId(activityDTO.getProjectId()).startDate(activityDTO.getStartDate()).dueDate(activityDTO.getDueDate()).build();
         return activityRepository.save(activity).getId();
     }
 }

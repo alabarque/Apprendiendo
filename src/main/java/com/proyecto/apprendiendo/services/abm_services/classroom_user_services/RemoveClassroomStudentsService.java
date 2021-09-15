@@ -1,8 +1,7 @@
 package com.proyecto.apprendiendo.services.abm_services.classroom_user_services;
 
-import com.proyecto.apprendiendo.entities.UserClassroom;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
-import com.proyecto.apprendiendo.repositories.UserClassroomRepository;
+import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +13,11 @@ import java.util.ArrayList;
 @Transactional
 public class RemoveClassroomStudentsService {
 
-    private UserClassroomRepository userClassroomRepository;
+    private StudentClassroomRepository studentClassroomRepository;
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long classroomId, ArrayList<StudentDTO> studentDTOs){
-        studentDTOs.forEach(s -> userClassroomRepository.deleteByClassroomIdAndUserId(classroomId, s.getId()));
+        studentDTOs.forEach(s -> studentClassroomRepository.deleteByClassroomIdAndStudentId(classroomId, s.getId()));
         return classroomId;
     }
 }

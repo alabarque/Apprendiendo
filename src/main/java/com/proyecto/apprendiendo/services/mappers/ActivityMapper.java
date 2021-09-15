@@ -9,9 +9,8 @@ public class ActivityMapper {
                         .id(activity.getId())
                         .name(activity.getName())
                         .projectId(activity.getProjectId())
-                        .previousActivityId(activity.getPreviousActivityId())
-                        .challengeId(activity.getChallengeId())
+                        .startDate(activity.getStartDate())
+                        .dueDate(activity.getDueDate())
                         .build();
-
     }
 }

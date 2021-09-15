@@ -4,14 +4,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Getter
 @Setter
 @Builder
 public class ActivityDTO {
     private Long id;
     private String name;
-    private String description;
-    private Long challengeId;
     private Long projectId;
-    private Long previousActivityId;
+    private LocalDateTime dueDate;
+    private LocalDateTime startDate;
 }

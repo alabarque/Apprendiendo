@@ -13,12 +13,11 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class UserClassroom {
+public class Condition {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-
-    private Long userId; //FK a User
-    private Long classroomId; //FK a Classroom
-
+    private String text; //descripcion, importante que exista para conditionType SOCIAL
+    private String conditionType; //Enum ConditionType
+    private String data; //Se usa junto al ConditionType para evaluar la Condition
 }

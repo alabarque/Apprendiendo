@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,8 +21,8 @@ public class Activity implements Source {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String description;
-    private Long challengeId; //FK a Reward
+    private Long challengeId; //FK a Challenge
     private Long projectId; //FK a Project
-    private Long previousActivityId; //FK a Activity, o null si es la unica o primera en una cadena de activities
+    private LocalDateTime startDate;
+    private LocalDateTime dueDate;
 }

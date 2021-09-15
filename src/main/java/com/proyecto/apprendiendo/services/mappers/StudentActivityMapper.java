@@ -12,8 +12,8 @@ public class StudentActivityMapper {
                               .activityId(studentActivity.getActivityId())
                               .userId(studentActivity.getUserId())
                               .grade(studentActivity.getGrade())
-                              .challengeCompleted(studentActivity.getChallengeCompleted())
                               .percentageCompleted(studentActivity.getPercentageCompleted())
+                              .dateCompleted(studentActivity.getDateCompleted())
                               .build();
     }
 }
