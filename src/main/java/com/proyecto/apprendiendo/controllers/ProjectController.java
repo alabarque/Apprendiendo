@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.controllers;
 
+import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectNewDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
@@ -26,6 +27,7 @@ public class ProjectController {
     private AddProjectStudentsService addProjectStudentsService;
     private RemoveProjectStudentsService removeProjectStudentsService;
     private ResponseDecorator responseDecorator;
+    private GetProjectActivitiesService getProjectActivitiesService;
 
     @PostMapping(path = "classroom/{classroomId}/project")
     public ResponseEntity<Long> newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
@@ -62,4 +64,11 @@ public class ProjectController {
     public ResponseEntity<Long> removeProjectStudents (@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("projectId") Long projectId){
         return responseDecorator.decorate(()->removeProjectStudentsService.execute(projectId, studentDTOs));
     }
+
+    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/activities")
+    public ResponseEntity<ArrayList<ActivityDTO>> getProjectActivities(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(()-> getProjectActivitiesService.execute(projectId));
+    }
+
+
 }
