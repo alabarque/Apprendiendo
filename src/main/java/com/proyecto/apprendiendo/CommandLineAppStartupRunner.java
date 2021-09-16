@@ -59,8 +59,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Override
     public void run(String...args) {
 
-        Long proyectoMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Proyecto").build());
+        Long proyectoMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Basada en Proyectos").build());
         Long aulaInvertidaMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Aula Invertida").build());
+        Long pensamientoMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Basada en el Pensamiento").build());
+        Long estandarMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Proyecto Estandar").build());
 
         Long adminId = createUserService.execute(UserLoginDTO.builder().username("admin").password("admin").build(),UserType.ADMIN);
         Long andreaId = createUserService.execute(UserLoginDTO.builder().username("andrea").password("andrea").build(),UserType.TEACHER);
