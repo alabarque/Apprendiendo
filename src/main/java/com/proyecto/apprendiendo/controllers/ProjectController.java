@@ -10,12 +10,11 @@ import com.proyecto.apprendiendo.services.abm_services.student_project_services.
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
-@Controller
+@RestController
 @AllArgsConstructor
 public class ProjectController {
 
