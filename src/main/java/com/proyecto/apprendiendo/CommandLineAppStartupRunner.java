@@ -129,7 +129,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
 
-        Long proyectoTemplatePBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto PBL").methodologyId(aulaInvertidaMethodologyId).build(), Integer.toUnsignedLong(0));
+        Long proyectoTemplatePBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto PBL").methodologyId(proyectoMethodologyId).build(), Integer.toUnsignedLong(0));
 
         Long templatePBLClase1Id = createActivityService.execute(ActivityDTO.builder().name("Clase 1").projectId(proyectoTemplatePBLId).build());
         createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Pregunta inicial").data(" En esta etapa, el docente selecciona un tema que esté \nligado a la realidad de los alumnos, y debe plantear una \npregunta abierta que despierte su interés y los motive a \naprender.\n El objetivo en este punto es detectar conocimientos \nprevios y que el alumno  piense qué debe investigar  y cómo\nresolver la cuestión. \\n Mediante la opción \\\"Adjuntar Material\\\" puede proporcionar\\nel material que crea conveniente a sus alumnos, tales como \\ndocumentos en formato word, excel, pdf, o incluso videos!\n\n¿Qué pregunta desea plantear?:").sourceId(templatePBLClase1Id).documentSourceType("ACTIVITY").build());
@@ -151,7 +151,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
 
-        Long proyectoTemplateTBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto TBL").methodologyId(aulaInvertidaMethodologyId).build(), Integer.toUnsignedLong(0));
+        Long proyectoTemplateTBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto TBL").methodologyId(pensamientoMethodologyId).build(), Integer.toUnsignedLong(0));
 
         Long templateTBLClase1Id = createActivityService.execute(ActivityDTO.builder().name("Clase 1").projectId(proyectoTemplateTBLId).build());
         createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 1").data("la descripcion del primer dia del TBL va aca").sourceId(templateTBLClase1Id).documentSourceType("ACTIVITY").build());
