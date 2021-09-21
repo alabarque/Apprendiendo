@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class StudentActivityDTO {
+public class StudentClassroomDTO {
     private Long id;
-    private Long userId; //FK a User
-    private Long activityId; //FK a Activity
+    private Long studentId; //FK a User
+    private Long classroomId; //FK a Classroom
+    private Integer grade;
     private Double percentageCompleted;
     private LocalDateTime dateCompleted;
-    private Integer grade;
 }

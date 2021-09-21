@@ -1,8 +1,8 @@
 package com.proyecto.apprendiendo.services.abm_services.classroom_user_services;
 
-import com.proyecto.apprendiendo.entities.UserClassroom;
+import com.proyecto.apprendiendo.entities.StudentClassroom;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
-import com.proyecto.apprendiendo.repositories.UserClassroomRepository;
+import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,11 @@ import java.util.ArrayList;
 @Transactional
 public class AddClassroomStudentsService {
 
-    private UserClassroomRepository userClassroomRepository;
+    private StudentClassroomRepository studentClassroomRepository;
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long classroomId, ArrayList<StudentDTO> studentDTOs){
-        studentDTOs.forEach(s -> userClassroomRepository.save(UserClassroom.builder().classroomId(classroomId).userId(s.getId()).build()));
+        studentDTOs.forEach(s -> studentClassroomRepository.save(StudentClassroom.builder().classroomId(classroomId).studentId(s.getId()).grade(0).percentageCompleted(0.00).build()));
         return classroomId;
     }
 }

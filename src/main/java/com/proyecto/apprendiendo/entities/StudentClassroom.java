@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.entities;
 
+import jdk.jfr.Percentage;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -14,13 +15,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-public class StudentActivity {
+public class StudentClassroom {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    private Long userId; //FK a User
-    private Long activityId; //FK a Activity
+    private Long studentId; //FK a User
+    private Long classroomId; //FK a Classroom
+    private Integer grade;
     private Double percentageCompleted;
     private LocalDateTime dateCompleted;
-    private Integer grade;
 }

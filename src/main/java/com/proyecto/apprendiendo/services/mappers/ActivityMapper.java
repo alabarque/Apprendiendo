@@ -9,6 +9,8 @@ public class ActivityMapper {
                         .id(activity.getId())
                         .name(activity.getName())
                         .projectId(activity.getProjectId())
+                        .startDate(activity.getStartDate())
+                        .dueDate(activity.getDueDate())
                         .build();
     }
 }
