@@ -1,14 +1,14 @@
 package com.proyecto.apprendiendo.controllers;
 
+import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.DeleteLessonService;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonService;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.UpdateLessonService;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.*;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @AllArgsConstructor
@@ -19,24 +19,30 @@ public class LessonController {
     private DeleteLessonService deleteLessonService;
     private UpdateLessonService updateLessonService;
     private ResponseDecorator responseDecorator;
+    private GetLessonActivitiesService getLessonActivitiesService;
 
-    @PostMapping(path = "Lesson")
-    public ResponseEntity<Long> newLesson(@RequestBody LessonDTO LessonDTO){
-        return responseDecorator.decorate(()->createLessonService.execute(LessonDTO));
+    @PostMapping(path = "lesson")
+    public ResponseEntity<Long> newLesson(@RequestBody LessonDTO lessonDTO){
+        return responseDecorator.decorate(()->createLessonService.execute(lessonDTO));
     }
 
-    @GetMapping (path = "Lesson/{LessonId}")
-    public ResponseEntity< LessonDTO> getLesson(@PathVariable Long LessonId){
-        return responseDecorator.decorate(()->getLessonService.execute(LessonId));
+    @GetMapping (path = "lesson/{lessonId}")
+    public ResponseEntity< LessonDTO> getLesson(@PathVariable Long lessonId){
+        return responseDecorator.decorate(()->getLessonService.execute(lessonId));
     }
 
-    @DeleteMapping(path = "Lesson/{LessonId}")
-    public ResponseEntity<Long> deleteLesson(@PathVariable Long LessonId){
-        return responseDecorator.decorate(()->deleteLessonService.execute(LessonId));
+    @DeleteMapping(path = "lesson/{lessonId}")
+    public ResponseEntity<Long> deleteLesson(@PathVariable Long lessonId){
+        return responseDecorator.decorate(()->deleteLessonService.execute(lessonId));
     }
 
-    @PutMapping(path = "Lesson")
-    public ResponseEntity<Long> updateLesson(@RequestBody LessonDTO LessonDTO){
-        return responseDecorator.decorate(()->updateLessonService.execute(LessonDTO));
+    @PutMapping(path = "lesson")
+    public ResponseEntity<Long> updateLesson(@RequestBody LessonDTO lessonDTO) {
+        return responseDecorator.decorate(() -> updateLessonService.execute(lessonDTO));
+    }
+
+    @GetMapping(path = "Lesson/{lessonId}/activities")
+    public ResponseEntity<ArrayList<ActivityDTO>> getProjectActivities(@PathVariable("lessonId") Long lessonId) {
+        return responseDecorator.decorate(()-> getLessonActivitiesService.execute(lessonId));
     }
 }

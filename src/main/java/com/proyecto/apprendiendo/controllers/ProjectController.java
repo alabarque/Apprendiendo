@@ -1,9 +1,6 @@
 package com.proyecto.apprendiendo.controllers;
 
-import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
-import com.proyecto.apprendiendo.entities.dtos.ProjectNewDTO;
-import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
-import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
+import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.abm_services.project_services.*;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.AddProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
@@ -27,7 +24,7 @@ public class ProjectController {
     private AddProjectStudentsService addProjectStudentsService;
     private RemoveProjectStudentsService removeProjectStudentsService;
     private ResponseDecorator responseDecorator;
-    private GetProjectActivitiesService getProjectActivitiesService;
+    private GetProjectLessonsService getProjectLessonsService;
 
     @PostMapping(path = "classroom/{classroomId}/project")
     public ResponseEntity<Long> newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
@@ -66,8 +63,8 @@ public class ProjectController {
     }
 
     @GetMapping(path = "classroom/{classroomId}/project/{projectId}/activities")
-    public ResponseEntity<ArrayList<ActivityDTO>> getProjectActivities(@PathVariable("projectId") Long projectId) {
-        return responseDecorator.decorate(()-> getProjectActivitiesService.execute(projectId));
+    public ResponseEntity<ArrayList<LessonDTO>> getProjectLessons(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(()-> getProjectLessonsService.execute(projectId));
     }
 
 
