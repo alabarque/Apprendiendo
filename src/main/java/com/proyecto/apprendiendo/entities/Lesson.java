@@ -20,7 +20,6 @@ public class Lesson implements Source {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long challengeId; //FK a Challenge
     private Long projectId; //FK a Project
     private LocalDateTime startDate;
     private LocalDateTime dueDate;

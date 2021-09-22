@@ -8,7 +8,7 @@ public class ActivityMapper {
         return ActivityDTO.builder()
                         .id(activity.getId())
                         .name(activity.getName())
-                        .projectId(activity.getProjectId())
+                        .lessonId(activity.getLessonId())
                         .startDate(activity.getStartDate())
                         .dueDate(activity.getDueDate())
                         .build();

@@ -9,5 +9,5 @@ import java.util.ArrayList;
 
 @Repository
 public interface ActivityRepository extends JpaRepository<Activity, Long> {
-    ArrayList<Activity> findByProjectId(Long projectId);
+    ArrayList<Activity> findByLessonId(Long lessonId);
 }

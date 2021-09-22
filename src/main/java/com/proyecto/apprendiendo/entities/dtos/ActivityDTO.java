@@ -13,7 +13,7 @@ import java.util.Date;
 public class ActivityDTO {
     private Long id;
     private String name;
-    private Long projectId;
+    private Long lessonId;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;
 }
