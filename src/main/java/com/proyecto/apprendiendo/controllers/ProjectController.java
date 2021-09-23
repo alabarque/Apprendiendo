@@ -62,7 +62,7 @@ public class ProjectController {
         return responseDecorator.decorate(()->removeProjectStudentsService.execute(projectId, studentDTOs));
     }
 
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/activities")
+    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/lessons")
     public ResponseEntity<ArrayList<LessonDTO>> getProjectLessons(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(()-> getProjectLessonsService.execute(projectId));
     }
