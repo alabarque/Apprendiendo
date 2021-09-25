@@ -1,20 +1,21 @@
 package com.proyecto.apprendiendo.entities.dtos;
 
+import com.proyecto.apprendiendo.entities.Document;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
 
 @Getter
 @Setter
 @Builder
-public class ProjectDTO {
+public class ActivityTemplateDTO {
     private Long id;
-    private Long methodologyId;
-    private Long classroomId;
     private String name;
-    private LocalDateTime startDate;
+    private Long lessonId;
     private LocalDateTime dueDate;
+    private LocalDateTime startDate;
+    private ArrayList<DocumentDTO> documents;
 }

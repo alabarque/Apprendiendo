@@ -21,7 +21,6 @@ public class Project implements Source {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private Long methodologyId; //FK a Methodology
-    private Long challengeId; //FK a Challenge
     private Long classroomId; //FK a Classroom
     private LocalDateTime startDate;
     private LocalDateTime dueDate;

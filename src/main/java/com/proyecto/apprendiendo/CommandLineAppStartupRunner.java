@@ -132,7 +132,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
 
-        Long proyectoTemplatePBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto PBL").methodologyId(proyectoMethodologyId).build(), Integer.toUnsignedLong(0));
+        Long proyectoTemplatePBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto de PBL").methodologyId(proyectoMethodologyId).build(), Integer.toUnsignedLong(0));
 
         Long templatePBLClase1Id = createLessonService.execute(LessonDTO.builder().name("Clase 1").projectId(proyectoTemplatePBLId).build());
         Long templatePBLClase1ActivityId = createActivityService.execute(ActivityDTO.builder().name("Actividad 1").lessonId(templatePBLClase1Id).build());
@@ -158,7 +158,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
 
-        Long proyectoTemplateTBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto TBL").methodologyId(pensamientoMethodologyId).build(), Integer.toUnsignedLong(0));
+        Long proyectoTemplateTBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto de TBL").methodologyId(pensamientoMethodologyId).build(), Integer.toUnsignedLong(0));
 
         Long templateTBLClase1Id = createLessonService.execute(LessonDTO.builder().name("Clase 1").projectId(proyectoTemplateTBLId).build());
         Long templateTBLClase1ActivityId = createActivityService.execute(ActivityDTO.builder().name("Actividad 1").lessonId(templateTBLClase1Id).build());

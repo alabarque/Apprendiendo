@@ -18,7 +18,6 @@ public class CreateProjectService {
     public Long execute(ProjectNewDTO projectNewDTO, Long classRoomId) {
         Project project = Project.builder()
                                  .methodologyId(projectNewDTO.getMethodologyId())
-                                 .challengeId(projectNewDTO.getChallengeId())
                                  .classroomId(classRoomId)
                                  .name(projectNewDTO.getName())
                                  .startDate(projectNewDTO.getStartDate())

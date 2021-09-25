@@ -2,6 +2,7 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.MethodologyDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
+import com.proyecto.apprendiendo.entities.dtos.ProjectTemplateDTO;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.*;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
@@ -55,22 +56,22 @@ public class MethodologyController {
 
 
     @GetMapping(path = "methodology/invertedclassroom/project/template")
-    public ResponseEntity<ProjectDTO> getInvertedClassroomTemplate() {
+    public ResponseEntity<ProjectTemplateDTO> getInvertedClassroomTemplate() {
         return responseDecorator.decorate(()-> getProjectTemplateByNameService.execute("Nuevo Proyecto de Aula Invertida"));
     }
 
     @GetMapping(path = "methodology/pbl/project/template")
-    public ResponseEntity<ProjectDTO> getPBLTemplate() {
+    public ResponseEntity<ProjectTemplateDTO> getPBLTemplate() {
         return responseDecorator.decorate(()-> getProjectTemplateByNameService.execute("Nuevo Proyecto de PBL"));
     }
 
     @GetMapping(path = "methodology/tbl/project/template")
-    public ResponseEntity<ProjectDTO> getTBLTemplate() {
+    public ResponseEntity<ProjectTemplateDTO> getTBLTemplate() {
         return responseDecorator.decorate(()-> getProjectTemplateByNameService.execute("Nuevo Proyecto de TBL"));
     }
 
     @GetMapping(path = "methodology/{methodologyId}/project/template")
-    public ResponseEntity<ProjectDTO> getMethodologyTemplate(@PathVariable Long methodologyId) {
+    public ResponseEntity<ProjectTemplateDTO> getMethodologyTemplate(@PathVariable Long methodologyId) {
         return responseDecorator.decorate(()-> getProjectTemplateByMethodologyIdService.execute(methodologyId));
     }
 
