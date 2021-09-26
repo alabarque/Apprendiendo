@@ -19,6 +19,7 @@ public class Lesson implements Source {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Integer position;
     private String name;
     private Long projectId; //FK a Project
     private LocalDateTime startDate;

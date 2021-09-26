@@ -26,6 +26,7 @@ public class ProjectController {
     private ResponseDecorator responseDecorator;
     private GetProjectLessonsService getProjectLessonsService;
     private CreateProjectFromTemplateService createProjectFromTemplateService;
+    private GetProjectTemplateService getProjectTemplateService;
 
     @PostMapping(path = "classroom/{classroomId}/project")
     public ResponseEntity<Long> newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
@@ -33,8 +34,13 @@ public class ProjectController {
     }
 
     @GetMapping(path = "classroom/{classroomId}/project/{projectId}")
-    public ResponseEntity< ProjectDTO> getProject(@PathVariable("projectId") Long projectId) {
+    public ResponseEntity<ProjectDTO> getProject(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(()-> getProjectService.execute(projectId));
+    }
+
+    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/template")
+    public ResponseEntity<ProjectTemplateDTO> getProjectAsTemplate(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(()-> getProjectTemplateService.execute(projectId));
     }
 
     @DeleteMapping(path = "classroom/{classroomId}/project/{projectId}")
@@ -68,9 +74,9 @@ public class ProjectController {
         return responseDecorator.decorate(()-> getProjectLessonsService.execute(projectId));
     }
 
-    @PostMapping(path = "classroom/{classroomId}/project?template=yes")
+    @PostMapping(path = "classroom/{classroomId}/project/template")
     public ResponseEntity<Long> newProjectFromTemplate(@RequestBody ProjectTemplateDTO projectTemplateDTO, @PathVariable Long classroomId) {
-        return responseDecorator.decorate(()->createProjectFromTemplateService.execute(projectTemplateDTO));
+        return responseDecorator.decorate(()->createProjectFromTemplateService.execute(projectTemplateDTO, classroomId));
     }
 
 

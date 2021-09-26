@@ -21,7 +21,7 @@ public class CreateDocumentService {
     private DocumentSourceRepository documentSourceRepository;
 
     public Long execute(NewDocumentDTO newDocumentDTO) {
-        Document document = Document.builder().data(newDocumentDTO.getData()).name(newDocumentDTO.getName()).dataType(newDocumentDTO.getDataType()).ownerId(newDocumentDTO.getOwnerId()).build();
+        Document document = Document.builder().position(newDocumentDTO.getPosition()).data(newDocumentDTO.getData()).name(newDocumentDTO.getName()).dataType(newDocumentDTO.getDataType()).build();
         Long documentId = documentRepository.save(document).getId();
         DocumentSource documentSource = DocumentSource.builder().sourceId(newDocumentDTO.getSourceId()).documentSourceType(newDocumentDTO.getDocumentSourceType()).documentId(documentId).build();
         documentSourceRepository.save(documentSource);

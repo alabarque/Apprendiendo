@@ -20,6 +20,7 @@ public class Project implements Source {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    private Integer position;
     private Long methodologyId; //FK a Methodology
     private Long classroomId; //FK a Classroom
     private LocalDateTime startDate;

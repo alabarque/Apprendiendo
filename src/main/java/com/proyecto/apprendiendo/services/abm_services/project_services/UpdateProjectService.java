@@ -25,6 +25,7 @@ public class UpdateProjectService {
         project.setMethodologyId(projectDTO.getMethodologyId());
         project.setStartDate(projectDTO.getStartDate());
         project.setDueDate(projectDTO.getDueDate());
+        project.setPosition(projectDTO.getPosition());
 
         projectRepository.save(project);
         return projectDTO.getId();

@@ -22,6 +22,7 @@ public class CreateProjectService {
                                  .name(projectNewDTO.getName())
                                  .startDate(projectNewDTO.getStartDate())
                                  .dueDate(projectNewDTO.getDueDate())
+                                 .position(projectNewDTO.getPosition())
                                  .build();
 
         return projectRepository.save(project).getId();

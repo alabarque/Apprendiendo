@@ -1,9 +1,8 @@
 package com.proyecto.apprendiendo.services.abm_services.project_services;
 
-import com.proyecto.apprendiendo.entities.Project;
-import com.proyecto.apprendiendo.entities.dtos.ProjectNewDTO;
+import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
+import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectTemplateDTO;
-import com.proyecto.apprendiendo.repositories.ProjectRepository;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
@@ -20,7 +19,6 @@ import javax.transaction.Transactional;
 @AllArgsConstructor
 @Transactional
 public class CreateProjectFromTemplateService {
-    private ProjectRepository projectRepository;
     private CreateProjectService createProjectService;
     private CreateLessonService createLessonService;
     private CreateActivityService createActivityService;
@@ -29,13 +27,19 @@ public class CreateProjectFromTemplateService {
 
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(ProjectTemplateDTO projectTemplateDTO) {
-        Long projectId = createProjectService.execute(ProjectMapper.templateToNew(projectTemplateDTO), projectTemplateDTO.getClassroomId());
+    public Long execute(ProjectTemplateDTO projectTemplateDTO, Long classroomId) {
+        Long projectId = createProjectService.execute(ProjectMapper.templateToNew(projectTemplateDTO), classroomId);
         projectTemplateDTO.getLessons().forEach(lesson -> {
-            createLessonService.execute(LessonMapper.templateDtoToDto(lesson));
+            LessonDTO lessonDTO = LessonMapper.templateDtoToDto(lesson);
+            lessonDTO.setProjectId(projectId);
+            Long newLessonId = createLessonService.execute(lessonDTO);
             lesson.getActivities().forEach(activity -> {
-                createActivityService.execute(ActivityMapper.templateDtoToDto(activity));
-                activity.getDocuments().forEach(document -> createDocumentService.execute(DocumentMapper.DtoToNewDto(document, activity.getId(), "ACTIVITY")));
+                ActivityDTO activityDTO = ActivityMapper.templateDtoToDto(activity);
+                activityDTO.setLessonId(newLessonId);
+                Long newActivityId = createActivityService.execute(activityDTO);
+                activity.getDocuments().forEach(document -> {
+                    createDocumentService.execute(DocumentMapper.templateDtoToNewDto(document, newActivityId, "ACTIVITY"));
+                });
             });
         });
 

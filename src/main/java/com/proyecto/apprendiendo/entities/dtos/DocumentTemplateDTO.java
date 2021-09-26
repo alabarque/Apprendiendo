@@ -7,12 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class NewDocumentDTO {
-    private Long id;
-    private Integer position;
+public class DocumentTemplateDTO {
     private String name;
+    private Integer position;
     private String dataType;
     private String data;
-    private Long sourceId; //FK a una implementacion de Source
-    private String documentSourceType; //ENUM DocumentSourceType
 }

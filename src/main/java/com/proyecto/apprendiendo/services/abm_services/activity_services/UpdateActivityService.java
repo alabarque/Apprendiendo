@@ -22,6 +22,7 @@ public class UpdateActivityService {
         activity.setLessonId(activityDTO.getLessonId());
         activity.setDueDate(activityDTO.getDueDate());
         activity.setStartDate(activityDTO.getStartDate());
+        activity.setPosition(activityDTO.getPosition());
         activityRepository.save(activity);
         return activityDTO.getId();
     }

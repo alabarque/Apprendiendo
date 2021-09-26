@@ -24,7 +24,7 @@ public class UpdateDocumentService {
         document.setName(documentDTO.getName());
         document.setData(documentDTO.getData());
         document.setDataType(documentDTO.getDataType());
-        document.setOwnerId(documentDTO.getOwnerId());
+        document.setPosition(documentDTO.getPosition());
         documentRepository.save(document);
         return documentDTO.getId();
     }

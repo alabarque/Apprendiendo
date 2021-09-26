@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 public class LessonDTO {
     private Long id;
+    private Integer position;
     private String name;
     private Long projectId;
     private LocalDateTime dueDate;

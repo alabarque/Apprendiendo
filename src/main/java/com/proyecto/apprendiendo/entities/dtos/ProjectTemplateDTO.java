@@ -11,10 +11,8 @@ import java.util.ArrayList;
 @Setter
 @Builder
 public class ProjectTemplateDTO {
-    private Long id;
-    private Long methodologyId;
-    private Long classroomId;
     private String name;
+    private Integer position;
     private LocalDateTime startDate;
     private LocalDateTime dueDate;
     private ArrayList<LessonTemplateDTO> lessons;

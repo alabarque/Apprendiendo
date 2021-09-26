@@ -12,6 +12,7 @@ import java.util.Date;
 @Builder
 public class ActivityDTO {
     private Long id;
+    private Integer position;
     private String name;
     private Long lessonId;
     private LocalDateTime dueDate;

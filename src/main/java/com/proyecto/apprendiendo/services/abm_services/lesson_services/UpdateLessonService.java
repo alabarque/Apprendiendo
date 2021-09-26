@@ -22,6 +22,7 @@ public class UpdateLessonService {
         lesson.setProjectId(lessonDTO.getProjectId());
         lesson.setDueDate(lessonDTO.getDueDate());
         lesson.setStartDate(lessonDTO.getStartDate());
+        lesson.setPosition(lessonDTO.getPosition());
         lessonRepository.save(lesson);
         return lessonDTO.getId();
     }
