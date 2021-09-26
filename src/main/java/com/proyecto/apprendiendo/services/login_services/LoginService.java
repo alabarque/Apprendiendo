@@ -28,7 +28,7 @@ public class LoginService {
     public String execute(UserLoginDTO userDTO) {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword()));
         UserDetails userDetail = (UserDetails) authenticate.getPrincipal();
-        Optional<UserToken> userTokenOptional = userTokenRepository.findfirstByUsername(userDetail.getUsername());
+        Optional<UserToken> userTokenOptional = userTokenRepository.findFirstByUsername(userDetail.getUsername());
         if(userTokenOptional.isPresent()){
             return userTokenOptional.get().getToken();
         } else{
