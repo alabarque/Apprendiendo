@@ -15,8 +15,6 @@ import javax.persistence.Id;
 @Builder
 public class UserToken {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
     private String username;
     private String token;
 }
