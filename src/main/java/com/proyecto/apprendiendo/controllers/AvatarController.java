@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-public class ABMAvatarController {
+public class AvatarController {
 
     private CreateAvatarService createAvatarService;
     private GetAvatarService getAvatarService;

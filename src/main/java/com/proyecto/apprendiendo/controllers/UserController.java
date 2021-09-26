@@ -5,6 +5,7 @@ import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetUserClassroomsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.UpdateStudentClassroomProgressService;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetStudentLessonProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.*;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.UpdateStudentProjectProgressService;
@@ -14,6 +15,7 @@ import com.proyecto.apprendiendo.services.abm_services.student_reward_services.G
 import com.proyecto.apprendiendo.services.abm_services.student_reward_services.RemoveRewardStudentService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.DeleteUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
+import com.proyecto.apprendiendo.services.abm_services.user_services.GetUsersService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.UpdateUserService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
@@ -24,7 +26,7 @@ import java.util.ArrayList;
 
 @RestController
 @AllArgsConstructor
-public class ABMUserController {
+public class UserController {
 
     private GetUserService getUserService;
     private DeleteUserService deleteUserService;
@@ -41,6 +43,8 @@ public class ABMUserController {
     private GetStudentTargetRewardsService getStudentTargetRewardsService;
     private GetStudentClassroomProgressService getStudentClassroomProgressService;
     private UpdateStudentClassroomProgressService updateStudentClassroomProgressService;
+    private GetUsersService getUsersService;
+    private GetStudentLessonProgressService getStudentLessonProgressService;
 
     //Por ahora se usa el /register/
     //@PostMapping(path = "user")
@@ -76,6 +80,11 @@ public class ABMUserController {
     @PutMapping(path = "user/{userId}/activity/{activityId}/progress")
     public ResponseEntity<Long> updateStudentActivityProgress(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId, @RequestBody StudentActivityDTO studentActivityDTO) {
         return responseDecorator.decorate(()-> updateStudentActivityProgressService.execute(userId, activityId, studentActivityDTO));
+    }
+
+    @GetMapping(path = "user/{userId}/lesson/{lessonId}/progress")
+    public ResponseEntity<StudentLessonDTO> getStudentLessonProgress(@PathVariable("lessonId") Long lessonId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(()-> getStudentLessonProgressService.execute(userId, lessonId));
     }
 
     @GetMapping(path = "user/{userId}/project/{projectId}/progress")
@@ -146,6 +155,26 @@ public class ABMUserController {
     @DeleteMapping(path = "user/{userId}/reward/{rewardId}")
     public ResponseEntity<Long> removeRewardFromStudent(@PathVariable("userId") Long userId, @PathVariable("rewardId") Long rewardId) {
         return responseDecorator.decorate(()-> removeRewardStudentService.execute(rewardId, userId));
+    }
+
+    @GetMapping(path = "users")
+    public ResponseEntity<ArrayList<UserDTO>> getAllUsers() {
+        return responseDecorator.decorate(()-> getUsersService.execute());
+    }
+
+    @GetMapping(path = "users/students")
+    public ResponseEntity<ArrayList<UserDTO>> getAllStudents() {
+        return responseDecorator.decorate(()-> getUsersService.execute("ROLE_STUDENT"));
+    }
+
+    @GetMapping(path = "users/teachers")
+    public ResponseEntity<ArrayList<UserDTO>> getAllTeachers() {
+        return responseDecorator.decorate(()-> getUsersService.execute("ROLE_TEACHER"));
+    }
+
+    @GetMapping(path = "users/admins")
+    public ResponseEntity<ArrayList<UserDTO>> getAllAdmins() {
+        return responseDecorator.decorate(()-> getUsersService.execute("ROLE_ADMIN"));
     }
 
 

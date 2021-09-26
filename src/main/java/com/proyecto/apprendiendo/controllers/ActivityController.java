@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-public class ABMActivityController {
+public class ActivityController {
 
     private CreateActivityService createActivityService;
     private GetActivityService getActivityService;
@@ -20,23 +20,23 @@ public class ABMActivityController {
     private UpdateActivityService updateActivityService;
     private ResponseDecorator responseDecorator;
 
-    @PostMapping(path = "Activity")
-    public ResponseEntity<Long> newActivity(@RequestBody ActivityDTO ActivityDTO){
-        return responseDecorator.decorate(()->createActivityService.execute(ActivityDTO));
+    @PostMapping(path = "activity")
+    public ResponseEntity<Long> newActivity(@RequestBody ActivityDTO activityDTO){
+        return responseDecorator.decorate(()->createActivityService.execute(activityDTO));
     }
 
-    @GetMapping (path = "Activity/{ActivityId}")
-    public ResponseEntity< ActivityDTO> getActivity(@PathVariable Long ActivityId){
-        return responseDecorator.decorate(()->getActivityService.execute(ActivityId));
+    @GetMapping (path = "activity/{activityId}")
+    public ResponseEntity< ActivityDTO> getActivity(@PathVariable Long activityId){
+        return responseDecorator.decorate(()->getActivityService.execute(activityId));
     }
 
-    @DeleteMapping(path = "Activity/{ActivityId}")
-    public ResponseEntity<Long> deleteActivity(@PathVariable Long ActivityId){
-        return responseDecorator.decorate(()->deleteActivityService.execute(ActivityId));
+    @DeleteMapping(path = "activity/{activityId}")
+    public ResponseEntity<Long> deleteActivity(@PathVariable Long activityId){
+        return responseDecorator.decorate(()->deleteActivityService.execute(activityId));
     }
 
-    @PutMapping(path = "Activity")
-    public ResponseEntity<Long> updateActivity(@RequestBody ActivityDTO ActivityDTO){
-        return responseDecorator.decorate(()->updateActivityService.execute(ActivityDTO));
+    @PutMapping(path = "activity")
+    public ResponseEntity<Long> updateActivity(@RequestBody ActivityDTO activityDTO){
+        return responseDecorator.decorate(()->updateActivityService.execute(activityDTO));
     }
 }

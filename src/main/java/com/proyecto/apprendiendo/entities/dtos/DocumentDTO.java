@@ -9,8 +9,8 @@ import lombok.Setter;
 @Builder
 public class DocumentDTO {
     private Long id;
+    private Integer position;
     private String name;
-    private Long ownerId; //FK a User
     private String dataType;
     private String data;
 }

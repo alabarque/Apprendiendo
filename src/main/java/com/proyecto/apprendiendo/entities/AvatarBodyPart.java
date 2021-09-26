@@ -2,10 +2,7 @@ package com.proyecto.apprendiendo.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -19,6 +16,7 @@ public class AvatarBodyPart {
     private Long id;
     private String name;
     private String type; //Enum BodypartType
+    @Column(length=1000000)
     private String imageData;
 
 }

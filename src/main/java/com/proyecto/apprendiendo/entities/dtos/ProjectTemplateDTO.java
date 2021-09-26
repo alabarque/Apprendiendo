@@ -5,16 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.ArrayList;
 
 @Getter
 @Setter
 @Builder
-public class ActivityDTO {
-    private Long id;
-    private Integer position;
+public class ProjectTemplateDTO {
     private String name;
-    private Long lessonId;
-    private LocalDateTime dueDate;
+    private Integer position;
     private LocalDateTime startDate;
+    private LocalDateTime dueDate;
+    private ArrayList<LessonTemplateDTO> lessons;
 }

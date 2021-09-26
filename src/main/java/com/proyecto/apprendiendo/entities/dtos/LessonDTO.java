@@ -5,16 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Setter
 @Builder
-public class ActivityDTO {
+public class LessonDTO {
     private Long id;
     private Integer position;
     private String name;
-    private Long lessonId;
+    private Long projectId;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;
 }

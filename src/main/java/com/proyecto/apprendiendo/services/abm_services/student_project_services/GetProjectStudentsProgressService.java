@@ -2,7 +2,7 @@ package com.proyecto.apprendiendo.services.abm_services.student_project_services
 
 import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
-import com.proyecto.apprendiendo.repositories.ProjectRepository;
+import com.proyecto.apprendiendo.entities.dtos.StudentProjectDTO;
 import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
 import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.mappers.StudentMapper;
@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Transactional
-public class GetProjectStudentsService {
-
+public class GetProjectStudentsProgressService {
+    
     private StudentProjectRepository studentProjectRepository;
-    private UserRepository userRepository;
+    private GetStudentProjectProgressService getStudentProjectProgressService;
 
-    public ArrayList<StudentDTO> execute(Long projectId) {
+    public ArrayList<StudentProjectDTO> execute(Long projectId) {
         ArrayList<StudentProject> projectStudents = studentProjectRepository.findByProjectId(projectId);
-        return projectStudents.stream().map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getUserId()))).collect(Collectors.toCollection(ArrayList::new));
+        return projectStudents.stream().map(ps -> getStudentProjectProgressService.execute(ps.getUserId(),projectId)).collect(Collectors.toCollection(ArrayList::new));
     }
 }

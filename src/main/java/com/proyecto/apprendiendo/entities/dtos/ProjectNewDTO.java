@@ -11,6 +11,7 @@ import java.util.Date;
 @Setter
 @Builder
 public class ProjectNewDTO {
+    private Integer position;
     private Long methodologyId;
     private Long challengeId;
     private String name;

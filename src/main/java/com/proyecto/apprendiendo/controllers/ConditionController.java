@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-public class ABMConditionController {
+public class ConditionController {
 
     private CreateConditionService createConditionService;
     private GetConditionService getConditionService;

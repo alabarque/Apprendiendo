@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
-public class ABMDocumentController {
+public class DocumentController {
 
     private CreateDocumentService createDocumentService;
     private GetDocumentService getDocumentService;

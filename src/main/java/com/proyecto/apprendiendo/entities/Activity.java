@@ -20,9 +20,9 @@ public class Activity implements Source {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Integer position;
     private String name;
-    private Long challengeId; //FK a Challenge
-    private Long projectId; //FK a Project
+    private Long lessonId; //FK a Lesson
     private LocalDateTime startDate;
     private LocalDateTime dueDate;
 }

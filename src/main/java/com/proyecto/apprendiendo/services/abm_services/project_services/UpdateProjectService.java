@@ -21,11 +21,11 @@ public class UpdateProjectService {
 
         project.setId(projectDTO.getId());
         project.setName(projectDTO.getName());
-        project.setChallengeId(projectDTO.getChallengeId());
         project.setClassroomId(projectDTO.getClassroomId());
         project.setMethodologyId(projectDTO.getMethodologyId());
         project.setStartDate(projectDTO.getStartDate());
         project.setDueDate(projectDTO.getDueDate());
+        project.setPosition(projectDTO.getPosition());
 
         projectRepository.save(project);
         return projectDTO.getId();

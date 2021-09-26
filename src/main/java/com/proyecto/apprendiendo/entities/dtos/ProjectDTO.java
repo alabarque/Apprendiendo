@@ -12,8 +12,8 @@ import java.util.Date;
 @Builder
 public class ProjectDTO {
     private Long id;
+    private Integer position;
     private Long methodologyId;
-    private Long challengeId;
     private Long classroomId;
     private String name;
     private LocalDateTime startDate;
