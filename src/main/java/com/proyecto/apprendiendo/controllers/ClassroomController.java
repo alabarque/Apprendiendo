@@ -2,9 +2,11 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
+import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsProgressService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.RemoveProjectStudentsService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
@@ -27,6 +29,7 @@ public class ClassroomController {
     private RemoveProjectStudentsService removeProjectStudentsService;
     private GetClassroomProjectsService getClassroomProjectsService;
     private ResponseDecorator responseDecorator;
+    private GetClassroomStudentsProgressService getClassroomStudentsProgressService;
 
     @PostMapping(path = "classroom")
     public ResponseEntity<Long> newClassroom(@RequestBody ClassroomDTO classroomDTO) {
@@ -49,8 +52,13 @@ public class ClassroomController {
     }
 
     @GetMapping(path = "classroom/{classroomId}/students")
-    public ResponseEntity< ArrayList<StudentDTO> > getProjectStudents(@PathVariable("classroomId") Long classroomId) {
+    public ResponseEntity<ArrayList<StudentDTO> > getClassroomStudents(@PathVariable("classroomId") Long classroomId) {
         return responseDecorator.decorate(()->getClassroomStudentsService.execute(classroomId));
+    }
+
+    @GetMapping(path = "classroom/{classroomId}/students/progress")
+    public ResponseEntity<ArrayList<StudentClassroomDTO>> getClassroomStudentsProgress(@PathVariable("classroomId") Long classroomId) {
+        return responseDecorator.decorate(()->getClassroomStudentsProgressService.execute(classroomId));
     }
 
     @PutMapping(path = "classroom/{classroomId}/students/add")

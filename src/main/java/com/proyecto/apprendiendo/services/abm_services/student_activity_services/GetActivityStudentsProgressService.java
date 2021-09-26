@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.services.abm_services.student_activity_services;
 
 import com.proyecto.apprendiendo.entities.StudentActivity;
+import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
@@ -16,13 +17,14 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Transactional
-public class GetActivityStudentsService {
+public class GetActivityStudentsProgressService {
 
     private StudentActivityRepository studentActivityRepository;
     private UserRepository userRepository;
+    private GetStudentActivityProgressService getStudentActivityProgressService;
 
-    public ArrayList<StudentDTO> execute(Long activityId) {
+    public ArrayList<StudentActivityDTO> execute(Long activityId) {
         ArrayList<StudentActivity> activityStudents = studentActivityRepository.findByActivityId(activityId);
-        return activityStudents.stream().map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getUserId()))).collect(Collectors.toCollection(ArrayList::new));
+        return activityStudents.stream().map(ps -> getStudentActivityProgressService.execute(ps.getUserId(),activityId)).collect(Collectors.toCollection(ArrayList::new));
     }
 }

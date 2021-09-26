@@ -5,6 +5,7 @@ import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetUserClassroomsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.UpdateStudentClassroomProgressService;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetStudentLessonProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.*;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.UpdateStudentProjectProgressService;
@@ -43,6 +44,7 @@ public class UserController {
     private GetStudentClassroomProgressService getStudentClassroomProgressService;
     private UpdateStudentClassroomProgressService updateStudentClassroomProgressService;
     private GetUsersService getUsersService;
+    private GetStudentLessonProgressService getStudentLessonProgressService;
 
     //Por ahora se usa el /register/
     //@PostMapping(path = "user")
@@ -78,6 +80,11 @@ public class UserController {
     @PutMapping(path = "user/{userId}/activity/{activityId}/progress")
     public ResponseEntity<Long> updateStudentActivityProgress(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId, @RequestBody StudentActivityDTO studentActivityDTO) {
         return responseDecorator.decorate(()-> updateStudentActivityProgressService.execute(userId, activityId, studentActivityDTO));
+    }
+
+    @GetMapping(path = "user/{userId}/lesson/{lessonId}/progress")
+    public ResponseEntity<StudentLessonDTO> getStudentLessonProgress(@PathVariable("lessonId") Long lessonId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(()-> getStudentLessonProgressService.execute(userId, lessonId));
     }
 
     @GetMapping(path = "user/{userId}/project/{projectId}/progress")

@@ -2,6 +2,8 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
+import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
+import com.proyecto.apprendiendo.entities.dtos.StudentLessonDTO;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.*;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
@@ -20,6 +22,7 @@ public class LessonController {
     private UpdateLessonService updateLessonService;
     private ResponseDecorator responseDecorator;
     private GetLessonActivitiesService getLessonActivitiesService;
+    private GetLessonStudentsProgressService getLessonStudentsProgressService;
 
     @PostMapping(path = "lesson")
     public ResponseEntity<Long> newLesson(@RequestBody LessonDTO lessonDTO){
@@ -41,8 +44,13 @@ public class LessonController {
         return responseDecorator.decorate(() -> updateLessonService.execute(lessonDTO));
     }
 
-    @GetMapping(path = "Lesson/{lessonId}/activities")
+    @GetMapping(path = "lesson/{lessonId}/activities")
     public ResponseEntity<ArrayList<ActivityDTO>> getProjectActivities(@PathVariable("lessonId") Long lessonId) {
         return responseDecorator.decorate(()-> getLessonActivitiesService.execute(lessonId));
+    }
+
+    @GetMapping(path = "lesson/{lessonId}/students/progress")
+    public ResponseEntity<ArrayList<StudentLessonDTO>> getLessonStudentsProgress(@PathVariable("lessonId") Long lessonId) {
+        return responseDecorator.decorate(()->getLessonStudentsProgressService.execute(lessonId));
     }
 }

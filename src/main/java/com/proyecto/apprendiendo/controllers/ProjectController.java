@@ -3,6 +3,7 @@ package com.proyecto.apprendiendo.controllers;
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.abm_services.project_services.*;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.AddProjectStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.RemoveProjectStudentsService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
@@ -27,6 +28,7 @@ public class ProjectController {
     private GetProjectLessonsService getProjectLessonsService;
     private CreateProjectFromTemplateService createProjectFromTemplateService;
     private GetProjectTemplateService getProjectTemplateService;
+    private GetProjectStudentsProgressService getProjectStudentsProgressService;
 
     @PostMapping(path = "classroom/{classroomId}/project")
     public ResponseEntity<Long> newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
@@ -53,10 +55,14 @@ public class ProjectController {
         return responseDecorator.decorate(()->updateProjectService.execute(projectDTO));
     }
 
-
     @GetMapping(path = "classroom/{classroomId}/project/{projectId}/students")
     public ResponseEntity< ArrayList<StudentDTO>> getProjectStudents(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(()-> getProjectStudentsService.execute(projectId));
+    }
+
+    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/students/progress")
+    public ResponseEntity<ArrayList<StudentProjectDTO>> getProjectStudentsProgress(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(()->getProjectStudentsProgressService.execute(projectId));
     }
 
     @PutMapping(path = "classroom/{classroomId}/project/{projectId}/students/add")
