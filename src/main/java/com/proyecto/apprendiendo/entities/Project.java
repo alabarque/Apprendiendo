@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.entities;
 
-import com.proyecto.apprendiendo.entities.interfaces.Source;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -16,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Project implements Source {
+public class Project {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
