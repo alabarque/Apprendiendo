@@ -1,8 +1,6 @@
 package com.proyecto.apprendiendo.services.abm_services.document_services;
 
-import com.proyecto.apprendiendo.repositories.AvatarRepository;
 import com.proyecto.apprendiendo.repositories.DocumentRepository;
-import com.proyecto.apprendiendo.repositories.DocumentSourceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +12,9 @@ import javax.transaction.Transactional;
 public class DeleteDocumentService {
 
     private DocumentRepository documentRepository;
-    private DocumentSourceRepository documentSourceRepository;
 
     public Long execute(Long documentId, Long sourceId){
-        documentSourceRepository.deleteBySourceIdAndDocumentId(sourceId, documentId);
-        if (documentSourceRepository.findByDocumentId(documentId).size() == 0) documentRepository.deleteById(documentId);
+        documentRepository.deleteById(documentId);
         return documentId;
     }
 }

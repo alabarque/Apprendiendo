@@ -10,8 +10,6 @@ import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetCla
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
-import com.proyecto.apprendiendo.services.abm_services.document_source_services.AddDocumentToSourceService;
-import com.proyecto.apprendiendo.services.abm_services.document_source_services.AddSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.CreateMethodologyService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
@@ -24,7 +22,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {

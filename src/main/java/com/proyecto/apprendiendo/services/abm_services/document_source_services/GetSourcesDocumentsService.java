@@ -1,8 +1,7 @@
 package com.proyecto.apprendiendo.services.abm_services.document_source_services;
 
-import com.proyecto.apprendiendo.entities.DocumentSource;
+import com.proyecto.apprendiendo.entities.Document;
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
-import com.proyecto.apprendiendo.repositories.DocumentSourceRepository;
 import com.proyecto.apprendiendo.repositories.DocumentRepository;
 import com.proyecto.apprendiendo.services.mappers.DocumentMapper;
 import lombok.AllArgsConstructor;
@@ -17,11 +16,10 @@ import java.util.stream.Collectors;
 @Transactional
 public class GetSourcesDocumentsService {
 
-    private DocumentSourceRepository documentSourceRepository;
     private DocumentRepository documentRepository;
 
     public ArrayList<DocumentDTO> execute(Long sourceId) {
-        ArrayList<DocumentSource> sourceDocuments = documentSourceRepository.findBySourceId(sourceId);
-        return sourceDocuments.stream().map(ps -> DocumentMapper.entityToDto(documentRepository.getById(ps.getDocumentId()))).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Document> documents = documentRepository.findBySourceId(sourceId);
+        return documents.stream().map(document -> DocumentMapper.entityToDto(documentRepository.getById(document.getId()))).collect(Collectors.toCollection(ArrayList::new));
     }
 }

@@ -27,7 +27,6 @@ public class GetProjectTemplateService {
     private ProjectRepository projectRepository;
     private LessonRepository lessonRepository;
     private ActivityRepository activityRepository;
-    private DocumentSourceRepository documentSourceRepository;
     private DocumentRepository documentRepository;
 
     public ProjectTemplateDTO execute(Long projectId) {
@@ -36,7 +35,7 @@ public class GetProjectTemplateService {
 
         lessons.forEach( (lid, l) -> {
             Map<Long, ActivityTemplateDTO> activities = activityRepository.findByLessonId(lid).stream().collect(Collectors.toMap(a -> a.getId(), a -> ActivityMapper.entityToTemplateDto(a)));
-            activities.forEach((aid, a) -> a.setDocuments(documentSourceRepository.findBySourceId(aid).stream().map(sd -> DocumentMapper.entityToTemplateDto(documentRepository.getById(sd.getDocumentId()))).sorted(Comparator.comparing(DocumentTemplateDTO::getPosition)).collect(Collectors.toCollection(ArrayList::new))));
+            activities.forEach((aid, a) -> a.setDocuments(documentRepository.findBySourceId(aid).stream().map(d -> DocumentMapper.entityToTemplateDto(d)).sorted(Comparator.comparing(DocumentTemplateDTO::getPosition)).collect(Collectors.toCollection(ArrayList::new))));
             l.setActivities(activities.values().stream().sorted(Comparator.comparing(ActivityTemplateDTO::getPosition)).collect(Collectors.toCollection(ArrayList::new)));
         });
 
