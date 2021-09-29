@@ -12,7 +12,9 @@ import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.G
 import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.CreateMethodologyService;
+import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectFromTemplateService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
+import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetStudentService;
@@ -21,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Component
@@ -55,70 +58,22 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private CreateDocumentService createDocumentService;
     @Autowired
     private CreateLessonService createLessonService;
+    @Autowired
+    private CreateProjectFromTemplateService createProjectFromTemplateService;
+    @Autowired
+    private GetProjectTemplateByMethodologyIdService getProjectTemplateByMethodologyIdService;
 
     @Override
     public void run(String...args) {
-
+        //METODOLOGIAS
         Long proyectoMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Basada en Proyectos").build());
         Long aulaInvertidaMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Aula Invertida").build());
         Long pensamientoMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Basada en el Pensamiento").build());
         Long estandarMethodologyId = createMethodologyService.execute(MethodologyDTO.builder().name("Proyecto Estandar").build());
 
-        Long adminId = createUserService.execute(UserLoginDTO.builder().username("admin").password("admin").build(),UserType.ADMIN);
-        Long andreaId = createUserService.execute(UserLoginDTO.builder().username("andrea").password("andrea").build(),UserType.TEACHER);
-        Long pabloId = createUserService.execute(UserLoginDTO.builder().username("pablo").password("pablo").build(),UserType.TEACHER);
-        Long javiId = createUserService.execute(UserLoginDTO.builder().username("javi").password("javi").build(),UserType.STUDENT);
-        Long agusId = createUserService.execute(UserLoginDTO.builder().username("agus").password("agus").build(),UserType.STUDENT);
-        Long nazaId = createUserService.execute(UserLoginDTO.builder().username("naza").password("naza").build(),UserType.STUDENT);
-        Long paoId = createUserService.execute(UserLoginDTO.builder().username("pao").password("pao").build(),UserType.STUDENT);
-        Long mariId = createUserService.execute(UserLoginDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
 
-        Long mateCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Matematica").build());
-        Long lenguaCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Lengua").build());
-        Long naturalesCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("B").year(3).subject("Naturales").build());
-        Long socialesCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(pabloId).division("B").year(3).subject("Sociales").build());
-
-        Long ProyectoN1Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Dinosaurios").methodologyId(aulaInvertidaMethodologyId).build(), naturalesCursoId);
-        Long ProyectoN2Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Planetas ").methodologyId(aulaInvertidaMethodologyId).build(),naturalesCursoId);
-        Long ProyectoN3Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: Los Atomos").methodologyId(proyectoMethodologyId).build(),naturalesCursoId);
-        Long ProyectoS4Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Projecto: San Martin").methodologyId(proyectoMethodologyId).build(),socialesCursoId);
-        Long ProyectoS5Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: El Cabildo").methodologyId(proyectoMethodologyId).build(),socialesCursoId);
-        Long ProyectoM6Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Division").methodologyId(aulaInvertidaMethodologyId).build(),mateCursoId);
-        Long ProyectoM7Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: Multiplicacion").methodologyId(proyectoMethodologyId).build(),mateCursoId);
-        Long ProyectoL8Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Aula Invertida: Oraciones").methodologyId(aulaInvertidaMethodologyId).build(),lenguaCursoId);
-        Long ProyectoL9Id = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Proyecto: Gramatica").methodologyId(proyectoMethodologyId).build(),lenguaCursoId);
-
-
-        ArrayList<StudentDTO> estudiantesMate = new ArrayList<>();
-        estudiantesMate.add(getStudentService.execute(javiId));
-        estudiantesMate.add(getStudentService.execute(agusId));
-        estudiantesMate.add(getStudentService.execute(nazaId));
-        estudiantesMate.add(getStudentService.execute(paoId));
-
-        ArrayList<StudentDTO> estudiantesLengua = new ArrayList<>();
-        estudiantesLengua.add(getStudentService.execute(mariId));
-        estudiantesLengua.add(getStudentService.execute(paoId));
-        estudiantesLengua.add(getStudentService.execute(nazaId));
-
-        ArrayList<StudentDTO> estudiantesNaturales = new ArrayList<>();
-        estudiantesNaturales.add(getStudentService.execute(mariId));
-        estudiantesNaturales.add(getStudentService.execute(paoId));
-        estudiantesNaturales.add(getStudentService.execute(nazaId));
-
-        ArrayList<StudentDTO> estudiantesSociales = new ArrayList<>();
-        estudiantesSociales.add(getStudentService.execute(mariId));
-        estudiantesSociales.add(getStudentService.execute(paoId));
-        estudiantesSociales.add(getStudentService.execute(nazaId));
-
-        addClassroomStudentsService.execute(mateCursoId,estudiantesMate);
-        addClassroomStudentsService.execute(naturalesCursoId,estudiantesNaturales);
-        addClassroomStudentsService.execute(lenguaCursoId,estudiantesLengua);
-        addClassroomStudentsService.execute(socialesCursoId,estudiantesSociales);
-
-
-
+        //TEMPLATE: AULA INVERTIDA
         Long proyectoTemplateAulaInvertidaId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto de Aula Invertida").methodologyId(aulaInvertidaMethodologyId).build(), Integer.toUnsignedLong(0));
-
 
         Long templateAulaInvertidaClase1Id = createLessonService.execute(LessonDTO.builder().name("Clase 1").position(1).projectId(proyectoTemplateAulaInvertidaId).build());
         Long templateAulaInvertidaClase1ActivityId = createActivityService.execute(ActivityDTO.builder().name("Clase 1").lessonId(templateAulaInvertidaClase1Id).build());
@@ -128,7 +83,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 2").data("la descripcion del segundo dia de aula invertida va aca").sourceId(templateAulaInvertidaClase2ActivityId).documentSourceType("ACTIVITY").build());
 
 
-
+        //TEMPLATE: PBL
         Long proyectoTemplatePBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto de PBL").methodologyId(proyectoMethodologyId).build(), Integer.toUnsignedLong(0));
 
         Long templatePBLClase1Id = createLessonService.execute(LessonDTO.builder().name("Clase 1").position(1).projectId(proyectoTemplatePBLId).build());
@@ -154,7 +109,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Presentacion del Producto").data("la descripcion del septimo dia del PBL va aca").sourceId(templatePBLClase7ActivityId).documentSourceType("ACTIVITY").build());
 
 
-
+        //TEMPLATE: TBL
         Long proyectoTemplateTBLId = createProjectService.execute(ProjectNewDTO.builder().challengeId(Integer.toUnsignedLong(0)).name("Nuevo Proyecto de TBL").methodologyId(pensamientoMethodologyId).build(), Integer.toUnsignedLong(0));
 
         Long templateTBLClase1Id = createLessonService.execute(LessonDTO.builder().name("Clase 1").position(1).projectId(proyectoTemplateTBLId).build());
@@ -164,5 +119,90 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long templateTBLClase2ActivityId = createActivityService.execute(ActivityDTO.builder().name("Actividad 2").lessonId(templateTBLClase2Id).build());
         createDocumentService.execute(NewDocumentDTO.builder().dataType("TEXT").name("Descripcion: Clase 2").data("la descripcion del segundo dia del TBL va aca").sourceId(templateTBLClase2ActivityId).documentSourceType("ACTIVITY").build());
 
+
+        //INSTANCIACION TEMPLATES
+        ProjectTemplateDTO pblTemplate = getProjectTemplateByMethodologyIdService.execute(proyectoMethodologyId);
+        ProjectTemplateDTO invertedTemplate = getProjectTemplateByMethodologyIdService.execute(aulaInvertidaMethodologyId);
+        ProjectTemplateDTO tblTemplate = getProjectTemplateByMethodologyIdService.execute(pensamientoMethodologyId);
+
+
+        //INICIALIZACION DE TEMPLATES
+        pblTemplate.setStartDate(LocalDateTime.now());
+        pblTemplate.setDueDate(LocalDateTime.now().plusDays(7));
+        pblTemplate.setPosition(0);
+
+        tblTemplate.setStartDate(LocalDateTime.now());
+        pblTemplate.setDueDate(LocalDateTime.now().plusDays(7));
+        pblTemplate.setPosition(0);
+
+        invertedTemplate.setStartDate(LocalDateTime.now());
+        pblTemplate.setDueDate(LocalDateTime.now().plusDays(7));
+        pblTemplate.setPosition(0);
+
+
+        //USUARIOS
+        Long adminId = createUserService.execute(UserLoginDTO.builder().username("admin").password("admin").build(),UserType.ADMIN);
+        Long andreaId = createUserService.execute(UserLoginDTO.builder().username("andrea").password("andrea").build(),UserType.TEACHER);
+        Long pabloId = createUserService.execute(UserLoginDTO.builder().username("pablo").password("pablo").build(),UserType.TEACHER);
+        Long javiId = createUserService.execute(UserLoginDTO.builder().username("javi").password("javi").build(),UserType.STUDENT);
+        Long agusId = createUserService.execute(UserLoginDTO.builder().username("agus").password("agus").build(),UserType.STUDENT);
+        Long nazaId = createUserService.execute(UserLoginDTO.builder().username("naza").password("naza").build(),UserType.STUDENT);
+        Long paoId = createUserService.execute(UserLoginDTO.builder().username("pao").password("pao").build(),UserType.STUDENT);
+        Long mariId = createUserService.execute(UserLoginDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
+
+        //CLASSROOMS
+        Long mateCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Matematica").build());
+        Long lenguaCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Lengua").build());
+        Long naturalesCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("B").year(3).subject("Naturales").build());
+        Long socialesCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(pabloId).division("B").year(3).subject("Sociales").build());
+
+
+        //PROYECTOS
+        invertedTemplate.setName("Aula Invertida: Dinosaurios");
+        Long ProyectoN1Id = createProjectFromTemplateService.execute(invertedTemplate,naturalesCursoId);
+        invertedTemplate.setName("Aula Invertida: Planetas");
+        Long ProyectoN2Id = createProjectFromTemplateService.execute(invertedTemplate,naturalesCursoId);
+        pblTemplate.setName("Proyecto: Los Atomos");
+        Long ProyectoN3Id = createProjectFromTemplateService.execute(pblTemplate,naturalesCursoId);
+        pblTemplate.setName("Projecto: San Martin");
+        Long ProyectoN4Id = createProjectFromTemplateService.execute(pblTemplate,socialesCursoId);
+        pblTemplate.setName("Proyecto: El Cabildo");
+        Long ProyectoN5Id = createProjectFromTemplateService.execute(pblTemplate,socialesCursoId);
+        invertedTemplate.setName("Aula Invertida: Division");
+        Long ProyectoN6Id = createProjectFromTemplateService.execute(invertedTemplate,mateCursoId);
+        pblTemplate.setName("Proyecto: Multiplicacion");
+        Long ProyectoN7Id = createProjectFromTemplateService.execute(pblTemplate,mateCursoId);
+        invertedTemplate.setName("Aula Invertida: Oraciones");
+        Long ProyectoN8Id = createProjectFromTemplateService.execute(invertedTemplate,lenguaCursoId);
+        pblTemplate.setName("Proyecto: Gramatica");
+        Long ProyectoN9Id = createProjectFromTemplateService.execute(pblTemplate,lenguaCursoId);
+
+
+        //ASIGNACION DE ESTUDIANTES A CLASSROOMS
+        ArrayList<StudentDTO> estudiantesMate = new ArrayList<>();
+        estudiantesMate.add(getStudentService.execute(javiId));
+        estudiantesMate.add(getStudentService.execute(agusId));
+        estudiantesMate.add(getStudentService.execute(nazaId));
+        estudiantesMate.add(getStudentService.execute(paoId));
+
+        ArrayList<StudentDTO> estudiantesLengua = new ArrayList<>();
+        estudiantesLengua.add(getStudentService.execute(mariId));
+        estudiantesLengua.add(getStudentService.execute(paoId));
+        estudiantesLengua.add(getStudentService.execute(nazaId));
+
+        ArrayList<StudentDTO> estudiantesNaturales = new ArrayList<>();
+        estudiantesNaturales.add(getStudentService.execute(mariId));
+        estudiantesNaturales.add(getStudentService.execute(paoId));
+        estudiantesNaturales.add(getStudentService.execute(nazaId));
+
+        ArrayList<StudentDTO> estudiantesSociales = new ArrayList<>();
+        estudiantesSociales.add(getStudentService.execute(mariId));
+        estudiantesSociales.add(getStudentService.execute(paoId));
+        estudiantesSociales.add(getStudentService.execute(nazaId));
+
+        addClassroomStudentsService.execute(mateCursoId,estudiantesMate);
+        addClassroomStudentsService.execute(naturalesCursoId,estudiantesNaturales);
+        addClassroomStudentsService.execute(lenguaCursoId,estudiantesLengua);
+        addClassroomStudentsService.execute(socialesCursoId,estudiantesSociales);
     }
 }
