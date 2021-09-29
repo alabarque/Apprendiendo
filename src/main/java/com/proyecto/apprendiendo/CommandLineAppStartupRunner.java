@@ -141,14 +141,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
         //USUARIOS
-        Long adminId = createUserService.execute(UserDTO.builder().username("admin").password("admin").build(),UserType.ADMIN);
-        Long andreaId = createUserService.execute(UserDTO.builder().username("andrea").password("andrea").build(),UserType.TEACHER);
-        Long pabloId = createUserService.execute(UserDTO.builder().username("pablo").password("pablo").build(),UserType.TEACHER);
-        Long javiId = createUserService.execute(UserDTO.builder().username("javi").password("javi").build(),UserType.STUDENT);
-        Long agusId = createUserService.execute(UserDTO.builder().username("agus").password("agus").build(),UserType.STUDENT);
-        Long nazaId = createUserService.execute(UserDTO.builder().username("naza").password("naza").build(),UserType.STUDENT);
-        Long paoId = createUserService.execute(UserDTO.builder().username("pao").password("pao").build(),UserType.STUDENT);
-        Long mariId = createUserService.execute(UserDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
+        Long adminId = createUserService.execute(UserDTO.builder().username("admin").firstName("Alfa").lastName("Omega").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("admin").build(),UserType.ADMIN);
+        Long andreaId = createUserService.execute(UserDTO.builder().username("andrea").firstName("Andrea").lastName("Alegretti").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("andrea").build(),UserType.TEACHER);
+        Long pabloId = createUserService.execute(UserDTO.builder().username("pablo").firstName("Pablo").lastName("Abramowicz").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("pablo").build(),UserType.TEACHER);
+        Long javiId = createUserService.execute(UserDTO.builder().username("javi").firstName("Javier Leonardo").lastName("Soto").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("javi").build(),UserType.STUDENT);
+        Long agusId = createUserService.execute(UserDTO.builder().username("agus").firstName("Agustin").lastName("Labarque").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("agus").build(),UserType.STUDENT);
+        Long nazaId = createUserService.execute(UserDTO.builder().username("naza").firstName("Nazareno Eduardo").lastName("Anselmi").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("naza").build(),UserType.STUDENT);
+        Long paoId = createUserService.execute(UserDTO.builder().username("pao").firstName("Paola").lastName("Carrasco").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("pao").build(),UserType.STUDENT);
+        Long mariId = createUserService.execute(UserDTO.builder().username("mari").firstName("Mariel").lastName("Gaitan").address("Medrano 951, CABA").homePhone("(011) 1234-5678").mobilePhone("15 1234-5678").password("mari").build(),UserType.STUDENT);
 
         //CLASSROOMS
         Long mateCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Matematica").build());
