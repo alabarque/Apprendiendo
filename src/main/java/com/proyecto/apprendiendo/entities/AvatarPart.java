@@ -10,14 +10,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-public class AvatarBodyPart {
+public class AvatarPart {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String name;
-    private String type; //Enum BodypartType
+    private String type; //Enum AvatarPartType
     @Column(length=1000000)
     private String imageData;
-
 }
 

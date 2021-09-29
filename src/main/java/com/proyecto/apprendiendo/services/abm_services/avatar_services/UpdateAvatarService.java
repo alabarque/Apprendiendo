@@ -18,12 +18,10 @@ public class UpdateAvatarService {
     public Long execute(AvatarDTO avatarDTO){
         Avatar avatar = avatarRepository.getById(avatarDTO.getId());
         avatar.setId(avatarDTO.getId());
-        avatar.setUserId(avatarDTO.getUserId());
         avatar.setName(avatarDTO.getName());
         avatar.setBodyId(avatarDTO.getBodyId());
-        avatar.setFeetId(avatarDTO.getFeetId());
-        avatar.setHeadId(avatarDTO.getHeadId());
-        avatar.setLegsId(avatarDTO.getLegsId());
+        avatar.setGlassesId(avatarDTO.getGlassesId());
+        avatar.setHatId(avatarDTO.getHatId());
         avatarRepository.save(avatar);
         return avatarDTO.getId();
     }

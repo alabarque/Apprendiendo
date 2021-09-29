@@ -18,10 +18,15 @@ public class UpdateUserService {
     public Long execute(UserDTO userDTO){
         User user = userRepository.getById(userDTO.getId());
 
-        user.setId(userDTO.getId());
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
         user.setRole(userDTO.getRole());
+        user.setAddress(userDTO.getAddress());
+        user.setAvatarId(userDTO.getAvatarId());
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setHomePhone(userDTO.getHomePhone());
+        user.setMobilePhone(userDTO.getMobilePhone());
 
         userRepository.save(user);
         return userDTO.getId();

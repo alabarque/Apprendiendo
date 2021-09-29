@@ -11,6 +11,12 @@ public class UserMapper {
         return User.builder()
                    .username(userDTO.getUsername())
                    .password(userDTO.getPassword())
+                   .firstName(userDTO.getFirstName())
+                   .lastName(userDTO.getLastName())
+                   .homePhone(userDTO.getHomePhone())
+                   .mobilePhone(userDTO.getMobilePhone())
+                   .address(userDTO.getAddress())
+                   .avatarId(userDTO.getAvatarId())
                    .id(userDTO.getId())
                    .role(userDTO.getRole())
                    .build();
@@ -23,10 +29,15 @@ public class UserMapper {
                    .build();
     }
     public static UserDTO entityToDto(User user){
-
         return UserDTO.builder()
                       .id(user.getId())
                       .username(user.getUsername())
+                      .firstName(user.getFirstName())
+                      .lastName(user.getLastName())
+                      .homePhone(user.getHomePhone())
+                      .mobilePhone(user.getMobilePhone())
+                      .address(user.getAddress())
+                      .avatarId(user.getAvatarId())
                       .password(user.getPassword())
                       .role(user.getRole())
                       .build();

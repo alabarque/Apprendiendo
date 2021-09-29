@@ -3,7 +3,7 @@ package com.proyecto.apprendiendo;
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
-import com.proyecto.apprendiendo.services.abm_services.avatar_body_part_services.CreateAvatarBodyPartService;
+import com.proyecto.apprendiendo.services.abm_services.avatar_part_services.CreateAvatarPartService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
@@ -37,7 +37,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Autowired
     private CreateAvatarService createAvatarService;
     @Autowired
-    private CreateAvatarBodyPartService createAvatarBodyPartService;
+    private CreateAvatarPartService createAvatarPartService;
     @Autowired
     private GetUserService getUserService;
     @Autowired
@@ -141,14 +141,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
         //USUARIOS
-        Long adminId = createUserService.execute(UserLoginDTO.builder().username("admin").password("admin").build(),UserType.ADMIN);
-        Long andreaId = createUserService.execute(UserLoginDTO.builder().username("andrea").password("andrea").build(),UserType.TEACHER);
-        Long pabloId = createUserService.execute(UserLoginDTO.builder().username("pablo").password("pablo").build(),UserType.TEACHER);
-        Long javiId = createUserService.execute(UserLoginDTO.builder().username("javi").password("javi").build(),UserType.STUDENT);
-        Long agusId = createUserService.execute(UserLoginDTO.builder().username("agus").password("agus").build(),UserType.STUDENT);
-        Long nazaId = createUserService.execute(UserLoginDTO.builder().username("naza").password("naza").build(),UserType.STUDENT);
-        Long paoId = createUserService.execute(UserLoginDTO.builder().username("pao").password("pao").build(),UserType.STUDENT);
-        Long mariId = createUserService.execute(UserLoginDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
+        Long adminId = createUserService.execute(UserDTO.builder().username("admin").password("admin").build(),UserType.ADMIN);
+        Long andreaId = createUserService.execute(UserDTO.builder().username("andrea").password("andrea").build(),UserType.TEACHER);
+        Long pabloId = createUserService.execute(UserDTO.builder().username("pablo").password("pablo").build(),UserType.TEACHER);
+        Long javiId = createUserService.execute(UserDTO.builder().username("javi").password("javi").build(),UserType.STUDENT);
+        Long agusId = createUserService.execute(UserDTO.builder().username("agus").password("agus").build(),UserType.STUDENT);
+        Long nazaId = createUserService.execute(UserDTO.builder().username("naza").password("naza").build(),UserType.STUDENT);
+        Long paoId = createUserService.execute(UserDTO.builder().username("pao").password("pao").build(),UserType.STUDENT);
+        Long mariId = createUserService.execute(UserDTO.builder().username("mari").password("mari").build(),UserType.STUDENT);
 
         //CLASSROOMS
         Long mateCursoId = createClassroomService.execute(ClassroomDTO.builder().teacherId(andreaId).division("A").year(3).subject("Matematica").build());

@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.controllers;
 
+import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
@@ -20,20 +21,20 @@ public class RegisterController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(value = "register/student")
-    public ResponseEntity<Long> registerStudent(@RequestBody UserLoginDTO userLoginDTO){
-        return responseDecorator.decorate(()->createUserService.execute(userLoginDTO, UserType.STUDENT));
+    public ResponseEntity<Long> registerStudent(@RequestBody UserDTO userDTO){
+        return responseDecorator.decorate(()->createUserService.execute(userDTO, UserType.STUDENT));
     }
 
     @PostMapping(value = "register/teacher")
-    public ResponseEntity<Long> registerTeacher(@RequestBody UserLoginDTO userLoginDTO){
-        return responseDecorator.decorate(()->createUserService.execute(userLoginDTO, UserType.TEACHER));
+    public ResponseEntity<Long> registerTeacher(@RequestBody UserDTO userDTO){
+        return responseDecorator.decorate(()->createUserService.execute(userDTO, UserType.TEACHER));
     }
 
 
     //Temporal, de momento esta para tests
     @PostMapping(value = "register/admin")
-    public ResponseEntity<Long> registerAdmin(@RequestBody UserLoginDTO userLoginDTO){
-        return responseDecorator.decorate(()->createUserService.execute(userLoginDTO, UserType.ADMIN));
+    public ResponseEntity<Long> registerAdmin(@RequestBody UserDTO userDTO){
+        return responseDecorator.decorate(()->createUserService.execute(userDTO, UserType.ADMIN));
     }
 
 }

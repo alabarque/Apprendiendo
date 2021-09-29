@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.services.abm_services.user_services;
 
 import com.proyecto.apprendiendo.entities.User;
+import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.repositories.UserRepository;
@@ -23,12 +24,12 @@ public class CreateUserService {
     UserRepository userRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(UserLoginDTO userLoginDTO, UserType userType) {
-            return Optional.ofNullable(userRepository.findByUsername(userLoginDTO.getUsername())).map(User::getId).orElseGet(() -> this.saveUser(userLoginDTO, userType));
+    public Long execute(UserDTO userDTO, UserType userType) {
+            return Optional.ofNullable(userRepository.findByUsername(userDTO.getUsername())).map(User::getId).orElseGet(() -> this.saveUser(userDTO, userType));
     }
 
-    private Long saveUser(UserLoginDTO userLoginDTO, UserType userType) {
-        User user = UserMapper.DTOtoEntity(userLoginDTO);
+    private Long saveUser(UserDTO userDTO, UserType userType) {
+        User user = UserMapper.DTOtoEntity(userDTO);
         user.setRole("ROLE_" + userType.getValue());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user).getId();

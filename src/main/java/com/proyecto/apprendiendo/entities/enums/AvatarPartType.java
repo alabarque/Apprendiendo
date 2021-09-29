@@ -1,10 +1,9 @@
 package com.proyecto.apprendiendo.entities.enums;
 
-public enum BodyPartType {
-    HEAD("HEAD"),
+public enum AvatarPartType {
     BODY("BODY"),
-    LEGS("LEGS"),
-    FEET("FEET");
+    LEGS("GLASSES"),
+    FEET("HAT");
 
     private final String value;
 
@@ -12,7 +11,7 @@ public enum BodyPartType {
         return value;
     }
 
-    BodyPartType(String value){
+    AvatarPartType(String value){
         this.value = value;
     }
 }

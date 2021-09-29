@@ -17,8 +17,14 @@ public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     protected Long id;
+    protected Long avatarId; //FK a Avatar
     protected String username;
     protected String password;
     protected String role;
 
+    protected String firstName;
+    protected String lastName;
+    protected String homePhone;
+    protected String mobilePhone;
+    protected String address;
 }
