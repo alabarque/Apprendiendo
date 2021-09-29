@@ -20,10 +20,15 @@ public class UpdateStudentClassroomProgressService {
 
     private StudentClassroomRepository studentClassroomRepository;
     private AutomaticRewardGrantingService automaticRewardGrantingService;
+    AddClassroomStudentService addClassroomStudentService;
 
 
     public Long execute(Long studentId, Long classroomId, StudentClassroomDTO studentClassroomDTO){
         StudentClassroom studentClassroom = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, classroomId);
+        if(studentClassroom == null) {
+            addClassroomStudentService.execute(classroomId, studentId);
+            studentClassroom = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, classroomId);
+        }
         studentClassroom.setGrade(studentClassroomDTO.getGrade());
         studentClassroom.setPercentageCompleted(studentClassroomDTO.getPercentageCompleted());
         studentClassroom.setDateCompleted(studentClassroomDTO.getDateCompleted());

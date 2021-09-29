@@ -19,9 +19,14 @@ public class UpdateStudentProjectProgressService {
 
     private StudentProjectRepository studentProjectRepository;
     private AutomaticRewardGrantingService automaticRewardGrantingService;
+    private AddProjectStudentsService addProjectStudentsService;
 
     public Long execute(Long studentId, Long projectId, StudentProjectDTO studentProjectDTO){
         StudentProject studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
+        if(studentProject == null) {
+            addProjectStudentsService.execute(projectId,studentId);
+            studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
+        }
         studentProject.setGrade(studentProjectDTO.getGrade());
         studentProject.setPercentageCompleted(studentProjectDTO.getPercentageCompleted());
         studentProject.setDateCompleted(studentProjectDTO.getDateCompleted());

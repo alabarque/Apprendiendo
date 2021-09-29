@@ -2,6 +2,9 @@ package com.proyecto.apprendiendo;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.entities.enums.UserType;
+import com.proyecto.apprendiendo.repositories.ActivityRepository;
+import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
+import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_part_services.CreateAvatarPartService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
@@ -15,6 +18,7 @@ import com.proyecto.apprendiendo.services.abm_services.methodology_services.Crea
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectFromTemplateService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
+import com.proyecto.apprendiendo.services.abm_services.student_activity_services.UpdateStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetStudentService;
@@ -62,6 +66,15 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private CreateProjectFromTemplateService createProjectFromTemplateService;
     @Autowired
     private GetProjectTemplateByMethodologyIdService getProjectTemplateByMethodologyIdService;
+    @Autowired
+    private UpdateStudentActivityProgressService updateStudentActivityProgressService;
+    @Autowired
+    private StudentActivityRepository studentActivityRepository;
+    @Autowired
+    private ActivityRepository activityRepository;
+    @Autowired
+    private UserRepository userRepository;
+
 
     @Override
     public void run(String...args) {
@@ -204,5 +217,21 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addClassroomStudentsService.execute(naturalesCursoId,estudiantesNaturales);
         addClassroomStudentsService.execute(lenguaCursoId,estudiantesLengua);
         addClassroomStudentsService.execute(socialesCursoId,estudiantesSociales);
+
+
+        //Progreso de alumnos en un proyecto
+        activityRepository.findAll().forEach(activity -> {
+            userRepository.findByRole("ROLE_STUDENT").forEach(student -> {
+                StudentActivityDTO studentActivityDTO = StudentActivityDTO.builder().activityId(activity.getId()).dateCompleted(LocalDateTime.now()).percentageCompleted(100.00).grade(8).userId(student.getId()).build();
+                updateStudentActivityProgressService.execute(student.getId(),activity.getId(),studentActivityDTO);
+            });
+        });
+
+
+
+
+
+
+
     }
 }

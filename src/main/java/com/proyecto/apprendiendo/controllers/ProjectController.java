@@ -66,8 +66,8 @@ public class ProjectController {
     }
 
     @PutMapping(path = "classroom/{classroomId}/project/{projectId}/students/add")
-    public ResponseEntity<Long> addProjectStudents (@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("projectId") Long projectId){
-        return responseDecorator.decorate(()->addProjectStudentsService.execute(projectId, studentDTOs));
+    public ResponseEntity<Long> addProjectStudents (@RequestBody Long studentId, @PathVariable("projectId") Long projectId){
+        return responseDecorator.decorate(()->addProjectStudentsService.execute(projectId, studentId));
     }
 
     @PutMapping(path = "classroom/{classroomId}/project/{projectId}/students/remove")

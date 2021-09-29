@@ -17,8 +17,8 @@ public class AddActivityStudentsService {
     private StudentActivityRepository studentActivityRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long activityId, ArrayList<StudentDTO> studentDTOs){
-        studentDTOs.forEach(s -> studentActivityRepository.save(StudentActivity.builder().activityId(activityId).userId(s.getId()).percentageCompleted(0.00).grade(0).build()));
+    public Long execute(Long activityId, Long studentId){
+        studentActivityRepository.save(StudentActivity.builder().activityId(activityId).userId(studentId).percentageCompleted(0.00).grade(0).build());
         return activityId;
     }
 }
