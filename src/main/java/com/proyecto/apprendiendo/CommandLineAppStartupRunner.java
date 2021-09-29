@@ -1,10 +1,9 @@
 package com.proyecto.apprendiendo;
 
+import com.proyecto.apprendiendo.entities.StudentClassroom;
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.entities.enums.UserType;
-import com.proyecto.apprendiendo.repositories.ActivityRepository;
-import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
-import com.proyecto.apprendiendo.repositories.UserRepository;
+import com.proyecto.apprendiendo.repositories.*;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_part_services.CreateAvatarPartService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
@@ -14,9 +13,11 @@ import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.A
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonService;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.CreateMethodologyService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectFromTemplateService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
+import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.UpdateStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
@@ -74,6 +75,19 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private ActivityRepository activityRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private LessonRepository lessonRepository;
+    @Autowired
+    private ProjectRepository projectRepository;
+    @Autowired
+    private ClassroomRepository classroomRepository;
+    @Autowired
+    private StudentClassroomRepository studentClassroomRepository;
+    @Autowired
+    private GetLessonService getLessonService;
+    @Autowired
+    private GetProjectService getProjectService;
+
 
 
     @Override
@@ -222,8 +236,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         //Progreso de alumnos en un proyecto
         activityRepository.findAll().forEach(activity -> {
             userRepository.findByRole("ROLE_STUDENT").forEach(student -> {
-                StudentActivityDTO studentActivityDTO = StudentActivityDTO.builder().activityId(activity.getId()).dateCompleted(LocalDateTime.now()).percentageCompleted(100.00).grade(8).userId(student.getId()).build();
-                updateStudentActivityProgressService.execute(student.getId(),activity.getId(),studentActivityDTO);
+                if (getClassroomStudentsService.execute(getProjectService.execute(getLessonService.execute(activity.getLessonId()).getProjectId()).getClassroomId()).stream().anyMatch(s -> s.getId().equals(student.getId()))) {
+                    StudentActivityDTO studentActivityDTO = StudentActivityDTO.builder().activityId(activity.getId()).dateCompleted(LocalDateTime.now()).percentageCompleted(100.00).grade(8).userId(student.getId()).build();
+                    updateStudentActivityProgressService.execute(student.getId(), activity.getId(), studentActivityDTO);
+                }
             });
         });
 
