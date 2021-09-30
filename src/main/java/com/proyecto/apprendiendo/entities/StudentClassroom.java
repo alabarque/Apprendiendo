@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.entities;
 
-import jdk.jfr.Percentage;
 import lombok.*;
 
 import javax.persistence.Entity;

@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.services.abm_services.methodology_services;
 
-import com.proyecto.apprendiendo.entities.Methodology;
 import com.proyecto.apprendiendo.entities.dtos.MethodologyDTO;
 import com.proyecto.apprendiendo.repositories.MethodologyRepository;
 import com.proyecto.apprendiendo.services.mappers.MethodologyMapper;

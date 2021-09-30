@@ -2,9 +2,8 @@ package com.proyecto.apprendiendo.services.mappers;
 
 
 import com.proyecto.apprendiendo.entities.User;
-import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
-import lombok.AllArgsConstructor;
+import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 
 public class UserMapper {
     public static User DTOtoEntity(UserDTO userDTO){

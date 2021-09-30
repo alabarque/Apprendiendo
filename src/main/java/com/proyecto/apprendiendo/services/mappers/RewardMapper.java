@@ -1,7 +1,7 @@
 package com.proyecto.apprendiendo.services.mappers;
 
 import com.proyecto.apprendiendo.entities.Reward;
-import com.proyecto.apprendiendo.entities.dtos.*;
+import com.proyecto.apprendiendo.entities.dtos.RewardDTO;
 
 public class RewardMapper {
 

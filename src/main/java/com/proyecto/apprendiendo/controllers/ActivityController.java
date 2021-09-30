@@ -7,7 +7,6 @@ import com.proyecto.apprendiendo.services.abm_services.activity_services.DeleteA
 import com.proyecto.apprendiendo.services.abm_services.activity_services.GetActivityService;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.UpdateActivityService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetActivityStudentsProgressService;
-import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetStudentActivityProgressService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

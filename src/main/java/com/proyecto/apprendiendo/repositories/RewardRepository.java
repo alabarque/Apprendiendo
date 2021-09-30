@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.repositories;
 
-import com.proyecto.apprendiendo.entities.Activity;
 import com.proyecto.apprendiendo.entities.Reward;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

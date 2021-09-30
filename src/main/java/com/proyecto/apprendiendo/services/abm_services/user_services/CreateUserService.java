@@ -2,7 +2,6 @@ package com.proyecto.apprendiendo.services.abm_services.user_services;
 
 import com.proyecto.apprendiendo.entities.User;
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
-import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.mappers.UserMapper;

@@ -1,13 +1,11 @@
 package com.proyecto.apprendiendo.services.abm_services.student_activity_services;
 
 import com.proyecto.apprendiendo.entities.StudentActivity;
-import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 
 @Service
 @AllArgsConstructor

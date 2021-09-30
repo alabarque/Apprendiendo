@@ -4,7 +4,6 @@ import com.proyecto.apprendiendo.entities.StudentActivity;
 import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
-import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.mappers.ActivityMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

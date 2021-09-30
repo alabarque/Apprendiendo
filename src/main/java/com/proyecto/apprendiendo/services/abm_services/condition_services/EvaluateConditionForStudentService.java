@@ -1,7 +1,7 @@
 package com.proyecto.apprendiendo.services.abm_services.condition_services;
 
-import com.proyecto.apprendiendo.entities.*;
-import com.proyecto.apprendiendo.entities.dtos.ConditionDTO;
+import com.proyecto.apprendiendo.entities.Condition;
+import com.proyecto.apprendiendo.entities.Reward;
 import com.proyecto.apprendiendo.entities.enums.ConditionType;
 import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.repositories.*;
@@ -9,11 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.lang.annotation.Target;
-import java.nio.channels.CancelledKeyException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 @Service
 @AllArgsConstructor

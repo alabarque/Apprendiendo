@@ -1,12 +1,8 @@
 package com.proyecto.apprendiendo.services.abm_services.classroom_user_services;
 
 import com.proyecto.apprendiendo.entities.StudentClassroom;
-import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
-import com.proyecto.apprendiendo.entities.dtos.StudentProjectDTO;
 import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
-import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
-import com.proyecto.apprendiendo.services.abm_services.condition_services.EvaluateConditionForStudentService;
 import com.proyecto.apprendiendo.services.abm_services.reward_services.AutomaticRewardGrantingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

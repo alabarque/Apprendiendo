@@ -1,7 +1,6 @@
 package com.proyecto.apprendiendo.services.abm_services.reward_services;
 
 import com.proyecto.apprendiendo.entities.Reward;
-import com.proyecto.apprendiendo.entities.dtos.RewardDTO;
 import com.proyecto.apprendiendo.repositories.RewardRepository;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;

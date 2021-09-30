@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.entities;
 
-import com.proyecto.apprendiendo.entities.enums.RewardType;
 import lombok.*;
 
 import javax.persistence.Entity;

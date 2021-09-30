@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo.entities.dtos;
 
-import com.proyecto.apprendiendo.entities.Document;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

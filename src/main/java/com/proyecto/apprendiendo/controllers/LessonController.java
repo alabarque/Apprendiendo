@@ -2,7 +2,6 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
-import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentLessonDTO;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.*;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;

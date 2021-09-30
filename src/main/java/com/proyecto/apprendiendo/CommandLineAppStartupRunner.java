@@ -1,6 +1,5 @@
 package com.proyecto.apprendiendo;
 
-import com.proyecto.apprendiendo.entities.StudentClassroom;
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.repositories.*;

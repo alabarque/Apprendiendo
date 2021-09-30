@@ -1,12 +1,12 @@
 package com.proyecto.apprendiendo.controllers;
 
-import com.proyecto.apprendiendo.entities.StudentClassroom;
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetUserClassroomsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.UpdateStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetStudentLessonProgressService;
-import com.proyecto.apprendiendo.services.abm_services.student_activity_services.*;
+import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetStudentActivityProgressService;
+import com.proyecto.apprendiendo.services.abm_services.student_activity_services.UpdateStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.UpdateStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_reward_services.AddRewardStudentService;

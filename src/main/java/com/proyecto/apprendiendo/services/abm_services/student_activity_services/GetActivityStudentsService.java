@@ -2,7 +2,6 @@ package com.proyecto.apprendiendo.services.abm_services.student_activity_service
 
 import com.proyecto.apprendiendo.entities.StudentActivity;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
-import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
 import com.proyecto.apprendiendo.repositories.UserRepository;
 import com.proyecto.apprendiendo.services.mappers.StudentMapper;

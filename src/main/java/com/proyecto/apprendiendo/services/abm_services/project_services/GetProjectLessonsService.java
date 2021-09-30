@@ -1,12 +1,8 @@
 package com.proyecto.apprendiendo.services.abm_services.project_services;
 
-import com.proyecto.apprendiendo.entities.Activity;
 import com.proyecto.apprendiendo.entities.Lesson;
-import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
-import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.LessonRepository;
-import com.proyecto.apprendiendo.services.mappers.ActivityMapper;
 import com.proyecto.apprendiendo.services.mappers.LessonMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

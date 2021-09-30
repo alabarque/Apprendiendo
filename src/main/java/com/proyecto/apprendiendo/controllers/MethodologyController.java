@@ -1,10 +1,8 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.MethodologyDTO;
-import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectTemplateDTO;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.*;
-import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByNameService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;

@@ -1,11 +1,9 @@
 package com.proyecto.apprendiendo.services.mappers;
 
 import com.proyecto.apprendiendo.entities.Document;
-import com.proyecto.apprendiendo.entities.Project;
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
 import com.proyecto.apprendiendo.entities.dtos.DocumentTemplateDTO;
 import com.proyecto.apprendiendo.entities.dtos.NewDocumentDTO;
-import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
 
 public class DocumentMapper {
 
