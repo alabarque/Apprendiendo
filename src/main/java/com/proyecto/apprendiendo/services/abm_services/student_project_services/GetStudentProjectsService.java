@@ -20,7 +20,6 @@ public class GetStudentProjectsService {
 
     private ProjectRepository projectRepository;
     private StudentProjectRepository studentProjectRepository;
-    private UserRepository userRepository;
 
     public ArrayList<ProjectDTO> execute(Long studentId) {
         ArrayList<StudentProject> studentProjects = studentProjectRepository.findByUserId(studentId);

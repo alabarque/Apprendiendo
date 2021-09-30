@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.services.abm_services.student_project_services;
 
+import com.proyecto.apprendiendo.entities.StudentActivity;
 import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentProjectDTO;
@@ -7,6 +8,7 @@ import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.LessonRepository;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.mappers.StudentActivityMapper;
 import com.proyecto.apprendiendo.services.mappers.StudentProjectMapper;
@@ -21,21 +23,24 @@ import javax.transaction.Transactional;
 public class GetStudentProjectProgressService {
 
     private StudentProjectRepository studentProjectRepository;
-    private StudentActivityRepository studentActivityRepository;
     private ActivityRepository activityRepository;
     private GetStudentActivityProgressService getStudentActivityProgressService;
-    private LessonRepository lessonRepository;
+    private GetLessonService getLessonService;
 
     public StudentProjectDTO execute(Long studentId, Long projectId){
-        StudentProjectDTO studentProjectDTO = StudentProjectMapper.entityToDto(studentProjectRepository.findByUserIdAndProjectId(studentId, projectId));
+
+        StudentProject studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
+        if(studentProject == null) studentProject = StudentProject.builder().projectId(projectId).userId(studentId).percentageCompleted(0.00).grade(0).build();
+        StudentProjectDTO studentProjectDTO = StudentProjectMapper.entityToDto(studentProject);
 
         if(studentProjectDTO.getPercentageCompleted() == 0.00) {
-            Double percentageCompleted = studentActivityRepository.findByUserId(studentId)
-                                                                  .stream()
-                                                                  .filter(sa -> lessonRepository.getById(activityRepository.getById(sa.getActivityId()).getLessonId()).getProjectId().equals(projectId))
-                                                                  .mapToDouble(sp -> getStudentActivityProgressService.execute(sp.getUserId(), sp.getActivityId()).getPercentageCompleted())
-                                                                  .average()
-                                                                  .getAsDouble();
+
+            Double percentageCompleted = activityRepository.findAll()
+                                                           .stream()
+                                                           .filter(a -> getLessonService.execute(a.getLessonId()).getProjectId().equals(projectId))
+                                                           .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId()).getPercentageCompleted())
+                                                           .average()
+                                                           .getAsDouble();
 
             studentProjectDTO.setPercentageCompleted(percentageCompleted);
         }

@@ -5,10 +5,15 @@ import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentProjectDTO;
-import com.proyecto.apprendiendo.repositories.ClassroomRepository;
-import com.proyecto.apprendiendo.repositories.ProjectRepository;
-import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
-import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
+import com.proyecto.apprendiendo.repositories.*;
+import com.proyecto.apprendiendo.services.abm_services.activity_services.GetActivityService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomProjectsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonActivitiesService;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonService;
+import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectLessonsService;
+import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectService;
+import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.mappers.StudentClassroomMapper;
 import com.proyecto.apprendiendo.services.mappers.StudentProjectMapper;
@@ -25,21 +30,21 @@ import java.util.stream.Collectors;
 public class GetStudentClassroomProgressService {
 
     private StudentClassroomRepository studentClassroomRepository;
-    private StudentProjectRepository studentProjectRepository;
-    private GetStudentProjectProgressService getStudentProjectProgressService;
-    private ClassroomRepository classroomRepository;
-    private ProjectRepository projectRepository;
+    private GetProjectService getProjectService;
+    private GetLessonService getLessonService;
+    private ActivityRepository activityRepository;
+    private GetStudentActivityProgressService getStudentActivityProgressService;
 
     public StudentClassroomDTO execute(Long studentId, Long classroomId){
         StudentClassroomDTO studentClassroomDTO = StudentClassroomMapper.entityToDto(studentClassroomRepository.findByStudentIdAndClassroomId(studentId, classroomId));
 
         if(studentClassroomDTO.getPercentageCompleted() == 0.00) {
-            Double percentageCompleted = studentProjectRepository.findByUserId(studentId)
-                                                                 .stream()
-                                                                 .filter(sp -> projectRepository.getById(sp.getProjectId()).getClassroomId().equals(classroomId))
-                                                                 .mapToDouble(sp -> getStudentProjectProgressService.execute(sp.getUserId(), sp.getProjectId()).getPercentageCompleted())
-                                                                 .average()
-                                                                 .getAsDouble();
+            Double percentageCompleted = activityRepository.findAll()
+                                                           .stream()
+                                                           .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId()).getProjectId()).getClassroomId().equals(classroomId))
+                                                           .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId()).getPercentageCompleted())
+                                                           .average()
+                                                           .getAsDouble();
 
             studentClassroomDTO.setPercentageCompleted(percentageCompleted);
         }

@@ -20,7 +20,6 @@ public class GetStudentActivitiesService {
 
     private ActivityRepository activityRepository;
     private StudentActivityRepository studentActivityRepository;
-    private UserRepository userRepository;
 
     public ArrayList<ActivityDTO> execute(Long studentId) {
         ArrayList<StudentActivity> studentActivities = studentActivityRepository.findByUserId(studentId);

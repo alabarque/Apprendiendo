@@ -21,7 +21,6 @@ import javax.transaction.Transactional;
 @Transactional
 public class GetStudentLessonProgressService {
 
-    private StudentActivityRepository studentActivityRepository;
     private LessonRepository lessonRepository;
     private ActivityRepository activityRepository;
     private GetStudentActivityProgressService getStudentActivityProgressService;
@@ -30,12 +29,12 @@ public class GetStudentLessonProgressService {
         Lesson lesson = lessonRepository.getById(lessonId);
         StudentLessonDTO studentLessonDTO = StudentLessonDTO.builder().studentId(studentId).projectId(lesson.getProjectId()).id(lessonId).build();
 
-        Double percentageCompleted = studentActivityRepository.findByUserId(studentId)
-                                                              .stream()
-                                                              .filter(sa -> activityRepository.getById(sa.getActivityId()).getLessonId().equals(lessonId))
-                                                              .mapToDouble(sp -> getStudentActivityProgressService.execute(sp.getUserId(), sp.getActivityId()).getPercentageCompleted())
-                                                              .average()
-                                                              .getAsDouble();
+        Double percentageCompleted = activityRepository.findAll()
+                                                       .stream()
+                                                       .filter(a -> a.getLessonId().equals(lessonId))
+                                                       .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId()).getPercentageCompleted())
+                                                       .average()
+                                                       .getAsDouble();
 
         studentLessonDTO.setPercentageCompleted(percentageCompleted);
 

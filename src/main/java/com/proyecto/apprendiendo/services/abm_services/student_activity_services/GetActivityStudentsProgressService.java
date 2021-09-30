@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 public class GetActivityStudentsProgressService {
 
     private StudentActivityRepository studentActivityRepository;
-    private UserRepository userRepository;
     private GetStudentActivityProgressService getStudentActivityProgressService;
 
     public ArrayList<StudentActivityDTO> execute(Long activityId) {

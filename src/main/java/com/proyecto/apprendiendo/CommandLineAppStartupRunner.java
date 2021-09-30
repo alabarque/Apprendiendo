@@ -14,6 +14,7 @@ import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.G
 import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonService;
+import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonStudentsProgressService;
 import com.proyecto.apprendiendo.services.abm_services.methodology_services.CreateMethodologyService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectFromTemplateService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
@@ -87,7 +88,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetLessonService getLessonService;
     @Autowired
     private GetProjectService getProjectService;
-
+    @Autowired
+    private GetLessonStudentsProgressService getLessonStudentsProgressService;
 
 
     @Override
@@ -242,12 +244,5 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                 }
             });
         });
-
-
-
-
-
-
-
     }
 }
