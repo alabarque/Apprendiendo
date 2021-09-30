@@ -18,10 +18,10 @@ public class UpdateStudentActivityProgressService {
     private AutomaticRewardGrantingService automaticRewardGrantingService;
     private AddActivityStudentsService addActivityStudentsService;
 
-    public Long execute(Long studentId, Long activityId, StudentActivityDTO studentActivityDTO){
+    public Long execute(Long studentId, Long activityId, StudentActivityDTO studentActivityDTO) {
         StudentActivity studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
-        if(studentActivity == null) {
-            addActivityStudentsService.execute(activityId,studentId);
+        if (studentActivity == null) {
+            addActivityStudentsService.execute(activityId, studentId);
             studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
         }
         studentActivity.setGrade(studentActivityDTO.getGrade());

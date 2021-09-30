@@ -22,22 +22,22 @@ public class DocumentController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "document")
-    public ResponseEntity<Long> newDocument(@RequestBody NewDocumentDTO newDocumentDTO){
-        return responseDecorator.decorate(()->createDocumentService.execute(newDocumentDTO));
+    public ResponseEntity<Long> newDocument(@RequestBody NewDocumentDTO newDocumentDTO) {
+        return responseDecorator.decorate(() -> createDocumentService.execute(newDocumentDTO));
     }
 
-    @GetMapping (path = "document/{documentId}")
-    public ResponseEntity< DocumentDTO> getDocument(@PathVariable Long documentId){
-        return responseDecorator.decorate(()->getDocumentService.execute(documentId));
+    @GetMapping(path = "document/{documentId}")
+    public ResponseEntity<DocumentDTO> getDocument(@PathVariable Long documentId) {
+        return responseDecorator.decorate(() -> getDocumentService.execute(documentId));
     }
 
     @DeleteMapping(path = "document/{documentId}/source/{sourceId}")
-    public ResponseEntity<Long> deleteDocument( @PathVariable("documentId") Long documentId, @PathVariable("sourceId") Long sourceId){
-        return responseDecorator.decorate(()->deleteDocumentService.execute(documentId, sourceId));
+    public ResponseEntity<Long> deleteDocument(@PathVariable("documentId") Long documentId, @PathVariable("sourceId") Long sourceId) {
+        return responseDecorator.decorate(() -> deleteDocumentService.execute(documentId, sourceId));
     }
 
     @PutMapping(path = "document")
-    public ResponseEntity<Long> updateDocument(@RequestBody DocumentDTO documentDTO){
-        return responseDecorator.decorate(()->updateDocumentService.execute(documentDTO));
+    public ResponseEntity<Long> updateDocument(@RequestBody DocumentDTO documentDTO) {
+        return responseDecorator.decorate(() -> updateDocumentService.execute(documentDTO));
     }
 }

@@ -16,8 +16,8 @@ public class RemoveProjectStudentsService {
     private StudentProjectRepository studentProjectRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long projectId, ArrayList<StudentDTO> studentDTOs){
-        studentDTOs.forEach(s -> studentProjectRepository.deleteByProjectIdAndUserId(projectId,s.getId()));
+    public Long execute(Long projectId, ArrayList<StudentDTO> studentDTOs) {
+        studentDTOs.forEach(s -> studentProjectRepository.deleteByProjectIdAndUserId(projectId, s.getId()));
         return projectId;
     }
 }

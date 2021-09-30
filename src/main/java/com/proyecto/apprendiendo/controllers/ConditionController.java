@@ -21,22 +21,22 @@ public class ConditionController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "condition")
-    public ResponseEntity<Long> newCondition(@RequestBody ConditionDTO ConditionDTO){
-        return responseDecorator.decorate(()->createConditionService.execute(ConditionDTO));
+    public ResponseEntity<Long> newCondition(@RequestBody ConditionDTO ConditionDTO) {
+        return responseDecorator.decorate(() -> createConditionService.execute(ConditionDTO));
     }
 
-    @GetMapping (path = "condition/{ConditionId}")
-    public ResponseEntity<ConditionDTO> getCondition(@PathVariable Long ConditionId){
-        return responseDecorator.decorate(()->getConditionService.execute(ConditionId));
+    @GetMapping(path = "condition/{ConditionId}")
+    public ResponseEntity<ConditionDTO> getCondition(@PathVariable Long ConditionId) {
+        return responseDecorator.decorate(() -> getConditionService.execute(ConditionId));
     }
 
     @DeleteMapping(path = "condition/{ConditionId}")
-    public ResponseEntity<Long> deleteCondition(@PathVariable Long ConditionId){
-        return responseDecorator.decorate(()->deleteConditionService.execute(ConditionId));
+    public ResponseEntity<Long> deleteCondition(@PathVariable Long ConditionId) {
+        return responseDecorator.decorate(() -> deleteConditionService.execute(ConditionId));
     }
 
     @PutMapping(path = "condition")
-    public ResponseEntity<Long> updateCondition(@RequestBody ConditionDTO ConditionDTO){
-        return responseDecorator.decorate(()->updateConditionService.execute(ConditionDTO));
+    public ResponseEntity<Long> updateCondition(@RequestBody ConditionDTO ConditionDTO) {
+        return responseDecorator.decorate(() -> updateConditionService.execute(ConditionDTO));
     }
 }

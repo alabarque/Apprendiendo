@@ -16,6 +16,7 @@ public class GetProjectTemplateByMethodologyIdService {
     private GetProjectTemplateService getProjectTemplateService;
 
     public ProjectTemplateDTO execute(Long methodologyId) {
-        return getProjectTemplateService.execute(projectRepository.findByClassroomIdAndMethodologyId(Long.parseLong("0"), methodologyId).getId());
+        return getProjectTemplateService.execute(projectRepository.findByClassroomIdAndMethodologyId(Long.parseLong("0"), methodologyId)
+                                                                  .getId());
     }
 }

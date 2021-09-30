@@ -10,11 +10,11 @@ public enum RewardType {
 
     private final String value;
 
-    public String getValue(){
-        return value;
+    RewardType(String value) {
+        this.value = value;
     }
 
-    RewardType(String value){
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 }

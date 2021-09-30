@@ -5,7 +5,7 @@ import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonTemplateDTO;
 
 public class LessonMapper {
-    public static LessonDTO entityToDto(Lesson lesson){
+    public static LessonDTO entityToDto(Lesson lesson) {
         return LessonDTO.builder()
                         .id(lesson.getId())
                         .name(lesson.getName())
@@ -16,7 +16,7 @@ public class LessonMapper {
                         .build();
     }
 
-    public static LessonTemplateDTO entityToTemplateDto(Lesson lesson){
+    public static LessonTemplateDTO entityToTemplateDto(Lesson lesson) {
         return LessonTemplateDTO.builder()
                                 .name(lesson.getName())
                                 .position(lesson.getPosition())
@@ -25,7 +25,7 @@ public class LessonMapper {
                                 .build();
     }
 
-    public static LessonDTO templateDtoToDto(LessonTemplateDTO lessonTemplateDTO){
+    public static LessonDTO templateDtoToDto(LessonTemplateDTO lessonTemplateDTO) {
         return LessonDTO.builder()
                         .name(lessonTemplateDTO.getName())
                         .position(lessonTemplateDTO.getPosition())

@@ -9,11 +9,11 @@ public enum DocumentSourceType {
 
     private final String value;
 
-    public String getValue(){
-        return value;
+    DocumentSourceType(String value) {
+        this.value = value;
     }
 
-    DocumentSourceType(String value){
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 }

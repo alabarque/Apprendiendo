@@ -15,8 +15,13 @@ public class AddProjectStudentsService {
     private StudentProjectRepository studentProjectRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long projectId, Long studentId){
-        studentProjectRepository.save(StudentProject.builder().projectId(projectId).userId(studentId).percentageCompleted(0.00).grade(0).build());
+    public Long execute(Long projectId, Long studentId) {
+        studentProjectRepository.save(StudentProject.builder()
+                                                    .projectId(projectId)
+                                                    .userId(studentId)
+                                                    .percentageCompleted(0.00)
+                                                    .grade(0)
+                                                    .build());
         return projectId;
     }
 }

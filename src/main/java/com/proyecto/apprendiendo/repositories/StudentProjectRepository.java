@@ -7,11 +7,15 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface StudentProjectRepository extends JpaRepository<StudentProject,Long> {
+public interface StudentProjectRepository extends JpaRepository<StudentProject, Long> {
     ArrayList<StudentProject> findByUserId(Long userId);
+
     ArrayList<StudentProject> findByUserIdAndPercentageCompleted(Long userId, Double percentageCompleted);
+
     ArrayList<StudentProject> findByProjectId(Long projectId);
+
     StudentProject findByUserIdAndProjectId(Long userId, Long projectId);
+
     StudentProject deleteByProjectIdAndUserId(Long projectId, Long userId);
 
 

@@ -21,22 +21,22 @@ public class AvatarPartController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "AvatarPart")
-    public ResponseEntity<Long> newAvatarPart(@RequestBody AvatarPartDTO AvatarPartDTO){
-        return responseDecorator.decorate(()-> createAvatarPartService.execute(AvatarPartDTO));
+    public ResponseEntity<Long> newAvatarPart(@RequestBody AvatarPartDTO AvatarPartDTO) {
+        return responseDecorator.decorate(() -> createAvatarPartService.execute(AvatarPartDTO));
     }
 
-    @GetMapping (path = "AvatarPart/{AvatarPartId}")
-    public ResponseEntity<AvatarPartDTO> getAvatarPart(@PathVariable Long AvatarPartId){
-        return responseDecorator.decorate(()-> getAvatarPartService.execute(AvatarPartId));
+    @GetMapping(path = "AvatarPart/{AvatarPartId}")
+    public ResponseEntity<AvatarPartDTO> getAvatarPart(@PathVariable Long AvatarPartId) {
+        return responseDecorator.decorate(() -> getAvatarPartService.execute(AvatarPartId));
     }
 
     @DeleteMapping(path = "AvatarPart/{AvatarPartId}")
-    public ResponseEntity<Long> deleteAvatarPart(@PathVariable Long AvatarPartId){
-        return responseDecorator.decorate(()-> deleteAvatarPartService.execute(AvatarPartId));
+    public ResponseEntity<Long> deleteAvatarPart(@PathVariable Long AvatarPartId) {
+        return responseDecorator.decorate(() -> deleteAvatarPartService.execute(AvatarPartId));
     }
 
     @PutMapping(path = "AvatarPart")
-    public ResponseEntity<Long> updateAvatarPart(@RequestBody AvatarPartDTO AvatarPartDTO){
-        return responseDecorator.decorate(()-> updateAvatarPartService.execute(AvatarPartDTO));
+    public ResponseEntity<Long> updateAvatarPart(@RequestBody AvatarPartDTO AvatarPartDTO) {
+        return responseDecorator.decorate(() -> updateAvatarPartService.execute(AvatarPartDTO));
     }
 }

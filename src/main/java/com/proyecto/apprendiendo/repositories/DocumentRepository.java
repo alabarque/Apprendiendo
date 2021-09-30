@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface DocumentRepository extends JpaRepository<Document,Long> {
+public interface DocumentRepository extends JpaRepository<Document, Long> {
     ArrayList<Document> findBySourceId(Long sourceId);
 }

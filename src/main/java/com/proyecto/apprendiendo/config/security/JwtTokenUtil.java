@@ -17,10 +17,8 @@ import java.util.Map;
 @AllArgsConstructor
 public class JwtTokenUtil implements Serializable {
 
-    private static final long serialVersionUID = 234234523523L;
-
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
-
+    private static final long serialVersionUID = 234234523523L;
     private final UserTokenRepository userTokenRepository;
     private final SecretKey key; //TODO esto genera una pw distinta cada vez que se levanta la aplicacion
 
@@ -67,9 +65,13 @@ public class JwtTokenUtil implements Serializable {
     //1. Define  claims of the token, like Issuer, Expiration, Subject, and the ID
     //2. Sign the JWT using the HS512 algorithm and secret key.
     private String doGenerateToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
-                .signWith(key).compact();
+        return Jwts.builder()
+                   .setClaims(claims)
+                   .setSubject(subject)
+                   .setIssuedAt(new Date(System.currentTimeMillis()))
+                   .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
+                   .signWith(key)
+                   .compact();
     }
 
 

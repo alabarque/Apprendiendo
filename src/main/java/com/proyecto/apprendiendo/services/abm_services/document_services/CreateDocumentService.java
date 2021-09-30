@@ -16,7 +16,14 @@ public class CreateDocumentService {
     private DocumentRepository documentRepository;
 
     public Long execute(NewDocumentDTO newDocumentDTO) {
-        Document document = Document.builder().position(newDocumentDTO.getPosition()).sourceId(newDocumentDTO.getSourceId()).documentSourceType(newDocumentDTO.getDocumentSourceType()).data(newDocumentDTO.getData()).name(newDocumentDTO.getName()).dataType(newDocumentDTO.getDataType()).build();
+        Document document = Document.builder()
+                                    .position(newDocumentDTO.getPosition())
+                                    .sourceId(newDocumentDTO.getSourceId())
+                                    .documentSourceType(newDocumentDTO.getDocumentSourceType())
+                                    .data(newDocumentDTO.getData())
+                                    .name(newDocumentDTO.getName())
+                                    .dataType(newDocumentDTO.getDataType())
+                                    .build();
         return documentRepository.save(document).getId();
     }
 }

@@ -16,8 +16,11 @@ public class CreateAvatarPartService {
     private AvatarPartRepository avatarPartRepository;
 
     public Long execute(AvatarPartDTO avatarPartDTO) {
-        AvatarPart avatarPart = AvatarPart.builder().name(avatarPartDTO.getName()).imageData(avatarPartDTO.getImageData()).type(avatarPartDTO.getType()).build();
-        return avatarPartRepository
-                .save(avatarPart).getId();
+        AvatarPart avatarPart = AvatarPart.builder()
+                                          .name(avatarPartDTO.getName())
+                                          .imageData(avatarPartDTO.getImageData())
+                                          .type(avatarPartDTO.getType())
+                                          .build();
+        return avatarPartRepository.save(avatarPart).getId();
     }
 }

@@ -16,6 +16,7 @@ public class GetProjectTemplateByNameService {
     private GetProjectTemplateService getProjectTemplateService;
 
     public ProjectTemplateDTO execute(String templateName) {
-        return getProjectTemplateService.execute(projectRepository.findByClassroomIdAndName(Long.parseLong("0"), templateName).getId());
+        return getProjectTemplateService.execute(projectRepository.findByClassroomIdAndName(Long.parseLong("0"), templateName)
+                                                                  .getId());
     }
 }

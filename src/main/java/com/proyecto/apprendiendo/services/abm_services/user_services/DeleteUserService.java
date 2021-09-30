@@ -14,7 +14,7 @@ public class DeleteUserService {
     private UserRepository userRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long userId){
+    public Long execute(Long userId) {
         userRepository.deleteById(userId);
         return userId;
     }

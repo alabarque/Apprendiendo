@@ -7,7 +7,7 @@ import com.proyecto.apprendiendo.entities.dtos.ProjectTemplateDTO;
 
 public class ProjectMapper {
 
-    public static ProjectDTO entityToDto(Project project){
+    public static ProjectDTO entityToDto(Project project) {
 
         return ProjectDTO.builder()
                          .id(project.getId())
@@ -20,7 +20,7 @@ public class ProjectMapper {
                          .build();
     }
 
-    public static ProjectTemplateDTO entityToTemplateDto(Project project){
+    public static ProjectTemplateDTO entityToTemplateDto(Project project) {
 
         return ProjectTemplateDTO.builder()
                                  .name(project.getName())
@@ -30,7 +30,7 @@ public class ProjectMapper {
                                  .build();
     }
 
-    public static ProjectNewDTO templateToNew(ProjectTemplateDTO projectTemplateDTO){
+    public static ProjectNewDTO templateToNew(ProjectTemplateDTO projectTemplateDTO) {
 
         return ProjectNewDTO.builder()
                             .name(projectTemplateDTO.getName())

@@ -18,11 +18,17 @@ public class GetUsersService {
     private UserRepository userRepository;
 
     public ArrayList<UserDTO> execute() {
-        return userRepository.findAll().stream().map(u -> UserMapper.entityToDto(u)).collect(Collectors.toCollection(ArrayList::new));
+        return userRepository.findAll()
+                             .stream()
+                             .map(u -> UserMapper.entityToDto(u))
+                             .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<UserDTO> execute(String role) {
-        return userRepository.findByRole(role).stream().map(u -> UserMapper.entityToDto(u)).collect(Collectors.toCollection(ArrayList::new));
+        return userRepository.findByRole(role)
+                             .stream()
+                             .map(u -> UserMapper.entityToDto(u))
+                             .collect(Collectors.toCollection(ArrayList::new));
     }
 
 

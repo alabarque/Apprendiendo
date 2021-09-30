@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername(String username);
-    ArrayList<User> findByRole (String role);
+
+    ArrayList<User> findByRole(String role);
 }

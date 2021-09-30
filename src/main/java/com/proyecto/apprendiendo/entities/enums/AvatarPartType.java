@@ -7,11 +7,11 @@ public enum AvatarPartType {
 
     private final String value;
 
-    public String getValue(){
-        return value;
+    AvatarPartType(String value) {
+        this.value = value;
     }
 
-    AvatarPartType(String value){
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 }

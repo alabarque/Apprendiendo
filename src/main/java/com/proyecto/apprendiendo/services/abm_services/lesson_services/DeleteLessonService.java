@@ -13,7 +13,7 @@ public class DeleteLessonService {
 
     private LessonRepository lessonRepository;
 
-    public Long execute(Long lessonId){
+    public Long execute(Long lessonId) {
         lessonRepository.deleteById(lessonId);
         return lessonId;
     }

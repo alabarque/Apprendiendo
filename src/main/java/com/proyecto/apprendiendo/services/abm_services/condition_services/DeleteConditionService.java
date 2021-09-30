@@ -13,7 +13,7 @@ public class DeleteConditionService {
 
     private ConditionRepository conditionRepository;
 
-    public Long execute(Long conditionId){
+    public Long execute(Long conditionId) {
         conditionRepository.deleteById(conditionId);
         return conditionId;
     }

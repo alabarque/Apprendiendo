@@ -9,21 +9,19 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Service
 public class ResponseDecorator {
-    @FunctionalInterface
-    public interface CallableEx<T> {
-        T execute();
-    }
-
     public <T> ResponseEntity<T> decorate(CallableEx<T> service) {
         try {
             return ResponseEntity.ok().body(service.execute());
-        }
-        catch (BadCredentialsException e) {
+        } catch (BadCredentialsException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
 
+    }
+
+    @FunctionalInterface
+    public interface CallableEx<T> {
+        T execute();
     }
 }

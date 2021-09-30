@@ -20,6 +20,8 @@ public class GetLessonActivitiesService {
 
     public ArrayList<ActivityDTO> execute(Long lessonId) {
         ArrayList<Activity> activities = activityRepository.findByLessonId(lessonId);
-        return activities.stream().map(activity -> ActivityMapper.entityToDto(activity)).collect(Collectors.toCollection(ArrayList::new));
+        return activities.stream()
+                         .map(activity -> ActivityMapper.entityToDto(activity))
+                         .collect(Collectors.toCollection(ArrayList::new));
     }
 }

@@ -18,6 +18,9 @@ public class GetAllMethodologiesService {
     private MethodologyRepository methodologyRepository;
 
     public ArrayList<MethodologyDTO> execute() {
-        return methodologyRepository.findAll().stream().map(methodology -> MethodologyMapper.entityToDto(methodology)).collect(Collectors.toCollection(ArrayList:: new));
+        return methodologyRepository.findAll()
+                                    .stream()
+                                    .map(methodology -> MethodologyMapper.entityToDto(methodology))
+                                    .collect(Collectors.toCollection(ArrayList::new));
     }
 }

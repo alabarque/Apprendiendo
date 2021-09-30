@@ -28,10 +28,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     private final GetUserDetailsService getUserDetailsService;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    @NotNull HttpServletResponse response,
-                                    @NotNull FilterChain chain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain chain) throws ServletException, IOException {
         // Get authorization header and validate
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (isEmpty(header) || !header.startsWith("Bearer ")) {
@@ -39,19 +36,20 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             return;
         }
         String token = header.substring(7);
-        if(isEmpty(token)) {
+        if (isEmpty(token)) {
             chain.doFilter(request, response);
             return;
         }
         String username = jwtTokenUtil.getUsernameFromToken(token);
-        if(isEmpty(username)) {
+        if (isEmpty(username)) {
             chain.doFilter(request, response);
             return;
         }
         // Get user identity and set it on the spring security context
         UserDetails userDetails = getUserDetailsService.loadUserByUsername(username);
         // Get jwt token and validate
-        if (!jwtTokenUtil.validateToken(token, userDetails) || SecurityContextHolder.getContext().getAuthentication() != null) {
+        if (!jwtTokenUtil.validateToken(token, userDetails) || SecurityContextHolder.getContext()
+                                                                                    .getAuthentication() != null) {
             chain.doFilter(request, response);
             return;
         }
@@ -60,8 +58,6 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(request, response);
     }
-
-
 
 
 }

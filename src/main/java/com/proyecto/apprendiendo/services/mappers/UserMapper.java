@@ -6,7 +6,7 @@ import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 
 public class UserMapper {
-    public static User DTOtoEntity(UserDTO userDTO){
+    public static User DTOtoEntity(UserDTO userDTO) {
         return User.builder()
                    .username(userDTO.getUsername())
                    .password(userDTO.getPassword())
@@ -21,13 +21,12 @@ public class UserMapper {
                    .build();
 
     }
-    public static User DTOtoEntity(UserLoginDTO userLoginDTO){
-        return User.builder()
-                   .username(userLoginDTO.getUsername())
-                   .password(userLoginDTO.getPassword())
-                   .build();
+
+    public static User DTOtoEntity(UserLoginDTO userLoginDTO) {
+        return User.builder().username(userLoginDTO.getUsername()).password(userLoginDTO.getPassword()).build();
     }
-    public static UserDTO entityToDto(User user){
+
+    public static UserDTO entityToDto(User user) {
         return UserDTO.builder()
                       .id(user.getId())
                       .username(user.getUsername())

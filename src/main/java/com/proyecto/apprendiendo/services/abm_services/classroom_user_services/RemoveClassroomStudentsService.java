@@ -16,7 +16,7 @@ public class RemoveClassroomStudentsService {
     private StudentClassroomRepository studentClassroomRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long classroomId, ArrayList<StudentDTO> studentDTOs){
+    public Long execute(Long classroomId, ArrayList<StudentDTO> studentDTOs) {
         studentDTOs.forEach(s -> studentClassroomRepository.deleteByClassroomIdAndStudentId(classroomId, s.getId()));
         return classroomId;
     }

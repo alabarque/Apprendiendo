@@ -34,16 +34,30 @@ public class GetProjectTemplateService {
 
     public ProjectTemplateDTO execute(Long projectId) {
         Project project = projectRepository.getById(projectId);
-        Map<Long, LessonTemplateDTO> lessons = lessonRepository.findByProjectId(project.getId()).stream().collect(Collectors.toMap(l -> l.getId(), l -> LessonMapper.entityToTemplateDto(l)));
+        Map<Long, LessonTemplateDTO> lessons = lessonRepository.findByProjectId(project.getId())
+                                                               .stream()
+                                                               .collect(Collectors.toMap(l -> l.getId(), l -> LessonMapper.entityToTemplateDto(l)));
 
-        lessons.forEach( (lid, l) -> {
-            Map<Long, ActivityTemplateDTO> activities = activityRepository.findByLessonId(lid).stream().collect(Collectors.toMap(a -> a.getId(), a -> ActivityMapper.entityToTemplateDto(a)));
-            activities.forEach((aid, a) -> a.setDocuments(documentRepository.findBySourceId(aid).stream().map(d -> DocumentMapper.entityToTemplateDto(d)).sorted(Comparator.comparing(DocumentTemplateDTO::getPosition)).collect(Collectors.toCollection(ArrayList::new))));
-            l.setActivities(activities.values().stream().sorted(Comparator.comparing(ActivityTemplateDTO::getPosition)).collect(Collectors.toCollection(ArrayList::new)));
+        lessons.forEach((lid, l) -> {
+            Map<Long, ActivityTemplateDTO> activities = activityRepository.findByLessonId(lid)
+                                                                          .stream()
+                                                                          .collect(Collectors.toMap(a -> a.getId(), a -> ActivityMapper.entityToTemplateDto(a)));
+            activities.forEach((aid, a) -> a.setDocuments(documentRepository.findBySourceId(aid)
+                                                                            .stream()
+                                                                            .map(d -> DocumentMapper.entityToTemplateDto(d))
+                                                                            .sorted(Comparator.comparing(DocumentTemplateDTO::getPosition))
+                                                                            .collect(Collectors.toCollection(ArrayList::new))));
+            l.setActivities(activities.values()
+                                      .stream()
+                                      .sorted(Comparator.comparing(ActivityTemplateDTO::getPosition))
+                                      .collect(Collectors.toCollection(ArrayList::new)));
         });
 
         ProjectTemplateDTO projectTemplateDTO = ProjectMapper.entityToTemplateDto(project);
-        projectTemplateDTO.setLessons(lessons.values().stream().sorted(Comparator.comparing(LessonTemplateDTO::getPosition)).collect(Collectors.toCollection(ArrayList::new)));
+        projectTemplateDTO.setLessons(lessons.values()
+                                             .stream()
+                                             .sorted(Comparator.comparing(LessonTemplateDTO::getPosition))
+                                             .collect(Collectors.toCollection(ArrayList::new)));
 
         return projectTemplateDTO;
     }

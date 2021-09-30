@@ -21,13 +21,16 @@ public class GetStudentRewardsService {
     private StudentRewardRepository studentRewardRepository;
 
     public ArrayList<RewardDTO> execute(Long studentId, String rewardType) {
-        if(rewardType.equals("ANY")){
+        if (rewardType.equals("ANY")) {
             ArrayList<StudentReward> studentRewards = studentRewardRepository.findByStudentId(studentId);
-            return studentRewards.stream().map(ps -> RewardMapper.entityToDTO(rewardRepository.getById(ps.getRewardId()))).collect(Collectors.toCollection(ArrayList::new));
-        }
-        else{
+            return studentRewards.stream()
+                                 .map(ps -> RewardMapper.entityToDTO(rewardRepository.getById(ps.getRewardId())))
+                                 .collect(Collectors.toCollection(ArrayList::new));
+        } else {
             ArrayList<StudentReward> studentRewards = studentRewardRepository.findByStudentIdAndRewardType(studentId, rewardType);
-            return studentRewards.stream().map(ps -> RewardMapper.entityToDTO(rewardRepository.getById(ps.getRewardId()))).collect(Collectors.toCollection(ArrayList::new));
+            return studentRewards.stream()
+                                 .map(ps -> RewardMapper.entityToDTO(rewardRepository.getById(ps.getRewardId())))
+                                 .collect(Collectors.toCollection(ArrayList::new));
         }
 
     }

@@ -13,7 +13,7 @@ public class DeleteDocumentService {
 
     private DocumentRepository documentRepository;
 
-    public Long execute(Long documentId, Long sourceId){
+    public Long execute(Long documentId, Long sourceId) {
         documentRepository.deleteById(documentId);
         return documentId;
     }

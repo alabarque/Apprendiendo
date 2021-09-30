@@ -4,14 +4,14 @@ import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.StudentProjectDTO;
 
 public class StudentProjectMapper {
-    public static StudentProjectDTO entityToDto(StudentProject studentProject){
+    public static StudentProjectDTO entityToDto(StudentProject studentProject) {
         return StudentProjectDTO.builder()
-                              .id(studentProject.getId())
-                              .projectId(studentProject.getProjectId())
-                              .userId(studentProject.getUserId())
-                              .grade(studentProject.getGrade())
-                              .percentageCompleted(studentProject.getPercentageCompleted())
-                              .dateCompleted(studentProject.getDateCompleted())
-                              .build();
+                                .id(studentProject.getId())
+                                .projectId(studentProject.getProjectId())
+                                .userId(studentProject.getUserId())
+                                .grade(studentProject.getGrade())
+                                .percentageCompleted(studentProject.getPercentageCompleted())
+                                .dateCompleted(studentProject.getDateCompleted())
+                                .build();
     }
 }

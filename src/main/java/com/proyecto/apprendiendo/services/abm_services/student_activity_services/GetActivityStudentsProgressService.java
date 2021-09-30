@@ -20,6 +20,8 @@ public class GetActivityStudentsProgressService {
 
     public ArrayList<StudentActivityDTO> execute(Long activityId) {
         ArrayList<StudentActivity> activityStudents = studentActivityRepository.findByActivityId(activityId);
-        return activityStudents.stream().map(ps -> getStudentActivityProgressService.execute(ps.getUserId(),activityId)).collect(Collectors.toCollection(ArrayList::new));
+        return activityStudents.stream()
+                               .map(ps -> getStudentActivityProgressService.execute(ps.getUserId(), activityId))
+                               .collect(Collectors.toCollection(ArrayList::new));
     }
 }

@@ -22,6 +22,8 @@ public class GetClassroomStudentsService {
 
     public ArrayList<StudentDTO> execute(Long classroomId) {
         ArrayList<StudentClassroom> classroomStudents = studentClassroomRepository.findByClassroomId(classroomId);
-        return classroomStudents.stream().map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getStudentId()))).collect(Collectors.toCollection(ArrayList::new));
+        return classroomStudents.stream()
+                                .map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getStudentId())))
+                                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

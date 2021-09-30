@@ -16,7 +16,7 @@ public class DeleteRewardService {
     private RewardRepository rewardRepository;
     private ConditionRepository conditionRepository;
 
-    public Long execute(Long rewardId){
+    public Long execute(Long rewardId) {
         Reward reward = rewardRepository.getById(rewardId);
         if (reward.getConditionId() != 0) conditionRepository.deleteById(reward.getConditionId());
         rewardRepository.deleteById(rewardId);

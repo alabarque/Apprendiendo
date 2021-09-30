@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class Avatar {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private Long bodyId; //FK a AvatarPartType

@@ -35,8 +35,8 @@ public class LoginController {
             userDTO.setToken(token);
 
             return ResponseEntity.ok()
-                    .header(HttpHeaders.AUTHORIZATION, token)
-                    .body(objectMapper.writeValueAsString(userDTO));
+                                 .header(HttpHeaders.AUTHORIZATION, token)
+                                 .body(objectMapper.writeValueAsString(userDTO));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

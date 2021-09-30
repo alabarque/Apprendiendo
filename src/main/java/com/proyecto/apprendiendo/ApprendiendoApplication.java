@@ -24,8 +24,7 @@ public class ApprendiendoApplication {
 
     @Bean
     public CorsFilter corsFilter() {
-        UrlBasedCorsConfigurationSource source =
-                new UrlBasedCorsConfigurationSource();
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.addAllowedOriginPattern("*");
@@ -41,6 +40,7 @@ public class ApprendiendoApplication {
         source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
         return source;
     }
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -52,7 +52,7 @@ public class ApprendiendoApplication {
     }
 
     @Bean
-    public SecretKey randomKey(){
+    public SecretKey randomKey() {
         return Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
 

@@ -19,14 +19,19 @@ public class GetStudentLessonProgressService {
     private ActivityRepository activityRepository;
     private GetStudentActivityProgressService getStudentActivityProgressService;
 
-    public StudentLessonDTO execute(Long studentId, Long lessonId){
+    public StudentLessonDTO execute(Long studentId, Long lessonId) {
         Lesson lesson = lessonRepository.getById(lessonId);
-        StudentLessonDTO studentLessonDTO = StudentLessonDTO.builder().studentId(studentId).projectId(lesson.getProjectId()).id(lessonId).build();
+        StudentLessonDTO studentLessonDTO = StudentLessonDTO.builder()
+                                                            .studentId(studentId)
+                                                            .projectId(lesson.getProjectId())
+                                                            .id(lessonId)
+                                                            .build();
 
         Double percentageCompleted = activityRepository.findAll()
                                                        .stream()
                                                        .filter(a -> a.getLessonId().equals(lessonId))
-                                                       .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId()).getPercentageCompleted())
+                                                       .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
+                                                                                                          .getPercentageCompleted())
                                                        .average()
                                                        .getAsDouble();
 

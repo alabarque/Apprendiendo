@@ -18,20 +18,20 @@ public class RegisterController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(value = "register/student")
-    public ResponseEntity<Long> registerStudent(@RequestBody UserDTO userDTO){
-        return responseDecorator.decorate(()->createUserService.execute(userDTO, UserType.STUDENT));
+    public ResponseEntity<Long> registerStudent(@RequestBody UserDTO userDTO) {
+        return responseDecorator.decorate(() -> createUserService.execute(userDTO, UserType.STUDENT));
     }
 
     @PostMapping(value = "register/teacher")
-    public ResponseEntity<Long> registerTeacher(@RequestBody UserDTO userDTO){
-        return responseDecorator.decorate(()->createUserService.execute(userDTO, UserType.TEACHER));
+    public ResponseEntity<Long> registerTeacher(@RequestBody UserDTO userDTO) {
+        return responseDecorator.decorate(() -> createUserService.execute(userDTO, UserType.TEACHER));
     }
 
 
     //Temporal, de momento esta para tests
     @PostMapping(value = "register/admin")
-    public ResponseEntity<Long> registerAdmin(@RequestBody UserDTO userDTO){
-        return responseDecorator.decorate(()->createUserService.execute(userDTO, UserType.ADMIN));
+    public ResponseEntity<Long> registerAdmin(@RequestBody UserDTO userDTO) {
+        return responseDecorator.decorate(() -> createUserService.execute(userDTO, UserType.ADMIN));
     }
 
 }

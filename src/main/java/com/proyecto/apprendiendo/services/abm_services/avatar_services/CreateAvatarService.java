@@ -16,7 +16,12 @@ public class CreateAvatarService {
     private AvatarRepository avatarRepository;
 
     public Long execute(AvatarDTO avatarDTO) {
-        Avatar avatar = Avatar.builder().bodyId(avatarDTO.getBodyId()).hatId(avatarDTO.getHatId()).glassesId(avatarDTO.getGlassesId()).name(avatarDTO.getName()).build();
+        Avatar avatar = Avatar.builder()
+                              .bodyId(avatarDTO.getBodyId())
+                              .hatId(avatarDTO.getHatId())
+                              .glassesId(avatarDTO.getGlassesId())
+                              .name(avatarDTO.getName())
+                              .build();
         return avatarRepository.save(avatar).getId();
     }
 }

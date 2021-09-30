@@ -16,7 +16,7 @@ public class UpdateProjectService {
     private ProjectRepository projectRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(ProjectDTO projectDTO){
+    public Long execute(ProjectDTO projectDTO) {
         Project project = projectRepository.getById(projectDTO.getId());
 
         project.setId(projectDTO.getId());

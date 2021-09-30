@@ -21,22 +21,22 @@ public class AvatarController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "avatar")
-    public ResponseEntity<Long> newAvatar(@RequestBody AvatarDTO AvatarDTO){
-        return responseDecorator.decorate(()->createAvatarService.execute(AvatarDTO));
+    public ResponseEntity<Long> newAvatar(@RequestBody AvatarDTO AvatarDTO) {
+        return responseDecorator.decorate(() -> createAvatarService.execute(AvatarDTO));
     }
 
-    @GetMapping (path = "avatar/{AvatarId}")
-    public ResponseEntity<AvatarDTO> getAvatar(@PathVariable Long AvatarId){
-        return responseDecorator.decorate(()->getAvatarService.execute(AvatarId));
+    @GetMapping(path = "avatar/{AvatarId}")
+    public ResponseEntity<AvatarDTO> getAvatar(@PathVariable Long AvatarId) {
+        return responseDecorator.decorate(() -> getAvatarService.execute(AvatarId));
     }
 
     @DeleteMapping(path = "avatar/{AvatarId}")
-    public ResponseEntity<Long> deleteAvatar(@PathVariable Long AvatarId){
-        return responseDecorator.decorate(()->deleteAvatarService.execute(AvatarId));
+    public ResponseEntity<Long> deleteAvatar(@PathVariable Long AvatarId) {
+        return responseDecorator.decorate(() -> deleteAvatarService.execute(AvatarId));
     }
 
     @PutMapping(path = "avatar")
-    public ResponseEntity<Long> updateAvatar(@RequestBody AvatarDTO AvatarDTO){
-        return responseDecorator.decorate(()->updateAvatarService.execute(AvatarDTO));
+    public ResponseEntity<Long> updateAvatar(@RequestBody AvatarDTO AvatarDTO) {
+        return responseDecorator.decorate(() -> updateAvatarService.execute(AvatarDTO));
     }
 }

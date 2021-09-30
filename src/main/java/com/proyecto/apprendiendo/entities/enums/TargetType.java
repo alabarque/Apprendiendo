@@ -7,11 +7,11 @@ public enum TargetType {
 
     private final String value;
 
-    public String getValue(){
-        return value;
+    TargetType(String value) {
+        this.value = value;
     }
 
-    TargetType(String value){
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 }

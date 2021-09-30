@@ -22,18 +22,26 @@ public class GetStudentProjectProgressService {
     private GetStudentActivityProgressService getStudentActivityProgressService;
     private GetLessonService getLessonService;
 
-    public StudentProjectDTO execute(Long studentId, Long projectId){
+    public StudentProjectDTO execute(Long studentId, Long projectId) {
 
         StudentProject studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
-        if(studentProject == null) studentProject = StudentProject.builder().projectId(projectId).userId(studentId).percentageCompleted(0.00).grade(0).build();
+        if (studentProject == null) studentProject = StudentProject.builder()
+                                                                   .projectId(projectId)
+                                                                   .userId(studentId)
+                                                                   .percentageCompleted(0.00)
+                                                                   .grade(0)
+                                                                   .build();
         StudentProjectDTO studentProjectDTO = StudentProjectMapper.entityToDto(studentProject);
 
-        if(studentProjectDTO.getPercentageCompleted() == 0.00) {
+        if (studentProjectDTO.getPercentageCompleted() == 0.00) {
 
             Double percentageCompleted = activityRepository.findAll()
                                                            .stream()
-                                                           .filter(a -> getLessonService.execute(a.getLessonId()).getProjectId().equals(projectId))
-                                                           .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId()).getPercentageCompleted())
+                                                           .filter(a -> getLessonService.execute(a.getLessonId())
+                                                                                        .getProjectId()
+                                                                                        .equals(projectId))
+                                                           .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
+                                                                                                              .getPercentageCompleted())
                                                            .average()
                                                            .getAsDouble();
 

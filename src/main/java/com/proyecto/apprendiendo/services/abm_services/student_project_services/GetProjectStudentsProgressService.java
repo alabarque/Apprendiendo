@@ -24,7 +24,7 @@ public class GetProjectStudentsProgressService {
         Project project = projectRepository.getById(projectId);
         return getClassroomStudentsService.execute(project.getClassroomId())
                                           .stream()
-                                          .map(s -> getStudentProjectProgressService.execute(s.getId(),projectId))
+                                          .map(s -> getStudentProjectProgressService.execute(s.getId(), projectId))
                                           .collect(Collectors.toCollection(ArrayList::new));
     }
 }

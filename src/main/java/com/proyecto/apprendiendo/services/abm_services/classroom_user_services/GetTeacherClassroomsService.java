@@ -20,6 +20,8 @@ public class GetTeacherClassroomsService {
 
     public ArrayList<ClassroomDTO> execute(Long teacherId) {
         ArrayList<Classroom> teacherClassrooms = classroomRepository.findByTeacherId(teacherId);
-        return teacherClassrooms.stream().map(c -> ClassroomMapper.entityToDto(c)).collect(Collectors.toCollection(ArrayList::new));
+        return teacherClassrooms.stream()
+                                .map(c -> ClassroomMapper.entityToDto(c))
+                                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

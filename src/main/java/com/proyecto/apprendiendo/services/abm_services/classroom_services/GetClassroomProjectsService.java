@@ -18,6 +18,9 @@ public class GetClassroomProjectsService {
     private ProjectRepository projectRepository;
 
     public ArrayList<ProjectDTO> execute(Long idClass) {
-        return projectRepository.findByClassroomId(idClass).stream().map(p -> ProjectMapper.entityToDto(p)).collect(Collectors.toCollection(ArrayList:: new));
+        return projectRepository.findByClassroomId(idClass)
+                                .stream()
+                                .map(p -> ProjectMapper.entityToDto(p))
+                                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

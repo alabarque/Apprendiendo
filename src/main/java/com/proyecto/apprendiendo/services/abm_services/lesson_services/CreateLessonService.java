@@ -16,7 +16,13 @@ public class CreateLessonService {
     private LessonRepository lessonRepository;
 
     public Long execute(LessonDTO lessonDTO) {
-        Lesson lesson = Lesson.builder().name(lessonDTO.getName()).position(lessonDTO.getPosition()).projectId(lessonDTO.getProjectId()).startDate(lessonDTO.getStartDate()).dueDate(lessonDTO.getDueDate()).build();
+        Lesson lesson = Lesson.builder()
+                              .name(lessonDTO.getName())
+                              .position(lessonDTO.getPosition())
+                              .projectId(lessonDTO.getProjectId())
+                              .startDate(lessonDTO.getStartDate())
+                              .dueDate(lessonDTO.getDueDate())
+                              .build();
         return lessonRepository.save(lesson).getId();
     }
 }

@@ -16,10 +16,15 @@ public class GetStudentActivityProgressService {
 
     private StudentActivityRepository studentActivityRepository;
 
-    public StudentActivityDTO execute(Long studentId, Long activityId){
+    public StudentActivityDTO execute(Long studentId, Long activityId) {
         StudentActivity studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
 
-        if(studentActivity == null) studentActivity = StudentActivity.builder().activityId(activityId).userId(studentId).percentageCompleted(0.00).grade(0).build();
+        if (studentActivity == null) studentActivity = StudentActivity.builder()
+                                                                      .activityId(activityId)
+                                                                      .userId(studentId)
+                                                                      .percentageCompleted(0.00)
+                                                                      .grade(0)
+                                                                      .build();
         return StudentActivityMapper.entityToDto(studentActivity);
     }
 }

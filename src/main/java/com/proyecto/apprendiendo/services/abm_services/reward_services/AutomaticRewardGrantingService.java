@@ -28,9 +28,18 @@ public class AutomaticRewardGrantingService {
     public void execute(Long studentId, Long targetId, String targetType) {
 
         ArrayList<Reward> rewards = new ArrayList<>();
-        if (targetType.equals("PROJECT")) rewards = rewardRepository.findByTargetId(studentProjectRepository.findByUserIdAndProjectId(studentId,targetId).getId());
-        if (targetType.equals("ACTIVITY")) rewards = rewardRepository.findByTargetId(studentActivityRepository.findByUserIdAndActivityId(studentId,targetId).getId());
-        if (targetType.equals("CLASSROOM")) rewards = rewardRepository.findByTargetId(studentClassroomRepository.findByStudentIdAndClassroomId(studentId,targetId).getId());
-        rewards.forEach(r -> {if (evaluateConditionForStudentService.execute(r.getId(),studentId)) addRewardStudentService.execute(r.getId(),studentId);});
+        if (targetType.equals("PROJECT"))
+            rewards = rewardRepository.findByTargetId(studentProjectRepository.findByUserIdAndProjectId(studentId, targetId)
+                                                                              .getId());
+        if (targetType.equals("ACTIVITY"))
+            rewards = rewardRepository.findByTargetId(studentActivityRepository.findByUserIdAndActivityId(studentId, targetId)
+                                                                               .getId());
+        if (targetType.equals("CLASSROOM"))
+            rewards = rewardRepository.findByTargetId(studentClassroomRepository.findByStudentIdAndClassroomId(studentId, targetId)
+                                                                                .getId());
+        rewards.forEach(r -> {
+            if (evaluateConditionForStudentService.execute(r.getId(), studentId))
+                addRewardStudentService.execute(r.getId(), studentId);
+        });
     }
 }

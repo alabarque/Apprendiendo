@@ -15,7 +15,7 @@ public class UpdateAvatarPartService {
 
     private AvatarPartRepository avatarPartRepository;
 
-    public Long execute(AvatarPartDTO avatarPartDTO){
+    public Long execute(AvatarPartDTO avatarPartDTO) {
         AvatarPart avatarPart = avatarPartRepository.getById(avatarPartDTO.getId());
         avatarPart.setId(avatarPartDTO.getId());
         avatarPart.setName(avatarPartDTO.getName());

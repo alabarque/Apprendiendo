@@ -18,10 +18,10 @@ public class UpdateStudentProjectProgressService {
     private AutomaticRewardGrantingService automaticRewardGrantingService;
     private AddProjectStudentsService addProjectStudentsService;
 
-    public Long execute(Long studentId, Long projectId, StudentProjectDTO studentProjectDTO){
+    public Long execute(Long studentId, Long projectId, StudentProjectDTO studentProjectDTO) {
         StudentProject studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
-        if(studentProject == null) {
-            addProjectStudentsService.execute(projectId,studentId);
+        if (studentProject == null) {
+            addProjectStudentsService.execute(projectId, studentId);
             studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
         }
         studentProject.setGrade(studentProjectDTO.getGrade());

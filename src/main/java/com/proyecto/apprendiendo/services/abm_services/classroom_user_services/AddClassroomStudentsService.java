@@ -17,8 +17,13 @@ public class AddClassroomStudentsService {
     private StudentClassroomRepository studentClassroomRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long classroomId, ArrayList<StudentDTO> studentDTOs){
-        studentDTOs.forEach(s -> studentClassroomRepository.save(StudentClassroom.builder().classroomId(classroomId).studentId(s.getId()).grade(0).percentageCompleted(0.00).build()));
+    public Long execute(Long classroomId, ArrayList<StudentDTO> studentDTOs) {
+        studentDTOs.forEach(s -> studentClassroomRepository.save(StudentClassroom.builder()
+                                                                                 .classroomId(classroomId)
+                                                                                 .studentId(s.getId())
+                                                                                 .grade(0)
+                                                                                 .percentageCompleted(0.00)
+                                                                                 .build()));
         return classroomId;
     }
 }

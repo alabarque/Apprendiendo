@@ -20,6 +20,8 @@ public class GetSourcesDocumentsService {
 
     public ArrayList<DocumentDTO> execute(Long sourceId) {
         ArrayList<Document> documents = documentRepository.findBySourceId(sourceId);
-        return documents.stream().map(document -> DocumentMapper.entityToDto(documentRepository.getById(document.getId()))).collect(Collectors.toCollection(ArrayList::new));
+        return documents.stream()
+                        .map(document -> DocumentMapper.entityToDto(documentRepository.getById(document.getId())))
+                        .collect(Collectors.toCollection(ArrayList::new));
     }
 }

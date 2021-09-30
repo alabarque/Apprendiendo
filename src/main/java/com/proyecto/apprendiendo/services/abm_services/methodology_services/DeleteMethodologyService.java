@@ -13,7 +13,7 @@ public class DeleteMethodologyService {
 
     private MethodologyRepository methodologyRepository;
 
-    public Long execute(Long methodologyId){
+    public Long execute(Long methodologyId) {
         methodologyRepository.deleteById(methodologyId);
         return methodologyId;
     }

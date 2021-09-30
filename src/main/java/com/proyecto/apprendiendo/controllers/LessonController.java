@@ -24,18 +24,18 @@ public class LessonController {
     private GetLessonStudentsProgressService getLessonStudentsProgressService;
 
     @PostMapping(path = "lesson")
-    public ResponseEntity<Long> newLesson(@RequestBody LessonDTO lessonDTO){
-        return responseDecorator.decorate(()->createLessonService.execute(lessonDTO));
+    public ResponseEntity<Long> newLesson(@RequestBody LessonDTO lessonDTO) {
+        return responseDecorator.decorate(() -> createLessonService.execute(lessonDTO));
     }
 
-    @GetMapping (path = "lesson/{lessonId}")
-    public ResponseEntity< LessonDTO> getLesson(@PathVariable Long lessonId){
-        return responseDecorator.decorate(()->getLessonService.execute(lessonId));
+    @GetMapping(path = "lesson/{lessonId}")
+    public ResponseEntity<LessonDTO> getLesson(@PathVariable Long lessonId) {
+        return responseDecorator.decorate(() -> getLessonService.execute(lessonId));
     }
 
     @DeleteMapping(path = "lesson/{lessonId}")
-    public ResponseEntity<Long> deleteLesson(@PathVariable Long lessonId){
-        return responseDecorator.decorate(()->deleteLessonService.execute(lessonId));
+    public ResponseEntity<Long> deleteLesson(@PathVariable Long lessonId) {
+        return responseDecorator.decorate(() -> deleteLessonService.execute(lessonId));
     }
 
     @PutMapping(path = "lesson")
@@ -45,11 +45,11 @@ public class LessonController {
 
     @GetMapping(path = "lesson/{lessonId}/activities")
     public ResponseEntity<ArrayList<ActivityDTO>> getProjectActivities(@PathVariable("lessonId") Long lessonId) {
-        return responseDecorator.decorate(()-> getLessonActivitiesService.execute(lessonId));
+        return responseDecorator.decorate(() -> getLessonActivitiesService.execute(lessonId));
     }
 
     @GetMapping(path = "lesson/{lessonId}/students/progress")
     public ResponseEntity<ArrayList<StudentLessonDTO>> getLessonStudentsProgress(@PathVariable("lessonId") Long lessonId) {
-        return responseDecorator.decorate(()->getLessonStudentsProgressService.execute(lessonId));
+        return responseDecorator.decorate(() -> getLessonStudentsProgressService.execute(lessonId));
     }
 }

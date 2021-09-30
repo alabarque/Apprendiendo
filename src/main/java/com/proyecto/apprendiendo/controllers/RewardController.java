@@ -21,22 +21,22 @@ public class RewardController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "reward")
-    public ResponseEntity<Long> newReward(@RequestBody RewardDTO RewardDTO){
-        return responseDecorator.decorate(()->createRewardService.execute(RewardDTO));
+    public ResponseEntity<Long> newReward(@RequestBody RewardDTO RewardDTO) {
+        return responseDecorator.decorate(() -> createRewardService.execute(RewardDTO));
     }
 
-    @GetMapping (path = "reward/{RewardId}")
-    public ResponseEntity<RewardDTO> getReward(@PathVariable Long RewardId){
-        return responseDecorator.decorate(()->getRewardService.execute(RewardId));
+    @GetMapping(path = "reward/{RewardId}")
+    public ResponseEntity<RewardDTO> getReward(@PathVariable Long RewardId) {
+        return responseDecorator.decorate(() -> getRewardService.execute(RewardId));
     }
 
     @DeleteMapping(path = "reward/{RewardId}")
-    public ResponseEntity<Long> deleteReward(@PathVariable Long RewardId){
-        return responseDecorator.decorate(()->deleteRewardService.execute(RewardId));
+    public ResponseEntity<Long> deleteReward(@PathVariable Long RewardId) {
+        return responseDecorator.decorate(() -> deleteRewardService.execute(RewardId));
     }
 
     @PutMapping(path = "reward")
-    public ResponseEntity<Long> updateReward(@RequestBody RewardDTO RewardDTO){
-        return responseDecorator.decorate(()->updateRewardService.execute(RewardDTO));
+    public ResponseEntity<Long> updateReward(@RequestBody RewardDTO RewardDTO) {
+        return responseDecorator.decorate(() -> updateRewardService.execute(RewardDTO));
     }
 }

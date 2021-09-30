@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 public class StudentProject {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long userId; //FK a User
     private Long projectId; //FK a Project

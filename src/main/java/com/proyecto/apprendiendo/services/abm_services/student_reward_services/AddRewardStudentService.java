@@ -18,9 +18,13 @@ public class AddRewardStudentService {
     private RewardRepository rewardRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long rewardId, Long studentId){
+    public Long execute(Long rewardId, Long studentId) {
         Reward reward = rewardRepository.getById(rewardId);
-        studentRewardRepository.save(StudentReward.builder().rewardType(reward.getRewardType()).rewardId(rewardId).studentId(studentId).build());
+        studentRewardRepository.save(StudentReward.builder()
+                                                  .rewardType(reward.getRewardType())
+                                                  .rewardId(rewardId)
+                                                  .studentId(studentId)
+                                                  .build());
         return rewardId;
     }
 }

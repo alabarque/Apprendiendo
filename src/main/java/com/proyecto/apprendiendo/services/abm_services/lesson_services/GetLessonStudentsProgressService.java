@@ -27,7 +27,7 @@ public class GetLessonStudentsProgressService {
         Lesson lesson = lessonRepository.getById(lessonId);
         return getClassroomStudentsService.execute(getProjectService.execute(lesson.getProjectId()).getClassroomId())
                                           .stream()
-                                          .map(s -> getStudentLessonProgressService.execute(s.getId(),lessonId))
+                                          .map(s -> getStudentLessonProgressService.execute(s.getId(), lessonId))
                                           .collect(Collectors.toCollection(ArrayList::new));
     }
 }

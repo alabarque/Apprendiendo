@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     protected Long avatarId; //FK a Avatar
     protected String username;

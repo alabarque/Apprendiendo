@@ -14,7 +14,7 @@ public class RemoveRewardStudentService {
     private StudentRewardRepository studentRewardRepository;
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(Long rewardId, Long studentId){
+    public Long execute(Long rewardId, Long studentId) {
         studentRewardRepository.deleteByStudentIdAndRewardId(studentId, rewardId);
         return rewardId;
     }

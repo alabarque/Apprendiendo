@@ -13,11 +13,11 @@ public enum ConditionType {
 
     private final String value;
 
-    public String getValue(){
-        return value;
+    ConditionType(String value) {
+        this.value = value;
     }
 
-    ConditionType(String value){
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 }

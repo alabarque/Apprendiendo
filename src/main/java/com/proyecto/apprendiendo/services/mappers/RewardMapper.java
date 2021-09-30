@@ -5,7 +5,7 @@ import com.proyecto.apprendiendo.entities.dtos.RewardDTO;
 
 public class RewardMapper {
 
-    public static RewardDTO entityToDTO(Reward reward){
+    public static RewardDTO entityToDTO(Reward reward) {
         return RewardDTO.builder()
                         .id(reward.getId())
                         .name(reward.getName())

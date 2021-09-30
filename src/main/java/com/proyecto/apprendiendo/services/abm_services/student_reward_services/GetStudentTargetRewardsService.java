@@ -19,11 +19,11 @@ public class GetStudentTargetRewardsService {
     private StudentRewardRepository studentRewardRepository;
     private RewardRepository rewardRepository;
 
-    public ArrayList<RewardDTO> execute(Long studentId, Long projectId){
-    return rewardRepository.findByTargetId(projectId)
-                           .stream()
-                           .filter(r -> studentRewardRepository.findByStudentIdAndRewardId(studentId, r.getId()) != null)
-                           .map(r -> RewardMapper.entityToDTO(r))
-                           .collect(Collectors.toCollection(ArrayList::new));
+    public ArrayList<RewardDTO> execute(Long studentId, Long projectId) {
+        return rewardRepository.findByTargetId(projectId)
+                               .stream()
+                               .filter(r -> studentRewardRepository.findByStudentIdAndRewardId(studentId, r.getId()) != null)
+                               .map(r -> RewardMapper.entityToDTO(r))
+                               .collect(Collectors.toCollection(ArrayList::new));
     }
 }

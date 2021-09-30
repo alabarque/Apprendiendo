@@ -16,7 +16,11 @@ public class CreateConditionService {
     private ConditionRepository conditionRepository;
 
     public Long execute(ConditionDTO conditionDTO) {
-        Condition condition = Condition.builder().conditionType(conditionDTO.getConditionType()).data(conditionDTO.getData()).text(conditionDTO.getText()).build();
+        Condition condition = Condition.builder()
+                                       .conditionType(conditionDTO.getConditionType())
+                                       .data(conditionDTO.getData())
+                                       .text(conditionDTO.getText())
+                                       .build();
         return conditionRepository.save(condition).getId();
     }
 }

@@ -21,8 +21,8 @@ public class GetUserClassroomsService {
     public ArrayList<ClassroomDTO> execute(Long userId) {
         String userRole = userRepository.getById(userId).getRole();
 
-        if(userRole.equals(UserRole.ROLE_STUDENT.getValue())) return getStudentClassroomsService.execute(userId);
-        else if(userRole.equals(UserRole.ROLE_TEACHER.getValue())) return getTeacherClassroomsService.execute(userId);
+        if (userRole.equals(UserRole.ROLE_STUDENT.getValue())) return getStudentClassroomsService.execute(userId);
+        else if (userRole.equals(UserRole.ROLE_TEACHER.getValue())) return getTeacherClassroomsService.execute(userId);
         else throw new RuntimeException("Error, solo los estudiantes y los docentes tienen classrooms");
     }
 }

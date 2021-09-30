@@ -23,14 +23,18 @@ public class GetStudentClassroomProgressService {
     private ActivityRepository activityRepository;
     private GetStudentActivityProgressService getStudentActivityProgressService;
 
-    public StudentClassroomDTO execute(Long studentId, Long classroomId){
+    public StudentClassroomDTO execute(Long studentId, Long classroomId) {
         StudentClassroomDTO studentClassroomDTO = StudentClassroomMapper.entityToDto(studentClassroomRepository.findByStudentIdAndClassroomId(studentId, classroomId));
 
-        if(studentClassroomDTO.getPercentageCompleted() == 0.00) {
+        if (studentClassroomDTO.getPercentageCompleted() == 0.00) {
             Double percentageCompleted = activityRepository.findAll()
                                                            .stream()
-                                                           .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId()).getProjectId()).getClassroomId().equals(classroomId))
-                                                           .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId()).getPercentageCompleted())
+                                                           .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId())
+                                                                                                                  .getProjectId())
+                                                                                         .getClassroomId()
+                                                                                         .equals(classroomId))
+                                                           .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
+                                                                                                              .getPercentageCompleted())
                                                            .average()
                                                            .getAsDouble();
 

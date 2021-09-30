@@ -16,7 +16,16 @@ public class CreateRewardService {
     private RewardRepository rewardRepository;
 
     public Long execute(RewardDTO rewardDTO) {
-        Reward reward = Reward.builder().rewardType(rewardDTO.getRewardType()).text(rewardDTO.getText()).conditionId(rewardDTO.getConditionId()).name(rewardDTO.getName()).text(rewardDTO.getText()).imageData(rewardDTO.getImageData()).targetId(rewardDTO.getTargetId()).targetType(rewardDTO.getTargetType()).build();
+        Reward reward = Reward.builder()
+                              .rewardType(rewardDTO.getRewardType())
+                              .text(rewardDTO.getText())
+                              .conditionId(rewardDTO.getConditionId())
+                              .name(rewardDTO.getName())
+                              .text(rewardDTO.getText())
+                              .imageData(rewardDTO.getImageData())
+                              .targetId(rewardDTO.getTargetId())
+                              .targetType(rewardDTO.getTargetType())
+                              .build();
         return rewardRepository.save(reward).getId();
     }
 }

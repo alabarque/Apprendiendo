@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Project {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Integer position;
     private Long methodologyId; //FK a Methodology

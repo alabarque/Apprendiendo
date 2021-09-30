@@ -20,6 +20,8 @@ public class GetProjectLessonsService {
 
     public ArrayList<LessonDTO> execute(Long projectId) {
         ArrayList<Lesson> lessons = lessonRepository.findByProjectId(projectId);
-        return lessons.stream().map(lesson -> LessonMapper.entityToDto(lesson)).collect(Collectors.toCollection(ArrayList::new));
+        return lessons.stream()
+                      .map(lesson -> LessonMapper.entityToDto(lesson))
+                      .collect(Collectors.toCollection(ArrayList::new));
     }
 }

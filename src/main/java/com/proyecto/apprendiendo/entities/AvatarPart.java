@@ -12,11 +12,11 @@ import javax.persistence.*;
 @Entity
 public class AvatarPart {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String type; //Enum AvatarPartType
-    @Column(length=1000000)
+    @Column(length = 1000000)
     private String imageData;
 }
 

@@ -14,14 +14,13 @@ import javax.transaction.Transactional;
 @Transactional
 public class UpdateStudentClassroomProgressService {
 
+    AddClassroomStudentService addClassroomStudentService;
     private StudentClassroomRepository studentClassroomRepository;
     private AutomaticRewardGrantingService automaticRewardGrantingService;
-    AddClassroomStudentService addClassroomStudentService;
 
-
-    public Long execute(Long studentId, Long classroomId, StudentClassroomDTO studentClassroomDTO){
+    public Long execute(Long studentId, Long classroomId, StudentClassroomDTO studentClassroomDTO) {
         StudentClassroom studentClassroom = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, classroomId);
-        if(studentClassroom == null) {
+        if (studentClassroom == null) {
             addClassroomStudentService.execute(classroomId, studentId);
             studentClassroom = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, classroomId);
         }

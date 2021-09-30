@@ -26,27 +26,27 @@ public class ActivityController {
     private GetActivityStudentsProgressService getActivityStudentsProgressService;
 
     @PostMapping(path = "activity")
-    public ResponseEntity<Long> newActivity(@RequestBody ActivityDTO activityDTO){
-        return responseDecorator.decorate(()->createActivityService.execute(activityDTO));
+    public ResponseEntity<Long> newActivity(@RequestBody ActivityDTO activityDTO) {
+        return responseDecorator.decorate(() -> createActivityService.execute(activityDTO));
     }
 
-    @GetMapping (path = "activity/{activityId}")
-    public ResponseEntity< ActivityDTO> getActivity(@PathVariable Long activityId){
-        return responseDecorator.decorate(()->getActivityService.execute(activityId));
+    @GetMapping(path = "activity/{activityId}")
+    public ResponseEntity<ActivityDTO> getActivity(@PathVariable Long activityId) {
+        return responseDecorator.decorate(() -> getActivityService.execute(activityId));
     }
 
     @DeleteMapping(path = "activity/{activityId}")
-    public ResponseEntity<Long> deleteActivity(@PathVariable Long activityId){
-        return responseDecorator.decorate(()->deleteActivityService.execute(activityId));
+    public ResponseEntity<Long> deleteActivity(@PathVariable Long activityId) {
+        return responseDecorator.decorate(() -> deleteActivityService.execute(activityId));
     }
 
     @PutMapping(path = "activity")
-    public ResponseEntity<Long> updateActivity(@RequestBody ActivityDTO activityDTO){
-        return responseDecorator.decorate(()->updateActivityService.execute(activityDTO));
+    public ResponseEntity<Long> updateActivity(@RequestBody ActivityDTO activityDTO) {
+        return responseDecorator.decorate(() -> updateActivityService.execute(activityDTO));
     }
 
-    @GetMapping (path = "activity/{activityId}/progress")
-    public ResponseEntity<ArrayList<StudentActivityDTO>> getActivityProgress(@PathVariable Long activityId){
-        return responseDecorator.decorate(()->getActivityStudentsProgressService.execute(activityId));
+    @GetMapping(path = "activity/{activityId}/progress")
+    public ResponseEntity<ArrayList<StudentActivityDTO>> getActivityProgress(@PathVariable Long activityId) {
+        return responseDecorator.decorate(() -> getActivityStudentsProgressService.execute(activityId));
     }
 }

@@ -5,18 +5,18 @@ import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.ActivityTemplateDTO;
 
 public class ActivityMapper {
-    public static ActivityDTO entityToDto(Activity activity){
+    public static ActivityDTO entityToDto(Activity activity) {
         return ActivityDTO.builder()
-                        .id(activity.getId())
-                        .position(activity.getPosition())
-                        .name(activity.getName())
-                        .lessonId(activity.getLessonId())
-                        .startDate(activity.getStartDate())
-                        .dueDate(activity.getDueDate())
-                        .build();
+                          .id(activity.getId())
+                          .position(activity.getPosition())
+                          .name(activity.getName())
+                          .lessonId(activity.getLessonId())
+                          .startDate(activity.getStartDate())
+                          .dueDate(activity.getDueDate())
+                          .build();
     }
 
-    public static ActivityTemplateDTO entityToTemplateDto(Activity activity){
+    public static ActivityTemplateDTO entityToTemplateDto(Activity activity) {
         return ActivityTemplateDTO.builder()
                                   .name(activity.getName())
                                   .position(activity.getPosition())
@@ -25,7 +25,7 @@ public class ActivityMapper {
                                   .build();
     }
 
-    public static ActivityDTO templateDtoToDto(ActivityTemplateDTO activityTemplateDTO){
+    public static ActivityDTO templateDtoToDto(ActivityTemplateDTO activityTemplateDTO) {
         return ActivityDTO.builder()
                           .name(activityTemplateDTO.getName())
                           .position(activityTemplateDTO.getPosition())

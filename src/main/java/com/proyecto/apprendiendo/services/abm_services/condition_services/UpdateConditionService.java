@@ -15,7 +15,7 @@ public class UpdateConditionService {
 
     private ConditionRepository conditionRepository;
 
-    public Long execute(ConditionDTO conditionDTO){
+    public Long execute(ConditionDTO conditionDTO) {
         Condition condition = conditionRepository.getById(conditionDTO.getId());
         condition.setConditionType(conditionDTO.getConditionType());
         condition.setData(conditionDTO.getData());

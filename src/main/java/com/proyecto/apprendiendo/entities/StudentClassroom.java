@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 public class StudentClassroom {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long studentId; //FK a User
     private Long classroomId; //FK a Classroom

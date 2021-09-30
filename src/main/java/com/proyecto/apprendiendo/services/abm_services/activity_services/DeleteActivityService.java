@@ -13,7 +13,7 @@ public class DeleteActivityService {
 
     private ActivityRepository activityRepository;
 
-    public Long execute(Long activityId){
+    public Long execute(Long activityId) {
         activityRepository.deleteById(activityId);
         return activityId;
     }

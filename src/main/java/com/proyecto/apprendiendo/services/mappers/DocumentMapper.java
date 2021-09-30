@@ -7,17 +7,18 @@ import com.proyecto.apprendiendo.entities.dtos.NewDocumentDTO;
 
 public class DocumentMapper {
 
-    public static DocumentDTO entityToDto(Document document){
+    public static DocumentDTO entityToDto(Document document) {
 
         return DocumentDTO.builder()
                           .id(document.getId())
                           .position(document.getPosition())
                           .name(document.getName())
                           .data(document.getData())
-                          .dataType(document.getDataType()).build();
+                          .dataType(document.getDataType())
+                          .build();
     }
 
-    public static NewDocumentDTO dtoToNewDto(DocumentDTO documentDTO, Long sourceId, String documentSourceType){
+    public static NewDocumentDTO dtoToNewDto(DocumentDTO documentDTO, Long sourceId, String documentSourceType) {
 
         return NewDocumentDTO.builder()
                              .id(documentDTO.getId())
@@ -30,7 +31,7 @@ public class DocumentMapper {
                              .build();
     }
 
-    public static DocumentTemplateDTO entityToTemplateDto(Document document){
+    public static DocumentTemplateDTO entityToTemplateDto(Document document) {
 
         return DocumentTemplateDTO.builder()
                                   .name(document.getName())
@@ -40,7 +41,7 @@ public class DocumentMapper {
                                   .build();
     }
 
-    public static NewDocumentDTO templateDtoToNewDto(DocumentTemplateDTO documentTemplateDTO, Long sourceId, String documentSourceType){
+    public static NewDocumentDTO templateDtoToNewDto(DocumentTemplateDTO documentTemplateDTO, Long sourceId, String documentSourceType) {
 
         return NewDocumentDTO.builder()
                              .name(documentTemplateDTO.getName())

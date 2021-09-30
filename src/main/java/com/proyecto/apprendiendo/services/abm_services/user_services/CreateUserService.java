@@ -24,7 +24,9 @@ public class CreateUserService {
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(UserDTO userDTO, UserType userType) {
-            return Optional.ofNullable(userRepository.findByUsername(userDTO.getUsername())).map(User::getId).orElseGet(() -> this.saveUser(userDTO, userType));
+        return Optional.ofNullable(userRepository.findByUsername(userDTO.getUsername()))
+                       .map(User::getId)
+                       .orElseGet(() -> this.saveUser(userDTO, userType));
     }
 
     private Long saveUser(UserDTO userDTO, UserType userType) {

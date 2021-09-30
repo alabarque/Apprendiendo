@@ -29,9 +29,9 @@ public class LoginService {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUsername(), userDTO.getPassword()));
         UserDetails userDetail = (UserDetails) authenticate.getPrincipal();
         Optional<UserToken> userTokenOptional = userTokenRepository.findFirstByUsername(userDetail.getUsername());
-        if(userTokenOptional.isPresent()){
+        if (userTokenOptional.isPresent()) {
             return userTokenOptional.get().getToken();
-        } else{
+        } else {
             String token = jwtTokenUtil.generateToken(userDetail);
             UserToken userToken = UserToken.builder().username(userDetail.getUsername()).token(token).build();
             userTokenRepository.save(userToken);

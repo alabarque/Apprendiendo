@@ -13,7 +13,7 @@ public class DeleteAvatarService {
 
     private AvatarRepository avatarRepository;
 
-    public Long execute(Long avatarId){
+    public Long execute(Long avatarId) {
         avatarRepository.deleteById(avatarId);
         return avatarId;
     }
