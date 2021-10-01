@@ -9,6 +9,7 @@ import java.util.ArrayList;
 @Repository
 public interface RewardRepository extends JpaRepository<Reward, Long> {
     ArrayList<Reward> findByTargetIdAndRewardType(Long targetId, String rewardType);
+    ArrayList<Reward> findByRewardType(String rewardType);
 
     ArrayList<Reward> findByTargetId(Long targetId);
 }

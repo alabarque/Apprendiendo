@@ -20,11 +20,14 @@ public class AddRewardStudentService {
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long rewardId, Long studentId) {
         Reward reward = rewardRepository.getById(rewardId);
-        studentRewardRepository.save(StudentReward.builder()
-                                                  .rewardType(reward.getRewardType())
-                                                  .rewardId(rewardId)
-                                                  .studentId(studentId)
-                                                  .build());
+
+        if (studentRewardRepository.findByStudentIdAndRewardId(studentId,rewardId) == null){
+            studentRewardRepository.save(StudentReward.builder()
+                                                      .rewardType(reward.getRewardType())
+                                                      .rewardId(rewardId)
+                                                      .studentId(studentId)
+                                                      .build());
+        }
         return rewardId;
     }
 }

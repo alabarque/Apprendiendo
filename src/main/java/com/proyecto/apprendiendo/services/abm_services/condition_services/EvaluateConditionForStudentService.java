@@ -5,11 +5,22 @@ import com.proyecto.apprendiendo.entities.Reward;
 import com.proyecto.apprendiendo.entities.enums.ConditionType;
 import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.repositories.*;
+import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomProjectsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsProgressService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomProgressService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomsService;
+import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetActivityStudentsProgressService;
+import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetStudentActivityProgressService;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsProgressService;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetStudentProjectProgressService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -20,10 +31,15 @@ public class EvaluateConditionForStudentService {
     private ConditionRepository conditionRepository;
     private ProjectRepository projectRepository;
     private ActivityRepository activityRepository;
-    private ClassroomRepository classroomRepository;
+    private GetStudentActivityProgressService getStudentActivityProgressService;
+    private GetStudentProjectProgressService getStudentProjectProgressService;
+    private GetStudentClassroomProgressService getStudentClassroomProgressService;
+    private GetClassroomStudentsProgressService getClassroomStudentsProgressService;
+    private GetProjectStudentsProgressService getProjectStudentsProgressService;
+    private GetActivityStudentsProgressService getActivityStudentsProgressService;
+    private GetStudentClassroomsService getStudentClassroomsService;
+    private GetClassroomProjectsService getClassroomProjectsService;
     private StudentActivityRepository studentActivityRepository;
-    private StudentProjectRepository studentProjectRepository;
-    private StudentClassroomRepository studentClassroomRepository;
 
     public Boolean execute(Long rewardId, Long studentId) {
         Reward reward = rewardRepository.getById(rewardId);
@@ -79,27 +95,33 @@ public class EvaluateConditionForStudentService {
     }
 
     private Boolean evaluateXProjectsCompleted(Long studentId, Reward reward) {
-        long projectsCompleted = studentProjectRepository.findByUserIdAndPercentageCompleted(studentId, 100.00)
-                                                         .stream()
-                                                         .count();
+        Long projectsCompleted = getStudentClassroomsService.execute(studentId)
+                                                            .stream()
+                                                            .flatMap( classroom -> getClassroomProjectsService.execute(classroom.getId()).stream())
+                                                            .filter(p -> getStudentProjectProgressService.execute(studentId,p.getId()).getPercentageCompleted() >= 100.00)
+                                                            .count();
+
         if (projectsCompleted >= Long.parseLong(conditionRepository.getById(reward.getConditionId()).getData()))
             return Boolean.TRUE;
         else return Boolean.FALSE;
     }
 
     private Boolean evaluateXActivitiesCompleted(Long studentId, Reward reward) {
-        long activitiesCompleted = studentProjectRepository.findByUserIdAndPercentageCompleted(studentId, 100.00)
-                                                           .stream()
-                                                           .count();
+        long activitiesCompleted = studentActivityRepository.findByUserIdAndPercentageCompleted(studentId, 100.00)
+                                                            .stream()
+                                                            .count();
+
         if (activitiesCompleted >= Long.parseLong(conditionRepository.getById(reward.getConditionId()).getData()))
             return Boolean.TRUE;
         else return Boolean.FALSE;
     }
 
     private Boolean evaluateXClassroomsCompleted(Long studentId, Reward reward) {
-        long classroomsCompleted = studentProjectRepository.findByUserIdAndPercentageCompleted(studentId, 100.00)
-                                                           .stream()
-                                                           .count();
+        long classroomsCompleted = getStudentClassroomsService.execute(studentId)
+                                                            .stream()
+                                                            .filter(p -> getStudentClassroomProgressService.execute(studentId,p.getId()).getPercentageCompleted() >= 100.00)
+                                                            .count();
+
         if (classroomsCompleted >= Long.parseLong(conditionRepository.getById(reward.getConditionId()).getData()))
             return Boolean.TRUE;
         else return Boolean.FALSE;
@@ -114,38 +136,38 @@ public class EvaluateConditionForStudentService {
     private Integer getStudentScoreFromTarget(Long studentId, Reward reward) {
         String targetType = reward.getTargetType();
         if (targetType.equals(TargetType.PROJECT.toString()))
-            return studentProjectRepository.findByUserIdAndProjectId(studentId, reward.getTargetId()).getGrade();
+            return getStudentProjectProgressService.execute(studentId, reward.getTargetId()).getGrade();
         if (targetType.equals(TargetType.ACTIVITY.toString()))
-            return studentActivityRepository.findByUserIdAndActivityId(studentId, reward.getTargetId()).getGrade();
+            return getStudentActivityProgressService.execute(studentId, reward.getTargetId()).getGrade();
         if (targetType.equals(TargetType.CLASSROOM.toString()))
-            return studentClassroomRepository.findByStudentIdAndClassroomId(studentId, reward.getTargetId()).getGrade();
+            return getStudentClassroomProgressService.execute(studentId, reward.getTargetId()).getGrade();
         return 0;
     }
 
     private LocalDateTime getStudentDateCompletedFromTarget(Long studentId, Reward reward) {
         String targetType = reward.getTargetType();
         if (targetType.equals(TargetType.PROJECT.toString()))
-            return studentProjectRepository.findByUserIdAndProjectId(studentId, reward.getTargetId())
-                                           .getDateCompleted();
+            return getStudentProjectProgressService.execute(studentId, reward.getTargetId())
+                                                   .getDateCompleted();
         if (targetType.equals(TargetType.ACTIVITY.toString()))
-            return studentActivityRepository.findByUserIdAndActivityId(studentId, reward.getTargetId())
-                                            .getDateCompleted();
+            return getStudentActivityProgressService.execute(studentId, reward.getTargetId())
+                                                    .getDateCompleted();
         if (targetType.equals(TargetType.CLASSROOM.toString()))
-            return studentClassroomRepository.findByStudentIdAndClassroomId(studentId, reward.getTargetId())
-                                             .getDateCompleted();
+            return getStudentClassroomProgressService.execute(studentId, reward.getTargetId())
+                                                     .getDateCompleted();
         return LocalDateTime.now().plusYears(99);
     }
 
     private Double getStudentCompletionFromTarget(Long studentId, Reward reward) {
         String targetType = reward.getTargetType();
         if (targetType.equals(TargetType.PROJECT.toString()))
-            return studentProjectRepository.findByUserIdAndProjectId(studentId, reward.getTargetId())
+            return getStudentProjectProgressService.execute(studentId, reward.getTargetId())
                                            .getPercentageCompleted();
         if (targetType.equals(TargetType.ACTIVITY.toString()))
-            return studentActivityRepository.findByUserIdAndActivityId(studentId, reward.getTargetId())
+            return getStudentActivityProgressService.execute(studentId, reward.getTargetId())
                                             .getPercentageCompleted();
         if (targetType.equals(TargetType.CLASSROOM.toString()))
-            return studentClassroomRepository.findByStudentIdAndClassroomId(studentId, reward.getTargetId())
+            return getStudentClassroomProgressService.execute(studentId, reward.getTargetId())
                                              .getPercentageCompleted();
         return 0.00;
     }
@@ -162,19 +184,19 @@ public class EvaluateConditionForStudentService {
     private Integer getHighestScoreInTarget(Reward reward) {
         String targetType = reward.getTargetType();
         if (targetType.equals(TargetType.PROJECT.toString()))
-            return studentProjectRepository.findByProjectId(reward.getTargetId())
+            return getProjectStudentsProgressService.execute(reward.getTargetId())
                                            .stream()
                                            .map(st -> st.getGrade())
                                            .max(Integer::compare)
                                            .get();
         if (targetType.equals(TargetType.ACTIVITY.toString()))
-            return studentActivityRepository.findByActivityId(reward.getTargetId())
+            return getActivityStudentsProgressService.execute(reward.getTargetId())
                                             .stream()
                                             .map(st -> st.getGrade())
                                             .max(Integer::compare)
                                             .get();
         if (targetType.equals(TargetType.CLASSROOM.toString()))
-            return studentClassroomRepository.findByClassroomId(reward.getTargetId())
+            return getClassroomStudentsProgressService.execute(reward.getTargetId())
                                              .stream()
                                              .map(st -> st.getGrade())
                                              .max(Integer::compare)

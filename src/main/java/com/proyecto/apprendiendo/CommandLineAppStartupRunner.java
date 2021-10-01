@@ -1,6 +1,9 @@
 package com.proyecto.apprendiendo;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
+import com.proyecto.apprendiendo.entities.enums.ConditionType;
+import com.proyecto.apprendiendo.entities.enums.RewardType;
+import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.repositories.*;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
@@ -10,6 +13,7 @@ import com.proyecto.apprendiendo.services.abm_services.classroom_services.Create
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.condition_services.CreateConditionService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonService;
@@ -19,15 +23,25 @@ import com.proyecto.apprendiendo.services.abm_services.project_services.CreatePr
 import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
+import com.proyecto.apprendiendo.services.abm_services.reward_services.CreateRewardService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.UpdateStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.student_project_services.UpdateStudentProjectProgressService;
+import com.proyecto.apprendiendo.services.abm_services.student_reward_services.AddRewardStudentService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -89,6 +103,15 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetProjectService getProjectService;
     @Autowired
     private GetLessonStudentsProgressService getLessonStudentsProgressService;
+    @Autowired
+    private CreateRewardService createRewardService;
+    @Autowired
+    private CreateConditionService createConditionService;
+    @Autowired
+    private UpdateStudentProjectProgressService updateStudentProjectProgressService;
+    @Autowired
+    private AddRewardStudentService addRewardStudentService;
+
 
 
     @Override
@@ -480,13 +503,55 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addClassroomStudentsService.execute(lenguaCursoId, estudiantesLengua);
         addClassroomStudentsService.execute(socialesCursoId, estudiantesSociales);
 
+        Long condition10ActivitiesId = createConditionService.execute(ConditionDTO.builder()
+                                                                                  .conditionType(ConditionType.X_ACTIVITIES_COMPLETED.getValue())
+                                                                                  .text("Completar 10 actividades")
+                                                                                  .data("10")
+                                                                                  .build());
+
+
+        Long rewardId = createRewardService.execute(RewardDTO.builder()
+                                                             .rewardType(RewardType.BADGE.getValue())
+                                                             .conditionId(condition10ActivitiesId)
+                                                             .text("Completastes 10 actividades maestro!")
+                                                             .name("Hiperactivo")
+                                                             .build());
+
+        Long conditionAulaInvertidaId = createConditionService.execute(ConditionDTO.builder()
+                                                                                  .conditionType(ConditionType.TARGET_COMPLETED_WITH_SCORE_HIGHER_THAN_X.getValue())
+                                                                                  .text("Completar: Aula Invertida: Dinosaurios con mas de 7")
+                                                                                  .data("7")
+                                                                                  .build());
+
+
+        Long rewardAulaInvertidaId = createRewardService.execute(RewardDTO.builder()
+                                                                          .rewardType(RewardType.CHALLENGE.getValue())
+                                                                          .conditionId(conditionAulaInvertidaId)
+                                                                          .targetType(TargetType.PROJECT.getValue())
+                                                                          .targetId(ProyectoN1Id)
+                                                                          .text("Sabes mucho de dinos!")
+                                                                          .name("Dinoexperto")
+                                                                          .build());
+
+        Long conditionSocialId = createConditionService.execute(ConditionDTO.builder()
+                                                                            .conditionType(ConditionType.SOCIAL.getValue())
+                                                                            .text("Portarse bien")
+                                                                            .build());
+
+
+        Long rewardSocialId = createRewardService.execute(RewardDTO.builder()
+                                                             .rewardType(RewardType.SOCIAL.getValue())
+                                                             .conditionId(conditionSocialId)
+                                                             .text("Te portastes muy bien!")
+                                                             .name("Santo")
+                                                             .build());
+
+
 
         //Progreso de alumnos en un proyecto
         activityRepository.findAll().forEach(activity -> {
             userRepository.findByRole("ROLE_STUDENT").forEach(student -> {
-                if (getClassroomStudentsService.execute(getProjectService.execute(getLessonService.execute(activity.getLessonId())
-                                                                                                  .getProjectId())
-                                                                         .getClassroomId())
+                if (getClassroomStudentsService.execute(getProjectService.execute(getLessonService.execute(activity.getLessonId()).getProjectId()).getClassroomId())
                                                .stream()
                                                .anyMatch(s -> s.getId().equals(student.getId()))) {
                     StudentActivityDTO studentActivityDTO = StudentActivityDTO.builder()
@@ -500,5 +565,21 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                 }
             });
         });
+
+        getClassroomStudentsService.execute(getClassroomService.execute(getProjectService.execute(ProyectoN1Id).getClassroomId()).getId()).forEach(student ->{
+            StudentProjectDTO studentProjectDTO = StudentProjectDTO.builder()
+                                                                   .projectId(ProyectoN1Id)
+                                                                   .userId(student.getId())
+                                                                   .grade(10)
+                                                                   .percentageCompleted(100.00)
+                                                                   .dateCompleted(LocalDateTime.now()).build();
+            updateStudentProjectProgressService.execute(student.getId(), ProyectoN1Id, studentProjectDTO);
+        });
+
+        addRewardStudentService.execute(rewardSocialId,javiId);
+
+
+
+
     }
 }

@@ -1,11 +1,13 @@
 package com.proyecto.apprendiendo.services.abm_services.reward_services;
 
 import com.proyecto.apprendiendo.entities.Reward;
+import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.repositories.RewardRepository;
 import com.proyecto.apprendiendo.repositories.StudentActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
 import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
 import com.proyecto.apprendiendo.services.abm_services.condition_services.EvaluateConditionForStudentService;
+import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectService;
 import com.proyecto.apprendiendo.services.abm_services.student_reward_services.AddRewardStudentService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,22 +26,18 @@ public class AutomaticRewardGrantingService {
     RewardRepository rewardRepository;
     EvaluateConditionForStudentService evaluateConditionForStudentService;
     AddRewardStudentService addRewardStudentService;
+    GetProjectService getProjectService;
 
     public void execute(Long studentId, Long targetId, String targetType) {
-
         ArrayList<Reward> rewards = new ArrayList<>();
-        if (targetType.equals("PROJECT"))
-            rewards = rewardRepository.findByTargetId(studentProjectRepository.findByUserIdAndProjectId(studentId, targetId)
-                                                                              .getId());
-        if (targetType.equals("ACTIVITY"))
-            rewards = rewardRepository.findByTargetId(studentActivityRepository.findByUserIdAndActivityId(studentId, targetId)
-                                                                               .getId());
-        if (targetType.equals("CLASSROOM"))
-            rewards = rewardRepository.findByTargetId(studentClassroomRepository.findByStudentIdAndClassroomId(studentId, targetId)
-                                                                                .getId());
+        rewards.addAll(rewardRepository.findByTargetId(targetId));
+        rewards.addAll(rewardRepository.findByRewardType("BADGE"));
+
         rewards.forEach(r -> {
-            if (evaluateConditionForStudentService.execute(r.getId(), studentId))
+            if (evaluateConditionForStudentService.execute(r.getId(), studentId)){
                 addRewardStudentService.execute(r.getId(), studentId);
+            }
+
         });
     }
 }
