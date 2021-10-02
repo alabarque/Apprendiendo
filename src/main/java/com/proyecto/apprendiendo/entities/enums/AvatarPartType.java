@@ -2,8 +2,9 @@ package com.proyecto.apprendiendo.entities.enums;
 
 public enum AvatarPartType {
     BODY("BODY"),
-    LEGS("GLASSES"),
-    FEET("HAT");
+    GLASSES("GLASSES"),
+    CLOTHES("CLOTHES"),
+    HAT("HAT");
 
     private final String value;
 

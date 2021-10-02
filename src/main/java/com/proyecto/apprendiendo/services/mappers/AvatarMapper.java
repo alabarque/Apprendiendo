@@ -11,6 +11,7 @@ public class AvatarMapper {
                         .bodyId(avatar.getBodyId())
                         .glassesId(avatar.getGlassesId())
                         .hatId(avatar.getHatId())
+                        .clothesId(avatar.getClothesId())
                         .build();
     }
 }

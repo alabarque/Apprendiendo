@@ -10,7 +10,8 @@ import lombok.Setter;
 public class AvatarDTO {
     private Long id;
     private String name;
-    private Long bodyId; //FK a AvatarPartType
-    private Long glassesId; //FK a AvatarPartType
-    private Long hatId; //FK a AvatarPartType
+    private Long bodyId; //FK a AvatarPart
+    private Long glassesId; //FK a AvatarPart
+    private Long hatId; //FK a AvatarPart
+    private Long clothesId; //FK a AvatarPart
 }

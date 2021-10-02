@@ -20,6 +20,7 @@ public class CreateAvatarService {
                               .bodyId(avatarDTO.getBodyId())
                               .hatId(avatarDTO.getHatId())
                               .glassesId(avatarDTO.getGlassesId())
+                              .clothesId(avatarDTO.getClothesId())
                               .name(avatarDTO.getName())
                               .build();
         return avatarRepository.save(avatar).getId();

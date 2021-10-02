@@ -22,6 +22,7 @@ public class UpdateAvatarService {
         avatar.setBodyId(avatarDTO.getBodyId());
         avatar.setGlassesId(avatarDTO.getGlassesId());
         avatar.setHatId(avatarDTO.getHatId());
+        avatar.setClothesId(avatarDTO.getClothesId());
         avatarRepository.save(avatar);
         return avatarDTO.getId();
     }
