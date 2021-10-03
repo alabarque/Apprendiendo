@@ -2,6 +2,7 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.GroupStudent;
 import com.proyecto.apprendiendo.entities.dtos.GroupDTO;
+import com.proyecto.apprendiendo.entities.dtos.GroupProgressDTO;
 import com.proyecto.apprendiendo.entities.dtos.GroupStudentDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
 import com.proyecto.apprendiendo.services.abm_services.group_services.*;
@@ -28,6 +29,8 @@ public class GroupController {
     private AddGroupStudentService addGroupStudentService;
     private RemoveGroupStudentService removeGroupStudentService;
     private UpdateGroupStudentService updateGroupStudentService;
+    private GetGroupProgressService getGroupProgressService;
+    private UpdateGroupProgressService updateGroupProgressService;
     private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "group")
@@ -55,11 +58,15 @@ public class GroupController {
         return responseDecorator.decorate(() -> getGroupStudentsService.execute(groupId));
     }
 
-    //TODO:
-    //@GetMapping(path = "group/{groupId}/students/progress")
-    //public ResponseEntity<ArrayList<StudentGroupDTO>> getGroupStudentsProgress(@PathVariable("groupId") Long groupId) {
-    //    return responseDecorator.decorate(() -> getGroupStudentsProgressService.execute(groupId));
-    // }
+    @GetMapping(path = "group/{groupId}/progress")
+    public ResponseEntity<Double> getGroupProgress(@PathVariable("groupId") Long groupId) {
+        return responseDecorator.decorate(() -> getGroupProgressService.execute(groupId));
+     }
+
+    @PutMapping(path = "group/{groupId}/progress")
+    public ResponseEntity<Long> updateGroupProgress(@PathVariable("groupId") Long groupId, @RequestBody GroupProgressDTO groupProgressDTO) {
+        return responseDecorator.decorate(() -> updateGroupProgressService.execute(groupId, groupProgressDTO));
+    }
 
     @PostMapping(path = "group/{groupId}/student/{studentId}")
     public ResponseEntity<Long> addGroupStudents(@RequestBody GroupStudentDTO groupStudentDTO, @PathVariable("groupId") Long groupId, @PathVariable("studentId") Long studentId) {
