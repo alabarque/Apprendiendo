@@ -18,12 +18,11 @@ public class UserMapper {
                    .avatarId(userDTO.getAvatarId())
                    .id(userDTO.getId())
                    .role(userDTO.getRole())
+                   .imageData(userDTO.getImageData())
+                   .studentDivision(userDTO.getStudentDivision())
+                   .studentYear(userDTO.getStudentYear())
                    .build();
 
-    }
-
-    public static User DTOtoEntity(UserLoginDTO userLoginDTO) {
-        return User.builder().username(userLoginDTO.getUsername()).password(userLoginDTO.getPassword()).build();
     }
 
     public static UserDTO entityToDto(User user) {
@@ -38,6 +37,9 @@ public class UserMapper {
                       .avatarId(user.getAvatarId())
                       .password(user.getPassword())
                       .role(user.getRole())
+                      .imageData(user.getImageData())
+                      .studentDivision(user.getStudentDivision())
+                      .studentYear(user.getStudentYear())
                       .build();
 
     }

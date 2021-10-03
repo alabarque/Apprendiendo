@@ -27,6 +27,9 @@ public class UpdateUserService {
         user.setLastName(userDTO.getLastName());
         user.setHomePhone(userDTO.getHomePhone());
         user.setMobilePhone(userDTO.getMobilePhone());
+        user.setImageData(user.getImageData());
+        user.setStudentDivision(user.getStudentDivision());
+        user.setStudentYear(user.getStudentYear());
 
         userRepository.save(user);
         return userDTO.getId();
