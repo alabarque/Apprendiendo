@@ -1,4 +1,4 @@
-package com.proyecto.apprendiendo.services.abm_services.document_source_services;
+package com.proyecto.apprendiendo.services.abm_services.document_services;
 
 import com.proyecto.apprendiendo.entities.Document;
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;

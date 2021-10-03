@@ -46,11 +46,6 @@ public class UserController {
     private GetUsersService getUsersService;
     private GetStudentLessonProgressService getStudentLessonProgressService;
 
-    //Por ahora se usa el /register/
-    //@PostMapping(path = "user")
-    //public void newUser(@RequestBody UserNewDTO userNewDTO){
-    //    createUserService.execute(userNewDTO);
-    //}
 
     @GetMapping(path = "user/{userId}")
     public ResponseEntity<UserDTO> getUser(@PathVariable Long userId) {
