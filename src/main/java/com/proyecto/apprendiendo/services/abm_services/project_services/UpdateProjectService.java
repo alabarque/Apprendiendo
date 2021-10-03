@@ -26,6 +26,7 @@ public class UpdateProjectService {
         project.setStartDate(projectDTO.getStartDate());
         project.setDueDate(projectDTO.getDueDate());
         project.setPosition(projectDTO.getPosition());
+        project.setActive(projectDTO.getActive());
 
         projectRepository.save(project);
         return projectDTO.getId();

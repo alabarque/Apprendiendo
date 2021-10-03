@@ -40,6 +40,7 @@ public class GetStudentProjectProgressService {
                                                            .filter(a -> getLessonService.execute(a.getLessonId())
                                                                                         .getProjectId()
                                                                                         .equals(projectId))
+                                                           .filter(a -> getLessonService.execute(a.getLessonId()).getActive())
                                                            .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
                                                                                                               .getPercentageCompleted())
                                                            .average()

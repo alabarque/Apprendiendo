@@ -17,6 +17,7 @@ public class ProjectMapper {
                          .classroomId(project.getClassroomId())
                          .startDate(project.getStartDate())
                          .dueDate(project.getDueDate())
+                         .active(project.getActive())
                          .build();
     }
 
@@ -27,6 +28,7 @@ public class ProjectMapper {
                                  .position(project.getPosition())
                                  .startDate(project.getStartDate())
                                  .dueDate(project.getDueDate())
+                                 .active(project.getActive())
                                  .build();
     }
 
@@ -37,6 +39,7 @@ public class ProjectMapper {
                             .position(projectTemplateDTO.getPosition())
                             .startDate(projectTemplateDTO.getStartDate())
                             .dueDate(projectTemplateDTO.getDueDate())
+                            .active(projectTemplateDTO.getActive())
                             .build();
     }
 

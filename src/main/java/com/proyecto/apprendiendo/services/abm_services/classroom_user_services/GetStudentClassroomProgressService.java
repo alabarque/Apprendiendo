@@ -29,10 +29,11 @@ public class GetStudentClassroomProgressService {
         if (studentClassroomDTO.getPercentageCompleted() == 0.00) {
             Double percentageCompleted = activityRepository.findAll()
                                                            .stream()
-                                                           .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId())
-                                                                                                                  .getProjectId())
+                                                           .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId()).getProjectId())
                                                                                          .getClassroomId()
                                                                                          .equals(classroomId))
+                                                           .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId()).getProjectId()).getActive())
+                                                           .filter(a -> getLessonService.execute(a.getLessonId()).getActive())
                                                            .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
                                                                                                               .getPercentageCompleted())
                                                            .average()

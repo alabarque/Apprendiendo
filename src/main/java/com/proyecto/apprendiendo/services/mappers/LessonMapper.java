@@ -13,6 +13,7 @@ public class LessonMapper {
                         .projectId(lesson.getProjectId())
                         .startDate(lesson.getStartDate())
                         .dueDate(lesson.getDueDate())
+                        .active(lesson.getActive())
                         .build();
     }
 
@@ -22,6 +23,7 @@ public class LessonMapper {
                                 .position(lesson.getPosition())
                                 .startDate(lesson.getStartDate())
                                 .dueDate(lesson.getDueDate())
+                                .active(lesson.getActive())
                                 .build();
     }
 
@@ -31,6 +33,7 @@ public class LessonMapper {
                         .position(lessonTemplateDTO.getPosition())
                         .startDate(lessonTemplateDTO.getStartDate())
                         .dueDate(lessonTemplateDTO.getDueDate())
+                        .active(lessonTemplateDTO.getActive())
                         .build();
     }
 

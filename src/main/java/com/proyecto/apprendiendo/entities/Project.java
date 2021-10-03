@@ -24,4 +24,5 @@ public class Project {
     private LocalDateTime startDate;
     private LocalDateTime dueDate;
     private String name;
+    private Boolean active;
 }

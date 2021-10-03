@@ -136,12 +136,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                          .challengeId(Integer.toUnsignedLong(0))
                                                                                          .name("Nuevo Proyecto de Aula Invertida")
                                                                                          .methodologyId(aulaInvertidaMethodologyId)
+                                                                                         .active(Boolean.TRUE)
                                                                                          .build(), Integer.toUnsignedLong(0));
 
         Long templateAulaInvertidaClase1Id = createLessonService.execute(LessonDTO.builder()
                                                                                   .name("Clase 1")
                                                                                   .position(1)
                                                                                   .projectId(proyectoTemplateAulaInvertidaId)
+                                                                                  .active(Boolean.TRUE)
                                                                                   .build());
         Long templateAulaInvertidaClase1ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                               .name("Clase 1")
@@ -158,6 +160,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                   .name("Clase 2")
                                                                                   .position(2)
                                                                                   .projectId(proyectoTemplateAulaInvertidaId)
+                                                                                  .active(Boolean.TRUE)
                                                                                   .build());
         Long templateAulaInvertidaClase2ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                               .name("Clase 2")
@@ -177,12 +180,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                .challengeId(Integer.toUnsignedLong(0))
                                                                                .name("Nuevo Proyecto de PBL")
                                                                                .methodologyId(proyectoMethodologyId)
+                                                                               .active(Boolean.TRUE)
                                                                                .build(), Integer.toUnsignedLong(0));
 
         Long templatePBLClase1Id = createLessonService.execute(LessonDTO.builder()
                                                                         .name("Clase 1")
                                                                         .position(1)
                                                                         .projectId(proyectoTemplatePBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templatePBLClase1ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -199,6 +204,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .name("Clase 2")
                                                                         .position(2)
                                                                         .projectId(proyectoTemplatePBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templatePBLClase2ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -215,6 +221,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .name("Clase 3")
                                                                         .position(3)
                                                                         .projectId(proyectoTemplatePBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templatePBLClase3ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -231,6 +238,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .name("Clase 4")
                                                                         .position(4)
                                                                         .projectId(proyectoTemplatePBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templatePBLClase4ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -247,6 +255,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .name("Clase 5")
                                                                         .position(5)
                                                                         .projectId(proyectoTemplatePBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templatePBLClase5ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -263,6 +272,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .name("Clase 6")
                                                                         .position(6)
                                                                         .projectId(proyectoTemplatePBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templatePBLClase6ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -279,6 +289,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .name("Clase 7")
                                                                         .position(7)
                                                                         .projectId(proyectoTemplatePBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templatePBLClase7ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -298,12 +309,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                .challengeId(Integer.toUnsignedLong(0))
                                                                                .name("Nuevo Proyecto de TBL")
                                                                                .methodologyId(pensamientoMethodologyId)
+                                                                               .active(Boolean.TRUE)
                                                                                .build(), Integer.toUnsignedLong(0));
 
         Long templateTBLClase1Id = createLessonService.execute(LessonDTO.builder()
                                                                         .name("Clase 1")
                                                                         .position(1)
                                                                         .projectId(proyectoTemplateTBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templateTBLClase1ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 1")
@@ -320,6 +333,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .name("Clase 2")
                                                                         .position(2)
                                                                         .projectId(proyectoTemplateTBLId)
+                                                                        .active(Boolean.TRUE)
                                                                         .build());
         Long templateTBLClase2ActivityId = createActivityService.execute(ActivityDTO.builder()
                                                                                     .name("Actividad 2")

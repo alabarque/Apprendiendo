@@ -16,4 +16,5 @@ public class ProjectNewDTO {
     private String name;
     private LocalDateTime startDate;
     private LocalDateTime dueDate;
+    private Boolean active;
 }

@@ -23,4 +23,5 @@ public class Lesson {
     private Long projectId; //FK a Project
     private LocalDateTime startDate;
     private LocalDateTime dueDate;
+    private Boolean active;
 }

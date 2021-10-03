@@ -22,6 +22,7 @@ public class CreateLessonService {
                               .projectId(lessonDTO.getProjectId())
                               .startDate(lessonDTO.getStartDate())
                               .dueDate(lessonDTO.getDueDate())
+                              .active(lessonDTO.getActive())
                               .build();
         return lessonRepository.save(lesson).getId();
     }

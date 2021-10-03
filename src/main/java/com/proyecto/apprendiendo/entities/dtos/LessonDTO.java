@@ -16,4 +16,5 @@ public class LessonDTO {
     private Long projectId;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;
+    private Boolean active;
 }
