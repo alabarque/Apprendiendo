@@ -27,8 +27,10 @@ public class CreateLessonFromTemplateService {
 
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(LessonTemplateDTO lessonTemplateDTO) {
-        Long lessonId = createLessonService.execute(LessonMapper.templateDtoToDto(lessonTemplateDTO));
+    public Long execute(LessonTemplateDTO lessonTemplateDTO, Long projectId) {
+        LessonDTO lessonDTO = LessonMapper.templateDtoToDto(lessonTemplateDTO);
+        lessonDTO.setProjectId(projectId);
+        Long lessonId = createLessonService.execute(lessonDTO);
         lessonTemplateDTO.getActivities().forEach(activity -> {
             ActivityDTO activityDTO = ActivityMapper.templateDtoToDto(activity);
                 activityDTO.setLessonId(lessonId);

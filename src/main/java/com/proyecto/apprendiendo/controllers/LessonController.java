@@ -30,9 +30,9 @@ public class LessonController {
         return responseDecorator.decorate(() -> createLessonService.execute(lessonDTO));
     }
 
-    @PostMapping(path = "lesson/template")
-    public ResponseEntity<Long> newLesson(@RequestBody LessonTemplateDTO lessonTemplateDTO) {
-        return responseDecorator.decorate(() -> createLessonFromTemplateService.execute(lessonTemplateDTO));
+    @PostMapping(path = "project/{projectId}/lesson/template")
+    public ResponseEntity<Long> newLesson(@RequestBody LessonTemplateDTO lessonTemplateDTO, @PathVariable Long projectId) {
+        return responseDecorator.decorate(() -> createLessonFromTemplateService.execute(lessonTemplateDTO, projectId));
     }
 
     @GetMapping(path = "lesson/{lessonId}")
