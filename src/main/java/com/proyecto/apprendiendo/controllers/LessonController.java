@@ -2,6 +2,7 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
+import com.proyecto.apprendiendo.entities.dtos.LessonTemplateDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentLessonDTO;
 import com.proyecto.apprendiendo.services.abm_services.lesson_services.*;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
@@ -22,10 +23,16 @@ public class LessonController {
     private ResponseDecorator responseDecorator;
     private GetLessonActivitiesService getLessonActivitiesService;
     private GetLessonStudentsProgressService getLessonStudentsProgressService;
+    private CreateLessonFromTemplateService createLessonFromTemplateService;
 
     @PostMapping(path = "lesson")
     public ResponseEntity<Long> newLesson(@RequestBody LessonDTO lessonDTO) {
         return responseDecorator.decorate(() -> createLessonService.execute(lessonDTO));
+    }
+
+    @PostMapping(path = "lesson/template")
+    public ResponseEntity<Long> newLesson(@RequestBody LessonTemplateDTO lessonTemplateDTO) {
+        return responseDecorator.decorate(() -> createLessonFromTemplateService.execute(lessonTemplateDTO));
     }
 
     @GetMapping(path = "lesson/{lessonId}")
