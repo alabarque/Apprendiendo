@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
+import com.proyecto.apprendiendo.services.abm_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.abm_services.project_services.*;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.AddProjectStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsProgressService;
@@ -29,6 +30,8 @@ public class ProjectController {
     private CreateProjectFromTemplateService createProjectFromTemplateService;
     private GetProjectTemplateService getProjectTemplateService;
     private GetProjectStudentsProgressService getProjectStudentsProgressService;
+    private GetSourcesDocumentsService getSourcesDocumentsService;
+    private GetProjectGroupsService getProjectGroupsService;
 
     @PostMapping(path = "classroom/{classroomId}/project")
     public ResponseEntity<Long> newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
@@ -60,6 +63,11 @@ public class ProjectController {
         return responseDecorator.decorate(() -> getProjectStudentsService.execute(projectId));
     }
 
+    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/documents")
+    public ResponseEntity<ArrayList<DocumentDTO>> getProjectDocuments(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(projectId));
+    }
+
     @GetMapping(path = "classroom/{classroomId}/project/{projectId}/students/progress")
     public ResponseEntity<ArrayList<StudentProjectDTO>> getProjectStudentsProgress(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectStudentsProgressService.execute(projectId));
@@ -83,6 +91,11 @@ public class ProjectController {
     @PostMapping(path = "classroom/{classroomId}/project/template")
     public ResponseEntity<Long> newProjectFromTemplate(@RequestBody ProjectTemplateDTO projectTemplateDTO, @PathVariable Long classroomId) {
         return responseDecorator.decorate(() -> createProjectFromTemplateService.execute(projectTemplateDTO, classroomId));
+    }
+
+    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/groups")
+    public ResponseEntity<ArrayList<GroupDTO>> getProjectGroups(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(() -> getProjectGroupsService.execute(projectId));
     }
 
 

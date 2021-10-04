@@ -1,11 +1,13 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
+import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.DeleteActivityService;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.GetActivityService;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.UpdateActivityService;
+import com.proyecto.apprendiendo.services.abm_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.abm_services.student_activity_services.GetActivityStudentsProgressService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
@@ -24,6 +26,7 @@ public class ActivityController {
     private UpdateActivityService updateActivityService;
     private ResponseDecorator responseDecorator;
     private GetActivityStudentsProgressService getActivityStudentsProgressService;
+    private GetSourcesDocumentsService getSourcesDocumentsService;
 
     @PostMapping(path = "activity")
     public ResponseEntity<Long> newActivity(@RequestBody ActivityDTO activityDTO) {
@@ -48,5 +51,10 @@ public class ActivityController {
     @GetMapping(path = "activity/{activityId}/progress")
     public ResponseEntity<ArrayList<StudentActivityDTO>> getActivityProgress(@PathVariable Long activityId) {
         return responseDecorator.decorate(() -> getActivityStudentsProgressService.execute(activityId));
+    }
+
+    @GetMapping(path = "activity/{activityId}/documents")
+    public ResponseEntity<ArrayList<DocumentDTO>> getActivityDocuments(@PathVariable("activityId") Long activityId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(activityId));
     }
 }

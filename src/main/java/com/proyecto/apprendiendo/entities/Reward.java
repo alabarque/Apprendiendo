@@ -17,6 +17,7 @@ public class Reward {
     private String name; //nombre de la recompenza, ej "Insignia del Campeon"
     private Long conditionId; //FK a Condition
     private String rewardType; //ENUM RewardType
+    private String data;
     @Column(length = 1000000)
     private String text; //descripcion de la recompenza de existir. Importante que exista para rewardType SOCIAL.
     private Long targetId; //FK a Classroom, Project o Activity, dependiendo de targetType. Donde esta disponible, tambien es el target de la condition.

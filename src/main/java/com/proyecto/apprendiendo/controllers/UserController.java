@@ -1,6 +1,7 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
+import com.proyecto.apprendiendo.services.abm_services.avatar_services.GetStudentAvailableAvatarPartsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetUserClassroomsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.UpdateStudentClassroomProgressService;
@@ -45,6 +46,7 @@ public class UserController {
     private UpdateStudentClassroomProgressService updateStudentClassroomProgressService;
     private GetUsersService getUsersService;
     private GetStudentLessonProgressService getStudentLessonProgressService;
+    private GetStudentAvailableAvatarPartsService getStudentAvailableAvatarPartsService;
 
 
     @GetMapping(path = "user/{userId}")
@@ -152,6 +154,11 @@ public class UserController {
         return responseDecorator.decorate(() -> removeRewardStudentService.execute(rewardId, userId));
     }
 
+    @GetMapping(path = "user/{userId}/avatar/parts/available")
+    public ResponseEntity<ArrayList<String>> getStudentAvailableAcatarParts(@PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(() -> getStudentAvailableAvatarPartsService.execute(userId));
+    }
+
     @GetMapping(path = "users")
     public ResponseEntity<ArrayList<UserDTO>> getAllUsers() {
         return responseDecorator.decorate(() -> getUsersService.execute());
@@ -171,6 +178,7 @@ public class UserController {
     public ResponseEntity<ArrayList<UserDTO>> getAllAdmins() {
         return responseDecorator.decorate(() -> getUsersService.execute("ROLE_ADMIN"));
     }
+
 
 
 }

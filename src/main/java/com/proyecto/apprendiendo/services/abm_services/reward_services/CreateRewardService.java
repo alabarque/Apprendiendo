@@ -25,6 +25,7 @@ public class CreateRewardService {
                               .imageData(rewardDTO.getImageData())
                               .targetId(rewardDTO.getTargetId())
                               .targetType(rewardDTO.getTargetType())
+                              .text(rewardDTO.getText())
                               .build();
         return rewardRepository.save(reward).getId();
     }
