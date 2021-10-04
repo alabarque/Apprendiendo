@@ -17,10 +17,10 @@ public class CreateAvatarService {
 
     public Long execute(AvatarDTO avatarDTO) {
         Avatar avatar = Avatar.builder()
-                              .bodyId(avatarDTO.getBodyId())
-                              .hatId(avatarDTO.getHatId())
-                              .glassesId(avatarDTO.getGlassesId())
-                              .clothesId(avatarDTO.getClothesId())
+                              .body(avatarDTO.getBody())
+                              .hat(avatarDTO.getHat())
+                              .glasses(avatarDTO.getGlasses())
+                              .clothes(avatarDTO.getClothes())
                               .name(avatarDTO.getName())
                               .build();
         return avatarRepository.save(avatar).getId();

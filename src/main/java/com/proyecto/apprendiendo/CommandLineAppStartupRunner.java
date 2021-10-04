@@ -7,7 +7,6 @@ import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.repositories.*;
 import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
-import com.proyecto.apprendiendo.services.abm_services.avatar_part_services.CreateAvatarPartService;
 import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
@@ -55,8 +54,6 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private CreateProjectService createProjectService;
     @Autowired
     private CreateAvatarService createAvatarService;
-    @Autowired
-    private CreateAvatarPartService createAvatarPartService;
     @Autowired
     private GetUserService getUserService;
     @Autowired

@@ -19,10 +19,10 @@ public class UpdateAvatarService {
         Avatar avatar = avatarRepository.getById(avatarDTO.getId());
         avatar.setId(avatarDTO.getId());
         avatar.setName(avatarDTO.getName());
-        avatar.setBodyId(avatarDTO.getBodyId());
-        avatar.setGlassesId(avatarDTO.getGlassesId());
-        avatar.setHatId(avatarDTO.getHatId());
-        avatar.setClothesId(avatarDTO.getClothesId());
+        avatar.setBody(avatarDTO.getBody());
+        avatar.setGlasses(avatarDTO.getGlasses());
+        avatar.setHat(avatarDTO.getHat());
+        avatar.setClothes(avatarDTO.getClothes());
         avatarRepository.save(avatar);
         return avatarDTO.getId();
     }

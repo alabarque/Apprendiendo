@@ -8,10 +8,10 @@ public class AvatarMapper {
         return AvatarDTO.builder()
                         .id(avatar.getId())
                         .name(avatar.getName())
-                        .bodyId(avatar.getBodyId())
-                        .glassesId(avatar.getGlassesId())
-                        .hatId(avatar.getHatId())
-                        .clothesId(avatar.getClothesId())
+                        .body(avatar.getBody())
+                        .glasses(avatar.getGlasses())
+                        .hat(avatar.getHat())
+                        .clothes(avatar.getClothes())
                         .build();
     }
 }
