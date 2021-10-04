@@ -365,6 +365,15 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         pblTemplate.setPosition(0);
 
 
+        AvatarDTO avatarDTO = AvatarDTO.builder()
+                                       .name("pepito")
+                                       .body("b0001")
+                                       .glasses("")
+                                       .clothes("")
+                                       .hat("")
+                                       .build();
+
+
         //USUARIOS
         Long adminId = createUserService.execute(UserDTO.builder()
                                                         .username("admin")
@@ -401,6 +410,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .homePhone("(011) 1234-5678")
                                                        .mobilePhone("15 1234-5678")
                                                        .password("javi")
+                                                       .avatarId(createAvatarService.execute(avatarDTO))
+                                                       .studentYear(5)
+                                                       .studentDivision("B")
                                                        .build(), UserType.STUDENT);
         Long agusId = createUserService.execute(UserDTO.builder()
                                                        .username("agus")
@@ -410,6 +422,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .homePhone("(011) 1234-5678")
                                                        .mobilePhone("15 1234-5678")
                                                        .password("agus")
+                                                       .avatarId(createAvatarService.execute(avatarDTO))
+                                                       .studentYear(5)
+                                                       .studentDivision("B")
                                                        .build(), UserType.STUDENT);
         Long nazaId = createUserService.execute(UserDTO.builder()
                                                        .username("naza")
@@ -419,6 +434,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .homePhone("(011) 1234-5678")
                                                        .mobilePhone("15 1234-5678")
                                                        .password("naza")
+                                                       .avatarId(createAvatarService.execute(avatarDTO))
+                                                       .studentYear(5)
+                                                       .studentDivision("B")
                                                        .build(), UserType.STUDENT);
         Long paoId = createUserService.execute(UserDTO.builder()
                                                       .username("pao")
@@ -428,6 +446,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                       .homePhone("(011) 1234-5678")
                                                       .mobilePhone("15 1234-5678")
                                                       .password("pao")
+                                                      .avatarId(createAvatarService.execute(avatarDTO))
+                                                      .studentYear(5)
+                                                      .studentDivision("B")
                                                       .build(), UserType.STUDENT);
         Long mariId = createUserService.execute(UserDTO.builder()
                                                        .username("mari")
@@ -437,6 +458,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .homePhone("(011) 1234-5678")
                                                        .mobilePhone("15 1234-5678")
                                                        .password("mari")
+                                                       .avatarId(createAvatarService.execute(avatarDTO))
+                                                       .studentYear(5)
+                                                       .studentDivision("B")
                                                        .build(), UserType.STUDENT);
 
         //CLASSROOMS
