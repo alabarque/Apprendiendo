@@ -17,7 +17,6 @@ public class UpdateDocumentService {
 
     public Long execute(DocumentDTO documentDTO) {
         Document document = documentRepository.getById(documentDTO.getId());
-        document.setId(documentDTO.getId());
         document.setName(documentDTO.getName());
         document.setData(documentDTO.getData());
         document.setDataType(documentDTO.getDataType());

@@ -18,9 +18,7 @@ public class UpdateUserService {
     public Long execute(UserDTO userDTO) {
         User user = userRepository.getById(userDTO.getId());
 
-        user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
-        user.setRole(userDTO.getRole());
         user.setAddress(userDTO.getAddress());
         user.setAvatarId(userDTO.getAvatarId());
         user.setFirstName(userDTO.getFirstName());

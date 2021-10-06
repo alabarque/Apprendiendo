@@ -19,9 +19,7 @@ public class UpdateProjectService {
     public Long execute(ProjectDTO projectDTO) {
         Project project = projectRepository.getById(projectDTO.getId());
 
-        project.setId(projectDTO.getId());
         project.setName(projectDTO.getName());
-        project.setClassroomId(projectDTO.getClassroomId());
         project.setMethodologyId(projectDTO.getMethodologyId());
         project.setStartDate(projectDTO.getStartDate());
         project.setDueDate(projectDTO.getDueDate());

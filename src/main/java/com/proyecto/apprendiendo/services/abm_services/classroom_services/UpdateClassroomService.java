@@ -17,8 +17,9 @@ public class UpdateClassroomService {
 
     public Long execute(ClassroomDTO classroomDTO) {
         Classroom classroom = classroomRepository.getById(classroomDTO.getId());
-        classroom.setId(classroomDTO.getId());
-        //classroom.setName(classroomDTO.getName());
+        classroom.setDivision(classroomDTO.getDivision());
+        classroom.setYear(classroomDTO.getYear());
+        classroom.setSubject(classroomDTO.getSubject());
         classroom.setTeacherId(classroomDTO.getTeacherId());
         classroomRepository.save(classroom);
         return classroomDTO.getId();

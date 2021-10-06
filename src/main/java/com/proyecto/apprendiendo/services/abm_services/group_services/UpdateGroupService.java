@@ -18,7 +18,6 @@ public class UpdateGroupService {
     public Long execute(GroupDTO groupDTO) {
         Group group = groupRepository.getById(groupDTO.getId());
         group.setName(groupDTO.getName());
-        group.setProjectId(groupDTO.getProjectId());
         groupRepository.save(group);
         return groupDTO.getId();
     }

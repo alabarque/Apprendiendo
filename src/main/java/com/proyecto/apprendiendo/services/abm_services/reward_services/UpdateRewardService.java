@@ -24,7 +24,6 @@ public class UpdateRewardService {
         reward.setTargetId(rewardDTO.getTargetId());
         reward.setText(reward.getText());
         reward.setTargetType(reward.getTargetType());
-        reward.setText(reward.getText());
         rewardRepository.save(reward);
         return rewardDTO.getId();
     }

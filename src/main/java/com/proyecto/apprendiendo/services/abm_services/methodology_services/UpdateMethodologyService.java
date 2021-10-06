@@ -17,7 +17,6 @@ public class UpdateMethodologyService {
 
     public Long execute(MethodologyDTO methodologyDTO) {
         Methodology methodology = methodologyRepository.getById(methodologyDTO.getId());
-        methodology.setId(methodologyDTO.getId());
         methodology.setName(methodologyDTO.getName());
         methodologyRepository.save(methodology);
         return methodologyDTO.getId();

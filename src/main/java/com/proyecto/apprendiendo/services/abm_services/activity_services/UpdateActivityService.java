@@ -17,9 +17,7 @@ public class UpdateActivityService {
 
     public Long execute(ActivityDTO activityDTO) {
         Activity activity = activityRepository.getById(activityDTO.getId());
-        activity.setId(activityDTO.getId());
         activity.setName(activityDTO.getName());
-        activity.setLessonId(activityDTO.getLessonId());
         activity.setDueDate(activityDTO.getDueDate());
         activity.setStartDate(activityDTO.getStartDate());
         activity.setPosition(activityDTO.getPosition());
