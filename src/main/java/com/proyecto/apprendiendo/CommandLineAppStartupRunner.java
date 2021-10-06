@@ -30,19 +30,10 @@ import com.proyecto.apprendiendo.services.abm_services.student_reward_services.A
 import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
@@ -129,12 +120,12 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
         //TEMPLATE: AULA INVERTIDA
-        Long proyectoTemplateAulaInvertidaId = createProjectService.execute(ProjectNewDTO.builder()
-                                                                                         .challengeId(Integer.toUnsignedLong(0))
-                                                                                         .name("Nuevo Proyecto de Aula Invertida")
-                                                                                         .methodologyId(aulaInvertidaMethodologyId)
-                                                                                         .active(Boolean.TRUE)
-                                                                                         .build(), Integer.toUnsignedLong(0));
+        Long proyectoTemplateAulaInvertidaId = createProjectService.execute(ProjectDTO.builder()
+                                                                                      .classroomId(0L)
+                                                                                      .name("Nuevo Proyecto de Aula Invertida")
+                                                                                      .methodologyId(aulaInvertidaMethodologyId)
+                                                                                      .active(Boolean.TRUE)
+                                                                                      .build());
 
         Long templateAulaInvertidaClase1Id = createLessonService.execute(LessonDTO.builder()
                                                                                   .name("Clase 1")
@@ -173,12 +164,12 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
         //TEMPLATE: PBL
-        Long proyectoTemplatePBLId = createProjectService.execute(ProjectNewDTO.builder()
-                                                                               .challengeId(Integer.toUnsignedLong(0))
-                                                                               .name("Nuevo Proyecto de PBL")
-                                                                               .methodologyId(proyectoMethodologyId)
-                                                                               .active(Boolean.TRUE)
-                                                                               .build(), Integer.toUnsignedLong(0));
+        Long proyectoTemplatePBLId = createProjectService.execute(ProjectDTO.builder()
+                                                                            .classroomId(0L)
+                                                                            .name("Nuevo Proyecto de PBL")
+                                                                            .methodologyId(proyectoMethodologyId)
+                                                                            .active(Boolean.TRUE)
+                                                                            .build());
 
         Long templatePBLClase1Id = createLessonService.execute(LessonDTO.builder()
                                                                         .name("Clase 1")
@@ -302,12 +293,12 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
         //TEMPLATE: TBL
-        Long proyectoTemplateTBLId = createProjectService.execute(ProjectNewDTO.builder()
-                                                                               .challengeId(Integer.toUnsignedLong(0))
-                                                                               .name("Nuevo Proyecto de TBL")
-                                                                               .methodologyId(pensamientoMethodologyId)
-                                                                               .active(Boolean.TRUE)
-                                                                               .build(), Integer.toUnsignedLong(0));
+        Long proyectoTemplateTBLId = createProjectService.execute(ProjectDTO.builder()
+                                                                            .classroomId(0L)
+                                                                            .name("Nuevo Proyecto de TBL")
+                                                                            .methodologyId(pensamientoMethodologyId)
+                                                                            .active(Boolean.TRUE)
+                                                                            .build());
 
         Long templateTBLClase1Id = createLessonService.execute(LessonDTO.builder()
                                                                         .name("Clase 1")
@@ -492,51 +483,51 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         //PROYECTOS
         invertedTemplate.setName("Aula Invertida: Dinosaurios");
-        Long ProyectoN1Id = createProjectFromTemplateService.execute(invertedTemplate, naturalesCursoId);
+        invertedTemplate.setClassroomId(naturalesCursoId);
+        Long ProyectoN1Id = createProjectFromTemplateService.execute(invertedTemplate);
         invertedTemplate.setName("Aula Invertida: Planetas");
-        Long ProyectoN2Id = createProjectFromTemplateService.execute(invertedTemplate, naturalesCursoId);
+        invertedTemplate.setClassroomId(naturalesCursoId);
+        Long ProyectoN2Id = createProjectFromTemplateService.execute(invertedTemplate);
         pblTemplate.setName("Proyecto: Los Atomos");
-        Long ProyectoN3Id = createProjectFromTemplateService.execute(pblTemplate, naturalesCursoId);
+        invertedTemplate.setClassroomId(naturalesCursoId);
+        Long ProyectoN3Id = createProjectFromTemplateService.execute(pblTemplate);
         pblTemplate.setName("Projecto: San Martin");
-        Long ProyectoN4Id = createProjectFromTemplateService.execute(pblTemplate, socialesCursoId);
+        invertedTemplate.setClassroomId(socialesCursoId);
+        Long ProyectoN4Id = createProjectFromTemplateService.execute(pblTemplate);
         pblTemplate.setName("Proyecto: El Cabildo");
-        Long ProyectoN5Id = createProjectFromTemplateService.execute(pblTemplate, socialesCursoId);
+        invertedTemplate.setClassroomId(socialesCursoId);
+        Long ProyectoN5Id = createProjectFromTemplateService.execute(pblTemplate);
         invertedTemplate.setName("Aula Invertida: Division");
-        Long ProyectoN6Id = createProjectFromTemplateService.execute(invertedTemplate, mateCursoId);
+        invertedTemplate.setClassroomId(mateCursoId);
+        Long ProyectoN6Id = createProjectFromTemplateService.execute(invertedTemplate);
         pblTemplate.setName("Proyecto: Multiplicacion");
-        Long ProyectoN7Id = createProjectFromTemplateService.execute(pblTemplate, mateCursoId);
+        invertedTemplate.setClassroomId(mateCursoId);
+        Long ProyectoN7Id = createProjectFromTemplateService.execute(pblTemplate);
         invertedTemplate.setName("Aula Invertida: Oraciones");
-        Long ProyectoN8Id = createProjectFromTemplateService.execute(invertedTemplate, lenguaCursoId);
+        invertedTemplate.setClassroomId(lenguaCursoId);
+        Long ProyectoN8Id = createProjectFromTemplateService.execute(invertedTemplate);
         pblTemplate.setName("Proyecto: Gramatica");
-        Long ProyectoN9Id = createProjectFromTemplateService.execute(pblTemplate, lenguaCursoId);
+        invertedTemplate.setClassroomId(lenguaCursoId);
+        Long ProyectoN9Id = createProjectFromTemplateService.execute(pblTemplate);
 
 
         //ASIGNACION DE ESTUDIANTES A CLASSROOMS
-        ArrayList<StudentDTO> estudiantesMate = new ArrayList<>();
-        estudiantesMate.add(getStudentService.execute(javiId));
-        estudiantesMate.add(getStudentService.execute(agusId));
-        estudiantesMate.add(getStudentService.execute(nazaId));
-        estudiantesMate.add(getStudentService.execute(paoId));
+        addClassroomStudentsService.execute(mateCursoId, javiId);
+        addClassroomStudentsService.execute(mateCursoId, agusId);
+        addClassroomStudentsService.execute(mateCursoId, nazaId);
+        addClassroomStudentsService.execute(mateCursoId, paoId);
 
-        ArrayList<StudentDTO> estudiantesLengua = new ArrayList<>();
-        estudiantesLengua.add(getStudentService.execute(mariId));
-        estudiantesLengua.add(getStudentService.execute(paoId));
-        estudiantesLengua.add(getStudentService.execute(nazaId));
+        addClassroomStudentsService.execute(lenguaCursoId, mariId);
+        addClassroomStudentsService.execute(lenguaCursoId, paoId);
+        addClassroomStudentsService.execute(lenguaCursoId, nazaId);
 
-        ArrayList<StudentDTO> estudiantesNaturales = new ArrayList<>();
-        estudiantesNaturales.add(getStudentService.execute(mariId));
-        estudiantesNaturales.add(getStudentService.execute(paoId));
-        estudiantesNaturales.add(getStudentService.execute(nazaId));
+        addClassroomStudentsService.execute(naturalesCursoId, mariId);
+        addClassroomStudentsService.execute(naturalesCursoId, paoId);
+        addClassroomStudentsService.execute(naturalesCursoId, nazaId);
 
-        ArrayList<StudentDTO> estudiantesSociales = new ArrayList<>();
-        estudiantesSociales.add(getStudentService.execute(mariId));
-        estudiantesSociales.add(getStudentService.execute(paoId));
-        estudiantesSociales.add(getStudentService.execute(nazaId));
-
-        addClassroomStudentsService.execute(mateCursoId, estudiantesMate);
-        addClassroomStudentsService.execute(naturalesCursoId, estudiantesNaturales);
-        addClassroomStudentsService.execute(lenguaCursoId, estudiantesLengua);
-        addClassroomStudentsService.execute(socialesCursoId, estudiantesSociales);
+        addClassroomStudentsService.execute(socialesCursoId, mariId);
+        addClassroomStudentsService.execute(socialesCursoId, paoId);
+        addClassroomStudentsService.execute(socialesCursoId, nazaId);
 
         Long condition10ActivitiesId = createConditionService.execute(ConditionDTO.builder()
                                                                                   .conditionType(ConditionType.X_ACTIVITIES_COMPLETED.getValue())

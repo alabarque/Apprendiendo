@@ -22,9 +22,6 @@ public class ProjectController {
     private GetProjectService getProjectService;
     private DeleteProjectService deleteProjectService;
     private UpdateProjectService updateProjectService;
-    private GetProjectStudentsService getProjectStudentsService;
-    private AddProjectStudentsService addProjectStudentsService;
-    private RemoveProjectStudentsService removeProjectStudentsService;
     private ResponseDecorator responseDecorator;
     private GetProjectLessonsService getProjectLessonsService;
     private CreateProjectFromTemplateService createProjectFromTemplateService;
@@ -33,67 +30,52 @@ public class ProjectController {
     private GetSourcesDocumentsService getSourcesDocumentsService;
     private GetProjectGroupsService getProjectGroupsService;
 
-    @PostMapping(path = "classroom/{classroomId}/project")
-    public ResponseEntity<Long> newProject(@RequestBody ProjectNewDTO projectNewDTO, @PathVariable Long classroomId) {
-        return responseDecorator.decorate(() -> createProjectService.execute(projectNewDTO, classroomId));
+    @PostMapping(path = "project")
+    public ResponseEntity<Long> newProject(@RequestBody ProjectDTO projectDTO) {
+        return responseDecorator.decorate(() -> createProjectService.execute(projectDTO));
     }
 
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}")
+    @GetMapping(path = "project/{projectId}")
     public ResponseEntity<ProjectDTO> getProject(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectService.execute(projectId));
     }
 
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/template")
+    @GetMapping(path = "project/{projectId}/template")
     public ResponseEntity<ProjectTemplateDTO> getProjectAsTemplate(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectTemplateService.execute(projectId));
     }
 
-    @DeleteMapping(path = "classroom/{classroomId}/project/{projectId}")
+    @DeleteMapping(path = "project/{projectId}")
     public ResponseEntity<Long> deleteProject(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> deleteProjectService.execute(projectId));
     }
 
-    @PutMapping(path = "classroom/{classroomId}/project")
+    @PutMapping(path = "project")
     public ResponseEntity<Long> updateProject(@RequestBody ProjectDTO projectDTO) {
         return responseDecorator.decorate(() -> updateProjectService.execute(projectDTO));
     }
 
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/students")
-    public ResponseEntity<ArrayList<StudentDTO>> getProjectStudents(@PathVariable("projectId") Long projectId) {
-        return responseDecorator.decorate(() -> getProjectStudentsService.execute(projectId));
-    }
-
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/documents")
+    @GetMapping(path = "project/{projectId}/documents")
     public ResponseEntity<ArrayList<DocumentDTO>> getProjectDocuments(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(projectId));
     }
 
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/students/progress")
+    @GetMapping(path = "project/{projectId}/students/progress")
     public ResponseEntity<ArrayList<StudentProjectDTO>> getProjectStudentsProgress(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectStudentsProgressService.execute(projectId));
     }
 
-    @PutMapping(path = "classroom/{classroomId}/project/{projectId}/students/add")
-    public ResponseEntity<Long> addProjectStudents(@RequestBody Long studentId, @PathVariable("projectId") Long projectId) {
-        return responseDecorator.decorate(() -> addProjectStudentsService.execute(projectId, studentId));
-    }
-
-    @PutMapping(path = "classroom/{classroomId}/project/{projectId}/students/remove")
-    public ResponseEntity<Long> removeProjectStudents(@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("projectId") Long projectId) {
-        return responseDecorator.decorate(() -> removeProjectStudentsService.execute(projectId, studentDTOs));
-    }
-
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/lessons")
+    @GetMapping(path = "project/{projectId}/lessons")
     public ResponseEntity<ArrayList<LessonDTO>> getProjectLessons(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectLessonsService.execute(projectId));
     }
 
-    @PostMapping(path = "classroom/{classroomId}/project/template")
+    @PostMapping(path = "project/template")
     public ResponseEntity<Long> newProjectFromTemplate(@RequestBody ProjectTemplateDTO projectTemplateDTO, @PathVariable Long classroomId) {
-        return responseDecorator.decorate(() -> createProjectFromTemplateService.execute(projectTemplateDTO, classroomId));
+        return responseDecorator.decorate(() -> createProjectFromTemplateService.execute(projectTemplateDTO));
     }
 
-    @GetMapping(path = "classroom/{classroomId}/project/{projectId}/groups")
+    @GetMapping(path = "project/{projectId}/groups")
     public ResponseEntity<ArrayList<GroupDTO>> getProjectGroups(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectGroupsService.execute(projectId));
     }

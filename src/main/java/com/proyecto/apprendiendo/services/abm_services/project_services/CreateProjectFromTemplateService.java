@@ -26,8 +26,8 @@ public class CreateProjectFromTemplateService {
 
 
     @Transactional(rollbackOn = Exception.class)
-    public Long execute(ProjectTemplateDTO projectTemplateDTO, Long classroomId) {
-        Long projectId = createProjectService.execute(ProjectMapper.templateToNew(projectTemplateDTO), classroomId);
+    public Long execute(ProjectTemplateDTO projectTemplateDTO) {
+        Long projectId = createProjectService.execute(ProjectMapper.templateToDto(projectTemplateDTO));
         projectTemplateDTO.getLessons().forEach(lesson -> {
             LessonDTO lessonDTO = LessonMapper.templateDtoToDto(lesson);
             lessonDTO.setProjectId(projectId);

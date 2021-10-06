@@ -30,7 +30,7 @@ public class LessonController {
     }
 
     @PostMapping(path = "project/{projectId}/lesson/template")
-    public ResponseEntity<Long> newLesson(@RequestBody LessonTemplateDTO lessonTemplateDTO, @PathVariable Long projectId) {
+    public ResponseEntity<Long> newLessonFromTemplate(@RequestBody LessonTemplateDTO lessonTemplateDTO, @PathVariable Long projectId) {
         return responseDecorator.decorate(() -> createLessonFromTemplateService.execute(lessonTemplateDTO, projectId));
     }
 
@@ -50,7 +50,7 @@ public class LessonController {
     }
 
     @GetMapping(path = "lesson/{lessonId}/activities")
-    public ResponseEntity<ArrayList<ActivityDTO>> getProjectActivities(@PathVariable("lessonId") Long lessonId) {
+    public ResponseEntity<ArrayList<ActivityDTO>> getLessonActivities(@PathVariable("lessonId") Long lessonId) {
         return responseDecorator.decorate(() -> getLessonActivitiesService.execute(lessonId));
     }
 

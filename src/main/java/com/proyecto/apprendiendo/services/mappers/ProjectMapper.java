@@ -2,7 +2,6 @@ package com.proyecto.apprendiendo.services.mappers;
 
 import com.proyecto.apprendiendo.entities.Project;
 import com.proyecto.apprendiendo.entities.dtos.ProjectDTO;
-import com.proyecto.apprendiendo.entities.dtos.ProjectNewDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectTemplateDTO;
 
 public class ProjectMapper {
@@ -25,6 +24,7 @@ public class ProjectMapper {
 
         return ProjectTemplateDTO.builder()
                                  .name(project.getName())
+                                 .classroomId(project.getClassroomId())
                                  .position(project.getPosition())
                                  .startDate(project.getStartDate())
                                  .dueDate(project.getDueDate())
@@ -32,15 +32,16 @@ public class ProjectMapper {
                                  .build();
     }
 
-    public static ProjectNewDTO templateToNew(ProjectTemplateDTO projectTemplateDTO) {
+    public static ProjectDTO templateToDto(ProjectTemplateDTO projectTemplateDTO) {
 
-        return ProjectNewDTO.builder()
-                            .name(projectTemplateDTO.getName())
-                            .position(projectTemplateDTO.getPosition())
-                            .startDate(projectTemplateDTO.getStartDate())
-                            .dueDate(projectTemplateDTO.getDueDate())
-                            .active(projectTemplateDTO.getActive())
-                            .build();
+        return ProjectDTO.builder()
+                         .name(projectTemplateDTO.getName())
+                         .classroomId(projectTemplateDTO.getClassroomId())
+                         .position(projectTemplateDTO.getPosition())
+                         .startDate(projectTemplateDTO.getStartDate())
+                         .dueDate(projectTemplateDTO.getDueDate())
+                         .active(projectTemplateDTO.getActive())
+                         .build();
     }
 
 }

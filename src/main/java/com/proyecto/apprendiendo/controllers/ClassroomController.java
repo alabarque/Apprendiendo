@@ -5,6 +5,7 @@ import com.proyecto.apprendiendo.services.abm_services.classroom_services.*;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsProgressService;
 import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
+import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.RemoveClassroomStudentsService;
 import com.proyecto.apprendiendo.services.abm_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.abm_services.student_project_services.RemoveProjectStudentsService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
@@ -24,7 +25,7 @@ public class ClassroomController {
     private UpdateClassroomService updateClassroomService;
     private GetClassroomStudentsService getClassroomStudentsService;
     private AddClassroomStudentsService addClassroomStudentsService;
-    private RemoveProjectStudentsService removeProjectStudentsService;
+    private RemoveClassroomStudentsService removeClassroomStudentsService;
     private GetClassroomProjectsService getClassroomProjectsService;
     private ResponseDecorator responseDecorator;
     private GetClassroomStudentsProgressService getClassroomStudentsProgressService;
@@ -65,14 +66,14 @@ public class ClassroomController {
         return responseDecorator.decorate(() -> getClassroomStudentsProgressService.execute(classroomId));
     }
 
-    @PutMapping(path = "classroom/{classroomId}/students/add")
-    public ResponseEntity<Long> addProjectStudents(@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("classroomId") Long classroomId) {
-        return responseDecorator.decorate(() -> addClassroomStudentsService.execute(classroomId, studentDTOs));
+    @PostMapping(path = "classroom/{classroomId}/student/{studentId}")
+    public ResponseEntity<Long> addClassroomStudent(@PathVariable("classroomId") Long classroomId, @PathVariable("studentId") Long studentId) {
+        return responseDecorator.decorate(() -> addClassroomStudentsService.execute(classroomId, studentId));
     }
 
-    @PutMapping(path = "classroom/{classroomId}/students/remove")
-    public ResponseEntity<Long> removeProjectStudents(@RequestBody ArrayList<StudentDTO> studentDTOs, @PathVariable("classroomId") Long classroomId) {
-        return responseDecorator.decorate(() -> removeProjectStudentsService.execute(classroomId, studentDTOs));
+    @DeleteMapping(path = "classroom/{classroomId}/student/{studentId}")
+    public ResponseEntity<Long> removeClassroomStudent(@PathVariable("classroomId") Long classroomId, @PathVariable("studentId") Long studentId) {
+        return responseDecorator.decorate(() -> removeClassroomStudentsService.execute(classroomId, studentId));
     }
 
     @GetMapping(path = "classroom/{classroomId}/projects")
