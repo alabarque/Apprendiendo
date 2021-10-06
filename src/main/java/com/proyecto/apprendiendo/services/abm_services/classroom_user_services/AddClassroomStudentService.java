@@ -16,12 +16,15 @@ public class AddClassroomStudentService {
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long classroomId, Long studentId) {
-        studentClassroomRepository.save(StudentClassroom.builder()
-                                                        .classroomId(classroomId)
-                                                        .studentId(studentId)
-                                                        .grade(0)
-                                                        .percentageCompleted(0.00)
-                                                        .build());
+        if (studentClassroomRepository.findByStudentIdAndClassroomId(classroomId,studentId) == null) {
+            studentClassroomRepository.save(StudentClassroom.builder()
+                                                            .classroomId(classroomId)
+                                                            .studentId(studentId)
+                                                            .grade(0)
+                                                            .percentageCompleted(0.00)
+                                                            .build());
+        }
+
         return classroomId;
     }
 }

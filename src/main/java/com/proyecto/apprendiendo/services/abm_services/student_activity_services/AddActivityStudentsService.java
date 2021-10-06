@@ -16,12 +16,14 @@ public class AddActivityStudentsService {
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long activityId, Long studentId) {
-        studentActivityRepository.save(StudentActivity.builder()
-                                                      .activityId(activityId)
-                                                      .userId(studentId)
-                                                      .percentageCompleted(0.00)
-                                                      .grade(0)
-                                                      .build());
+        if (studentActivityRepository.findByUserIdAndActivityId(studentId,activityId) == null){
+            studentActivityRepository.save(StudentActivity.builder()
+                                                          .activityId(activityId)
+                                                          .userId(studentId)
+                                                          .percentageCompleted(0.00)
+                                                          .grade(0)
+                                                          .build());
+        }
         return activityId;
     }
 }
