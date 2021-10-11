@@ -1,8 +1,8 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
-import com.proyecto.apprendiendo.services.abm_services.document_services.GetSourcesDocumentsService;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.*;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.*;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

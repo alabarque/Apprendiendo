@@ -2,7 +2,7 @@ package com.proyecto.apprendiendo.config.security;
 
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.services.JwtTokenFilter;
-import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserDetailsService;
+import com.proyecto.apprendiendo.services.general_services.user_services.GetUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

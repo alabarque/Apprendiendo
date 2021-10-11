@@ -2,9 +2,9 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.MethodologyDTO;
 import com.proyecto.apprendiendo.entities.dtos.ProjectTemplateDTO;
-import com.proyecto.apprendiendo.services.abm_services.methodology_services.*;
-import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByNameService;
+import com.proyecto.apprendiendo.services.general_services.methodology_services.*;
+import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectTemplateByMethodologyIdService;
+import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectTemplateByNameService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

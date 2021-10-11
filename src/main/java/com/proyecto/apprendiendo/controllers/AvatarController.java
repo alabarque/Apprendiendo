@@ -1,10 +1,10 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.AvatarDTO;
-import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
-import com.proyecto.apprendiendo.services.abm_services.avatar_services.DeleteAvatarService;
-import com.proyecto.apprendiendo.services.abm_services.avatar_services.GetAvatarService;
-import com.proyecto.apprendiendo.services.abm_services.avatar_services.UpdateAvatarService;
+import com.proyecto.apprendiendo.services.general_services.avatar_services.CreateAvatarService;
+import com.proyecto.apprendiendo.services.general_services.avatar_services.DeleteAvatarService;
+import com.proyecto.apprendiendo.services.general_services.avatar_services.GetAvatarService;
+import com.proyecto.apprendiendo.services.general_services.avatar_services.UpdateAvatarService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

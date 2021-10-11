@@ -6,34 +6,36 @@ import com.proyecto.apprendiendo.entities.enums.RewardType;
 import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.entities.enums.UserType;
 import com.proyecto.apprendiendo.repositories.*;
-import com.proyecto.apprendiendo.services.abm_services.activity_services.CreateActivityService;
-import com.proyecto.apprendiendo.services.abm_services.avatar_services.CreateAvatarService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.CreateClassroomService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_services.GetClassroomService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.AddClassroomStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.classroom_user_services.GetClassroomStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.condition_services.CreateConditionService;
-import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.CreateLessonService;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonService;
-import com.proyecto.apprendiendo.services.abm_services.lesson_services.GetLessonStudentsProgressService;
-import com.proyecto.apprendiendo.services.abm_services.methodology_services.CreateMethodologyService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectFromTemplateService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.CreateProjectService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.GetProjectTemplateByMethodologyIdService;
-import com.proyecto.apprendiendo.services.abm_services.reward_services.CreateRewardService;
-import com.proyecto.apprendiendo.services.abm_services.student_activity_services.UpdateStudentActivityProgressService;
-import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.student_project_services.UpdateStudentProjectProgressService;
-import com.proyecto.apprendiendo.services.abm_services.student_reward_services.AddRewardStudentService;
-import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
-import com.proyecto.apprendiendo.services.abm_services.user_services.GetStudentService;
-import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
+import com.proyecto.apprendiendo.services.general_services.activity_services.CreateActivityService;
+import com.proyecto.apprendiendo.services.general_services.avatar_services.CreateAvatarService;
+import com.proyecto.apprendiendo.services.general_services.classroom_services.CreateClassroomService;
+import com.proyecto.apprendiendo.services.general_services.classroom_services.GetClassroomService;
+import com.proyecto.apprendiendo.services.general_services.classroom_user_services.AddClassroomStudentsService;
+import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetClassroomStudentsService;
+import com.proyecto.apprendiendo.services.general_services.condition_services.CreateConditionService;
+import com.proyecto.apprendiendo.services.general_services.document_services.CreateDocumentService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.CreateLessonService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonStudentsProgressService;
+import com.proyecto.apprendiendo.services.general_services.methodology_services.CreateMethodologyService;
+import com.proyecto.apprendiendo.services.general_services.project_services.CreateProjectFromTemplateService;
+import com.proyecto.apprendiendo.services.general_services.project_services.CreateProjectService;
+import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectService;
+import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectTemplateByMethodologyIdService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.CreateRewardService;
+import com.proyecto.apprendiendo.services.general_services.statistics_services.GetStatisticsService;
+import com.proyecto.apprendiendo.services.general_services.student_activity_services.UpdateStudentActivityProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsService;
+import com.proyecto.apprendiendo.services.general_services.student_project_services.UpdateStudentProjectProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_reward_services.AddRewardStudentService;
+import com.proyecto.apprendiendo.services.general_services.user_services.CreateUserService;
+import com.proyecto.apprendiendo.services.general_services.user_services.GetStudentService;
+import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
+import com.google.gson.*;
 
 @Component
 public class CommandLineAppStartupRunner implements CommandLineRunner {
@@ -99,6 +101,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private UpdateStudentProjectProgressService updateStudentProjectProgressService;
     @Autowired
     private AddRewardStudentService addRewardStudentService;
+    @Autowired
+    private GetStatisticsService getStatisticsService;
 
 
 
@@ -489,25 +493,25 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         invertedTemplate.setClassroomId(naturalesCursoId);
         Long ProyectoN2Id = createProjectFromTemplateService.execute(invertedTemplate);
         pblTemplate.setName("Proyecto: Los Atomos");
-        invertedTemplate.setClassroomId(naturalesCursoId);
+        pblTemplate.setClassroomId(naturalesCursoId);
         Long ProyectoN3Id = createProjectFromTemplateService.execute(pblTemplate);
         pblTemplate.setName("Projecto: San Martin");
-        invertedTemplate.setClassroomId(socialesCursoId);
+        pblTemplate.setClassroomId(socialesCursoId);
         Long ProyectoN4Id = createProjectFromTemplateService.execute(pblTemplate);
         pblTemplate.setName("Proyecto: El Cabildo");
-        invertedTemplate.setClassroomId(socialesCursoId);
+        pblTemplate.setClassroomId(socialesCursoId);
         Long ProyectoN5Id = createProjectFromTemplateService.execute(pblTemplate);
         invertedTemplate.setName("Aula Invertida: Division");
         invertedTemplate.setClassroomId(mateCursoId);
         Long ProyectoN6Id = createProjectFromTemplateService.execute(invertedTemplate);
         pblTemplate.setName("Proyecto: Multiplicacion");
-        invertedTemplate.setClassroomId(mateCursoId);
+        pblTemplate.setClassroomId(mateCursoId);
         Long ProyectoN7Id = createProjectFromTemplateService.execute(pblTemplate);
         invertedTemplate.setName("Aula Invertida: Oraciones");
         invertedTemplate.setClassroomId(lenguaCursoId);
         Long ProyectoN8Id = createProjectFromTemplateService.execute(invertedTemplate);
         pblTemplate.setName("Proyecto: Gramatica");
-        invertedTemplate.setClassroomId(lenguaCursoId);
+        pblTemplate.setClassroomId(lenguaCursoId);
         Long ProyectoN9Id = createProjectFromTemplateService.execute(pblTemplate);
 
 
@@ -604,8 +608,16 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         addRewardStudentService.execute(rewardSocialId,javiId);
 
+        //TESTS
+        //printObject(getStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
 
 
 
+
+    }
+
+    private void printObject(Object object) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println(gson.toJson(object));
     }
 }

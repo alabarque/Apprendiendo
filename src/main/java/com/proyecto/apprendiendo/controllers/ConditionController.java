@@ -1,10 +1,10 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ConditionDTO;
-import com.proyecto.apprendiendo.services.abm_services.condition_services.CreateConditionService;
-import com.proyecto.apprendiendo.services.abm_services.condition_services.DeleteConditionService;
-import com.proyecto.apprendiendo.services.abm_services.condition_services.GetConditionService;
-import com.proyecto.apprendiendo.services.abm_services.condition_services.UpdateConditionService;
+import com.proyecto.apprendiendo.services.general_services.condition_services.CreateConditionService;
+import com.proyecto.apprendiendo.services.general_services.condition_services.DeleteConditionService;
+import com.proyecto.apprendiendo.services.general_services.condition_services.GetConditionService;
+import com.proyecto.apprendiendo.services.general_services.condition_services.UpdateConditionService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

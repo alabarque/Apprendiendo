@@ -1,12 +1,9 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
-import com.proyecto.apprendiendo.services.abm_services.document_services.GetSourcesDocumentsService;
-import com.proyecto.apprendiendo.services.abm_services.project_services.*;
-import com.proyecto.apprendiendo.services.abm_services.student_project_services.AddProjectStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsProgressService;
-import com.proyecto.apprendiendo.services.abm_services.student_project_services.GetProjectStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.student_project_services.RemoveProjectStudentsService;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.project_services.*;
+import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsProgressService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -2,10 +2,10 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
 import com.proyecto.apprendiendo.entities.dtos.NewDocumentDTO;
-import com.proyecto.apprendiendo.services.abm_services.document_services.CreateDocumentService;
-import com.proyecto.apprendiendo.services.abm_services.document_services.DeleteDocumentService;
-import com.proyecto.apprendiendo.services.abm_services.document_services.GetDocumentService;
-import com.proyecto.apprendiendo.services.abm_services.document_services.UpdateDocumentService;
+import com.proyecto.apprendiendo.services.general_services.document_services.CreateDocumentService;
+import com.proyecto.apprendiendo.services.general_services.document_services.DeleteDocumentService;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetDocumentService;
+import com.proyecto.apprendiendo.services.general_services.document_services.UpdateDocumentService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -2,7 +2,7 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.enums.UserType;
-import com.proyecto.apprendiendo.services.abm_services.user_services.CreateUserService;
+import com.proyecto.apprendiendo.services.general_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

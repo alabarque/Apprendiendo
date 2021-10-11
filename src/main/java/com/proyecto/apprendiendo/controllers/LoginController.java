@@ -3,7 +3,7 @@ package com.proyecto.apprendiendo.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
-import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
+import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.login_services.LoginService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;

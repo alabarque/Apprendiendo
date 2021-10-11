@@ -1,15 +1,13 @@
 package com.proyecto.apprendiendo.controllers;
 
-import com.proyecto.apprendiendo.entities.GroupStudent;
 import com.proyecto.apprendiendo.entities.dtos.GroupDTO;
 import com.proyecto.apprendiendo.entities.dtos.GroupProgressDTO;
 import com.proyecto.apprendiendo.entities.dtos.GroupStudentDTO;
-import com.proyecto.apprendiendo.entities.dtos.StudentDTO;
-import com.proyecto.apprendiendo.services.abm_services.group_services.*;
-import com.proyecto.apprendiendo.services.abm_services.group_student_services.AddGroupStudentService;
-import com.proyecto.apprendiendo.services.abm_services.group_student_services.GetGroupStudentsService;
-import com.proyecto.apprendiendo.services.abm_services.group_student_services.RemoveGroupStudentService;
-import com.proyecto.apprendiendo.services.abm_services.group_student_services.UpdateGroupStudentService;
+import com.proyecto.apprendiendo.services.general_services.group_services.*;
+import com.proyecto.apprendiendo.services.general_services.group_student_services.AddGroupStudentService;
+import com.proyecto.apprendiendo.services.general_services.group_student_services.GetGroupStudentsService;
+import com.proyecto.apprendiendo.services.general_services.group_student_services.RemoveGroupStudentService;
+import com.proyecto.apprendiendo.services.general_services.group_student_services.UpdateGroupStudentService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

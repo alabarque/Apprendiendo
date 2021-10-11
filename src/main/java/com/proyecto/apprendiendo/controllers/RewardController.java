@@ -1,10 +1,10 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.RewardDTO;
-import com.proyecto.apprendiendo.services.abm_services.reward_services.CreateRewardService;
-import com.proyecto.apprendiendo.services.abm_services.reward_services.DeleteRewardService;
-import com.proyecto.apprendiendo.services.abm_services.reward_services.GetRewardService;
-import com.proyecto.apprendiendo.services.abm_services.reward_services.UpdateRewardService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.CreateRewardService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.DeleteRewardService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetRewardService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.UpdateRewardService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
