@@ -543,7 +543,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardId = createRewardService.execute(RewardDTO.builder()
                                                              .rewardType(RewardType.BADGE.getValue())
                                                              .conditionId(condition10ActivitiesId)
-                                                             .text("Completastes 10 actividades maestro!")
+                                                             .text("Completaste 10 actividades maestro!")
                                                              .name("Hiperactivo")
                                                              .build());
 
@@ -572,7 +572,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardSocialId = createRewardService.execute(RewardDTO.builder()
                                                              .rewardType(RewardType.SOCIAL.getValue())
                                                              .conditionId(conditionSocialId)
-                                                             .text("Te portastes muy bien!")
+                                                             .text("Te portaste muy bien!")
                                                              .name("Santo")
                                                              .build());
 
