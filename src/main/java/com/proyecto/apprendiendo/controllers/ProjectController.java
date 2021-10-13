@@ -68,7 +68,7 @@ public class ProjectController {
     }
 
     @PostMapping(path = "project/template")
-    public ResponseEntity<Long> newProjectFromTemplate(@RequestBody ProjectTemplateDTO projectTemplateDTO, @PathVariable Long classroomId) {
+    public ResponseEntity<Long> newProjectFromTemplate(@RequestBody ProjectTemplateDTO projectTemplateDTO) {
         return responseDecorator.decorate(() -> createProjectFromTemplateService.execute(projectTemplateDTO));
     }
 
