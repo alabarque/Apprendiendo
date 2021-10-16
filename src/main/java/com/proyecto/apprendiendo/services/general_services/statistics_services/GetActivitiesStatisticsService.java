@@ -83,7 +83,7 @@ public class GetActivitiesStatisticsService {
         if (targetType.equals("LESSON")) return activity.getLessonId().equals(targetId);
         if (targetType.equals("PROJECT")) return getActivityLessonService.execute(activity.getId()).getProjectId().equals(targetId);
         if (targetType.equals("CLASSROOM")) return getActivityProjectService.execute(activity.getId()).getClassroomId().equals(targetId);
-        if (targetType.equals("TEACHER")) if (!getActivityClassroomService.execute(activity.getId()).equals(0L)) return getActivityClassroomService.execute(activity.getId()).getTeacherId().equals(targetId);
+        if (targetType.equals("TEACHER")) if (getActivityClassroomService.execute(activity.getId()) != null) return getActivityClassroomService.execute(activity.getId()).getTeacherId().equals(targetId);
         return Boolean.FALSE;
     }
 
