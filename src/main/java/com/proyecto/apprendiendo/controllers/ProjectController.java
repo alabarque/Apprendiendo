@@ -3,6 +3,7 @@ package com.proyecto.apprendiendo.controllers;
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.general_services.project_services.*;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsProgressService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class ProjectController {
     private GetProjectStudentsProgressService getProjectStudentsProgressService;
     private GetSourcesDocumentsService getSourcesDocumentsService;
     private GetProjectGroupsService getProjectGroupsService;
+    private GetTargetRewardsService getTargetRewardsService;
 
     @PostMapping(path = "project")
     public ResponseEntity<Long> newProject(@RequestBody ProjectDTO projectDTO) {
@@ -77,5 +79,9 @@ public class ProjectController {
         return responseDecorator.decorate(() -> getProjectGroupsService.execute(projectId));
     }
 
+    @GetMapping(path = "project/{projectId}/rewards")
+    public ResponseEntity<ArrayList<RewardDTO>> getProjectRewards(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(() -> getTargetRewardsService.execute(projectId));
+    }
 
 }

@@ -2,12 +2,14 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
+import com.proyecto.apprendiendo.entities.dtos.RewardDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
 import com.proyecto.apprendiendo.services.general_services.activity_services.CreateActivityService;
 import com.proyecto.apprendiendo.services.general_services.activity_services.DeleteActivityService;
 import com.proyecto.apprendiendo.services.general_services.activity_services.GetActivityService;
 import com.proyecto.apprendiendo.services.general_services.activity_services.UpdateActivityService;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetActivityStudentsProgressService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
@@ -27,6 +29,7 @@ public class ActivityController {
     private ResponseDecorator responseDecorator;
     private GetActivityStudentsProgressService getActivityStudentsProgressService;
     private GetSourcesDocumentsService getSourcesDocumentsService;
+    private GetTargetRewardsService getTargetRewardsService;
 
     @PostMapping(path = "activity")
     public ResponseEntity<Long> newActivity(@RequestBody ActivityDTO activityDTO) {
@@ -56,5 +59,10 @@ public class ActivityController {
     @GetMapping(path = "activity/{activityId}/documents")
     public ResponseEntity<ArrayList<DocumentDTO>> getActivityDocuments(@PathVariable("activityId") Long activityId) {
         return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(activityId));
+    }
+
+    @GetMapping(path = "activity/{activityId}/rewards")
+    public ResponseEntity<ArrayList<RewardDTO>> getActivityRewards(@PathVariable("activityId") Long activityId) {
+        return responseDecorator.decorate(() -> getTargetRewardsService.execute(activityId));
     }
 }
