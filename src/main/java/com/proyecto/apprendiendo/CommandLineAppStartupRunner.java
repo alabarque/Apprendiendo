@@ -615,7 +615,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         //TESTS
         //printObject(getActivitiesStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
-        printObject(getProjectsStatisticsService.execute(andreaId, "TEACHER"));
+        //printObject(getProjectsStatisticsService.execute(andreaId, "TEACHER"));
 
 
 
