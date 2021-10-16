@@ -18,4 +18,5 @@ public class LessonTemplateDTO {
     private LocalDateTime startDate;
     private Boolean active;
     private ArrayList<ActivityTemplateDTO> activities;
+    private ArrayList<DocumentDTO> documents;
 }

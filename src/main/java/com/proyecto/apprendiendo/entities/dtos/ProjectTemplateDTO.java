@@ -18,4 +18,6 @@ public class ProjectTemplateDTO {
     private LocalDateTime dueDate;
     private Boolean active;
     private ArrayList<LessonTemplateDTO> lessons;
+    private ArrayList<RewardDTO> rewards;
+    private ArrayList<DocumentDTO> documents;
 }
