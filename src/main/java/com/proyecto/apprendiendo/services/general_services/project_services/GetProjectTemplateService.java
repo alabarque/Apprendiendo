@@ -9,6 +9,8 @@ import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.DocumentRepository;
 import com.proyecto.apprendiendo.repositories.LessonRepository;
 import com.proyecto.apprendiendo.repositories.ProjectRepository;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
 import com.proyecto.apprendiendo.services.mappers.ActivityMapper;
 import com.proyecto.apprendiendo.services.mappers.DocumentMapper;
 import com.proyecto.apprendiendo.services.mappers.LessonMapper;
@@ -31,6 +33,8 @@ public class GetProjectTemplateService {
     private LessonRepository lessonRepository;
     private ActivityRepository activityRepository;
     private DocumentRepository documentRepository;
+    private GetTargetRewardsService getTargetRewardsService;
+    private GetSourcesDocumentsService getSourcesDocumentsService;
 
     public ProjectTemplateDTO execute(Long projectId) {
         Project project = projectRepository.getById(projectId);
@@ -47,10 +51,12 @@ public class GetProjectTemplateService {
                                                                             .map(d -> DocumentMapper.entityToTemplateDto(d))
                                                                             .sorted(Comparator.comparing(DocumentTemplateDTO::getPosition))
                                                                             .collect(Collectors.toCollection(ArrayList::new))));
+            activities.forEach((aid, a) -> a.setRewards(getTargetRewardsService.execute(aid)));
             l.setActivities(activities.values()
                                       .stream()
                                       .sorted(Comparator.comparing(ActivityTemplateDTO::getPosition))
                                       .collect(Collectors.toCollection(ArrayList::new)));
+            l.setDocuments(getSourcesDocumentsService.execute(lid));
         });
 
         ProjectTemplateDTO projectTemplateDTO = ProjectMapper.entityToTemplateDto(project);
@@ -58,6 +64,8 @@ public class GetProjectTemplateService {
                                              .stream()
                                              .sorted(Comparator.comparing(LessonTemplateDTO::getPosition))
                                              .collect(Collectors.toCollection(ArrayList::new)));
+        projectTemplateDTO.setRewards(getTargetRewardsService.execute(projectId));
+        projectTemplateDTO.setDocuments(getSourcesDocumentsService.execute(projectId));
 
         return projectTemplateDTO;
     }
