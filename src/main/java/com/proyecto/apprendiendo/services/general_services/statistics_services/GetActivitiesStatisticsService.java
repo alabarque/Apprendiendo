@@ -83,7 +83,7 @@ public class GetActivitiesStatisticsService {
         if (targetType.equals("LESSON")) return activity.getLessonId().equals(targetId);
         if (targetType.equals("PROJECT")) return getActivityLessonService.execute(activity.getId()).getProjectId().equals(targetId);
         if (targetType.equals("CLASSROOM")) return getActivityProjectService.execute(activity.getId()).getClassroomId().equals(targetId);
-        if (targetType.equals("TEACHER")) if (getActivityClassroomService.execute(activity.getId()) != null) return getActivityClassroomService.execute(activity.getId()).getTeacherId().equals(targetId);
+        if (targetType.equals("TEACHER")) if (!getActivityClassroomService.execute(activity.getId()).equals(0L)) return getActivityClassroomService.execute(activity.getId()).getTeacherId().equals(targetId);
         return Boolean.FALSE;
     }
 
@@ -96,25 +96,29 @@ public class GetActivitiesStatisticsService {
     }
 
     private Double getAverageDaysToDueDate(ArrayList<StudentActivityDTO> activities){
-        Stream<Duration> durations = activities.stream()
+        var duration = activities.stream()
                                                .filter(a-> a.getPercentageCompleted().equals(100.00))
                                                .filter(a -> a.getDateCompleted() != null)
                                                .filter(a -> getActivityService.execute(a.getActivityId()).getDueDate() != null)
-                                               .map(a -> Duration.between(a.getDateCompleted(), getActivityService.execute(a.getActivityId()).getDueDate()));
+                                               .map(a -> Duration.between(a.getDateCompleted(), getActivityService.execute(a.getActivityId()).getDueDate()))
+                                                .mapToDouble(d -> d.toDays())
+                                                .average();
 
-        if (durations.count() == 0) return null;
-        else return durations.mapToDouble(d -> d.toDays()).average().getAsDouble();
+        if (duration.isPresent()) return duration.getAsDouble();
+        else return null;
     }
 
     private Double getAverageDaysToCompletion(ArrayList<StudentActivityDTO> activities){
-        Stream<Duration> durations = activities.stream()
+        var duration = activities.stream()
                                                .filter(a-> a.getPercentageCompleted().equals(100.00))
                                                .filter(a -> a.getDateCompleted() != null)
                                                .filter(a -> getActivityService.execute(a.getActivityId()).getDueDate() != null)
-                                               .map(a -> Duration.between(getActivityService.execute(a.getActivityId()).getStartDate(), a.getDateCompleted()));
+                                               .map(a -> Duration.between(getActivityService.execute(a.getActivityId()).getStartDate(), a.getDateCompleted()))
+                                                .mapToDouble(d -> d.toDays())
+                                                .average();
 
-        if (durations.count() == 0) return null;
-        else return durations.mapToDouble(d -> d.toDays()).average().getAsDouble();
+        if (duration.isPresent()) return duration.getAsDouble();
+        else return null;
     }
 
     private Double getAverageCompletion(ArrayList<StudentActivityDTO> activities){

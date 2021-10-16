@@ -24,6 +24,7 @@ import com.proyecto.apprendiendo.services.general_services.project_services.GetP
 import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectTemplateByMethodologyIdService;
 import com.proyecto.apprendiendo.services.general_services.reward_services.CreateRewardService;
 import com.proyecto.apprendiendo.services.general_services.statistics_services.GetActivitiesStatisticsService;
+import com.proyecto.apprendiendo.services.general_services.statistics_services.GetProjectsStatisticsService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.UpdateStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.UpdateStudentProjectProgressService;
@@ -103,6 +104,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private AddRewardStudentService addRewardStudentService;
     @Autowired
     private GetActivitiesStatisticsService getActivitiesStatisticsService;
+    @Autowired
+    private GetProjectsStatisticsService getProjectsStatisticsService;
+
 
 
 
@@ -488,6 +492,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         //PROYECTOS
         invertedTemplate.setName("Aula Invertida: Dinosaurios");
         invertedTemplate.setClassroomId(naturalesCursoId);
+        invertedTemplate.setDueDate(LocalDateTime.now().plusDays(7));
         Long ProyectoN1Id = createProjectFromTemplateService.execute(invertedTemplate);
         invertedTemplate.setName("Aula Invertida: Planetas");
         invertedTemplate.setClassroomId(naturalesCursoId);
@@ -610,7 +615,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         //TESTS
         //printObject(getActivitiesStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
-
+        printObject(getProjectsStatisticsService.execute(andreaId, "TEACHER"));
 
 
 
