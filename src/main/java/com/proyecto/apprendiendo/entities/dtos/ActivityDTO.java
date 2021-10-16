@@ -13,6 +13,7 @@ public class ActivityDTO {
     private Long id;
     private Integer position;
     private String name;
+    private String description;
     private Long lessonId;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;

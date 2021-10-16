@@ -20,6 +20,7 @@ public class Lesson {
     private Long id;
     private Integer position;
     private String name;
+    private String description;
     private Long projectId; //FK a Project
     private LocalDateTime startDate;
     private LocalDateTime dueDate;

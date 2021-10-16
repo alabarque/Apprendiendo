@@ -12,6 +12,7 @@ import java.util.ArrayList;
 @Builder
 public class ActivityTemplateDTO {
     private String name;
+    private String description;
     private Integer position;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;

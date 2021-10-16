@@ -20,6 +20,7 @@ public class Activity {
     private Long id;
     private Integer position;
     private String name;
+    private String description;
     private Long lessonId; //FK a Lesson
     private LocalDateTime startDate;
     private LocalDateTime dueDate;

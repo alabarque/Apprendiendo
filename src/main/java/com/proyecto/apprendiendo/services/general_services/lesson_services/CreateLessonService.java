@@ -18,6 +18,7 @@ public class CreateLessonService {
     public Long execute(LessonDTO lessonDTO) {
         Lesson lesson = Lesson.builder()
                               .name(lessonDTO.getName())
+                              .description(lessonDTO.getDescription())
                               .position(lessonDTO.getPosition())
                               .projectId(lessonDTO.getProjectId())
                               .startDate(lessonDTO.getStartDate())

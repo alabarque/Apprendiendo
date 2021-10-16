@@ -18,6 +18,7 @@ public class CreateActivityService {
     public Long execute(ActivityDTO activityDTO) {
         Activity activity = Activity.builder()
                                     .name(activityDTO.getName())
+                                    .description(activityDTO.getDescription())
                                     .position(activityDTO.getPosition())
                                     .lessonId(activityDTO.getLessonId())
                                     .startDate(activityDTO.getStartDate())

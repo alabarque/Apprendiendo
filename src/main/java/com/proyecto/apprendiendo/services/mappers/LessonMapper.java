@@ -9,6 +9,7 @@ public class LessonMapper {
         return LessonDTO.builder()
                         .id(lesson.getId())
                         .name(lesson.getName())
+                        .description(lesson.getDescription())
                         .position(lesson.getPosition())
                         .projectId(lesson.getProjectId())
                         .startDate(lesson.getStartDate())
@@ -20,6 +21,7 @@ public class LessonMapper {
     public static LessonTemplateDTO entityToTemplateDto(Lesson lesson) {
         return LessonTemplateDTO.builder()
                                 .name(lesson.getName())
+                                .description(lesson.getDescription())
                                 .position(lesson.getPosition())
                                 .startDate(lesson.getStartDate())
                                 .dueDate(lesson.getDueDate())
@@ -30,6 +32,7 @@ public class LessonMapper {
     public static LessonDTO templateDtoToDto(LessonTemplateDTO lessonTemplateDTO) {
         return LessonDTO.builder()
                         .name(lessonTemplateDTO.getName())
+                        .description(lessonTemplateDTO.getDescription())
                         .position(lessonTemplateDTO.getPosition())
                         .startDate(lessonTemplateDTO.getStartDate())
                         .dueDate(lessonTemplateDTO.getDueDate())

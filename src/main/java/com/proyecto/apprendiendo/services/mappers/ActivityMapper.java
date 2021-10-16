@@ -10,6 +10,7 @@ public class ActivityMapper {
                           .id(activity.getId())
                           .position(activity.getPosition())
                           .name(activity.getName())
+                          .description(activity.getDescription())
                           .lessonId(activity.getLessonId())
                           .startDate(activity.getStartDate())
                           .dueDate(activity.getDueDate())
@@ -19,6 +20,7 @@ public class ActivityMapper {
     public static ActivityTemplateDTO entityToTemplateDto(Activity activity) {
         return ActivityTemplateDTO.builder()
                                   .name(activity.getName())
+                                  .description(activity.getDescription())
                                   .position(activity.getPosition())
                                   .startDate(activity.getStartDate())
                                   .dueDate(activity.getDueDate())
@@ -28,6 +30,7 @@ public class ActivityMapper {
     public static ActivityDTO templateDtoToDto(ActivityTemplateDTO activityTemplateDTO) {
         return ActivityDTO.builder()
                           .name(activityTemplateDTO.getName())
+                          .description(activityTemplateDTO.getDescription())
                           .position(activityTemplateDTO.getPosition())
                           .startDate(activityTemplateDTO.getStartDate())
                           .dueDate(activityTemplateDTO.getDueDate())
