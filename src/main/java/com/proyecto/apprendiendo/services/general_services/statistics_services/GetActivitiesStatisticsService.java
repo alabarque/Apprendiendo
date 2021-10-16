@@ -25,7 +25,7 @@ import java.util.stream.Stream;
 @Service
 @AllArgsConstructor
 @Transactional
-public class GetStatisticsService {
+public class GetActivitiesStatisticsService {
     private GetActivityClassroomService getActivityClassroomService;
     private ActivityRepository activityRepository;
     private GetActivityService getActivityService;

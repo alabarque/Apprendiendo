@@ -23,7 +23,7 @@ import com.proyecto.apprendiendo.services.general_services.project_services.Crea
 import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectService;
 import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectTemplateByMethodologyIdService;
 import com.proyecto.apprendiendo.services.general_services.reward_services.CreateRewardService;
-import com.proyecto.apprendiendo.services.general_services.statistics_services.GetStatisticsService;
+import com.proyecto.apprendiendo.services.general_services.statistics_services.GetActivitiesStatisticsService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.UpdateStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.UpdateStudentProjectProgressService;
@@ -102,7 +102,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     @Autowired
     private AddRewardStudentService addRewardStudentService;
     @Autowired
-    private GetStatisticsService getStatisticsService;
+    private GetActivitiesStatisticsService getActivitiesStatisticsService;
 
 
 
@@ -609,7 +609,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addRewardStudentService.execute(rewardSocialId,javiId);
 
         //TESTS
-        //printObject(getStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
+        //printObject(getActivitiesStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
 
 
 
