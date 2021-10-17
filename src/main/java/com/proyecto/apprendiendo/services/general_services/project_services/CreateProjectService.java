@@ -20,6 +20,7 @@ public class CreateProjectService {
                                  .methodologyId(projectDTO.getMethodologyId())
                                  .classroomId(projectDTO.getClassroomId())
                                  .name(projectDTO.getName())
+                                 .description(projectDTO.getDescription())
                                  .startDate(projectDTO.getStartDate())
                                  .dueDate(projectDTO.getDueDate())
                                  .position(projectDTO.getPosition())

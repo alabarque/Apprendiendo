@@ -15,6 +15,7 @@ public class ProjectDTO {
     private Long methodologyId;
     private Long classroomId;
     private String name;
+    private String description;
     private LocalDateTime startDate;
     private LocalDateTime dueDate;
     private Boolean active;

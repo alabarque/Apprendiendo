@@ -12,6 +12,7 @@ import java.util.ArrayList;
 @Builder
 public class ProjectTemplateDTO {
     private String name;
+    private String description;
     private Long classroomId;
     private Integer position;
     private LocalDateTime startDate;

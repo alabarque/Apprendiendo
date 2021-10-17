@@ -11,6 +11,7 @@ public class ProjectMapper {
         return ProjectDTO.builder()
                          .id(project.getId())
                          .name(project.getName())
+                         .description(project.getDescription())
                          .position(project.getPosition())
                          .methodologyId(project.getMethodologyId())
                          .classroomId(project.getClassroomId())
@@ -24,6 +25,7 @@ public class ProjectMapper {
 
         return ProjectTemplateDTO.builder()
                                  .name(project.getName())
+                                 .description(project.getDescription())
                                  .classroomId(project.getClassroomId())
                                  .position(project.getPosition())
                                  .startDate(project.getStartDate())
@@ -36,6 +38,7 @@ public class ProjectMapper {
 
         return ProjectDTO.builder()
                          .name(projectTemplateDTO.getName())
+                         .description(projectTemplateDTO.getDescription())
                          .classroomId(projectTemplateDTO.getClassroomId())
                          .position(projectTemplateDTO.getPosition())
                          .startDate(projectTemplateDTO.getStartDate())

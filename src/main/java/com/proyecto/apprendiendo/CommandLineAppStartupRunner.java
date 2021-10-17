@@ -131,6 +131,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long proyectoTemplateAulaInvertidaId = createProjectService.execute(ProjectDTO.builder()
                                                                                       .classroomId(0L)
                                                                                       .name("Nuevo Proyecto de Aula Invertida")
+                                                                                      .description("Este es un proyecto con la metodologia de Aula Invertida")
                                                                                       .methodologyId(aulaInvertidaMethodologyId)
                                                                                       .active(Boolean.TRUE)
                                                                                       .build());
@@ -175,6 +176,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long proyectoTemplatePBLId = createProjectService.execute(ProjectDTO.builder()
                                                                             .classroomId(0L)
                                                                             .name("Nuevo Proyecto de PBL")
+                                                                            .description("Este es un proyecto con la metodologia de PBL")
                                                                             .methodologyId(proyectoMethodologyId)
                                                                             .active(Boolean.TRUE)
                                                                             .build());
@@ -304,6 +306,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long proyectoTemplateTBLId = createProjectService.execute(ProjectDTO.builder()
                                                                             .classroomId(0L)
                                                                             .name("Nuevo Proyecto de TBL")
+                                                                            .description("Este es un proyecto con la metodologia de TBL")
                                                                             .methodologyId(pensamientoMethodologyId)
                                                                             .active(Boolean.TRUE)
                                                                             .build());
