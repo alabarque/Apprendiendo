@@ -2,6 +2,7 @@ package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.group_student_services.GetProjectStudentGroupService;
 import com.proyecto.apprendiendo.services.general_services.project_services.*;
 import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsProgressService;
@@ -28,6 +29,7 @@ public class ProjectController {
     private GetSourcesDocumentsService getSourcesDocumentsService;
     private GetProjectGroupsService getProjectGroupsService;
     private GetTargetRewardsService getTargetRewardsService;
+    private GetProjectStudentGroupService getProjectStudentGroupService;
 
     @PostMapping(path = "project")
     public ResponseEntity<Long> newProject(@RequestBody ProjectDTO projectDTO) {
@@ -77,6 +79,11 @@ public class ProjectController {
     @GetMapping(path = "project/{projectId}/groups")
     public ResponseEntity<ArrayList<GroupDTO>> getProjectGroups(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectGroupsService.execute(projectId));
+    }
+
+    @GetMapping(path = "project/{projectId}/groups/student/{studentId}")
+    public ResponseEntity<GroupDTO> getProjectStudentGroup(@PathVariable("projectId") Long projectId, @PathVariable("studentId") Long studentId) {
+        return responseDecorator.decorate(() -> getProjectStudentGroupService.execute(projectId,studentId));
     }
 
     @GetMapping(path = "project/{projectId}/rewards")
