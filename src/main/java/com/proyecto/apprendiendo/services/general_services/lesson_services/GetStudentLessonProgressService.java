@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.OptionalDouble;
 
 @Service
 @AllArgsConstructor
@@ -27,15 +28,15 @@ public class GetStudentLessonProgressService {
                                                             .id(lessonId)
                                                             .build();
 
-        Double percentageCompleted = activityRepository.findAll()
-                                                       .stream()
-                                                       .filter(a -> a.getLessonId().equals(lessonId))
-                                                       .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
-                                                                                                          .getPercentageCompleted())
-                                                       .average()
-                                                       .getAsDouble();
+        OptionalDouble percentageCompleted = activityRepository.findAll()
+                                                               .stream()
+                                                               .filter(a -> a.getLessonId().equals(lessonId))
+                                                               .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
+                                                                                                                  .getPercentageCompleted())
+                                                               .average();
 
-        studentLessonDTO.setPercentageCompleted(percentageCompleted);
+        if (percentageCompleted.isPresent()) studentLessonDTO.setPercentageCompleted(percentageCompleted.getAsDouble());
+        else  studentLessonDTO.setPercentageCompleted(0.00);
 
         return studentLessonDTO;
     }

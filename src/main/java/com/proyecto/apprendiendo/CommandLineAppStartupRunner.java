@@ -26,6 +26,7 @@ import com.proyecto.apprendiendo.services.general_services.reward_services.Creat
 import com.proyecto.apprendiendo.services.general_services.statistics_services.GetActivitiesStatisticsService;
 import com.proyecto.apprendiendo.services.general_services.statistics_services.GetProjectsStatisticsService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.UpdateStudentActivityProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.UpdateStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_reward_services.AddRewardStudentService;
@@ -106,7 +107,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetActivitiesStatisticsService getActivitiesStatisticsService;
     @Autowired
     private GetProjectsStatisticsService getProjectsStatisticsService;
-
+    @Autowired
+    private GetProjectStudentsProgressService getProjectStudentsProgressService;
 
 
 
@@ -619,6 +621,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         //TESTS
         //printObject(getActivitiesStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
         //printObject(getProjectsStatisticsService.execute(andreaId, "TEACHER"));
+        //var pid = createProjectService.execute(ProjectDTO.builder().name("asdasd").classroomId(socialesCursoId).active(Boolean.TRUE).build());
+        //printObject(getProjectStudentsProgressService.execute(pid));
 
 
 

@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.OptionalDouble;
 
 @Service
 @AllArgsConstructor
@@ -28,25 +29,27 @@ public class GetStudentProjectProgressService {
         if (studentProject == null) studentProject = StudentProject.builder()
                                                                    .projectId(projectId)
                                                                    .userId(studentId)
-                                                                   .percentageCompleted(0.00)
+                                                                   .percentageCompleted(-1.00)
                                                                    .grade(0)
                                                                    .build();
         StudentProjectDTO studentProjectDTO = StudentProjectMapper.entityToDto(studentProject);
 
-        if (studentProjectDTO.getPercentageCompleted() == 0.00) {
+        if (studentProjectDTO.getPercentageCompleted() == -1.00) {
 
-            Double percentageCompleted = activityRepository.findAll()
-                                                           .stream()
-                                                           .filter(a -> getLessonService.execute(a.getLessonId())
-                                                                                        .getProjectId()
-                                                                                        .equals(projectId))
-                                                           .filter(a -> getLessonService.execute(a.getLessonId()).getActive())
-                                                           .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
-                                                                                                              .getPercentageCompleted())
-                                                           .average()
-                                                           .getAsDouble();
+            OptionalDouble percentageCompleted = activityRepository.findAll()
+                                                                   .stream()
+                                                                   .filter(a -> getLessonService.execute(a.getLessonId())
+                                                                                                  .getProjectId()
+                                                                                                  .equals(projectId))
+                                                                   .filter(a -> getLessonService.execute(a.getLessonId()).getActive())
+                                                                   .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
+                                                                                                                        .getPercentageCompleted())
+                                                                   .average();
 
-            studentProjectDTO.setPercentageCompleted(percentageCompleted);
+            if (percentageCompleted.isPresent()) studentProjectDTO.setPercentageCompleted(percentageCompleted.getAsDouble());
+            else  studentProjectDTO.setPercentageCompleted(0.00);
+
+
         }
 
 
