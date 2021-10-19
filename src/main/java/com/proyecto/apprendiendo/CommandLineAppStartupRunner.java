@@ -599,24 +599,28 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 1")
+                                                                 .imageData("m0001")
                                                                  .build());
         Long rewardBadge2 = createRewardService.execute(RewardDTO.builder()
                                                                  .conditionId(conditionSocialId)
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 2")
+                                                                 .imageData("m0003")
                                                                  .build());
         Long rewardBadge3 = createRewardService.execute(RewardDTO.builder()
                                                                  .conditionId(conditionSocialId)
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 3")
+                                                                 .imageData("m0003")
                                                                  .build());
         Long rewardBadge4 = createRewardService.execute(RewardDTO.builder()
                                                                  .conditionId(conditionSocialId)
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 4")
+                                                                 .imageData("m0004")
                                                                  .build());
 
 
