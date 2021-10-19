@@ -588,27 +588,32 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
         Long rewardSocialId = createRewardService.execute(RewardDTO.builder()
-                                                             .rewardType(RewardType.SOCIAL.getValue())
-                                                             .text("Te portaste muy bien!")
-                                                             .name("Santo")
-                                                             .build());
+                                                                   .rewardType(RewardType.SOCIAL.getValue())
+                                                                   .text("Te portaste muy bien!")
+                                                                   .conditionId(conditionSocialId)
+                                                                   .name("Santo")
+                                                                   .build());
 
         Long rewardBadge1 = createRewardService.execute(RewardDTO.builder()
+                                                                 .conditionId(conditionSocialId)
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 1")
                                                                  .build());
         Long rewardBadge2 = createRewardService.execute(RewardDTO.builder()
+                                                                 .conditionId(conditionSocialId)
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 2")
                                                                  .build());
         Long rewardBadge3 = createRewardService.execute(RewardDTO.builder()
+                                                                 .conditionId(conditionSocialId)
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 3")
                                                                  .build());
         Long rewardBadge4 = createRewardService.execute(RewardDTO.builder()
+                                                                 .conditionId(conditionSocialId)
                                                                  .rewardType(RewardType.BADGE.getValue())
                                                                  .text("Te ganaste esto, por que? no se...")
                                                                  .name("Insignia al mejor... algo... 4")
