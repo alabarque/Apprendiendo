@@ -14,6 +14,9 @@ import com.proyecto.apprendiendo.services.general_services.classroom_user_servic
 import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetClassroomStudentsService;
 import com.proyecto.apprendiendo.services.general_services.condition_services.CreateConditionService;
 import com.proyecto.apprendiendo.services.general_services.document_services.CreateDocumentService;
+import com.proyecto.apprendiendo.services.general_services.group_services.CreateGroupService;
+import com.proyecto.apprendiendo.services.general_services.group_student_services.AddGroupStudentService;
+import com.proyecto.apprendiendo.services.general_services.group_student_services.GetProjectStudentGroupService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.CreateLessonService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonStudentsProgressService;
@@ -109,7 +112,12 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetProjectsStatisticsService getProjectsStatisticsService;
     @Autowired
     private GetProjectStudentsProgressService getProjectStudentsProgressService;
-
+    @Autowired
+    private CreateGroupService createGroupService;
+    @Autowired
+    private GetProjectStudentGroupService getProjectStudentGroupService;
+    @Autowired
+    private AddGroupStudentService addGroupStudentService;
 
 
     @Override
@@ -581,10 +589,32 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         Long rewardSocialId = createRewardService.execute(RewardDTO.builder()
                                                              .rewardType(RewardType.SOCIAL.getValue())
-                                                             .conditionId(conditionSocialId)
                                                              .text("Te portaste muy bien!")
                                                              .name("Santo")
                                                              .build());
+
+        Long rewardBadge1 = createRewardService.execute(RewardDTO.builder()
+                                                                 .rewardType(RewardType.BADGE.getValue())
+                                                                 .text("Te ganaste esto, por que? no se...")
+                                                                 .name("Insignia al mejor... algo... 1")
+                                                                 .build());
+        Long rewardBadge2 = createRewardService.execute(RewardDTO.builder()
+                                                                 .rewardType(RewardType.BADGE.getValue())
+                                                                 .text("Te ganaste esto, por que? no se...")
+                                                                 .name("Insignia al mejor... algo... 2")
+                                                                 .build());
+        Long rewardBadge3 = createRewardService.execute(RewardDTO.builder()
+                                                                 .rewardType(RewardType.BADGE.getValue())
+                                                                 .text("Te ganaste esto, por que? no se...")
+                                                                 .name("Insignia al mejor... algo... 3")
+                                                                 .build());
+        Long rewardBadge4 = createRewardService.execute(RewardDTO.builder()
+                                                                 .rewardType(RewardType.BADGE.getValue())
+                                                                 .text("Te ganaste esto, por que? no se...")
+                                                                 .name("Insignia al mejor... algo... 4")
+                                                                 .build());
+
+
 
 
 
@@ -617,12 +647,24 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         });
 
         addRewardStudentService.execute(rewardSocialId,javiId);
+        addRewardStudentService.execute(rewardBadge1, nazaId);
+        addRewardStudentService.execute(rewardBadge2, nazaId);
+        addRewardStudentService.execute(rewardBadge3, nazaId);
+        addRewardStudentService.execute(rewardBadge4, nazaId);
+
 
         //TESTS
         //printObject(getActivitiesStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
+
         //printObject(getProjectsStatisticsService.execute(andreaId, "TEACHER"));
+
         //var pid = createProjectService.execute(ProjectDTO.builder().name("asdasd").classroomId(socialesCursoId).active(Boolean.TRUE).build());
         //printObject(getProjectStudentsProgressService.execute(pid));
+
+        Long groupId = createGroupService.execute(GroupDTO.builder().name("NUEVO GRUPO").projectId(ProyectoN1Id).build());
+        addGroupStudentService.execute(groupId,nazaId,"Infra");
+        addGroupStudentService.execute(groupId,mariId,"Analista");
+        //printObject(getProjectStudentGroupService.execute(ProyectoN1Id,mariId));
 
 
 
