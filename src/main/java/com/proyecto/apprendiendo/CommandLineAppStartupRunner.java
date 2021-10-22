@@ -551,77 +551,245 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addClassroomStudentsService.execute(socialesCursoId, paoId);
         addClassroomStudentsService.execute(socialesCursoId, nazaId);
 
-        Long condition10ActivitiesId = createConditionService.execute(ConditionDTO.builder()
-                                                                                  .conditionType(ConditionType.X_ACTIVITIES_COMPLETED.getValue())
-                                                                                  .text("Completar 10 actividades")
-                                                                                  .data("10")
-                                                                                  .build());
+
+        Long conditionCompleted1ActivityId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_ACTIVITIES_COMPLETED.getValue())
+                                                   .text("Completar tu primera actividad")
+                                                   .data("1")
+                                                   .build());
+
+        Long conditionCompleted10ActivitiesId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_ACTIVITIES_COMPLETED.getValue())
+                                                   .text("Completar 10 actividades")
+                                                   .data("10")
+                                                   .build());
+
+        Long conditionCompleted50ActivitiesId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_ACTIVITIES_COMPLETED.getValue())
+                                                   .text("Completar 50 actividades")
+                                                   .data("50")
+                                                   .build());
+
+        Long conditionCompleted1ClassroomId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_CLASSROOMS_COMPLETED.getValue())
+                                                   .text("Completar tu primer curso")
+                                                   .data("1")
+                                                   .build());
+
+        Long conditionCompleted5ClassroomsId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_CLASSROOMS_COMPLETED.getValue())
+                                                   .text("Completar 5 Cursos")
+                                                   .data("5")
+                                                   .build());
+
+        Long conditionCompleted10ClassroomsId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_CLASSROOMS_COMPLETED.getValue())
+                                                   .text("Completar 10 Cursos")
+                                                   .data("10")
+                                                   .build());
+
+        Long conditionCompleted1ProjectId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_PROJECTS_COMPLETED.getValue())
+                                                   .text("Completar tu primer proyecto")
+                                                   .data("1")
+                                                   .build());
+
+        Long conditionCompleted5ProjectsId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_PROJECTS_COMPLETED.getValue())
+                                                   .text("Completar 5 proyectos")
+                                                   .data("5")
+                                                   .build());
+
+        Long conditionCompleted20ProjectId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.X_PROJECTS_COMPLETED.getValue())
+                                                   .text("Completar 20 proyectos")
+                                                   .data("20")
+                                                   .build());
+
+        Long conditionScoreHigherThan5InTargetId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED_WITH_SCORE_HIGHER_THAN_X.getValue())
+                                                   .text("Aprobar la tarea")
+                                                   .data("5")
+                                                   .build());
+
+        Long conditionScoreHigherThan7InTargetId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED_WITH_SCORE_HIGHER_THAN_X.getValue())
+                                                   .text("Sacar mas de 7 en la tarea")
+                                                   .data("7")
+                                                   .build());
+
+        Long conditionScoreHigherThan9InTargetId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED_WITH_SCORE_HIGHER_THAN_X.getValue())
+                                                   .text("Sacar 10 en la tarea")
+                                                   .data("9")
+                                                   .build());
+
+        Long conditionCompletedTarget1DayEarlyId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED_X_DAYS_BEFORE_DUE_DATE.getValue())
+                                                   .text("Completar la tarea un dia antes de tiempo")
+                                                   .data("1")
+                                                   .build());
+
+        Long conditionCompletedTarget7DaysEarlyId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED_X_DAYS_BEFORE_DUE_DATE.getValue())
+                                                   .text("Completar la tarea una semana antes de tiempo")
+                                                   .data("7")
+                                                   .build());
+
+        Long conditionCompletedTarget30DaysEarlyId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED_X_DAYS_BEFORE_DUE_DATE.getValue())
+                                                   .text("Completar la tarea un mes antes de tiempo")
+                                                   .data("30")
+                                                   .build());
+
+        Long conditionCompletedTargetId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED.getValue())
+                                                   .text("Completar la tarea")
+                                                   .build());
+
+        Long conditionCompletedTargetWithBestScoreId =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.TARGET_COMPLETED_WITH_SCORE_HIGHEST_SCORE_IN_TARGET.getValue())
+                                                   .text("Completar la tarea con la mejor nota en el curso")
+                                                   .build());
+
+        Long conditionSocial1Id =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.SOCIAL.getValue())
+                                                   .text("Portarse bien en clase")
+                                                   .build());
+
+        Long conditionSocial2Id =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.SOCIAL.getValue())
+                                                   .text("Participar mucho en clase")
+                                                   .build());
+
+        Long conditionSocial13d =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.SOCIAL.getValue())
+                                                   .text("Ser elegido Abanderado")
+                                                   .build());
+        Long conditionSocial4Id =
+        createConditionService.execute(ConditionDTO.builder()
+                                                   .conditionType(ConditionType.SOCIAL.getValue())
+                                                   .text("Ayudar a un compañero")
+                                                   .build());
 
 
         Long rewardId = createRewardService.execute(RewardDTO.builder()
                                                              .rewardType(RewardType.BADGE.getValue())
-                                                             .conditionId(condition10ActivitiesId)
+                                                             .conditionId(conditionCompleted10ActivitiesId)
                                                              .text("Completaste 10 actividades maestro!")
                                                              .name("Hiperactivo")
                                                              .build());
 
-        Long conditionAulaInvertidaId = createConditionService.execute(ConditionDTO.builder()
-                                                                                  .conditionType(ConditionType.TARGET_COMPLETED_WITH_SCORE_HIGHER_THAN_X.getValue())
-                                                                                  .text("Completar: Aula Invertida: Dinosaurios con mas de 7")
-                                                                                  .data("7")
-                                                                                  .build());
-
 
         Long rewardAulaInvertidaId = createRewardService.execute(RewardDTO.builder()
                                                                           .rewardType(RewardType.CHALLENGE.getValue())
-                                                                          .conditionId(conditionAulaInvertidaId)
+                                                                          .conditionId(conditionScoreHigherThan7InTargetId)
                                                                           .targetType(TargetType.PROJECT.getValue())
                                                                           .targetId(ProyectoN1Id)
                                                                           .text("Sabes mucho de dinos!")
                                                                           .name("Dinoexperto")
                                                                           .build());
 
-        Long conditionSocialId = createConditionService.execute(ConditionDTO.builder()
-                                                                            .conditionType(ConditionType.SOCIAL.getValue())
-                                                                            .text("Portarse bien")
-                                                                            .build());
-
 
         Long rewardSocialId = createRewardService.execute(RewardDTO.builder()
                                                                    .rewardType(RewardType.SOCIAL.getValue())
                                                                    .text("Te portaste muy bien!")
-                                                                   .conditionId(conditionSocialId)
+                                                                   .conditionId(conditionSocial1Id)
                                                                    .name("Santo")
                                                                    .build());
 
-        Long rewardBadge1 = createRewardService.execute(RewardDTO.builder()
-                                                                 .conditionId(conditionSocialId)
-                                                                 .rewardType(RewardType.BADGE.getValue())
-                                                                 .text("Te ganaste esto, por que? no se...")
-                                                                 .name("Insignia al mejor... algo... 1")
-                                                                 .imageData("m0001")
-                                                                 .build());
-        Long rewardBadge2 = createRewardService.execute(RewardDTO.builder()
-                                                                 .conditionId(conditionSocialId)
-                                                                 .rewardType(RewardType.BADGE.getValue())
-                                                                 .text("Te ganaste esto, por que? no se...")
-                                                                 .name("Insignia al mejor... algo... 2")
-                                                                 .imageData("m0003")
-                                                                 .build());
-        Long rewardBadge3 = createRewardService.execute(RewardDTO.builder()
-                                                                 .conditionId(conditionSocialId)
-                                                                 .rewardType(RewardType.BADGE.getValue())
-                                                                 .text("Te ganaste esto, por que? no se...")
-                                                                 .name("Insignia al mejor... algo... 3")
-                                                                 .imageData("m0003")
-                                                                 .build());
-        Long rewardBadge4 = createRewardService.execute(RewardDTO.builder()
-                                                                 .conditionId(conditionSocialId)
-                                                                 .rewardType(RewardType.BADGE.getValue())
-                                                                 .text("Te ganaste esto, por que? no se...")
-                                                                 .name("Insignia al mejor... algo... 4")
-                                                                 .imageData("m0004")
-                                                                 .build());
+        Long rewardBadge1Id = createRewardService.execute(RewardDTO.builder()
+                                                                   .conditionId(conditionSocial1Id)
+                                                                   .rewardType(RewardType.BADGE.getValue())
+                                                                   .text("Te ganaste esto, por que? no se...")
+                                                                   .name("Insignia al mejor... algo... 1")
+                                                                   .imageData("mc0001")
+                                                                   .build());
+
+        Long rewardBadge2Id = createRewardService.execute(RewardDTO.builder()
+                                                                   .conditionId(conditionSocial1Id)
+                                                                   .rewardType(RewardType.BADGE.getValue())
+                                                                   .text("Te ganaste esto, por que? no se...")
+                                                                   .name("Insignia al mejor... algo... 2")
+                                                                   .imageData("mc0002")
+                                                                   .build());
+
+        Long rewardBadge3Id = createRewardService.execute(RewardDTO.builder()
+                                                                   .conditionId(conditionSocial1Id)
+                                                                   .rewardType(RewardType.BADGE.getValue())
+                                                                   .text("Te ganaste esto, por que? no se...")
+                                                                   .name("Insignia al mejor... algo... 3")
+                                                                   .imageData("mc0003")
+                                                                   .build());
+
+        Long rewardBadge4Id = createRewardService.execute(RewardDTO.builder()
+                                                                   .conditionId(conditionSocial1Id)
+                                                                   .rewardType(RewardType.BADGE.getValue())
+                                                                   .text("Te ganaste esto, por que? no se...")
+                                                                   .name("Insignia al mejor... algo... 4")
+                                                                   .imageData("mc0004")
+                                                                   .build());
+
+        Long rewardNaza1Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.ACHIEVEMENT.getValue())
+                                                                  .text("Te ganaste esto, por que? no se...")
+                                                                  .name("Logro al mejor... algo... 1")
+                                                                  .targetId(mateCursoId)
+                                                                  .targetType("CLASSROOM")
+                                                                  .imageData("mc0005")
+                                                                  .build());
+
+        Long rewardNaza2Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.ACHIEVEMENT.getValue())
+                                                                  .text("Te ganaste esto, por que? no se...")
+                                                                  .name("Logro al mejor... algo... 2")
+                                                                  .targetId(mateCursoId)
+                                                                  .targetType("CLASSROOM")
+                                                                  .imageData("mc0006")
+                                                                  .build());
+
+        Long rewardNaza3Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.CHALLENGE.getValue())
+                                                                  .text("Te ganaste esto, por que? no se...")
+                                                                  .name("Reto del mejor... algo... 1")
+                                                                  .targetId(ProyectoN6Id)
+                                                                  .targetType("PROJECT")
+                                                                  .imageData("mc0007")
+                                                                  .build());
+
+        Long rewardNaza4Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.CHALLENGE.getValue())
+                                                                  .text("Te ganaste esto, por que? no se...")
+                                                                  .name("Reto del mejor... algo... 2")
+                                                                  .targetId(ProyectoN7Id)
+                                                                  .targetType("PROJECT")
+                                                                  .imageData("mc0008")
+                                                                  .build());
+
 
 
 
@@ -656,10 +824,16 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         });
 
         addRewardStudentService.execute(rewardSocialId,javiId);
-        addRewardStudentService.execute(rewardBadge1, nazaId);
-        addRewardStudentService.execute(rewardBadge2, nazaId);
-        addRewardStudentService.execute(rewardBadge3, nazaId);
-        addRewardStudentService.execute(rewardBadge4, nazaId);
+
+        addRewardStudentService.execute(rewardBadge1Id, nazaId);
+        addRewardStudentService.execute(rewardBadge2Id, nazaId);
+        addRewardStudentService.execute(rewardBadge3Id, nazaId);
+        addRewardStudentService.execute(rewardBadge4Id, nazaId);
+
+        addRewardStudentService.execute(rewardNaza1Id, nazaId);
+        addRewardStudentService.execute(rewardNaza2Id, nazaId);
+        addRewardStudentService.execute(rewardNaza3Id, nazaId);
+        addRewardStudentService.execute(rewardNaza4Id, nazaId);
 
 
         //TESTS
