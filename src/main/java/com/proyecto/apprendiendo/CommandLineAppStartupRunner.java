@@ -723,7 +723,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                    .rewardType(RewardType.BADGE.getValue())
                                                                    .text("Te ganaste esto, por que? no se...")
                                                                    .name("Insignia al mejor... algo... 1")
-                                                                   .imageData("mc0001")
+                                                                   .imageData("m0001")
                                                                    .build());
 
         Long rewardBadge2Id = createRewardService.execute(RewardDTO.builder()
@@ -731,7 +731,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                    .rewardType(RewardType.BADGE.getValue())
                                                                    .text("Te ganaste esto, por que? no se...")
                                                                    .name("Insignia al mejor... algo... 2")
-                                                                   .imageData("mc0002")
+                                                                   .imageData("m0002")
                                                                    .build());
 
         Long rewardBadge3Id = createRewardService.execute(RewardDTO.builder()
@@ -739,7 +739,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                    .rewardType(RewardType.BADGE.getValue())
                                                                    .text("Te ganaste esto, por que? no se...")
                                                                    .name("Insignia al mejor... algo... 3")
-                                                                   .imageData("mc0003")
+                                                                   .imageData("m0003")
                                                                    .build());
 
         Long rewardBadge4Id = createRewardService.execute(RewardDTO.builder()
@@ -747,7 +747,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                    .rewardType(RewardType.BADGE.getValue())
                                                                    .text("Te ganaste esto, por que? no se...")
                                                                    .name("Insignia al mejor... algo... 4")
-                                                                   .imageData("mc0004")
+                                                                   .imageData("m0004")
                                                                    .build());
 
         Long rewardNaza1Id = createRewardService.execute(RewardDTO.builder()
