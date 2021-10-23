@@ -8,6 +8,7 @@ import com.proyecto.apprendiendo.services.general_services.classroom_user_servic
 import com.proyecto.apprendiendo.services.general_services.classroom_user_services.RemoveClassroomStudentsService;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetSubRewardsService;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,7 @@ public class ClassroomController {
     private GetClassroomStudentsProgressService getClassroomStudentsProgressService;
     private GetSourcesDocumentsService getSourcesDocumentsService;
     private GetTargetRewardsService getTargetRewardsService;
+    private GetTargetSubRewardsService getTargetSubRewardsService;
 
     @PostMapping(path = "classroom")
     public ResponseEntity<Long> newClassroom(@RequestBody ClassroomDTO classroomDTO) {
@@ -85,5 +87,10 @@ public class ClassroomController {
     @GetMapping(path = "classroom/{classroomId}/rewards")
     public ResponseEntity<ArrayList<RewardDTO>> getClassroomRewards(@PathVariable("classroomId") Long classroomId) {
         return responseDecorator.decorate(() -> getTargetRewardsService.execute(classroomId));
+    }
+
+    @GetMapping(path = "classroom/{classroomId}/rewards/all")
+    public ResponseEntity<ArrayList<RewardDTO>> getClassroomSubRewards(@PathVariable("classroomId") Long classroomId) {
+        return responseDecorator.decorate(() -> getTargetSubRewardsService.execute(classroomId, "CLASSROOM"));
     }
 }

@@ -9,14 +9,12 @@ import com.proyecto.apprendiendo.services.general_services.document_services.Add
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetStudentSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetStudentLessonProgressService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetSubRewardsService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.UpdateStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.UpdateStudentProjectProgressService;
-import com.proyecto.apprendiendo.services.general_services.student_reward_services.AddRewardStudentService;
-import com.proyecto.apprendiendo.services.general_services.student_reward_services.GetStudentRewardsService;
-import com.proyecto.apprendiendo.services.general_services.student_reward_services.GetStudentTargetRewardsService;
-import com.proyecto.apprendiendo.services.general_services.student_reward_services.RemoveRewardStudentService;
+import com.proyecto.apprendiendo.services.general_services.student_reward_services.*;
 import com.proyecto.apprendiendo.services.general_services.user_services.DeleteUserService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetUsersService;
@@ -52,6 +50,7 @@ public class UserController {
     private GetStudentAvailableAvatarPartsService getStudentAvailableAvatarPartsService;
     private AddStudentTargetDocumentService addStudentTargetDocumentService;
     private GetStudentSourcesDocumentsService getStudentSourcesDocumentsService;
+    private GetStudentTargetSubRewardsService getStudentTargetSubRewardsService;
 
 
     @GetMapping(path = "user/{userId}")
@@ -170,9 +169,19 @@ public class UserController {
         return responseDecorator.decorate(() -> getStudentTargetRewardsService.execute(userId, classroomId));
     }
 
+    @GetMapping(path = "user/{userId}/classroom/{classroomId}/rewards/all")
+    public ResponseEntity<ArrayList<RewardDTO>> getAllStudentSubRewardsFromClassroom(@PathVariable("userId") Long userId, @PathVariable("classroomId") Long classroomId) {
+        return responseDecorator.decorate(() -> getStudentTargetSubRewardsService.execute(userId, classroomId, "CLASSROOM"));
+    }
+
     @GetMapping(path = "user/{userId}/project/{projectId}/rewards")
     public ResponseEntity<ArrayList<RewardDTO>> getAllStudentRewardsFromProject(@PathVariable("userId") Long userId, @PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getStudentTargetRewardsService.execute(userId, projectId));
+    }
+
+    @GetMapping(path = "user/{userId}/project/{projectId}/rewards/all")
+    public ResponseEntity<ArrayList<RewardDTO>> getAllStudentSubRewardsFromProject(@PathVariable("userId") Long userId, @PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(() -> getStudentTargetSubRewardsService.execute(userId, projectId, "PROJECT"));
     }
 
     @GetMapping(path = "user/{userId}/activity/{activityId}/rewards")

@@ -18,14 +18,13 @@ import com.proyecto.apprendiendo.services.general_services.group_services.Create
 import com.proyecto.apprendiendo.services.general_services.group_student_services.AddGroupStudentService;
 import com.proyecto.apprendiendo.services.general_services.group_student_services.GetProjectStudentGroupService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.CreateLessonService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonActivitiesService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonStudentsProgressService;
 import com.proyecto.apprendiendo.services.general_services.methodology_services.CreateMethodologyService;
-import com.proyecto.apprendiendo.services.general_services.project_services.CreateProjectFromTemplateService;
-import com.proyecto.apprendiendo.services.general_services.project_services.CreateProjectService;
-import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectService;
-import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectTemplateByMethodologyIdService;
+import com.proyecto.apprendiendo.services.general_services.project_services.*;
 import com.proyecto.apprendiendo.services.general_services.reward_services.CreateRewardService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetSubRewardsService;
 import com.proyecto.apprendiendo.services.general_services.statistics_services.GetActivitiesStatisticsService;
 import com.proyecto.apprendiendo.services.general_services.statistics_services.GetProjectsStatisticsService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.UpdateStudentActivityProgressService;
@@ -33,6 +32,7 @@ import com.proyecto.apprendiendo.services.general_services.student_project_servi
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.UpdateStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_reward_services.AddRewardStudentService;
+import com.proyecto.apprendiendo.services.general_services.student_reward_services.GetStudentTargetSubRewardsService;
 import com.proyecto.apprendiendo.services.general_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
@@ -118,6 +118,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetProjectStudentGroupService getProjectStudentGroupService;
     @Autowired
     private AddGroupStudentService addGroupStudentService;
+    @Autowired
+    private GetTargetSubRewardsService getTargetSubRewardsService;
+    @Autowired
+    private GetStudentTargetSubRewardsService getStudentTargetSubRewardsService;
+    @Autowired
+    private GetProjectLessonsService getProjectLessonsService;
+    @Autowired
+    private GetLessonActivitiesService getLessonActivitiesService;
 
 
     @Override
@@ -753,8 +761,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza1Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.ACHIEVEMENT.getValue())
-                                                                  .text("Te ganaste esto, por que? no se...")
-                                                                  .name("Logro al mejor... algo... 1")
+                                                                  .text("Te ganaste esto, por completar algun curso")
+                                                                  .name("Logro al mejor... algo... 5")
                                                                   .targetId(mateCursoId)
                                                                   .targetType("CLASSROOM")
                                                                   .imageData("mc0005")
@@ -763,8 +771,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza2Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.ACHIEVEMENT.getValue())
-                                                                  .text("Te ganaste esto, por que? no se...")
-                                                                  .name("Logro al mejor... algo... 2")
+                                                                  .text("Te ganaste esto, por completar algun curso")
+                                                                  .name("Logro al mejor... algo... 6")
                                                                   .targetId(mateCursoId)
                                                                   .targetType("CLASSROOM")
                                                                   .imageData("mc0006")
@@ -773,8 +781,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza3Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
-                                                                  .text("Te ganaste esto, por que? no se...")
-                                                                  .name("Reto del mejor... algo... 1")
+                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .name("Reto del mejor... algo... 7")
                                                                   .targetId(ProyectoN6Id)
                                                                   .targetType("PROJECT")
                                                                   .imageData("mc0007")
@@ -783,12 +791,58 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza4Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
-                                                                  .text("Te ganaste esto, por que? no se...")
-                                                                  .name("Reto del mejor... algo... 2")
+                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .name("Reto del mejor... algo... 8")
                                                                   .targetId(ProyectoN7Id)
                                                                   .targetType("PROJECT")
                                                                   .imageData("mc0008")
                                                                   .build());
+
+        Long rewardNaza5Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.CHALLENGE.getValue())
+                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .name("Reto del mejor... algo... 9")
+                                                                  .targetId(ProyectoN6Id)
+                                                                  .targetType("PROJECT")
+                                                                  .imageData("mc0009")
+                                                                  .build());
+
+        Long rewardNaza6Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.CHALLENGE.getValue())
+                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .name("Reto del mejor... algo... 10")
+                                                                  .targetId(ProyectoN7Id)
+                                                                  .targetType("PROJECT")
+                                                                  .imageData("mc00010")
+                                                                  .build());
+
+
+        Long lessonId = getProjectLessonsService.execute(ProyectoN6Id).stream().findFirst().get().getId();
+        Long activityId = getLessonActivitiesService.execute(lessonId).stream().findFirst().get().getId();
+
+
+        Long rewardNaza7Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.CHALLENGE.getValue())
+                                                                  .text("Te ganaste esto, por completar alguna actividad")
+                                                                  .name("Reto del mejor... algo... 11")
+                                                                  .targetId(activityId)
+                                                                  .targetType("ACTIVITY")
+                                                                  .imageData("mc00010")
+                                                                  .build());
+
+        Long rewardNaza8Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType(RewardType.CHALLENGE.getValue())
+                                                                  .text("Te ganaste esto, por completar alguna actividad")
+                                                                  .name("Reto del mejor... algo... 12")
+                                                                  .targetId(activityId)
+                                                                  .targetType("ACTIVITY")
+                                                                  .imageData("mc00010")
+                                                                  .build());
+
 
 
 
@@ -835,6 +889,11 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addRewardStudentService.execute(rewardNaza3Id, nazaId);
         addRewardStudentService.execute(rewardNaza4Id, nazaId);
 
+        addRewardStudentService.execute(rewardNaza5Id, nazaId);
+        addRewardStudentService.execute(rewardNaza6Id, nazaId);
+        addRewardStudentService.execute(rewardNaza7Id, nazaId);
+        addRewardStudentService.execute(rewardNaza8Id, nazaId);
+
 
         //TESTS
         //printObject(getActivitiesStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
@@ -849,7 +908,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addGroupStudentService.execute(groupId,mariId,"Analista");
         //printObject(getProjectStudentGroupService.execute(ProyectoN1Id,mariId));
 
-
+        //printObject(getStudentTargetSubRewardsService.execute(nazaId, mateCursoId, "CLASSROOM"));
 
     }
 
