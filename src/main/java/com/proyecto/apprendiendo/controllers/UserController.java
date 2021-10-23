@@ -5,6 +5,9 @@ import com.proyecto.apprendiendo.services.general_services.avatar_services.GetSt
 import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetUserClassroomsService;
 import com.proyecto.apprendiendo.services.general_services.classroom_user_services.UpdateStudentClassroomProgressService;
+import com.proyecto.apprendiendo.services.general_services.document_services.AddStudentTargetDocumentService;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetStudentSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetStudentLessonProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetStudentActivityProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.UpdateStudentActivityProgressService;
@@ -47,6 +50,8 @@ public class UserController {
     private GetUsersService getUsersService;
     private GetStudentLessonProgressService getStudentLessonProgressService;
     private GetStudentAvailableAvatarPartsService getStudentAvailableAvatarPartsService;
+    private AddStudentTargetDocumentService addStudentTargetDocumentService;
+    private GetStudentSourcesDocumentsService getStudentSourcesDocumentsService;
 
 
     @GetMapping(path = "user/{userId}")
@@ -102,6 +107,37 @@ public class UserController {
     @PutMapping(path = "user/{userId}/classroom/{classroomId}/progress")
     public ResponseEntity<Long> updateStudentClassroomProgress(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId, @RequestBody StudentClassroomDTO studentClassroomDTO) {
         return responseDecorator.decorate(() -> updateStudentClassroomProgressService.execute(userId, classroomId, studentClassroomDTO));
+    }
+
+
+    @GetMapping(path = "user/{userId}/activity/{activityId}/documents")
+    public ResponseEntity<ArrayList<DocumentDTO>> getStudentActivityDocuments(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, activityId, "ACTIVITY"));
+    }
+
+    @PostMapping(path = "user/{userId}/activity/{activityId}/document")
+    public ResponseEntity<Long> addStudentActivityDocument(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId, @RequestBody DocumentDTO documentDTO) {
+        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, activityId,"STUDENT_ACTIVITY", documentDTO));
+    }
+
+    @GetMapping(path = "user/{userId}/project/{projectId}/documents")
+    public ResponseEntity<ArrayList<DocumentDTO>> getStudentProjectDocuments(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, projectId, "PROJECT"));
+    }
+
+    @PostMapping(path = "user/{userId}/project/{projectId}/document")
+    public ResponseEntity<Long> addStudentProjectDocument(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId, @RequestBody DocumentDTO documentDTO) {
+        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, projectId, "STUDENT_PROJECT", documentDTO));
+    }
+
+    @GetMapping(path = "user/{userId}/classroom/{classroomId}/documents")
+    public ResponseEntity<ArrayList<DocumentDTO>> getStudentClassroomDocuments(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId) {
+        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, classroomId, "CLASSROOM"));
+    }
+
+    @PostMapping(path = "user/{userId}/classroom/{classroomId}/document")
+    public ResponseEntity<Long> addStudentClassroomDocument(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId, @RequestBody DocumentDTO documentDTO) {
+        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, classroomId,"STUDENT_CLASSROOM" , documentDTO));
     }
 
     @GetMapping(path = "user/{userId}/socialRewards")

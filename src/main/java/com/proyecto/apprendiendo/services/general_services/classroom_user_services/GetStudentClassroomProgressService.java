@@ -27,7 +27,7 @@ public class GetStudentClassroomProgressService {
     public StudentClassroomDTO execute(Long studentId, Long classroomId) {
         StudentClassroomDTO studentClassroomDTO = StudentClassroomMapper.entityToDto(studentClassroomRepository.findByStudentIdAndClassroomId(studentId, classroomId));
 
-        if (studentClassroomDTO.getPercentageCompleted() == 0.00) {
+        if (studentClassroomDTO.getPercentageCompleted() == null) {
             OptionalDouble percentageCompleted = activityRepository.findAll()
                                                                    .stream()
                                                                    .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId()).getProjectId())

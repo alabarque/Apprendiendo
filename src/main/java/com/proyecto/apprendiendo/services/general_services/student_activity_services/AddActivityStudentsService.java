@@ -20,8 +20,6 @@ public class AddActivityStudentsService {
             studentActivityRepository.save(StudentActivity.builder()
                                                           .activityId(activityId)
                                                           .userId(studentId)
-                                                          .percentageCompleted(0.00)
-                                                          .grade(0)
                                                           .build());
         }
         return activityId;

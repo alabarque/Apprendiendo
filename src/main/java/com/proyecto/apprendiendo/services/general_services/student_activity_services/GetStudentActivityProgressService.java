@@ -23,8 +23,9 @@ public class GetStudentActivityProgressService {
                                                                       .activityId(activityId)
                                                                       .userId(studentId)
                                                                       .percentageCompleted(0.00)
-                                                                      .grade(0)
                                                                       .build();
+
+        if (studentActivity.getPercentageCompleted() == null) studentActivity.setPercentageCompleted(0.00);
         return StudentActivityMapper.entityToDto(studentActivity);
     }
 }

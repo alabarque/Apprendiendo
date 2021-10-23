@@ -20,8 +20,6 @@ public class AddProjectStudentsService {
             studentProjectRepository.save(StudentProject.builder()
                                                         .projectId(projectId)
                                                         .userId(studentId)
-                                                        .percentageCompleted(0.00)
-                                                        .grade(0)
                                                         .build());
         }
         return projectId;

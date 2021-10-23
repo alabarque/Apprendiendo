@@ -29,12 +29,11 @@ public class GetStudentProjectProgressService {
         if (studentProject == null) studentProject = StudentProject.builder()
                                                                    .projectId(projectId)
                                                                    .userId(studentId)
-                                                                   .percentageCompleted(-1.00)
                                                                    .grade(0)
                                                                    .build();
         StudentProjectDTO studentProjectDTO = StudentProjectMapper.entityToDto(studentProject);
 
-        if (studentProjectDTO.getPercentageCompleted() == -1.00) {
+        if (studentProjectDTO.getPercentageCompleted() == null) {
 
             OptionalDouble percentageCompleted = activityRepository.findAll()
                                                                    .stream()
