@@ -815,7 +815,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .name("Reto del mejor... algo... 10")
                                                                   .targetId(ProyectoN7Id)
                                                                   .targetType("PROJECT")
-                                                                  .imageData("mc00010")
+                                                                  .imageData("mc0010")
                                                                   .build());
 
 
@@ -830,7 +830,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .name("Reto del mejor... algo... 11")
                                                                   .targetId(activityId)
                                                                   .targetType("ACTIVITY")
-                                                                  .imageData("mc00010")
+                                                                  .imageData("mc0011")
                                                                   .build());
 
         Long rewardNaza8Id = createRewardService.execute(RewardDTO.builder()
@@ -840,7 +840,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .name("Reto del mejor... algo... 12")
                                                                   .targetId(activityId)
                                                                   .targetType("ACTIVITY")
-                                                                  .imageData("mc00010")
+                                                                  .imageData("mc0012")
                                                                   .build());
 
 
