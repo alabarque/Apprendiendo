@@ -156,7 +156,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                               .name("Clase 1")
                                                                                               .lessonId(templateAulaInvertidaClase1Id)
                                                                                               .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Descripcion: Clase 1")
                                                     .data("la descripcion del primer dia de aula invertida va aca")
@@ -173,7 +173,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                               .name("Clase 2")
                                                                                               .lessonId(templateAulaInvertidaClase2Id)
                                                                                               .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Descripcion: Clase 2")
                                                     .data("la descripcion del segundo dia de aula invertida va aca")
@@ -201,7 +201,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templatePBLClase1Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Pregunta inicial")
                                                     .data(" En esta etapa, el docente selecciona un tema que esté \nligado a la realidad de los alumnos, y debe plantear una \npregunta abierta que despierte su interés y los motive a \naprender.\n El objetivo en este punto es detectar conocimientos \nprevios y que el alumno  piense qué debe investigar  y cómo\nresolver la cuestión. \\n Mediante la opción \\\"Adjuntar Material\\\" puede proporcionar\\nel material que crea conveniente a sus alumnos, tales como \\ndocumentos en formato word, excel, pdf, o incluso videos!\n\n¿Qué pregunta desea plantear?:")
@@ -218,7 +218,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templatePBLClase2Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Formando Equipos")
                                                     .data(" En base a las respuestas obtenidas en la clase \nanterior, el docente deberá formar equipos de 3 o 4\nintegrantes con diversidad de perfiles. Dándoles la \nposibilidad de que cada uno desempeñe un rol.\n También se definirá cuál es el producto o proyecto final \nque los alumnos desarrollaran en función de las \ncompetencias que se quieran alcanzar(Puede ser un folleto,\nuna presentación, una investigación científica). Se \nrecomienda que se les proporciones las rúbricas donde \nfiguren los objetivos a alcanzar y cómo se los va a \nevaluar.\n\nIngrese en el siguiente box la comunicación a los alumnos\nsobre el producto a desarrollar\\n Mediante la opción \\\"Crear equipos\\\" puede definir los \\nintegrantes de cada equipo y asignarles un nombre. Esto \\npermitirá que los alumnos colaboren y compartan tareas.")
@@ -235,7 +235,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templatePBLClase3Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Planificacion")
                                                     .data(" En esta clase se les pide a los alumnos  que armen un \nplan de trabajo, donde presenten las tareas previstas, \nel encargado de realizarlas y las fechas de resolución \nesperadas.\nEsta clase contará con un box de entregas para que los \nalumnos puedan subir el plan que crearon. Recuerde que a\npartir de esta clase, las entregas son por equipo!\nPuede ingresar un texto en el siguiente cuadro que se \nvisualizará en la pantalla de los alumnos junto con la \nconsigna mencionada anteriormente: ")
@@ -252,7 +252,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templatePBLClase4Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Investigacion")
                                                     .data("la descripcion del cuarto dia del PBL va aca")
@@ -269,7 +269,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templatePBLClase5Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Puesta en comun y Debate")
                                                     .data("la descripcion del quinto dia del PBL va aca")
@@ -286,7 +286,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templatePBLClase6Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Elaboracion del producto")
                                                     .data("la descripcion del sexto dia del PBL va aca")
@@ -303,7 +303,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templatePBLClase7Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Presentacion del Producto")
                                                     .data("la descripcion del septimo dia del PBL va aca")
@@ -331,7 +331,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 1")
                                                                                     .lessonId(templateTBLClase1Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Descripcion: Clase 1")
                                                     .data("la descripcion del primer dia del TBL va aca")
@@ -348,7 +348,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .name("Actividad 2")
                                                                                     .lessonId(templateTBLClase2Id)
                                                                                     .build());
-        createDocumentService.execute(NewDocumentDTO.builder()
+        createDocumentService.execute(DocumentDTO.builder()
                                                     .dataType("TEXT")
                                                     .name("Descripcion: Clase 2")
                                                     .data("la descripcion del segundo dia del TBL va aca")

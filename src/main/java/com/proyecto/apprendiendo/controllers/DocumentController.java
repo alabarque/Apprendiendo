@@ -1,7 +1,6 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
-import com.proyecto.apprendiendo.entities.dtos.NewDocumentDTO;
 import com.proyecto.apprendiendo.services.general_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.general_services.document_services.DeleteDocumentService;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetDocumentService;
@@ -22,8 +21,8 @@ public class DocumentController {
     private ResponseDecorator responseDecorator;
 
     @PostMapping(path = "document")
-    public ResponseEntity<Long> newDocument(@RequestBody NewDocumentDTO newDocumentDTO) {
-        return responseDecorator.decorate(() -> createDocumentService.execute(newDocumentDTO));
+    public ResponseEntity<Long> newDocument(@RequestBody DocumentDTO documentDTO) {
+        return responseDecorator.decorate(() -> createDocumentService.execute(documentDTO));
     }
 
     @GetMapping(path = "document/{documentId}")

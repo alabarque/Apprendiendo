@@ -37,7 +37,7 @@ public class CreateProjectFromTemplateService {
                 activityDTO.setLessonId(newLessonId);
                 Long newActivityId = createActivityService.execute(activityDTO);
                 activity.getDocuments().forEach(document -> {
-                    createDocumentService.execute(DocumentMapper.templateDtoToNewDto(document, newActivityId, "ACTIVITY"));
+                    createDocumentService.execute(DocumentMapper.templateDtoToDto(document, newActivityId, "ACTIVITY"));
                 });
             });
         });

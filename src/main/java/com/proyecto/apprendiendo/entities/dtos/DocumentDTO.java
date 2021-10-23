@@ -13,4 +13,6 @@ public class DocumentDTO {
     private String name;
     private String dataType;
     private String data;
+    private Long sourceId;
+    private String documentSourceType;
 }

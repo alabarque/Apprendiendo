@@ -32,7 +32,7 @@ public class CreateLessonFromTemplateService {
                 activityDTO.setLessonId(lessonId);
                 Long newActivityId = createActivityService.execute(activityDTO);
                 activity.getDocuments().forEach(document -> {
-                    createDocumentService.execute(DocumentMapper.templateDtoToNewDto(document, newActivityId, "ACTIVITY"));
+                    createDocumentService.execute(DocumentMapper.templateDtoToDto(document, newActivityId, "ACTIVITY"));
                 });
             });
 
