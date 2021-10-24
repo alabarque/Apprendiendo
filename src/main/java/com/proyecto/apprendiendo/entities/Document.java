@@ -19,6 +19,6 @@ public class Document {
     private Integer position;
     private String name;
     private String dataType;
-    @Column(length = 1000000)
+    @Column(length = 100000000)
     private String data;
 }
