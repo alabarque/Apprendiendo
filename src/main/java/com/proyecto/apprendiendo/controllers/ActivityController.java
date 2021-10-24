@@ -1,13 +1,7 @@
 package com.proyecto.apprendiendo.controllers;
 
-import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
-import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
-import com.proyecto.apprendiendo.entities.dtos.RewardDTO;
-import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
-import com.proyecto.apprendiendo.services.general_services.activity_services.CreateActivityService;
-import com.proyecto.apprendiendo.services.general_services.activity_services.DeleteActivityService;
-import com.proyecto.apprendiendo.services.general_services.activity_services.GetActivityService;
-import com.proyecto.apprendiendo.services.general_services.activity_services.UpdateActivityService;
+import com.proyecto.apprendiendo.entities.dtos.*;
+import com.proyecto.apprendiendo.services.general_services.activity_services.*;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetActivityStudentsProgressService;
@@ -30,15 +24,27 @@ public class ActivityController {
     private GetActivityStudentsProgressService getActivityStudentsProgressService;
     private GetSourcesDocumentsService getSourcesDocumentsService;
     private GetTargetRewardsService getTargetRewardsService;
+    private GetActivityTemplateService getActivityTemplateService;
+    private CreateActivityFromTemplateService createActivityFromTemplateService;
 
     @PostMapping(path = "activity")
     public ResponseEntity<Long> newActivity(@RequestBody ActivityDTO activityDTO) {
         return responseDecorator.decorate(() -> createActivityService.execute(activityDTO));
     }
 
+    @PostMapping(path = "lesson/{lessonId}/activity/template")
+    public ResponseEntity<Long> newActivityFromTemplate(@RequestBody ActivityTemplateDTO activityTemplateDTO, @PathVariable Long lessonId) {
+        return responseDecorator.decorate(() -> createActivityFromTemplateService.execute(activityTemplateDTO, lessonId));
+    }
+
     @GetMapping(path = "activity/{activityId}")
     public ResponseEntity<ActivityDTO> getActivity(@PathVariable Long activityId) {
         return responseDecorator.decorate(() -> getActivityService.execute(activityId));
+    }
+
+    @GetMapping(path = "activity/{activityId}/template")
+    public ResponseEntity<ActivityTemplateDTO> getActivityAsTemplate(@PathVariable Long activityId) {
+        return responseDecorator.decorate(() -> getActivityTemplateService.execute(activityId));
     }
 
     @DeleteMapping(path = "activity/{activityId}")

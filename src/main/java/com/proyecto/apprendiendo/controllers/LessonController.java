@@ -23,6 +23,7 @@ public class LessonController {
     private GetLessonStudentsProgressService getLessonStudentsProgressService;
     private CreateLessonFromTemplateService createLessonFromTemplateService;
     private GetSourcesDocumentsService getSourcesDocumentsService;
+    private GetLessonTemplateService getLessonTemplateService;
 
     @PostMapping(path = "lesson")
     public ResponseEntity<Long> newLesson(@RequestBody LessonDTO lessonDTO) {
@@ -37,6 +38,11 @@ public class LessonController {
     @GetMapping(path = "lesson/{lessonId}")
     public ResponseEntity<LessonDTO> getLesson(@PathVariable Long lessonId) {
         return responseDecorator.decorate(() -> getLessonService.execute(lessonId));
+    }
+
+    @GetMapping(path = "lesson/{lessonId}/template")
+    public ResponseEntity<LessonTemplateDTO> getLessonAsTemplate(@PathVariable Long lessonId) {
+        return responseDecorator.decorate(() -> getLessonTemplateService.execute(lessonId));
     }
 
     @DeleteMapping(path = "lesson/{lessonId}")
