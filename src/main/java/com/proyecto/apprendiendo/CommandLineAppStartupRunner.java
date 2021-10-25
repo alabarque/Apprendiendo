@@ -14,6 +14,7 @@ import com.proyecto.apprendiendo.services.general_services.classroom_user_servic
 import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetClassroomStudentsService;
 import com.proyecto.apprendiendo.services.general_services.condition_services.CreateConditionService;
 import com.proyecto.apprendiendo.services.general_services.document_services.CreateDocumentService;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetDocumentService;
 import com.proyecto.apprendiendo.services.general_services.group_services.CreateGroupService;
 import com.proyecto.apprendiendo.services.general_services.group_student_services.AddGroupStudentService;
 import com.proyecto.apprendiendo.services.general_services.group_student_services.GetProjectStudentGroupService;
@@ -126,7 +127,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetProjectLessonsService getProjectLessonsService;
     @Autowired
     private GetLessonActivitiesService getLessonActivitiesService;
-
+    @Autowired
+    private GetDocumentService getDocumentService;
 
     @Override
     public void run(String... args) {
@@ -909,6 +911,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         //printObject(getProjectStudentGroupService.execute(ProyectoN1Id,mariId));
 
         //printObject(getStudentTargetSubRewardsService.execute(nazaId, mateCursoId, "CLASSROOM"));
+
+
 
     }
 

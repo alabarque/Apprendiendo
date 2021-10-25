@@ -8,11 +8,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @SuperBuilder
 @Entity
 @Table(name = "DOCUMENT")
-public class Document extends BaseDocument{
-    @Column(length = 100000000)
-    private String data;
-}
+public class DocumentSummary extends BaseDocument {}

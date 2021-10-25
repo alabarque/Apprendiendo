@@ -2,23 +2,35 @@ package com.proyecto.apprendiendo.services.mappers;
 
 import com.proyecto.apprendiendo.entities.Document;
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
+import com.proyecto.apprendiendo.entities.dtos.DocumentMetadataDTO;
 import com.proyecto.apprendiendo.entities.dtos.DocumentTemplateDTO;
 
 public class DocumentMapper {
 
     public static DocumentDTO entityToDto(Document document) {
-
         return DocumentDTO.builder()
                           .id(document.getId())
                           .position(document.getPosition())
                           .name(document.getName())
                           .data(document.getData())
                           .dataType(document.getDataType())
+                          .sourceId(document.getSourceId())
+                          .documentSourceType(document.getDocumentSourceType())
                           .build();
     }
 
-    public static DocumentTemplateDTO entityToTemplateDto(Document document) {
+    public static DocumentMetadataDTO entityToMetaDto(Document document) {
+        return DocumentMetadataDTO.builder()
+                                  .id(document.getId())
+                                  .position(document.getPosition())
+                                  .name(document.getName())
+                                  .dataType(document.getDataType())
+                                  .sourceId(document.getSourceId())
+                                  .documentSourceType(document.getDocumentSourceType())
+                                  .build();
+    }
 
+    public static DocumentTemplateDTO entityToTemplateDto(Document document) {
         return DocumentTemplateDTO.builder()
                                   .name(document.getName())
                                   .position(document.getPosition())
@@ -28,7 +40,6 @@ public class DocumentMapper {
     }
 
     public static DocumentDTO templateDtoToDto(DocumentTemplateDTO documentTemplateDTO, Long sourceId, String documentSourceType) {
-
         return DocumentDTO.builder()
                           .name(documentTemplateDTO.getName())
                           .position(documentTemplateDTO.getPosition())
