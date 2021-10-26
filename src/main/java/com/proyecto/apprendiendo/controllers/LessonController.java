@@ -69,4 +69,14 @@ public class LessonController {
     public ResponseEntity<ArrayList<DocumentDTO>> getLessonDocuments(@PathVariable("lessonId") Long lessonId) {
         return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(lessonId));
     }
+
+    @GetMapping(path = "lesson/{lessonId}/documents/summary")
+    public ResponseEntity<ArrayList<DocumentDTO>> getLessonDocumentsSummary(@PathVariable("lessonId") Long lessonId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(lessonId, "SUMMARY"));
+    }
+
+    @GetMapping(path = "lesson/{lessonId}/documents/selective")
+    public ResponseEntity<ArrayList<DocumentDTO>> getLessonDocumentsSelective(@PathVariable("lessonId") Long lessonId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(lessonId, "SELECTIVE"));
+    }
 }

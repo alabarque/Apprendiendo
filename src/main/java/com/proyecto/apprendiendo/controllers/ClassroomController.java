@@ -64,6 +64,16 @@ public class ClassroomController {
         return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(classroomId));
     }
 
+    @GetMapping(path = "classroom/{classroomId}/documents/summary")
+    public ResponseEntity<ArrayList<DocumentDTO>> getClassroomDocumentsSummary(@PathVariable("classroomId") Long classroomId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(classroomId, "SUMMARY"));
+    }
+
+    @GetMapping(path = "classroom/{classroomId}/documents/selective")
+    public ResponseEntity<ArrayList<DocumentDTO>> getClassroomDocumentsSelective(@PathVariable("classroomId") Long classroomId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(classroomId, "SELECTIVE"));
+    }
+
     @GetMapping(path = "classroom/{classroomId}/students/progress")
     public ResponseEntity<ArrayList<StudentClassroomDTO>> getClassroomStudentsProgress(@PathVariable("classroomId") Long classroomId) {
         return responseDecorator.decorate(() -> getClassroomStudentsProgressService.execute(classroomId));

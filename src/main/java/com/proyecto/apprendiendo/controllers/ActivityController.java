@@ -67,6 +67,16 @@ public class ActivityController {
         return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(activityId));
     }
 
+    @GetMapping(path = "activity/{activityId}/documents/summary")
+    public ResponseEntity<ArrayList<DocumentDTO>> getActivityDocumentsSummary(@PathVariable("activityId") Long activityId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(activityId, "SUMMARY"));
+    }
+
+    @GetMapping(path = "activity/{activityId}/documents/selective")
+    public ResponseEntity<ArrayList<DocumentDTO>> getActivityDocumentsSelective(@PathVariable("activityId") Long activityId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(activityId, "SELECTIVE"));
+    }
+
     @GetMapping(path = "activity/{activityId}/rewards")
     public ResponseEntity<ArrayList<RewardDTO>> getActivityRewards(@PathVariable("activityId") Long activityId) {
         return responseDecorator.decorate(() -> getTargetRewardsService.execute(activityId));

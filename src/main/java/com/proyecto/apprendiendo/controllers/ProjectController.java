@@ -63,6 +63,16 @@ public class ProjectController {
         return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(projectId));
     }
 
+    @GetMapping(path = "project/{projectId}/documents/summary")
+    public ResponseEntity<ArrayList<DocumentDTO>> getProjectDocumentsSummary(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(projectId, "SUMMARY"));
+    }
+
+    @GetMapping(path = "project/{projectId}/documents/selective")
+    public ResponseEntity<ArrayList<DocumentDTO>> getProjectDocumentsSelective(@PathVariable("projectId") Long projectId) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(projectId, "SELECTIVE"));
+    }
+
     @GetMapping(path = "project/{projectId}/students/progress")
     public ResponseEntity<ArrayList<StudentProjectDTO>> getProjectStudentsProgress(@PathVariable("projectId") Long projectId) {
         return responseDecorator.decorate(() -> getProjectStudentsProgressService.execute(projectId));
