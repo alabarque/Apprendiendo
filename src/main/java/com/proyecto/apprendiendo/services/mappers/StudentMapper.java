@@ -23,6 +23,5 @@ public class StudentMapper {
                          .imageData(user.getImageData())
                          .studentDivision(user.getStudentDivision())
                          .studentYear(user.getStudentYear()).build();
-
     }
 }

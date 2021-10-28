@@ -66,7 +66,7 @@ public class GetActivitiesStatisticsService {
         if (resultType.equals("LESSON")) return getActivityLessonService.execute(studentActivity.getActivityId()).getId();
         if (resultType.equals("PROJECT")) return getActivityProjectService.execute(studentActivity.getActivityId()).getId();
         if (resultType.equals("CLASSROOM")) return getActivityClassroomService.execute(studentActivity.getActivityId()).getId();
-        if (resultType.equals("STUDENT")) return getStudentService.execute(studentActivity.getUserId()).getId();
+        if (resultType.equals("STUDENT")) return getStudentService.execute(studentActivity.getStudentId()).getId();
         else return null;
     }
 
