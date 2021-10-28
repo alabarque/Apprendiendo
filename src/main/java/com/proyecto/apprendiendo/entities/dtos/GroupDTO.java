@@ -10,5 +10,7 @@ import lombok.Setter;
 public class GroupDTO {
     protected Long id;
     protected Long projectId; //FK a Project
+    protected ProjectDTO project;
+    protected Double progress;
     protected String name;
 }
