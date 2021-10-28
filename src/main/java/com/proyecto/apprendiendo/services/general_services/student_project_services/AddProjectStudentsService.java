@@ -16,10 +16,10 @@ public class AddProjectStudentsService {
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long projectId, Long studentId) {
-        if (studentProjectRepository.findByUserIdAndProjectId(studentId,projectId) == null){
+        if (studentProjectRepository.findByStudentIdAndProjectId(studentId,projectId) == null){
             studentProjectRepository.save(StudentProject.builder()
                                                         .projectId(projectId)
-                                                        .userId(studentId)
+                                                        .studentId(studentId)
                                                         .build());
         }
         return projectId;

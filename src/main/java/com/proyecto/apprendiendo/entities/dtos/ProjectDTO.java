@@ -13,7 +13,9 @@ public class ProjectDTO {
     private Long id;
     private Integer position;
     private Long methodologyId;
+    private MethodologyDTO methodology;
     private Long classroomId;
+    private ClassroomDTO classroom;
     private String name;
     private String description;
     private LocalDateTime startDate;

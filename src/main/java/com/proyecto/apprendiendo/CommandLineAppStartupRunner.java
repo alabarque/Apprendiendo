@@ -837,7 +837,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                               .dateCompleted(LocalDateTime.now())
                                                                               .percentageCompleted(100.00)
                                                                               .grade(8)
-                                                                              .userId(student.getId())
+                                                                              .studentId(student.getId())
                                                                               .build();
                     updateStudentActivityProgressService.execute(student.getId(), activity.getId(), studentActivityDTO);
                 }
@@ -848,7 +848,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                    .forEach(student -> {
                                        StudentProjectDTO studentProjectDTO = StudentProjectDTO.builder()
                                                                                               .projectId(ProyectoN1Id)
-                                                                                              .userId(student.getId())
+                                                                                              .studentId(student.getId())
                                                                                               .grade(10)
                                                                                               .percentageCompleted(100.00)
                                                                                               .dateCompleted(LocalDateTime.now())
@@ -888,6 +888,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         //printObject(getProjectStudentGroupService.execute(ProyectoN1Id,mariId));
 
         //printObject(getStudentTargetSubRewardsService.execute(nazaId, mateCursoId, "CLASSROOM"));
+
+        //printObject(getUserService.execute(andreaId));
 
 
         //PRUEBA DE LECTURA SELECTIVA

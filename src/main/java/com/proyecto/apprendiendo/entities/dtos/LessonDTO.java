@@ -15,6 +15,7 @@ public class LessonDTO {
     private String name;
     private String description;
     private Long projectId;
+    private ProjectDTO project;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;
     private Boolean active;

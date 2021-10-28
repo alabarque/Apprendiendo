@@ -23,7 +23,7 @@ public class GetProjectStudentsService {
     public ArrayList<StudentDTO> execute(Long projectId) {
         ArrayList<StudentProject> projectStudents = studentProjectRepository.findByProjectId(projectId);
         return projectStudents.stream()
-                              .map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getUserId())))
+                              .map(ps -> StudentMapper.entityToDto(userRepository.getById(ps.getStudentId())))
                               .collect(Collectors.toCollection(ArrayList::new));
     }
 }

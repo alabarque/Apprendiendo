@@ -10,6 +10,7 @@ import lombok.Setter;
 public class ClassroomDTO {
     private Long id;
     private Long teacherId;
+    private UserDTO teacher;
     private String subject;
     private Integer year;
     private String division;

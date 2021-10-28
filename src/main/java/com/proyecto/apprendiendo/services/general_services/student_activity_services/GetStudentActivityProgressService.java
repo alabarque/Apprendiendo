@@ -17,11 +17,11 @@ public class GetStudentActivityProgressService {
     private StudentActivityRepository studentActivityRepository;
 
     public StudentActivityDTO execute(Long studentId, Long activityId) {
-        StudentActivity studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
+        StudentActivity studentActivity = studentActivityRepository.findByStudentIdAndActivityId(studentId, activityId);
 
         if (studentActivity == null) studentActivity = StudentActivity.builder()
                                                                       .activityId(activityId)
-                                                                      .userId(studentId)
+                                                                      .studentId(studentId)
                                                                       .percentageCompleted(0.00)
                                                                       .build();
 

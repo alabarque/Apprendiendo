@@ -104,7 +104,7 @@ public class EvaluateConditionForStudentService {
     }
 
     private Boolean evaluateXActivitiesCompleted(Long studentId, Reward reward) {
-        long activitiesCompleted = studentActivityRepository.findByUserIdAndPercentageCompleted(studentId, 100.00)
+        long activitiesCompleted = studentActivityRepository.findByStudentIdAndPercentageCompleted(studentId, 100.00)
                                                             .stream()
                                                             .count();
 

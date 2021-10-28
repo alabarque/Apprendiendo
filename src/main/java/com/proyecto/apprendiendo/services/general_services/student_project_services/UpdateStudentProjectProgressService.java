@@ -21,10 +21,10 @@ public class UpdateStudentProjectProgressService {
     private GetProjectService getProjectService;
 
     public Long execute(Long studentId, Long projectId, StudentProjectDTO studentProjectDTO) {
-        StudentProject studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
+        StudentProject studentProject = studentProjectRepository.findByStudentIdAndProjectId(studentId, projectId);
         if (studentProject == null) {
             addProjectStudentsService.execute(projectId, studentId);
-            studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
+            studentProject = studentProjectRepository.findByStudentIdAndProjectId(studentId, projectId);
         }
         studentProject.setGrade(studentProjectDTO.getGrade());
         studentProject.setPercentageCompleted(studentProjectDTO.getPercentageCompleted());

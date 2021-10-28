@@ -1,5 +1,6 @@
 package com.proyecto.apprendiendo.entities.dtos;
 
+import com.proyecto.apprendiendo.entities.Avatar;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +23,7 @@ public class UserDTO {
     protected String address;
 
     protected Long avatarId; //FK a Avatar
+    protected AvatarDTO avatar;
     protected Integer studentYear;
     protected String studentDivision;
     protected String imageData;

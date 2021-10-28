@@ -8,15 +8,15 @@ import java.util.ArrayList;
 
 @Repository
 public interface StudentProjectRepository extends JpaRepository<StudentProject, Long> {
-    ArrayList<StudentProject> findByUserId(Long userId);
+    ArrayList<StudentProject> findByStudentId(Long studentId);
 
-    ArrayList<StudentProject> findByUserIdAndPercentageCompleted(Long userId, Double percentageCompleted);
+    ArrayList<StudentProject> findByStudentIdAndPercentageCompleted(Long studentId, Double percentageCompleted);
 
     ArrayList<StudentProject> findByProjectId(Long projectId);
 
-    StudentProject findByUserIdAndProjectId(Long userId, Long projectId);
+    StudentProject findByStudentIdAndProjectId(Long studentId, Long projectId);
 
-    StudentProject deleteByProjectIdAndUserId(Long projectId, Long userId);
+    StudentProject deleteByProjectIdAndStudentId(Long projectId, Long studentId);
 
 
 }

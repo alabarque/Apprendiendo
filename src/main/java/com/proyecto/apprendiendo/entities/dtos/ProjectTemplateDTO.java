@@ -14,6 +14,7 @@ public class ProjectTemplateDTO {
     private String name;
     private String description;
     private Long classroomId;
+    private ClassroomDTO classroom;
     private Integer position;
     private LocalDateTime startDate;
     private LocalDateTime dueDate;

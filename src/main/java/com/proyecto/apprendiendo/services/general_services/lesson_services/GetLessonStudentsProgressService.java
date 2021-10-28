@@ -21,11 +21,12 @@ public class GetLessonStudentsProgressService {
     private GetStudentLessonProgressService getStudentLessonProgressService;
     private GetClassroomStudentsService getClassroomStudentsService;
     private GetProjectService getProjectService;
+    private GetLessonService getLessonService;
 
     public ArrayList<StudentLessonDTO> execute(Long lessonId) {
 
         Lesson lesson = lessonRepository.getById(lessonId);
-        return getClassroomStudentsService.execute(getProjectService.execute(lesson.getProjectId()).getClassroomId())
+        return getClassroomStudentsService.execute(getProjectService.execute(getLessonService.execute(lessonId).getProjectId()).getClassroomId())
                                           .stream()
                                           .map(s -> getStudentLessonProgressService.execute(s.getId(), lessonId))
                                           .collect(Collectors.toCollection(ArrayList::new));

@@ -18,8 +18,8 @@ public class StudentActivity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long userId; //FK a User
-    private Long activityId; //FK a Activity
+    private Long studentId;
+    private Long activityId;
     private Double percentageCompleted;
     private LocalDateTime dateCompleted;
     private Integer grade;

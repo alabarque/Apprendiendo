@@ -32,7 +32,7 @@ public class UpdateGroupProgressService {
                                                                    .grade(groupProgressDTO.getGrade())
                                                                    .dateCompleted(groupProgressDTO.getDateCompleted())
                                                                    .projectId(group.getProjectId())
-                                                                   .userId(student.getStudentId())
+                                                                   .studentId(student.getStudentId())
                                                                    .build();
 
             updateStudentProjectProgressService.execute(student.getStudentId(),group.getProjectId(),studentProjectDTO);

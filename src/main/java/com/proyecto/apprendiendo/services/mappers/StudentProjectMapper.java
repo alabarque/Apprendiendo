@@ -8,7 +8,7 @@ public class StudentProjectMapper {
         return StudentProjectDTO.builder()
                                 .id(studentProject.getId())
                                 .projectId(studentProject.getProjectId())
-                                .userId(studentProject.getUserId())
+                                .studentId(studentProject.getStudentId())
                                 .grade(studentProject.getGrade())
                                 .percentageCompleted(studentProject.getPercentageCompleted())
                                 .dateCompleted(studentProject.getDateCompleted())
