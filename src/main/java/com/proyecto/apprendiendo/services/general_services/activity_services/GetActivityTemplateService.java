@@ -38,7 +38,7 @@ public class GetActivityTemplateService {
         activityTemplate.setDocuments(documentRepository.findBySourceId(activityId)
                                                         .stream()
                                                         .map(d -> DocumentMapper.entityToTemplateDto(d))
-                                                        .sorted(Comparator.comparing(DocumentTemplateDTO::getPosition))
+                                                        .sorted(Comparator.nullsFirst(Comparator.comparing(DocumentTemplateDTO::getPosition)))
                                                         .collect(Collectors.toCollection(ArrayList::new)));
 
         activityTemplate.setRewards(getTargetRewardsService.execute(activityId));

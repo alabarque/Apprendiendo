@@ -47,14 +47,14 @@ public class GetLessonTemplateService {
         activities.forEach((aid, a) -> a.setDocuments(documentRepository.findBySourceId(aid)
                                                                         .stream()
                                                                         .map(d -> DocumentMapper.entityToTemplateDto(d))
-                                                                        .sorted(Comparator.comparing(DocumentTemplateDTO::getPosition))
+                                                                        .sorted(Comparator.nullsFirst(Comparator.comparing(DocumentTemplateDTO::getPosition)))
                                                                         .collect(Collectors.toCollection(ArrayList::new))));
 
         activities.forEach((aid, a) -> a.setRewards(getTargetRewardsService.execute(aid)));
 
         lessonTemplate.setActivities(activities.values()
                                                .stream()
-                                               .sorted(Comparator.comparing(ActivityTemplateDTO::getPosition))
+                                               .sorted(Comparator.nullsFirst(Comparator.comparing(ActivityTemplateDTO::getPosition)))
                                                .collect(Collectors.toCollection(ArrayList::new)));
 
         lessonTemplate.setDocuments(getSourcesDocumentsService.execute(lessonId)
