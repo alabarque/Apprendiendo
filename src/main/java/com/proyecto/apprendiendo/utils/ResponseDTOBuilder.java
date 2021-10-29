@@ -74,7 +74,6 @@ public class ResponseDTOBuilder {
     public Object build(Object simpleDTO) {
         if (simpleDTO.getClass().toString().equals(ArrayList.class.toString())){
             ArrayList<Object> simpleDTOList = (ArrayList<Object>) simpleDTO;
-            printObject(simpleDTOList);
             return  simpleDTOList.stream()
                                  .map(dto -> buildFullDTO(dto))
                                  .collect(Collectors.toCollection(ArrayList::new));
@@ -209,11 +208,5 @@ public class ResponseDTOBuilder {
         }
         return null;
     }
-
-    private void printObject(Object object) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        System.out.println(gson.toJson(object));
-    }
-
 
 }
