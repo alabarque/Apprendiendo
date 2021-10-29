@@ -31,15 +31,23 @@ public class GetSourcesDocumentsService {
     }
 
     public ArrayList<DocumentDTO> execute(Long sourceId, String mode) {
+        return execute(sourceId, mode, null);
+    }
+
+    public ArrayList<DocumentDTO> execute(Long sourceId, String mode, String type) {
         if (mode.equals("FULL")) return execute(sourceId);
-        if (mode.equals("SELECTIVE")) return getSourcesDocumentsSelective(sourceId);
+        if (mode.equals("SELECTIVE")) return getSourcesDocumentsSelective(sourceId, type);
         if (mode.equals("SUMMARY")) return getSourcesDocumentsSummary(sourceId);
         return null;
     }
 
-    private ArrayList<DocumentDTO> getSourcesDocumentsSelective(Long sourceId) {
+    private ArrayList<DocumentDTO> getSourcesDocumentsSelective(Long sourceId, String documentType) {
         ArrayList<DocumentSummary> documentsMeta = documentSummaryRepository.findBySourceId(sourceId);
         return documentsMeta.stream()
+                            .filter(documentMeta -> {
+                                if (documentType == null) return Boolean.TRUE;
+                                else return documentType.equals(documentMeta.getDocumentSourceType());
+                            })
                             .map(documentMeta -> {
                                 if (documentMeta.getDataType().equals("FILE")) return DocumentMapper.entitySummaryToDto(documentMeta);
                                 else return DocumentMapper.entityToDto(documentRepository.getById(documentMeta.getId()));

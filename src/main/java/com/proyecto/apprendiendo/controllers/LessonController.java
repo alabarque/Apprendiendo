@@ -76,7 +76,7 @@ public class LessonController {
     }
 
     @GetMapping(path = "lesson/{lessonId}/documents/selective")
-    public ResponseEntity<ArrayList<DocumentDTO>> getLessonDocumentsSelective(@PathVariable("lessonId") Long lessonId) {
-        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(lessonId, "SELECTIVE"));
+    public ResponseEntity<ArrayList<DocumentDTO>> getLessonDocumentsSelective(@PathVariable("lessonId") Long lessonId, @RequestParam(required = false) String type) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(lessonId, "SELECTIVE", type));
     }
 }

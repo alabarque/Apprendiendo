@@ -70,8 +70,8 @@ public class ClassroomController {
     }
 
     @GetMapping(path = "classroom/{classroomId}/documents/selective")
-    public ResponseEntity<ArrayList<DocumentDTO>> getClassroomDocumentsSelective(@PathVariable("classroomId") Long classroomId) {
-        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(classroomId, "SELECTIVE"));
+    public ResponseEntity<ArrayList<DocumentDTO>> getClassroomDocumentsSelective(@PathVariable("classroomId") Long classroomId, @RequestParam(required = false) String type) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(classroomId, "SELECTIVE", type));
     }
 
     @GetMapping(path = "classroom/{classroomId}/students/progress")
