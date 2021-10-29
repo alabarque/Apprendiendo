@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,7 +47,7 @@ public class GetSourcesDocumentsService {
         return documentsMeta.stream()
                             .filter(documentMeta -> {
                                 if (documentType == null) return Boolean.TRUE;
-                                else return documentType.equals(documentMeta.getDocumentSourceType());
+                                else return documentType.toUpperCase(Locale.ROOT).equals(documentMeta.getDocumentSourceType());
                             })
                             .map(documentMeta -> {
                                 if (documentMeta.getDataType().equals("FILE")) return DocumentMapper.entitySummaryToDto(documentMeta);
