@@ -73,8 +73,8 @@ public class ActivityController {
     }
 
     @GetMapping(path = "activity/{activityId}/documents/selective")
-    public ResponseEntity<ArrayList<DocumentDTO>> getActivityDocumentsSelective(@PathVariable("activityId") Long activityId) {
-        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(activityId, "SELECTIVE"));
+    public ResponseEntity<ArrayList<DocumentDTO>> getActivityDocumentsSelective(@PathVariable("activityId") Long activityId, @RequestParam(required = false) String type) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(activityId, "SELECTIVE", type));
     }
 
     @GetMapping(path = "activity/{activityId}/rewards")

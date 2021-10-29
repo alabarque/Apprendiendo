@@ -17,10 +17,7 @@ import com.proyecto.apprendiendo.services.general_services.document_services.*;
 import com.proyecto.apprendiendo.services.general_services.group_services.CreateGroupService;
 import com.proyecto.apprendiendo.services.general_services.group_student_services.AddGroupStudentService;
 import com.proyecto.apprendiendo.services.general_services.group_student_services.GetProjectStudentGroupService;
-import com.proyecto.apprendiendo.services.general_services.lesson_services.CreateLessonService;
-import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonActivitiesService;
-import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
-import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonStudentsProgressService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.*;
 import com.proyecto.apprendiendo.services.general_services.methodology_services.CreateMethodologyService;
 import com.proyecto.apprendiendo.services.general_services.project_services.*;
 import com.proyecto.apprendiendo.services.general_services.reward_services.CreateRewardService;
@@ -46,6 +43,8 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import com.google.gson.*;
 
 @Component
@@ -136,6 +135,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetDocumentService getDocumentService;
     @Autowired
     private GetSourcesDocumentsService getSourcesDocumentsService;
+    @Autowired
+    private GetLessonTemplateService getLessonTemplateService;
+    @Autowired
+    private CreateLessonFromTemplateService createLessonFromTemplateService;
 
     @Override
     public void run(String... args) {
@@ -887,14 +890,32 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addGroupStudentService.execute(groupId, mariId, "Analista");
         //printObject(getProjectStudentGroupService.execute(ProyectoN1Id,mariId));
 
+        //PRUEBA DE AGREGAR DOCS A TEMPLATES
+        /*
+        var asd = getLessonTemplateService.execute(lessonId);
+        var doc = DocumentTemplateDTO.builder()
+                                     .dataType("TEXT")
+                                     .name("Formando Equipos")
+                                     .data(" En base a las respuestas obtenidas en la clase \nanterior, el docente deberá formar equipos de 3 o 4\nintegrantes con diversidad de perfiles. Dándoles la \nposibilidad de que cada uno desempeñe un rol.\n También se definirá cuál es el producto o proyecto final \nque los alumnos desarrollaran en función de las \ncompetencias que se quieran alcanzar(Puede ser un folleto,\nuna presentación, una investigación científica). Se \nrecomienda que se les proporciones las rúbricas donde \nfiguren los objetivos a alcanzar y cómo se los va a \nevaluar.\n\nIngrese en el siguiente box la comunicación a los alumnos\nsobre el producto a desarrollar\\n Mediante la opción \\\"Crear equipos\\\" puede definir los \\nintegrantes de cada equipo y asignarles un nombre. Esto \\npermitirá que los alumnos colaboren y compartan tareas.")
+                                     .build();
+        var docs = new ArrayList<DocumentTemplateDTO>();
+        docs.add(doc);
+        asd.setDocuments(docs);
+
+        printObject(asd);
+        printObject("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        var lessonTestId = createLessonFromTemplateService.execute(asd,ProyectoN1Id);
+        printObject(getLessonTemplateService.execute(lessonTestId));
+        */
+
+
         //printObject(getStudentTargetSubRewardsService.execute(nazaId, mateCursoId, "CLASSROOM"));
 
         //printObject(getUserService.execute(andreaId));
 
 
         //PRUEBA DE LECTURA SELECTIVA
-
-/*
+        /*
         createDocumentService.execute(DocumentDTO.builder().name("asd")
                                                  .dataType("FILE")
                                                  .data(downloadImage("https://upload.wikimedia.org/wikipedia/commons/a/a2/04-09-12-Schaupfl%C3%BCgen-Fahrenwalde-RalfR-IMG_1232.jpg"))
@@ -937,7 +958,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
             System.out.println("");
         }
-*/
+        */
 
     }
 

@@ -29,12 +29,15 @@ public class GetStudentSourcesDocumentsService {
     }
 
     public ArrayList<DocumentDTO> execute(Long studentId, Long sourceId, String sourceType, String mode) {
+        return execute(studentId, sourceId, sourceType, mode, null);
+    }
 
+    public ArrayList<DocumentDTO> execute(Long studentId, Long sourceId, String sourceType, String mode, String documentType) {
         Long studentSourceId = 0L;
         if (sourceType.equals(DocumentSourceType.ACTIVITY.getValue())) studentSourceId = studentActivityRepository.findByStudentIdAndActivityId(studentId, sourceId).getId();
         if (sourceType.equals(DocumentSourceType.PROJECT.getValue())) studentSourceId = studentProjectRepository.findByStudentIdAndProjectId(studentId, sourceId).getId();
         if (sourceType.equals(DocumentSourceType.CLASSROOM.getValue())) studentSourceId = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, sourceId).getId();
 
-        return getSourcesDocumentsService.execute(studentSourceId, mode);
+        return getSourcesDocumentsService.execute(studentSourceId, mode, documentType);
     }
 }

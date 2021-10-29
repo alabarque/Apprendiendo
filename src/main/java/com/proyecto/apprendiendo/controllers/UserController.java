@@ -117,8 +117,8 @@ public class UserController {
     }
 
     @GetMapping(path = "user/{userId}/activity/{activityId}/documents/selective")
-    public ResponseEntity<ArrayList<DocumentDTO>> getStudentActivityDocumentsSelective(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId) {
-        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, activityId, "ACTIVITY", "SELECTIVE"));
+    public ResponseEntity<ArrayList<DocumentDTO>> getStudentActivityDocumentsSelective(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId, @RequestParam(required = false) String type) {
+        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, activityId, "ACTIVITY", "SELECTIVE", type));
     }
 
     @PostMapping(path = "user/{userId}/activity/{activityId}/document")
@@ -137,8 +137,8 @@ public class UserController {
     }
 
     @GetMapping(path = "user/{userId}/project/{projectId}/documents/selective")
-    public ResponseEntity<ArrayList<DocumentDTO>> getStudentProjectDocumentsSelective(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId) {
-        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, projectId, "PROJECT", "SELECTIVE"));
+    public ResponseEntity<ArrayList<DocumentDTO>> getStudentProjectDocumentsSelective(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId, @RequestParam(required = false) String type) {
+        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, projectId, "PROJECT", "SELECTIVE", type));
     }
 
     @PostMapping(path = "user/{userId}/project/{projectId}/document")
@@ -157,8 +157,8 @@ public class UserController {
     }
 
     @GetMapping(path = "user/{userId}/classroom/{classroomId}/documents/selective")
-    public ResponseEntity<ArrayList<DocumentDTO>> getStudentClassroomDocumentsSelective(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId) {
-        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, classroomId, "CLASSROOM", "SELECTIVE"));
+    public ResponseEntity<ArrayList<DocumentDTO>> getStudentClassroomDocumentsSelective(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId, @RequestParam(required = false) String type) {
+        return responseDecorator.decorate(() -> getStudentSourcesDocumentsService.execute(userId, classroomId, "CLASSROOM", "SELECTIVE", type));
     }
 
     @PostMapping(path = "user/{userId}/classroom/{classroomId}/document")

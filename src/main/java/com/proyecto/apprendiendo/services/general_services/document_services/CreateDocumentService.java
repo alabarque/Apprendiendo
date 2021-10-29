@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Locale;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +23,7 @@ public class CreateDocumentService {
                                     .documentSourceType(documentDTO.getDocumentSourceType())
                                     .data(documentDTO.getData())
                                     .name(documentDTO.getName())
-                                    .dataType(documentDTO.getDataType())
+                                    .dataType(documentDTO.getDataType().toUpperCase(Locale.ROOT))
                                     .build();
         return documentRepository.save(document).getId();
     }

@@ -27,6 +27,9 @@ public class CreateLessonFromTemplateService {
         LessonDTO lessonDTO = LessonMapper.templateDtoToDto(lessonTemplateDTO);
         lessonDTO.setProjectId(projectId);
         Long lessonId = createLessonService.execute(lessonDTO);
+        lessonTemplateDTO.getDocuments().forEach(document -> {
+            createDocumentService.execute(DocumentMapper.templateDtoToDto(document, lessonId, "LESSON"));
+        });
         lessonTemplateDTO.getActivities().forEach(activity -> {
             ActivityDTO activityDTO = ActivityMapper.templateDtoToDto(activity);
                 activityDTO.setLessonId(lessonId);

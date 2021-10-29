@@ -69,8 +69,8 @@ public class ProjectController {
     }
 
     @GetMapping(path = "project/{projectId}/documents/selective")
-    public ResponseEntity<ArrayList<DocumentDTO>> getProjectDocumentsSelective(@PathVariable("projectId") Long projectId) {
-        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(projectId, "SELECTIVE"));
+    public ResponseEntity<ArrayList<DocumentDTO>> getProjectDocumentsSelective(@PathVariable("projectId") Long projectId, @RequestParam(required = false) String type) {
+        return responseDecorator.decorate(() -> getSourcesDocumentsService.execute(projectId, "SELECTIVE", type));
     }
 
     @GetMapping(path = "project/{projectId}/students/progress")
