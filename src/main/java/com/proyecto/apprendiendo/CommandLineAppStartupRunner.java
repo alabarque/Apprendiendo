@@ -913,7 +913,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
 
         //PRUEBA DE LECTURA SELECTIVA
-
+        /*
         createDocumentService.execute(DocumentDTO.builder().name("asd")
                                                  .dataType("FILE")
                                                  .data(downloadImage("https://upload.wikimedia.org/wikipedia/commons/a/a2/04-09-12-Schaupfl%C3%BCgen-Fahrenwalde-RalfR-IMG_1232.jpg"))
@@ -956,7 +956,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
             System.out.println("");
         }
-
+        */
 
     }
 
