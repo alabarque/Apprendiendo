@@ -19,6 +19,15 @@ public class DocumentMapper {
                           .build();
     }
 
+    public static DocumentTemplateDTO dtoToTemplateDTO (DocumentDTO documentDTO) {
+        return DocumentTemplateDTO.builder()
+                          .position(documentDTO.getPosition())
+                          .name(documentDTO.getName())
+                          .data(documentDTO.getData())
+                          .dataType(documentDTO.getDataType())
+                          .build();
+    }
+
     public static DocumentDTO entitySummaryToDto(DocumentSummary document) {
         return DocumentDTO.builder()
                           .id(document.getId())
@@ -38,6 +47,8 @@ public class DocumentMapper {
                                   .dataType(document.getDataType())
                                   .build();
     }
+
+
 
     public static DocumentDTO templateDtoToDto(DocumentTemplateDTO documentTemplateDTO, Long sourceId, String documentSourceType) {
         return DocumentDTO.builder()

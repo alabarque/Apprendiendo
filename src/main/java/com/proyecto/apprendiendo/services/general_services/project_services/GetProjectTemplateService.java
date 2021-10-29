@@ -56,7 +56,10 @@ public class GetProjectTemplateService {
                                       .stream()
                                       .sorted(Comparator.comparing(ActivityTemplateDTO::getPosition))
                                       .collect(Collectors.toCollection(ArrayList::new)));
-            l.setDocuments(getSourcesDocumentsService.execute(lid));
+            l.setDocuments(getSourcesDocumentsService.execute(lid)
+                                                     .stream()
+                                                     .map(documentDTO -> DocumentMapper.dtoToTemplateDTO(documentDTO))
+                                                     .collect(Collectors.toCollection(ArrayList::new)));
         });
 
         ProjectTemplateDTO projectTemplateDTO = ProjectMapper.entityToTemplateDto(project);
@@ -65,7 +68,11 @@ public class GetProjectTemplateService {
                                              .sorted(Comparator.comparing(LessonTemplateDTO::getPosition))
                                              .collect(Collectors.toCollection(ArrayList::new)));
         projectTemplateDTO.setRewards(getTargetRewardsService.execute(projectId));
-        projectTemplateDTO.setDocuments(getSourcesDocumentsService.execute(projectId));
+
+        projectTemplateDTO.setDocuments(getSourcesDocumentsService.execute(projectId)
+                                                              .stream()
+                                                              .map(documentDTO -> DocumentMapper.dtoToTemplateDTO(documentDTO))
+                                                              .collect(Collectors.toCollection(ArrayList::new)));
 
         return projectTemplateDTO;
     }

@@ -20,5 +20,5 @@ public class ProjectTemplateDTO {
     private Boolean active;
     private ArrayList<LessonTemplateDTO> lessons;
     private ArrayList<RewardDTO> rewards;
-    private ArrayList<DocumentDTO> documents;
+    private ArrayList<DocumentTemplateDTO> documents;
 }

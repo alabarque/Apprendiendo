@@ -57,7 +57,10 @@ public class GetLessonTemplateService {
                                                .sorted(Comparator.comparing(ActivityTemplateDTO::getPosition))
                                                .collect(Collectors.toCollection(ArrayList::new)));
 
-        lessonTemplate.setDocuments(getSourcesDocumentsService.execute(lessonId));
+        lessonTemplate.setDocuments(getSourcesDocumentsService.execute(lessonId)
+                                                              .stream()
+                                                              .map(documentDTO -> DocumentMapper.dtoToTemplateDTO(documentDTO))
+                                                              .collect(Collectors.toCollection(ArrayList::new)));
 
         return lessonTemplate;
     }

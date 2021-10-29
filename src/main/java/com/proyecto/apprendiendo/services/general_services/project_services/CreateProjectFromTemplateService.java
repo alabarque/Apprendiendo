@@ -28,10 +28,16 @@ public class CreateProjectFromTemplateService {
     @Transactional(rollbackOn = Exception.class)
     public Long execute(ProjectTemplateDTO projectTemplateDTO) {
         Long projectId = createProjectService.execute(ProjectMapper.templateToDto(projectTemplateDTO));
+        projectTemplateDTO.getDocuments().forEach(document -> {
+            createDocumentService.execute(DocumentMapper.templateDtoToDto(document, projectId, "PROJECT"));
+        });
         projectTemplateDTO.getLessons().forEach(lesson -> {
             LessonDTO lessonDTO = LessonMapper.templateDtoToDto(lesson);
             lessonDTO.setProjectId(projectId);
             Long newLessonId = createLessonService.execute(lessonDTO);
+            lesson.getDocuments().forEach(document -> {
+                createDocumentService.execute(DocumentMapper.templateDtoToDto(document, newLessonId, "LESSON"));
+            });
             lesson.getActivities().forEach(activity -> {
                 ActivityDTO activityDTO = ActivityMapper.templateDtoToDto(activity);
                 activityDTO.setLessonId(newLessonId);
