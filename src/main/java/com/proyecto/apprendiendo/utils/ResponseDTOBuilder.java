@@ -3,14 +3,19 @@ package com.proyecto.apprendiendo.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.proyecto.apprendiendo.entities.dtos.*;
+import com.proyecto.apprendiendo.entities.enums.DocumentSourceType;
+import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.services.general_services.activity_services.GetActivityService;
 import com.proyecto.apprendiendo.services.general_services.avatar_services.GetAvatarService;
 import com.proyecto.apprendiendo.services.general_services.classroom_services.GetClassroomService;
+import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetStudentClassroomProgressService;
 import com.proyecto.apprendiendo.services.general_services.condition_services.GetConditionService;
 import com.proyecto.apprendiendo.services.general_services.group_services.GetGroupService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
 import com.proyecto.apprendiendo.services.general_services.methodology_services.GetMethodologyService;
 import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectService;
+import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetStudentActivityProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
 import lombok.AllArgsConstructor;
@@ -31,6 +36,9 @@ public class ResponseDTOBuilder {
     private GetStudentService getStudentService;
     private GetMethodologyService getMethodologyService;
     private GetConditionService getConditionService;
+    private GetStudentClassroomProgressService getStudentClassroomProgressService;
+    private GetStudentProjectProgressService getStudentProjectProgressService;
+    private GetStudentActivityProgressService getStudentActivityProgressService;
 
     public Object build(Object simpleDTO) {
         if (simpleDTO.getClass().toString().equals(ArrayList.class.toString())){
@@ -130,10 +138,24 @@ public class ResponseDTOBuilder {
     }
 
     private Object getDocumentSource(Long sourceId, String documentSourceType) {
+        switch (DocumentSourceType.valueOf(documentSourceType)){
+            case CLASSROOM: return getClassroomService.execute(sourceId);
+            case PROJECT: return getProjectService.execute(sourceId);
+            case LESSON: return getLessonService.execute(sourceId);
+            case ACTIVITY: return getActivityService.execute(sourceId);
+            case STUDENT_CLASSROOM: return getStudentClassroomProgressService.execute(sourceId);
+            case STUDENT_PROJECT: return getStudentProjectProgressService.execute(sourceId);
+            case STUDENT_ACTIVITY: return getStudentActivityProgressService.execute(sourceId);
+        }
         return null;
     }
 
     private Object getRewardTarget(Long targetId, String targetType) {
+        switch (TargetType.valueOf(targetType)){
+            case CLASSROOM: return getClassroomService.execute(targetId);
+            case PROJECT: return getProjectService.execute(targetId);
+            case ACTIVITY: return getActivityService.execute(targetId);
+        }
         return null;
     }
 

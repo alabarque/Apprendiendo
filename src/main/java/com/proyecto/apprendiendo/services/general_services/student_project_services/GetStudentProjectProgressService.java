@@ -55,4 +55,9 @@ public class GetStudentProjectProgressService {
         return studentProjectDTO;
 
     }
+
+    public StudentProjectDTO execute(Long studentProjectId){
+        StudentProject studentProject = studentProjectRepository.getById(studentProjectId);
+        return execute(studentProject.getStudentId(), studentProject.getProjectId());
+    }
 }
