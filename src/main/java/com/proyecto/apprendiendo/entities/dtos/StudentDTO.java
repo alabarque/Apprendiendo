@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Builder
 @Getter
 @Setter
@@ -16,8 +18,12 @@ public class StudentDTO {
     protected String mobilePhone;
     protected String address;
 
-    protected Long avatarId; //FK a Avatar
+    protected Long avatarId;
+    protected AvatarDTO avatar;
     protected Integer studentYear;
     protected String studentDivision;
     protected String imageData;
+
+    protected ArrayList<ClassroomDTO> studentClassrooms;
+    protected ArrayList<RewardDTO> studentRewards;
 }

@@ -7,15 +7,25 @@ import com.proyecto.apprendiendo.entities.enums.DocumentSourceType;
 import com.proyecto.apprendiendo.entities.enums.TargetType;
 import com.proyecto.apprendiendo.services.general_services.activity_services.GetActivityService;
 import com.proyecto.apprendiendo.services.general_services.avatar_services.GetAvatarService;
+import com.proyecto.apprendiendo.services.general_services.classroom_services.GetClassroomProjectsService;
 import com.proyecto.apprendiendo.services.general_services.classroom_services.GetClassroomService;
-import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetStudentClassroomProgressService;
+import com.proyecto.apprendiendo.services.general_services.classroom_user_services.*;
 import com.proyecto.apprendiendo.services.general_services.condition_services.GetConditionService;
+import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
 import com.proyecto.apprendiendo.services.general_services.group_services.GetGroupService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonActivitiesService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonStudentsProgressService;
 import com.proyecto.apprendiendo.services.general_services.methodology_services.GetMethodologyService;
+import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectGroupsService;
+import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectLessonsService;
 import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
+import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetActivityStudentsProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetStudentActivityProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetStudentProjectProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_reward_services.GetStudentRewardsService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
 import lombok.AllArgsConstructor;
@@ -40,15 +50,33 @@ public class ResponseDTOBuilder {
     private GetStudentProjectProgressService getStudentProjectProgressService;
     private GetStudentActivityProgressService getStudentActivityProgressService;
 
+    private GetSourcesDocumentsService getSourcesDocumentsService;
+    private GetTargetRewardsService getTargetRewardsService;
+
+    private GetActivityStudentsProgressService getActivityStudentsProgressService;
+
+    private GetLessonStudentsProgressService getLessonStudentsProgressService;
+    private GetLessonActivitiesService getLessonActivitiesService;
+
+    private GetProjectStudentsProgressService getProjectStudentsProgressService;
+    private GetProjectGroupsService getProjectGroupsService;
+    private GetProjectLessonsService getProjectLessonsService;
+
+    private GetClassroomStudentsProgressService getClassroomStudentsProgressService;
+    private GetClassroomStudentsService getClassroomStudentsService;
+    private GetClassroomProjectsService getClassroomProjectsService;
+
+    private GetStudentClassroomsService getStudentClassroomsService;
+    private GetTeacherClassroomsService getTeacherClassroomsService;
+
+    private GetStudentRewardsService getStudentRewardsService;
+
     public Object build(Object simpleDTO) {
         if (simpleDTO.getClass().toString().equals(ArrayList.class.toString())){
             ArrayList<Object> simpleDTOList = (ArrayList<Object>) simpleDTO;
             printObject(simpleDTOList);
             return  simpleDTOList.stream()
-                                 .map(dto -> {
-                                     printObject(dto);
-                                     return buildFullDTO(dto);
-                                 })
+                                 .map(dto -> buildFullDTO(dto))
                                  .collect(Collectors.toCollection(ArrayList::new));
         }
 
@@ -57,31 +85,54 @@ public class ResponseDTOBuilder {
     }
 
     private Object buildFullDTO(Object simpleDTO) {
+        if (simpleDTO.getClass().equals(StudentDTO.class)){
+            StudentDTO dto = (StudentDTO) simpleDTO;
+            if (dto.getAvatarId() != null) if (!dto.getAvatarId().equals(0L)) dto.setAvatar(getAvatarService.execute(dto.getAvatarId()));
+            dto.setStudentClassrooms(getStudentClassroomsService.execute(dto.getId()));
+            dto.setStudentRewards(getStudentRewardsService.execute(dto.getId(), "ANY"));
+            return dto;
+        }
         if (simpleDTO.getClass().equals(UserDTO.class)){
             UserDTO dto = (UserDTO) simpleDTO;
-
             if (dto.getAvatarId() != null) if (!dto.getAvatarId().equals(0L)) dto.setAvatar(getAvatarService.execute(dto.getAvatarId()));
+            dto.setTeacherClassrooms(getTeacherClassroomsService.execute(dto.getId()));
             return dto;
         }
         if (simpleDTO.getClass().equals(ActivityDTO.class)){
             ActivityDTO dto = (ActivityDTO) simpleDTO;
             if (dto.getLessonId() != null) if (!dto.getLessonId().equals(0L)) dto.setLesson(getLessonService.execute(dto.getLessonId()));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "ACTIVITY"));
+            dto.setRewards(getTargetRewardsService.execute(dto.getId()));
+            dto.setStudentsProgress(getActivityStudentsProgressService.execute(dto.getId()));
             return dto;
         }
         if (simpleDTO.getClass().equals(LessonDTO.class)){
             LessonDTO dto = (LessonDTO) simpleDTO;
             if (dto.getProjectId() != null) if (!dto.getProjectId().equals(0L)) dto.setProject(getProjectService.execute(dto.getProjectId()));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "LESSON"));
+            dto.setStudentsProgress(getLessonStudentsProgressService.execute(dto.getId()));
+            dto.setActivities(getLessonActivitiesService.execute(dto.getId()));
             return dto;
         }
         if (simpleDTO.getClass().equals(ProjectDTO.class)){
             ProjectDTO dto = (ProjectDTO) simpleDTO;
             if (dto.getMethodologyId() != null) if (!dto.getMethodologyId().equals(0L)) dto.setMethodology(getMethodologyService.execute(dto.getMethodologyId()));
             if (dto.getClassroomId() != null) if (!dto.getClassroomId().equals(0L)) dto.setClassroom(getClassroomService.execute(dto.getClassroomId()));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "PROJECT}"));
+            dto.setRewards(getTargetRewardsService.execute(dto.getId()));
+            dto.setStudentsProgress(getProjectStudentsProgressService.execute(dto.getId()));
+            dto.setLessons(getProjectLessonsService.execute(dto.getId()));
+            dto.setGroups(getProjectGroupsService.execute(dto.getId()));
             return dto;
         }
         if (simpleDTO.getClass().equals(ClassroomDTO.class)){
             ClassroomDTO dto = (ClassroomDTO) simpleDTO;
             if (dto.getTeacherId() != null) if (!dto.getTeacherId().equals(0L)) dto.setTeacher(getUserService.execute(dto.getTeacherId()));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "CLASSROOM"));
+            dto.setRewards(getTargetRewardsService.execute(dto.getId()));
+            dto.setStudentsProgress(getClassroomStudentsProgressService.execute(dto.getId()));
+            dto.setProjects(getClassroomProjectsService.execute(dto.getId()));
+            dto.setStudents(getClassroomStudentsService.execute(dto.getId()));
             return dto;
         }
         if (simpleDTO.getClass().equals(StudentProjectDTO.class)){

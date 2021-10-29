@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+
 @Builder
 @Getter
 @Setter
@@ -27,4 +29,7 @@ public class UserDTO {
     protected Integer studentYear;
     protected String studentDivision;
     protected String imageData;
-}
+
+    protected ArrayList<RewardDTO> rewards;
+    protected ArrayList<ClassroomDTO> teacherClassrooms;
+    }
