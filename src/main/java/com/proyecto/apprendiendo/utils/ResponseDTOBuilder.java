@@ -72,6 +72,7 @@ public class ResponseDTOBuilder {
     private GetStudentRewardsService getStudentRewardsService;
 
     public Object build(Object simpleDTO) {
+        if (simpleDTO == null) return null;
         if (simpleDTO.getClass().toString().equals(ArrayList.class.toString())){
             ArrayList<Object> simpleDTOList = (ArrayList<Object>) simpleDTO;
             return  simpleDTOList.stream()
