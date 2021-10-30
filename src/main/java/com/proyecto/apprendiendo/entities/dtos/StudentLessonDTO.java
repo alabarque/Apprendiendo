@@ -10,7 +10,7 @@ import lombok.Setter;
 public class StudentLessonDTO {
     private Long id;
     private Long studentId;
-    private StudentDTO student;
+    private UserDTO student;
     private Long lessonId;
     private LessonDTO lesson;
     private Double percentageCompleted;

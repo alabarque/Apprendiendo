@@ -17,7 +17,7 @@ public class ClassroomDTO {
     private Integer year;
     private String division;
 
-    private ArrayList<StudentDTO> students;
+    private ArrayList<UserDTO> students;
     private ArrayList<ProjectDTO> projects;
     private ArrayList<RewardDTO> rewards;
     private ArrayList<DocumentDTO> documents;

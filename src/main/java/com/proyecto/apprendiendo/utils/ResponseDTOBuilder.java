@@ -1,7 +1,5 @@
 package com.proyecto.apprendiendo.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.proyecto.apprendiendo.entities.dtos.*;
 import com.proyecto.apprendiendo.entities.enums.DocumentSourceType;
 import com.proyecto.apprendiendo.entities.enums.TargetType;
@@ -12,7 +10,6 @@ import com.proyecto.apprendiendo.services.general_services.classroom_services.Ge
 import com.proyecto.apprendiendo.services.general_services.classroom_user_services.*;
 import com.proyecto.apprendiendo.services.general_services.condition_services.GetConditionService;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
-import com.proyecto.apprendiendo.services.general_services.group_services.GetGroupService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonActivitiesService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonStudentsProgressService;
@@ -49,26 +46,19 @@ public class ResponseDTOBuilder {
     private GetStudentClassroomProgressService getStudentClassroomProgressService;
     private GetStudentProjectProgressService getStudentProjectProgressService;
     private GetStudentActivityProgressService getStudentActivityProgressService;
-
     private GetSourcesDocumentsService getSourcesDocumentsService;
     private GetTargetRewardsService getTargetRewardsService;
-
     private GetActivityStudentsProgressService getActivityStudentsProgressService;
-
     private GetLessonStudentsProgressService getLessonStudentsProgressService;
     private GetLessonActivitiesService getLessonActivitiesService;
-
     private GetProjectStudentsProgressService getProjectStudentsProgressService;
     private GetProjectGroupsService getProjectGroupsService;
     private GetProjectLessonsService getProjectLessonsService;
-
     private GetClassroomStudentsProgressService getClassroomStudentsProgressService;
     private GetClassroomStudentsService getClassroomStudentsService;
     private GetClassroomProjectsService getClassroomProjectsService;
-
     private GetStudentClassroomsService getStudentClassroomsService;
     private GetTeacherClassroomsService getTeacherClassroomsService;
-
     private GetStudentRewardsService getStudentRewardsService;
 
     public Object build(Object simpleDTO) {
@@ -85,17 +75,12 @@ public class ResponseDTOBuilder {
     }
 
     private Object buildFullDTO(Object simpleDTO) {
-        if (simpleDTO.getClass().equals(StudentDTO.class)){
-            StudentDTO dto = (StudentDTO) simpleDTO;
-            if (dto.getAvatarId() != null) if (!dto.getAvatarId().equals(0L)) dto.setAvatar(getAvatarService.execute(dto.getAvatarId()));
-            dto.setStudentClassrooms(getStudentClassroomsService.execute(dto.getId()));
-            dto.setStudentRewards(getStudentRewardsService.execute(dto.getId(), "ANY"));
-            return dto;
-        }
         if (simpleDTO.getClass().equals(UserDTO.class)){
             UserDTO dto = (UserDTO) simpleDTO;
             if (dto.getAvatarId() != null) if (!dto.getAvatarId().equals(0L)) dto.setAvatar(getAvatarService.execute(dto.getAvatarId()));
             dto.setTeacherClassrooms(getTeacherClassroomsService.execute(dto.getId()));
+            dto.setStudentClassrooms(getStudentClassroomsService.execute(dto.getId()));
+            dto.setStudentRewards(getStudentRewardsService.execute(dto.getId(), "ANY"));
             return dto;
         }
         if (simpleDTO.getClass().equals(ActivityDTO.class)){

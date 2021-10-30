@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class StudentClassroomDTO {
     private Long id;
     private Long studentId;
-    private StudentDTO student; //FK a User
+    private UserDTO student; //FK a User
     private Long classroomId;
     private ClassroomDTO classroom; //FK a Classroom
     private Integer grade;

@@ -19,7 +19,7 @@ public class GetUsersService {
 
     private UserRepository userRepository;
 
-    public ArrayList<Object> execute() {
+    public ArrayList<UserDTO> execute() {
         return userRepository.findAll()
                              .stream()
                              .map(u -> {
@@ -29,7 +29,7 @@ public class GetUsersService {
                              .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Object> execute(String role) {
+    public ArrayList<UserDTO> execute(String role) {
         return userRepository.findByRole(role)
                              .stream()
                              .map(u -> {

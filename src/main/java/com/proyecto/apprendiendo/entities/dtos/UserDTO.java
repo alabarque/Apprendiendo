@@ -24,12 +24,13 @@ public class UserDTO {
     protected String mobilePhone;
     protected String address;
 
-    protected Long avatarId; //FK a Avatar
+    protected Long avatarId;
     protected AvatarDTO avatar;
     protected Integer studentYear;
     protected String studentDivision;
     protected String imageData;
 
-    protected ArrayList<RewardDTO> rewards;
+    protected ArrayList<ClassroomDTO> studentClassrooms;
+    protected ArrayList<RewardDTO> studentRewards;
     protected ArrayList<ClassroomDTO> teacherClassrooms;
     }

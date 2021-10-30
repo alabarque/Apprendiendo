@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class StudentActivityDTO {
     private Long id;
     private Long studentId;
-    private StudentDTO student; //FK a User
+    private UserDTO student; //FK a User
     private Long activityId;
     private ActivityDTO activity; //FK a Activity
     private Double percentageCompleted;

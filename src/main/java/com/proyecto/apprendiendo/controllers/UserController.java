@@ -232,22 +232,22 @@ public class UserController {
     }
 
     @GetMapping(path = "users")
-    public ResponseEntity<ArrayList<Object>> getAllUsers() {
+    public ResponseEntity<ArrayList<UserDTO>> getAllUsers() {
         return responseDecorator.decorate(() -> getUsersService.execute());
     }
 
     @GetMapping(path = "users/students")
-    public ResponseEntity<ArrayList<Object>> getAllStudents() {
+    public ResponseEntity<ArrayList<UserDTO>> getAllStudents() {
         return responseDecorator.decorate(() -> getUsersService.execute("ROLE_STUDENT"));
     }
 
     @GetMapping(path = "users/teachers")
-    public ResponseEntity<ArrayList<Object>> getAllTeachers() {
+    public ResponseEntity<ArrayList<UserDTO>> getAllTeachers() {
         return responseDecorator.decorate(() -> getUsersService.execute("ROLE_TEACHER"));
     }
 
     @GetMapping(path = "users/admins")
-    public ResponseEntity<ArrayList<Object>> getAllAdmins() {
+    public ResponseEntity<ArrayList<UserDTO>> getAllAdmins() {
         return responseDecorator.decorate(() -> getUsersService.execute("ROLE_ADMIN"));
     }
 

@@ -10,6 +10,6 @@ import lombok.Setter;
 public class GroupStudentDTO {
     private Long id;
     private Long studentId;
-    private StudentDTO student; //FK a User
+    private UserDTO student; //FK a User
     private String groupRole;
 }
