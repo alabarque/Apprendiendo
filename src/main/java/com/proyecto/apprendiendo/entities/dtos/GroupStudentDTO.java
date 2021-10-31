@@ -9,7 +9,7 @@ import lombok.Setter;
 @Builder
 public class GroupStudentDTO {
     private Long id;
-    private Long studentId; //FK a User
-    private Long groupId; //FK a Group
+    private Long studentId;
+    private UserDTO student; //FK a User
     private String groupRole;
 }

@@ -25,10 +25,10 @@ public class GetStudentProjectProgressService {
 
     public StudentProjectDTO execute(Long studentId, Long projectId) {
 
-        StudentProject studentProject = studentProjectRepository.findByUserIdAndProjectId(studentId, projectId);
+        StudentProject studentProject = studentProjectRepository.findByStudentIdAndProjectId(studentId, projectId);
         if (studentProject == null) studentProject = StudentProject.builder()
                                                                    .projectId(projectId)
-                                                                   .userId(studentId)
+                                                                   .studentId(studentId)
                                                                    .grade(0)
                                                                    .build();
         StudentProjectDTO studentProjectDTO = StudentProjectMapper.entityToDto(studentProject);
@@ -54,5 +54,10 @@ public class GetStudentProjectProgressService {
 
         return studentProjectDTO;
 
+    }
+
+    public StudentProjectDTO execute(Long studentProjectId){
+        StudentProject studentProject = studentProjectRepository.getById(studentProjectId);
+        return execute(studentProject.getStudentId(), studentProject.getProjectId());
     }
 }

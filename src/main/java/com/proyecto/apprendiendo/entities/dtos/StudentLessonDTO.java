@@ -9,7 +9,9 @@ import lombok.Setter;
 @Builder
 public class StudentLessonDTO {
     private Long id;
-    private Long studentId; //FK a User
-    private Long projectId; //FK a Activity
+    private Long studentId;
+    private UserDTO student;
+    private Long lessonId;
+    private LessonDTO lesson;
     private Double percentageCompleted;
 }

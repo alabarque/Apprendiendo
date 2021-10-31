@@ -25,10 +25,10 @@ public class UpdateStudentActivityProgressService {
     private GetLessonService getLessonService;
 
     public Long execute(Long studentId, Long activityId, StudentActivityDTO studentActivityDTO) {
-        StudentActivity studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
+        StudentActivity studentActivity = studentActivityRepository.findByStudentIdAndActivityId(studentId, activityId);
         if (studentActivity == null) {
             addActivityStudentsService.execute(activityId, studentId);
-            studentActivity = studentActivityRepository.findByUserIdAndActivityId(studentId, activityId);
+            studentActivity = studentActivityRepository.findByStudentIdAndActivityId(studentId, activityId);
         }
         studentActivity.setGrade(studentActivityDTO.getGrade());
         studentActivity.setPercentageCompleted(studentActivityDTO.getPercentageCompleted());

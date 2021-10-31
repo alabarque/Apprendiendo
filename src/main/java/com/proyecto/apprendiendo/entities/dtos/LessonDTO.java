@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -15,7 +16,12 @@ public class LessonDTO {
     private String name;
     private String description;
     private Long projectId;
+    private ProjectDTO project;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;
     private Boolean active;
+
+    private ArrayList<ActivityDTO> activities;
+    private ArrayList<DocumentDTO> documents;
+    private ArrayList<StudentLessonDTO> studentsProgress;
 }

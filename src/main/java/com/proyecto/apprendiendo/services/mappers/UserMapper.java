@@ -3,7 +3,6 @@ package com.proyecto.apprendiendo.services.mappers;
 
 import com.proyecto.apprendiendo.entities.User;
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
-import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
 
 public class UserMapper {
     public static User DTOtoEntity(UserDTO userDTO) {
@@ -35,7 +34,6 @@ public class UserMapper {
                       .mobilePhone(user.getMobilePhone())
                       .address(user.getAddress())
                       .avatarId(user.getAvatarId())
-                      .password(user.getPassword())
                       .role(user.getRole())
                       .imageData(user.getImageData())
                       .studentDivision(user.getStudentDivision())

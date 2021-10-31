@@ -1,5 +1,8 @@
 package com.proyecto.apprendiendo.services.general_services.classroom_user_services;
 
+import com.proyecto.apprendiendo.entities.StudentActivity;
+import com.proyecto.apprendiendo.entities.StudentClassroom;
+import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
 import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
@@ -45,5 +48,10 @@ public class GetStudentClassroomProgressService {
 
 
         return studentClassroomDTO;
+    }
+
+    public StudentClassroomDTO execute(Long studentClassroomId){
+        StudentClassroom studentClassroom = studentClassroomRepository.getById(studentClassroomId);
+        return execute(studentClassroom.getStudentId(), studentClassroom.getClassroomId());
     }
 }

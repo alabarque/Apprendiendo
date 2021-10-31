@@ -19,6 +19,7 @@ public class GetLessonClassroomService {
 
     private LessonRepository lessonRepository;
     private GetProjectClassroomService getProjectClassroomService;
+    private GetLessonService getLessonService;
 
     public ClassroomDTO execute(Long lessonId) {
         Lesson lesson = lessonRepository.getById(lessonId);

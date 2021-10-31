@@ -18,9 +18,9 @@ public class StudentProject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long userId; //FK a User
-    private Long projectId; //FK a Project
-    private Double percentageCompleted; //Valor entre 0 y 1
+    private Long studentId;
+    private Long projectId;
+    private Double percentageCompleted;
     private LocalDateTime dateCompleted;
     private Integer grade;
 }

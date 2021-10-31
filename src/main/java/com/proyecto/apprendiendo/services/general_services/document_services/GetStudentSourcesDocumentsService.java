@@ -34,8 +34,8 @@ public class GetStudentSourcesDocumentsService {
 
     public ArrayList<DocumentDTO> execute(Long studentId, Long sourceId, String sourceType, String mode, String documentType) {
         Long studentSourceId = 0L;
-        if (sourceType.equals(DocumentSourceType.ACTIVITY.getValue())) studentSourceId = studentActivityRepository.findByUserIdAndActivityId(studentId, sourceId).getId();
-        if (sourceType.equals(DocumentSourceType.PROJECT.getValue())) studentSourceId = studentProjectRepository.findByUserIdAndProjectId(studentId, sourceId).getId();
+        if (sourceType.equals(DocumentSourceType.ACTIVITY.getValue())) studentSourceId = studentActivityRepository.findByStudentIdAndActivityId(studentId, sourceId).getId();
+        if (sourceType.equals(DocumentSourceType.PROJECT.getValue())) studentSourceId = studentProjectRepository.findByStudentIdAndProjectId(studentId, sourceId).getId();
         if (sourceType.equals(DocumentSourceType.CLASSROOM.getValue())) studentSourceId = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, sourceId).getId();
 
         return getSourcesDocumentsService.execute(studentSourceId, mode, documentType);

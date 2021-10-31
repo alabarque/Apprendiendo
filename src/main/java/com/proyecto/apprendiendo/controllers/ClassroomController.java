@@ -55,7 +55,7 @@ public class ClassroomController {
     }
 
     @GetMapping(path = "classroom/{classroomId}/students")
-    public ResponseEntity<ArrayList<StudentDTO>> getClassroomStudents(@PathVariable("classroomId") Long classroomId) {
+    public ResponseEntity<ArrayList<UserDTO>> getClassroomStudents(@PathVariable("classroomId") Long classroomId) {
         return responseDecorator.decorate(() -> getClassroomStudentsService.execute(classroomId));
     }
 

@@ -15,9 +15,12 @@ import javax.transaction.Transactional;
 public class GetGroupService {
 
     private GroupRepository groupRepository;
+    private GetGroupProgressService getGroupProgressService;
 
     public GroupDTO execute(Long idClass) {
         Group group = groupRepository.getById(idClass);
-        return GroupMapper.entityToDto(group);
+        GroupDTO dto = GroupMapper.entityToDto(group);
+        dto.setProgress(getGroupProgressService.execute(idClass));
+        return dto;
     }
 }

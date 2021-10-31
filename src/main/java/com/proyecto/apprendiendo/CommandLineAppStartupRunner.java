@@ -566,6 +566,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addClassroomStudentsService.execute(socialesCursoId, nazaId);
 
 
+        //CREACION DE CONDICIONES PRESETEADAS
         Long conditionCompleted1ActivityId = createConditionService.execute(ConditionDTO.builder()
                                                                                         .conditionType(ConditionType.X_ACTIVITIES_COMPLETED.getValue())
                                                                                         .text("Completar tu primera actividad")
@@ -686,6 +687,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                              .build());
 
 
+
+        //CREACION DE RECOMPENZAS
         Long rewardId = createRewardService.execute(RewardDTO.builder()
                                                              .rewardType(RewardType.BADGE.getValue())
                                                              .conditionId(conditionCompleted10ActivitiesId)
@@ -804,6 +807,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .build());
 
 
+
+        //CREACIONES DE RECOMPENZAS PARA USER NAZA
         Long lessonId = getProjectLessonsService.execute(ProyectoN6Id).stream().findFirst().get().getId();
         Long activityId = getLessonActivitiesService.execute(lessonId).stream().findFirst().get().getId();
 
@@ -828,7 +833,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .build());
 
 
-        //Progreso de alumnos en un proyecto
+        //ASIGNACION DE PROGRESO A ESTUDIANTES
         activityRepository.findAll().forEach(activity -> {
             userRepository.findByRole("ROLE_STUDENT").forEach(student -> {
                 if (getClassroomStudentsService.execute(getProjectService.execute(getLessonService.execute(activity.getLessonId())
@@ -840,7 +845,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                               .dateCompleted(LocalDateTime.now())
                                                                               .percentageCompleted(100.00)
                                                                               .grade(8)
-                                                                              .userId(student.getId())
+                                                                              .studentId(student.getId())
                                                                               .build();
                     updateStudentActivityProgressService.execute(student.getId(), activity.getId(), studentActivityDTO);
                 }
@@ -851,7 +856,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                    .forEach(student -> {
                                        StudentProjectDTO studentProjectDTO = StudentProjectDTO.builder()
                                                                                               .projectId(ProyectoN1Id)
-                                                                                              .userId(student.getId())
+                                                                                              .studentId(student.getId())
                                                                                               .grade(10)
                                                                                               .percentageCompleted(100.00)
                                                                                               .dateCompleted(LocalDateTime.now())
@@ -859,6 +864,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                        updateStudentProjectProgressService.execute(student.getId(), ProyectoN1Id, studentProjectDTO);
                                    });
 
+
+        //ASIGNACION DE RECOMPENZAS SOCIALES
         addRewardStudentService.execute(rewardSocialId, javiId);
 
         addRewardStudentService.execute(rewardBadge1Id, nazaId);
@@ -876,87 +883,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addRewardStudentService.execute(rewardNaza7Id, nazaId);
         addRewardStudentService.execute(rewardNaza8Id, nazaId);
 
-
-        //TESTS
-        //printObject(getActivitiesStatisticsService.execute(andreaId, "TEACHER", "STUDENT"));
-
-        //printObject(getProjectsStatisticsService.execute(andreaId, "TEACHER"));
-
-        //var pid = createProjectService.execute(ProjectDTO.builder().name("asdasd").classroomId(socialesCursoId).active(Boolean.TRUE).build());
-        //printObject(getProjectStudentsProgressService.execute(pid));
-
+        //CREACION DE GRUPO PARA PROYECTO DE DINOSAURIOS
         Long groupId = createGroupService.execute(GroupDTO.builder().name("NUEVO GRUPO").projectId(ProyectoN1Id).build());
         addGroupStudentService.execute(groupId, nazaId, "Infra");
         addGroupStudentService.execute(groupId, mariId, "Analista");
-        //printObject(getProjectStudentGroupService.execute(ProyectoN1Id,mariId));
-
-        //PRUEBA DE AGREGAR DOCS A TEMPLATES
-        /*
-        var asd = getLessonTemplateService.execute(lessonId);
-        var doc = DocumentTemplateDTO.builder()
-                                     .dataType("TEXT")
-                                     .name("Formando Equipos")
-                                     .data(" En base a las respuestas obtenidas en la clase \nanterior, el docente deberá formar equipos de 3 o 4\nintegrantes con diversidad de perfiles. Dándoles la \nposibilidad de que cada uno desempeñe un rol.\n También se definirá cuál es el producto o proyecto final \nque los alumnos desarrollaran en función de las \ncompetencias que se quieran alcanzar(Puede ser un folleto,\nuna presentación, una investigación científica). Se \nrecomienda que se les proporciones las rúbricas donde \nfiguren los objetivos a alcanzar y cómo se los va a \nevaluar.\n\nIngrese en el siguiente box la comunicación a los alumnos\nsobre el producto a desarrollar\\n Mediante la opción \\\"Crear equipos\\\" puede definir los \\nintegrantes de cada equipo y asignarles un nombre. Esto \\npermitirá que los alumnos colaboren y compartan tareas.")
-                                     .build();
-        var docs = new ArrayList<DocumentTemplateDTO>();
-        docs.add(doc);
-        asd.setDocuments(docs);
-
-        printObject(asd);
-        printObject("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-        var lessonTestId = createLessonFromTemplateService.execute(asd,ProyectoN1Id);
-        printObject(getLessonTemplateService.execute(lessonTestId));
-        */
-
-
-        //printObject(getStudentTargetSubRewardsService.execute(nazaId, mateCursoId, "CLASSROOM"));
-
-
-        //PRUEBA DE LECTURA SELECTIVA
-        /*
-        createDocumentService.execute(DocumentDTO.builder().name("asd")
-                                                 .dataType("FILE")
-                                                 .data(downloadImage("https://upload.wikimedia.org/wikipedia/commons/a/a2/04-09-12-Schaupfl%C3%BCgen-Fahrenwalde-RalfR-IMG_1232.jpg"))
-                                                 .sourceId(activityId)
-                                                 .build());
-
-
-
-        for (int i = 0; i < 4; i++) {
-
-            long startTime = System.nanoTime();
-
-            var documentos = getSourcesDocumentsService.execute(activityId, "FULL");
-
-            long endTime = System.nanoTime();
-
-            System.out.println("Full tomo: " + (endTime - startTime) + " nanosegundos");
-
-            try {wait(2000L);}catch (Exception e) {}
-
-            startTime = System.nanoTime();
-
-            documentos = getSourcesDocumentsService.execute(activityId, "SUMMARY");
-
-            endTime = System.nanoTime();
-
-            System.out.println("Summary tomo: " + (endTime - startTime) + " nanosegundos");
-
-            try {wait(2000L);}catch (Exception e) {}
-
-            startTime = System.nanoTime();
-
-            documentos = getSourcesDocumentsService.execute(activityId, "SELECTIVE");
-
-            endTime = System.nanoTime();
-
-            System.out.println("Selective tomo: " + (endTime - startTime) + " nanosegundos");
-
-            try {wait(2000L);}catch (Exception e) {}
-
-            System.out.println("");
-        }
-        */
 
     }
 

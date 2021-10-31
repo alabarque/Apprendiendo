@@ -16,10 +16,10 @@ public class AddActivityStudentsService {
 
     @Transactional(rollbackOn = Exception.class)
     public Long execute(Long activityId, Long studentId) {
-        if (studentActivityRepository.findByUserIdAndActivityId(studentId,activityId) == null){
+        if (studentActivityRepository.findByStudentIdAndActivityId(studentId,activityId) == null){
             studentActivityRepository.save(StudentActivity.builder()
                                                           .activityId(activityId)
-                                                          .userId(studentId)
+                                                          .studentId(studentId)
                                                           .build());
         }
         return activityId;

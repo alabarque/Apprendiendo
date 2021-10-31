@@ -27,7 +27,6 @@ public class RegisterController {
         return responseDecorator.decorate(() -> createUserService.execute(userDTO, UserType.TEACHER));
     }
 
-
     //Temporal, de momento esta para tests
     @PostMapping(value = "register/admin")
     public ResponseEntity<Long> registerAdmin(@RequestBody UserDTO userDTO) {

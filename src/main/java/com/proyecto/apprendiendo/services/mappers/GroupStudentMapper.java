@@ -10,7 +10,6 @@ public class GroupStudentMapper {
     public static GroupStudentDTO entityToDto(GroupStudent groupStudent) {
         return GroupStudentDTO.builder()
                               .id(groupStudent.getId())
-                              .groupId(groupStudent.getGroupId())
                               .studentId(groupStudent.getStudentId())
                               .groupRole(groupStudent.getGroupRole())
                               .build();

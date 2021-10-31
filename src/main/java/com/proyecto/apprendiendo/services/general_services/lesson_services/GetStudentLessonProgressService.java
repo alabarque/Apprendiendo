@@ -24,7 +24,7 @@ public class GetStudentLessonProgressService {
         Lesson lesson = lessonRepository.getById(lessonId);
         StudentLessonDTO studentLessonDTO = StudentLessonDTO.builder()
                                                             .studentId(studentId)
-                                                            .projectId(lesson.getProjectId())
+                                                            .lessonId(lesson.getId())
                                                             .id(lessonId)
                                                             .build();
 

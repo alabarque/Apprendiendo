@@ -44,7 +44,7 @@ public class AddStudentTargetDocumentService {
 
         if (targetType.equals(TargetType.PROJECT.toString())) {
             addProjectStudentsService.execute(targetId, studentId);
-            StudentProject target = studentProjectRepository.findByUserIdAndProjectId(studentId,targetId);
+            StudentProject target = studentProjectRepository.findByStudentIdAndProjectId(studentId,targetId);
             documentDTO.setDocumentSourceType("STUDENT_PROJECT");
             documentDTO.setSourceId(target.getId());
             newDocumentId = createDocumentService.execute(documentDTO);
@@ -53,7 +53,7 @@ public class AddStudentTargetDocumentService {
 
         if (targetType.equals(TargetType.ACTIVITY.toString())) {
             addActivityStudentsService.execute(targetId, studentId);
-            StudentActivity target = studentActivityRepository.findByUserIdAndActivityId(studentId,targetId);
+            StudentActivity target = studentActivityRepository.findByStudentIdAndActivityId(studentId,targetId);
             documentDTO.setDocumentSourceType("STUDENT_ACTIVITY");
             documentDTO.setSourceId(target.getId());
             newDocumentId = createDocumentService.execute(documentDTO);

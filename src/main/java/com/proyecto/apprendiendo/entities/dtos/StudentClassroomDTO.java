@@ -11,8 +11,10 @@ import java.time.LocalDateTime;
 @Builder
 public class StudentClassroomDTO {
     private Long id;
-    private Long studentId; //FK a User
-    private Long classroomId; //FK a Classroom
+    private Long studentId;
+    private UserDTO student; //FK a User
+    private Long classroomId;
+    private ClassroomDTO classroom; //FK a Classroom
     private Integer grade;
     private Double percentageCompleted;
     private LocalDateTime dateCompleted;
