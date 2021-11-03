@@ -20,8 +20,6 @@ public class AddClassroomStudentsService {
             studentClassroomRepository.save(StudentClassroom.builder()
                                                             .classroomId(classroomId)
                                                             .studentId(studentId)
-                                                            .grade(0)
-                                                            .percentageCompleted(0.00)
                                                             .build());
             }
         return classroomId;

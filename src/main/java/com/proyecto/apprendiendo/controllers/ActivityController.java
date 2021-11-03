@@ -57,7 +57,7 @@ public class ActivityController {
         return responseDecorator.decorate(() -> updateActivityService.execute(activityDTO));
     }
 
-    @GetMapping(path = "activity/{activityId}/progress")
+    @GetMapping(path = "activity/{activityId}/students/progress")
     public ResponseEntity<ArrayList<StudentActivityDTO>> getActivityProgress(@PathVariable Long activityId) {
         return responseDecorator.decorate(() -> getActivityStudentsProgressService.execute(activityId));
     }
