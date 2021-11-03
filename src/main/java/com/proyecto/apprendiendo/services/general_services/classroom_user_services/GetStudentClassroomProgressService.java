@@ -2,10 +2,12 @@ package com.proyecto.apprendiendo.services.general_services.classroom_user_servi
 
 import com.proyecto.apprendiendo.entities.StudentActivity;
 import com.proyecto.apprendiendo.entities.StudentClassroom;
+import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
 import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.StudentClassroomRepository;
+import com.proyecto.apprendiendo.repositories.StudentProjectRepository;
 import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonService;
 import com.proyecto.apprendiendo.services.general_services.project_services.GetProjectService;
 import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetStudentActivityProgressService;
@@ -22,6 +24,7 @@ import java.util.OptionalDouble;
 public class GetStudentClassroomProgressService {
 
     private StudentClassroomRepository studentClassroomRepository;
+    private StudentProjectRepository studentProjectRepository;
     private GetProjectService getProjectService;
     private GetLessonService getLessonService;
     private ActivityRepository activityRepository;
@@ -38,15 +41,18 @@ public class GetStudentClassroomProgressService {
                                                                                                  .equals(classroomId))
                                                                    .filter(a -> getProjectService.execute(getLessonService.execute(a.getLessonId()).getProjectId()).getActive())
                                                                    .filter(a -> getLessonService.execute(a.getLessonId()).getActive())
-                                                                   .mapToDouble(a -> getStudentActivityProgressService.execute(studentId, a.getId())
-                                                                                                                      .getPercentageCompleted())
+                                                                   .mapToDouble(a -> {
+                                                                       Long pid = getLessonService.execute(a.getLessonId()).getProjectId();
+                                                                       StudentProject sp = studentProjectRepository.findByStudentIdAndProjectId(studentId, pid);
+                                                                       if (sp != null) if (sp.getPercentageCompleted() != null) return sp.getPercentageCompleted();
+                                                                       return getStudentActivityProgressService.execute(studentId, a.getId())
+                                                                                                               .getPercentageCompleted();
+                                                                   })
                                                                    .average();
 
             if (percentageCompleted.isPresent()) studentClassroomDTO.setPercentageCompleted(percentageCompleted.getAsDouble());
             else  studentClassroomDTO.setPercentageCompleted(0.00);
         }
-
-
         return studentClassroomDTO;
     }
 
