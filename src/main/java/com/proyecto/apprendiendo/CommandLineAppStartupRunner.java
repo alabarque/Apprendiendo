@@ -843,7 +843,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                     StudentActivityDTO studentActivityDTO = StudentActivityDTO.builder()
                                                                               .activityId(activity.getId())
                                                                               .dateCompleted(LocalDateTime.now())
-                                                                              .percentageCompleted(100.00)
+                                                                              .percentageCompleted(80.00)
                                                                               .grade(8)
                                                                               .studentId(student.getId())
                                                                               .build();
