@@ -3,7 +3,7 @@ package com.proyecto.apprendiendo.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.proyecto.apprendiendo.entities.dtos.UserDTO;
 import com.proyecto.apprendiendo.entities.dtos.UserLoginDTO;
-import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserService;
+import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
 import com.proyecto.apprendiendo.services.login_services.LoginService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
 import java.io.IOException;
-import java.io.StringWriter;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -37,8 +35,8 @@ public class LoginController {
             userDTO.setToken(token);
 
             return ResponseEntity.ok()
-                    .header(HttpHeaders.AUTHORIZATION, token)
-                    .body(objectMapper.writeValueAsString(userDTO));
+                                 .header(HttpHeaders.AUTHORIZATION, token)
+                                 .body(objectMapper.writeValueAsString(userDTO));
         } catch (BadCredentialsException ex) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

@@ -5,7 +5,7 @@ import com.proyecto.apprendiendo.entities.dtos.ClassroomDTO;
 
 public class ClassroomMapper {
 
-    public static ClassroomDTO entityToDto(Classroom classroom){
+    public static ClassroomDTO entityToDto(Classroom classroom) {
         return ClassroomDTO.builder()
                            .id(classroom.getId())
                            .teacherId(classroom.getTeacherId())

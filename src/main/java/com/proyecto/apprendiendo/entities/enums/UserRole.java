@@ -7,11 +7,11 @@ public enum UserRole {
 
     private final String value;
 
-    public String getValue(){
-        return value;
+    UserRole(String value) {
+        this.value = value;
     }
 
-    UserRole(String value){
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 }

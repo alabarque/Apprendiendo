@@ -1,8 +1,8 @@
 package com.proyecto.apprendiendo.config.security;
 
 import com.proyecto.apprendiendo.entities.enums.UserType;
-import com.proyecto.apprendiendo.services.abm_services.user_services.GetUserDetailsService;
 import com.proyecto.apprendiendo.services.JwtTokenFilter;
+import com.proyecto.apprendiendo.services.general_services.user_services.GetUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,15 +20,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.servlet.http.HttpServletResponse;
 
-import static java.lang.String.format;
-
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-        securedEnabled = true,
-        jsr250Enabled = true,
-        prePostEnabled = true
-)
+@EnableGlobalMethodSecurity(securedEnabled = true, jsr250Enabled = true, prePostEnabled = true)
 
 public class AuthorizedRoutes extends WebSecurityConfigurerAdapter {
     private final JwtTokenFilter jwtTokenFilter;
@@ -59,9 +53,7 @@ public class AuthorizedRoutes extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) {
-        web
-                .ignoring()
-                .antMatchers("/h2-console/**");
+        web.ignoring().antMatchers("/h2-console/**");
     }
 
     @Override
@@ -72,36 +64,30 @@ public class AuthorizedRoutes extends WebSecurityConfigurerAdapter {
         http.requiresChannel(channel -> channel.anyRequest().requiresSecure());
 
         // Set session management to stateless
-        http
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and();
+        http = http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and();
 
         // Set unauthorized requests exception handler
-        http
-                .exceptionHandling()
-                .authenticationEntryPoint((request, response, ex) ->
-                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage()))
-                .and();
+        http = http.exceptionHandling()
+                   .authenticationEntryPoint((request, response, ex) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage()))
+                   .and();
 
-        http
-                .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers(
-                        "/v3/api-docs",
-                        "/v3/api-docs/**",
-                        "/swagger-ui.html",
-                        "/swagger-ui/**").permitAll() //swagger and open api docs
-                .antMatchers("/login").permitAll()
-                .antMatchers("/register/admin").permitAll()
-                .antMatchers("/class","/class/**").hasAnyRole(UserType.ADMIN.getValue())
-                .antMatchers("/register/student", "/register/teacher").hasAnyRole(UserType.ADMIN.getValue())
-                .anyRequest().authenticated();
+        http.authorizeRequests()
+            .antMatchers("/")
+            .permitAll()
+            .antMatchers("/v3/api-docs", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**")
+            .permitAll() //swagger and open api docs
+            .antMatchers("/login")
+            .permitAll()
+            .antMatchers("/register/admin")
+            .permitAll()
+            .antMatchers("/class", "/class/**")
+            .hasAnyRole(UserType.ADMIN.getValue())
+            .antMatchers("/register/student", "/register/teacher")
+            .hasAnyRole(UserType.ADMIN.getValue())
+            .anyRequest()
+            .authenticated();
 
-        http.addFilterBefore(
-                jwtTokenFilter,
-                UsernamePasswordAuthenticationFilter.class
-        );
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
 
     }

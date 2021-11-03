@@ -15,12 +15,11 @@ import javax.persistence.Id;
 @Entity
 public class Avatar {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Long userId; //FK a User
-    private Long headId; //FK a AvatarBodypart
-    private Long bodyId; //FK a AvatarBodypart
-    private Long legsId; //FK a AvatarBodypart
-    private Long feetId; //FK a AvatarBodypart
+    private String body;      //FK a AvatarPart
+    private String glasses;   //FK a AvatarPart
+    private String hat;       //FK a AvatarPart
+    private String clothes;   //FK a AvatarPart
 }

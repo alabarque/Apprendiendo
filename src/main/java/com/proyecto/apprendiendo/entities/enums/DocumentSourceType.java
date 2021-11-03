@@ -5,15 +5,19 @@ public enum DocumentSourceType {
     TEACHER("TEACHER"),
     PROJECT("PROJECT"),
     CLASSROOM("CLASSROOM"),
-    ACTIVITY("ACTIVITY");
+    ACTIVITY("ACTIVITY"),
+    LESSON("LESSON"),
+    STUDENT_PROJECT("STUDENT_PROJECT"),
+    STUDENT_CLASSROOM("STUDENT_CLASSROOM"),
+    STUDENT_ACTIVITY("STUDENT_ACTIVITY");
 
     private final String value;
 
-    public String getValue(){
-        return value;
+    DocumentSourceType(String value) {
+        this.value = value;
     }
 
-    DocumentSourceType(String value){
-        this.value = value;
+    public String getValue() {
+        return value;
     }
 }

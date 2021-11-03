@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class Methodology {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
 }

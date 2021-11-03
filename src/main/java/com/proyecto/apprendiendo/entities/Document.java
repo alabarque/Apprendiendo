@@ -1,24 +1,18 @@
 package com.proyecto.apprendiendo.entities;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Document {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String name;
-    private Long ownerId; //FK a User
-    private String dataType;
+@Table(name = "DOCUMENT")
+public class Document extends BaseDocument{
+    @Column(length = 100000000)
     private String data;
 }
