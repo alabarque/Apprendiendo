@@ -12,6 +12,7 @@ public class StoredTemplateMapper {
                                 .description(storedTemplate.getDescription())
                                 .template(storedTemplate.getTemplate())
                                 .templateType(storedTemplate.getTemplateType())
+                                .ownerId(storedTemplate.getOwnerId())
                                 .build();
     }
 
@@ -21,6 +22,7 @@ public class StoredTemplateMapper {
                                         .name(storedTemplate.getName())
                                         .description(storedTemplate.getDescription())
                                         .templateType(storedTemplate.getTemplateType())
+                                        .ownerId(storedTemplate.getOwnerId())
                                         .build();
     }
 }

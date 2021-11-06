@@ -23,6 +23,8 @@ import com.proyecto.apprendiendo.services.general_services.student_activity_serv
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetProjectStudentsProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_reward_services.GetStudentRewardsService;
+import com.proyecto.apprendiendo.services.general_services.template_services.GetStoredTemplateMetadataService;
+import com.proyecto.apprendiendo.services.general_services.template_services.GetTemplateReviewsService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
 import lombok.AllArgsConstructor;
@@ -60,6 +62,8 @@ public class ResponseDTOBuilder {
     private GetStudentClassroomsService getStudentClassroomsService;
     private GetTeacherClassroomsService getTeacherClassroomsService;
     private GetStudentRewardsService getStudentRewardsService;
+    private GetTemplateReviewsService getTemplateReviewsService;
+    private GetStoredTemplateMetadataService getStoredTemplateMetadataService;
 
     public Object build(Object simpleDTO) {
         if (simpleDTO == null) return null;
@@ -75,6 +79,24 @@ public class ResponseDTOBuilder {
     }
 
     private Object buildFullDTO(Object simpleDTO) {
+        if (simpleDTO.getClass().equals(StoredTemplateMetadataDTO.class)){
+            StoredTemplateMetadataDTO dto = (StoredTemplateMetadataDTO) simpleDTO;
+            if (dto.getOwnerId() != null) if (!dto.getOwnerId().equals(0L)) dto.setOwner(getUserService.execute(dto.getOwnerId()));
+            dto.setReviews(getTemplateReviewsService.execute(dto.getId()));
+            return dto;
+        }
+        if (simpleDTO.getClass().equals(StoredTemplateDTO.class)){
+            StoredTemplateDTO dto = (StoredTemplateDTO) simpleDTO;
+            if (dto.getOwnerId() != null) if (!dto.getOwnerId().equals(0L)) dto.setOwner(getUserService.execute(dto.getOwnerId()));
+            dto.setReviews(getTemplateReviewsService.execute(dto.getId()));
+            return dto;
+        }
+        if (simpleDTO.getClass().equals(TemplateReviewDTO.class)){
+            TemplateReviewDTO dto = (TemplateReviewDTO) simpleDTO;
+            if (dto.getReviewerId() != null) if (!dto.getReviewerId().equals(0L)) dto.setReviewer(getUserService.execute(dto.getReviewerId()));
+            if (dto.getTemplateId() != null) if (!dto.getTemplateId().equals(0L)) dto.setTemplate(getStoredTemplateMetadataService.execute(dto.getTemplateId()));
+            return dto;
+        }
         if (simpleDTO.getClass().equals(UserDTO.class)){
             UserDTO dto = (UserDTO) simpleDTO;
             if (dto.getAvatarId() != null) if (!dto.getAvatarId().equals(0L)) dto.setAvatar(getAvatarService.execute(dto.getAvatarId()));

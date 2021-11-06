@@ -19,12 +19,17 @@ public class TemplateController {
     private UpdateStoredTemplateService updateStoredTemplateService;
     private GetStoredTemplateService getStoredTemplateService;
     private GetStoredTemplatesService getStoredTemplatesService;
+    private AddTemplateReviewService addTemplateReviewService;
 
     @PostMapping(path = "template")
     public ResponseEntity<Long> newTemplate(@RequestBody StoredTemplateDTO storedTemplateDTO) {
         return responseDecorator.decorate(() -> createStoredTemplateService.execute(storedTemplateDTO));
     }
 
+    @PostMapping(path = "template/review")
+    public ResponseEntity<Long> reviewTemplate(@RequestBody TemplateReviewDTO templateReviewDTO) {
+        return responseDecorator.decorate(() -> addTemplateReviewService.execute(templateReviewDTO));
+    }
     @GetMapping(path = "template/{templateId}")
     public ResponseEntity<StoredTemplateDTO> getTemplate(@PathVariable Long templateId) {
         return responseDecorator.decorate(() -> getStoredTemplateService.execute(templateId));

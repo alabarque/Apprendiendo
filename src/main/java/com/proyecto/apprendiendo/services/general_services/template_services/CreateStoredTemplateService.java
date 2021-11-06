@@ -21,6 +21,7 @@ public class CreateStoredTemplateService {
                                                       .template(storedTemplateDTO.getTemplate())
                                                       .description(storedTemplateDTO.getDescription())
                                                       .templateType(storedTemplateDTO.getTemplateType())
+                                                      .ownerId(storedTemplateDTO.getOwnerId())
                                                       .build();
         return storedTemplateRepository.save(storedTemplate).getId();
     }
