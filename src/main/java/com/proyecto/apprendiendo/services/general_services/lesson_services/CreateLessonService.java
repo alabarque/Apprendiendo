@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +26,8 @@ public class CreateLessonService {
                               .dueDate(lessonDTO.getDueDate())
                               .active(lessonDTO.getActive())
                               .build();
+        if (lessonDTO.getStartDate() == null) lesson.setStartDate(LocalDateTime.now());
+
         return lessonRepository.save(lesson).getId();
     }
 }

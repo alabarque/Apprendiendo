@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -26,6 +27,8 @@ public class CreateProjectService {
                                  .position(projectDTO.getPosition())
                                  .active(projectDTO.getActive())
                                  .build();
+
+        if (projectDTO.getStartDate() == null) project.setStartDate(LocalDateTime.now());
 
         return projectRepository.save(project).getId();
     }
