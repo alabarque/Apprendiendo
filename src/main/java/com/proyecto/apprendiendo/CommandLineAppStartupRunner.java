@@ -30,6 +30,8 @@ import com.proyecto.apprendiendo.services.general_services.student_project_servi
 import com.proyecto.apprendiendo.services.general_services.student_project_services.UpdateStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.general_services.student_reward_services.AddRewardStudentService;
 import com.proyecto.apprendiendo.services.general_services.student_reward_services.GetStudentTargetSubRewardsService;
+import com.proyecto.apprendiendo.services.general_services.template_services.AddTemplateReviewService;
+import com.proyecto.apprendiendo.services.general_services.template_services.CreateStoredTemplateService;
 import com.proyecto.apprendiendo.services.general_services.user_services.CreateUserService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetStudentService;
 import com.proyecto.apprendiendo.services.general_services.user_services.GetUserService;
@@ -139,6 +141,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
     private GetLessonTemplateService getLessonTemplateService;
     @Autowired
     private CreateLessonFromTemplateService createLessonFromTemplateService;
+    @Autowired
+    private CreateStoredTemplateService createStoredTemplateService;
+    @Autowired
+    private AddTemplateReviewService addTemplateReviewService;
 
     @Override
     public void run(String... args) {
@@ -488,6 +494,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .studentYear(5)
                                                        .studentDivision("B")
                                                        .build(), UserType.STUDENT);
+        Long apprendiendoUserId = createUserService.execute(UserDTO.builder()
+                                                                   .username("Apprendiendo")
+                                                                   .password("password")
+                                                                   .build(), UserType.ADMIN);
 
         //CLASSROOMS
         Long mateCursoId = createClassroomService.execute(ClassroomDTO.builder()
@@ -888,11 +898,44 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addGroupStudentService.execute(groupId, nazaId, "Infra");
         addGroupStudentService.execute(groupId, mariId, "Analista");
 
+
+        //GUARDO TEMPLATES EN REPOSITORIOS
+
+        createStoredTemplateService.execute(StoredTemplateDTO.builder()
+                                                             .templateType("PROJECT")
+                                                             .description("Template para la creacion de un proyecto basado en PBL")
+                                                             .name("Proyecto basado en PBL v0.1.0")
+                                                             .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(proyectoMethodologyId)))
+                                                             .ownerId(apprendiendoUserId)
+                                                             .build());
+
+        createStoredTemplateService.execute(StoredTemplateDTO.builder()
+                                                             .templateType("PROJECT")
+                                                             .description("Template para la creacion de un proyecto basado en Aula Invertida")
+                                                             .name("Proyecto basado en Inverted Classroom v0.1.0")
+                                                             .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(aulaInvertidaMethodologyId)))
+                                                             .ownerId(apprendiendoUserId)
+                                                             .build());
+
+        createStoredTemplateService.execute(StoredTemplateDTO.builder()
+                                                             .templateType("PROJECT")
+                                                             .description("Template para la creacion de un proyecto basado en TBL")
+                                                             .name("Proyecto basado en TBL v0.1.0")
+                                                             .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(pensamientoMethodologyId)))
+                                                             .ownerId(apprendiendoUserId)
+                                                             .build());
+
+
     }
 
     private void printObject(Object object) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         System.out.println(gson.toJson(object));
+    }
+
+    private String convertToJson(Object object) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(object);
     }
 
 
