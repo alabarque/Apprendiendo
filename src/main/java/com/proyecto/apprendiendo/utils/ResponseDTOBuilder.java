@@ -82,12 +82,14 @@ public class ResponseDTOBuilder {
         if (simpleDTO.getClass().equals(StoredTemplateMetadataDTO.class)){
             StoredTemplateMetadataDTO dto = (StoredTemplateMetadataDTO) simpleDTO;
             if (dto.getOwnerId() != null) if (!dto.getOwnerId().equals(0L)) dto.setOwner(getUserService.execute(dto.getOwnerId()));
+            if (dto.getMethodologyId() != null) if (!dto.getMethodologyId().equals(0L)) dto.setMethodology(getMethodologyService.execute(dto.getMethodologyId()));
             dto.setReviews(getTemplateReviewsService.execute(dto.getId()));
             return dto;
         }
         if (simpleDTO.getClass().equals(StoredTemplateDTO.class)){
             StoredTemplateDTO dto = (StoredTemplateDTO) simpleDTO;
             if (dto.getOwnerId() != null) if (!dto.getOwnerId().equals(0L)) dto.setOwner(getUserService.execute(dto.getOwnerId()));
+            if (dto.getMethodologyId() != null) if (!dto.getMethodologyId().equals(0L)) dto.setMethodology(getMethodologyService.execute(dto.getMethodologyId()));
             dto.setReviews(getTemplateReviewsService.execute(dto.getId()));
             return dto;
         }
@@ -184,6 +186,7 @@ public class ResponseDTOBuilder {
         }
         if (simpleDTO.getClass().equals(ProjectTemplateDTO.class)){
             ProjectTemplateDTO dto = (ProjectTemplateDTO) simpleDTO;
+            if (dto.getMethodologyId() != null) if (!dto.getMethodologyId().equals(0L)) dto.setMethodology(getMethodologyService.execute(dto.getMethodologyId()));
             if (dto.getClassroomId() != null) if (!dto.getClassroomId().equals(0L)) dto.setClassroom(getClassroomService.execute(dto.getClassroomId()));
             return dto;
         }

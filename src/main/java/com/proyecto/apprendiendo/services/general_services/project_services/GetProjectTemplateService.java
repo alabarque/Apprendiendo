@@ -74,6 +74,8 @@ public class GetProjectTemplateService {
                                                               .map(documentDTO -> DocumentMapper.dtoToTemplateDTO(documentDTO))
                                                               .collect(Collectors.toCollection(ArrayList::new)));
 
+        projectTemplateDTO.setMethodologyId(project.getMethodologyId());
+
         return projectTemplateDTO;
     }
 }

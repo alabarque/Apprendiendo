@@ -901,23 +901,24 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         //GUARDO TEMPLATES EN REPOSITORIOS
 
-        createStoredTemplateService.execute(StoredTemplateDTO.builder()
+        var storedTemplate1Id =
+                createStoredTemplateService.execute(StoredTemplateDTO.builder()
                                                              .templateType("PROJECT")
                                                              .description("Template para la creacion de un proyecto basado en PBL")
                                                              .name("Proyecto basado en PBL v0.1.0")
                                                              .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(proyectoMethodologyId)))
                                                              .ownerId(apprendiendoUserId)
                                                              .build());
-
-        createStoredTemplateService.execute(StoredTemplateDTO.builder()
+        var storedTemplate2Id =
+                createStoredTemplateService.execute(StoredTemplateDTO.builder()
                                                              .templateType("PROJECT")
                                                              .description("Template para la creacion de un proyecto basado en Aula Invertida")
                                                              .name("Proyecto basado en Inverted Classroom v0.1.0")
                                                              .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(aulaInvertidaMethodologyId)))
                                                              .ownerId(apprendiendoUserId)
                                                              .build());
-
-        createStoredTemplateService.execute(StoredTemplateDTO.builder()
+        var storedTemplate3Id =
+                createStoredTemplateService.execute(StoredTemplateDTO.builder()
                                                              .templateType("PROJECT")
                                                              .description("Template para la creacion de un proyecto basado en TBL")
                                                              .name("Proyecto basado en TBL v0.1.0")
@@ -925,7 +926,47 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                              .ownerId(apprendiendoUserId)
                                                              .build());
 
+        addTemplateReviewService.execute(TemplateReviewDTO.builder()
+                                                          .score(3)
+                                                          .review("esta ok")
+                                                          .reviewerId(andreaId)
+                                                          .templateId(storedTemplate1Id)
+                                                          .build());
 
+        addTemplateReviewService.execute(TemplateReviewDTO.builder()
+                                                          .score(3)
+                                                          .review("esta ok")
+                                                          .reviewerId(andreaId)
+                                                          .templateId(storedTemplate2Id)
+                                                          .build());
+
+        addTemplateReviewService.execute(TemplateReviewDTO.builder()
+                                                          .score(3)
+                                                          .review("esta ok")
+                                                          .reviewerId(andreaId)
+                                                          .templateId(storedTemplate3Id)
+                                                          .build());
+
+        addTemplateReviewService.execute(TemplateReviewDTO.builder()
+                                                          .score(5)
+                                                          .review("muy bueno")
+                                                          .reviewerId(pabloId)
+                                                          .templateId(storedTemplate1Id)
+                                                          .build());
+
+        addTemplateReviewService.execute(TemplateReviewDTO.builder()
+                                                          .score(0)
+                                                          .review("mal")
+                                                          .reviewerId(pabloId)
+                                                          .templateId(storedTemplate2Id)
+                                                          .build());
+
+        addTemplateReviewService.execute(TemplateReviewDTO.builder()
+                                                          .score(3)
+                                                          .review("esta ok")
+                                                          .reviewerId(pabloId)
+                                                          .templateId(storedTemplate3Id)
+                                                          .build());
     }
 
     private void printObject(Object object) {

@@ -20,4 +20,5 @@ public class StoredTemplate {
     @Column(length = 10000000)
     private String template;
     private Long ownerId;
+    private Long methodologyId;
 }

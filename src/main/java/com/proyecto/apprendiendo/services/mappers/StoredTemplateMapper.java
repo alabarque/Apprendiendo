@@ -13,6 +13,7 @@ public class StoredTemplateMapper {
                                 .template(storedTemplate.getTemplate())
                                 .templateType(storedTemplate.getTemplateType())
                                 .ownerId(storedTemplate.getOwnerId())
+                                .methodologyId(storedTemplate.getMethodologyId())
                                 .build();
     }
 
@@ -23,6 +24,7 @@ public class StoredTemplateMapper {
                                         .description(storedTemplate.getDescription())
                                         .templateType(storedTemplate.getTemplateType())
                                         .ownerId(storedTemplate.getOwnerId())
+                                        .methodologyId(storedTemplate.getMethodologyId())
                                         .build();
     }
 }

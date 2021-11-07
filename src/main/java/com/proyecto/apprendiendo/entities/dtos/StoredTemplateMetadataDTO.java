@@ -18,6 +18,8 @@ public class StoredTemplateMetadataDTO {
     private UserDTO owner;
     private Double score;
     private Integer reviewCount;
+    private Long methodologyId;
 
+    private MethodologyDTO methodology;
     private ArrayList<TemplateReviewDTO> reviews;
 }
