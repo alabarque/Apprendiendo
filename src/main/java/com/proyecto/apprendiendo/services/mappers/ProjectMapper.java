@@ -31,6 +31,7 @@ public class ProjectMapper {
                                  .startDate(project.getStartDate())
                                  .dueDate(project.getDueDate())
                                  .active(project.getActive())
+                                 .methodologyId(project.getMethodologyId())
                                  .build();
     }
 
@@ -44,6 +45,7 @@ public class ProjectMapper {
                          .startDate(projectTemplateDTO.getStartDate())
                          .dueDate(projectTemplateDTO.getDueDate())
                          .active(projectTemplateDTO.getActive())
+                         .methodologyId(projectTemplateDTO.getMethodologyId())
                          .build();
     }
 

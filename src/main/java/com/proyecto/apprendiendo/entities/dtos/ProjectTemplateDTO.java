@@ -19,6 +19,9 @@ public class ProjectTemplateDTO {
     private LocalDateTime startDate;
     private LocalDateTime dueDate;
     private Boolean active;
+    private Long methodologyId;
+
+    private MethodologyDTO methodology;
     private ArrayList<LessonTemplateDTO> lessons;
     private ArrayList<RewardDTO> rewards;
     private ArrayList<DocumentTemplateDTO> documents;

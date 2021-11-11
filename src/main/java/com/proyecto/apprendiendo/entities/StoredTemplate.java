@@ -2,10 +2,7 @@ package com.proyecto.apprendiendo.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -20,5 +17,8 @@ public class StoredTemplate {
     private String name;
     private String description;
     private String templateType;
+    @Column(length = 10000000)
     private String template;
+    private Long ownerId;
+    private Long methodologyId;
 }
