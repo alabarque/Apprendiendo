@@ -9,7 +9,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name="REWARD")
+@Table(name="REWARD")
 public class Reward {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

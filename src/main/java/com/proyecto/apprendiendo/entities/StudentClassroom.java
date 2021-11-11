@@ -2,10 +2,7 @@ package com.proyecto.apprendiendo.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,7 +10,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name="STUDENT_CLASSROOM")
+@Table(name="STUDENT_CLASSROOM")
 public class StudentClassroom {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

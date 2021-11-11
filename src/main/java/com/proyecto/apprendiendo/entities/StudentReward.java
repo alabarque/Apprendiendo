@@ -2,17 +2,15 @@ package com.proyecto.apprendiendo.entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
+@Entity(name="STUDENT_REWARD")
+@Table(name="STUDENT_REWARD")
 public class StudentReward {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

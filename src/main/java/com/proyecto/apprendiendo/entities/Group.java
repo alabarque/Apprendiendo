@@ -9,8 +9,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "GROUPS")
+@Entity(name = "CLASS_GROUP")
+@Table(name = "CLASS_GROUP")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

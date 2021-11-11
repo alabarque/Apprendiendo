@@ -9,7 +9,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
+@Entity(name="STORED_TEMPLATE")
+@Table(name="STORED_TEMPLATE")
 public class StoredTemplate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

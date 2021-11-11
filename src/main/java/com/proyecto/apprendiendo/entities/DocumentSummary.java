@@ -9,6 +9,6 @@ import javax.persistence.*;
 @Setter
 @AllArgsConstructor
 @SuperBuilder
-@Entity
+@Entity(name = "DOCUMENT_SUMMARY")
 @Table(name = "DOCUMENT")
 public class DocumentSummary extends BaseDocument {}

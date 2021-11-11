@@ -10,7 +10,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@Entity
+@Entity(name="DOCUMENT")
 @Table(name = "DOCUMENT")
 public class Document extends BaseDocument{
     @Column(length = 100000000)
