@@ -42,7 +42,7 @@ public class AddStudentTargetDocumentService {
 
         Long newDocumentId = 0L;
 
-        if (targetType.equals(TargetType.PROJECT.toString())) {
+        if (targetType.equals(TargetType.STUDENT_PROJECT.toString())) {
             addProjectStudentsService.execute(targetId, studentId);
             StudentProject target = studentProjectRepository.findByStudentIdAndProjectId(studentId,targetId);
             documentDTO.setDocumentSourceType("STUDENT_PROJECT");
@@ -51,7 +51,7 @@ public class AddStudentTargetDocumentService {
 
         }
 
-        if (targetType.equals(TargetType.ACTIVITY.toString())) {
+        if (targetType.equals(TargetType.STUDENT_ACTIVITY.toString())) {
             addActivityStudentsService.execute(targetId, studentId);
             StudentActivity target = studentActivityRepository.findByStudentIdAndActivityId(studentId,targetId);
             documentDTO.setDocumentSourceType("STUDENT_ACTIVITY");
@@ -59,7 +59,7 @@ public class AddStudentTargetDocumentService {
             newDocumentId = createDocumentService.execute(documentDTO);
         }
 
-        if (targetType.equals(TargetType.CLASSROOM.toString())) {
+        if (targetType.equals(TargetType.STUDENT_CLASSROOM.toString())) {
             addClassroomStudentService.execute(targetId, studentId);
             StudentClassroom target = studentClassroomRepository.findByStudentIdAndClassroomId(studentId,targetId);
             documentDTO.setDocumentSourceType("STUDENT_CLASSROOM");
