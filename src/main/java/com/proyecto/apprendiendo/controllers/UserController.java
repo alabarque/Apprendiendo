@@ -123,7 +123,7 @@ public class UserController {
 
     @PostMapping(path = "user/{userId}/activity/{activityId}/document")
     public ResponseEntity<Long> addStudentActivityDocument(@PathVariable("activityId") Long activityId, @PathVariable("userId") Long userId, @RequestBody DocumentDTO documentDTO) {
-        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, activityId,"STUDENT_ACTIVITY", documentDTO));
+        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, activityId,"ACTIVITY", documentDTO));
     }
 
     @GetMapping(path = "user/{userId}/project/{projectId}/documents")
@@ -163,7 +163,7 @@ public class UserController {
 
     @PostMapping(path = "user/{userId}/classroom/{classroomId}/document")
     public ResponseEntity<Long> addStudentClassroomDocument(@PathVariable("classroomId") Long classroomId, @PathVariable("userId") Long userId, @RequestBody DocumentDTO documentDTO) {
-        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, classroomId,"STUDENT_CLASSROOM" , documentDTO));
+        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, classroomId,"CLASSROOM" , documentDTO));
     }
 
     @GetMapping(path = "user/{userId}/socialRewards")
