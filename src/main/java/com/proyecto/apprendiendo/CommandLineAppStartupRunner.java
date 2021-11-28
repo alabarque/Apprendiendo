@@ -714,6 +714,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                           .targetType(TargetType.PROJECT.getValue())
                                                                           .targetId(ProyectoN1Id)
                                                                           .text("Sabes mucho de dinos!")
+                                                                          .imageData("mc0013")
                                                                           .name("Dinoexperto")
                                                                           .build());
 
