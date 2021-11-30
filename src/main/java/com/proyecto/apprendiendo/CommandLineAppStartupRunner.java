@@ -704,6 +704,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                              .conditionId(conditionCompleted10ActivitiesId)
                                                              .text("Completaste 10 actividades maestro!")
                                                              .name("Hiperactivo")
+                                                             .imageData("m0006")
                                                              .build());
 
 
@@ -713,6 +714,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                           .targetType(TargetType.PROJECT.getValue())
                                                                           .targetId(ProyectoN1Id)
                                                                           .text("Sabes mucho de dinos!")
+                                                                          .imageData("mc0013")
                                                                           .name("Dinoexperto")
                                                                           .build());
 
@@ -721,6 +723,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                    .rewardType(RewardType.SOCIAL.getValue())
                                                                    .text("Te portaste muy bien!")
                                                                    .conditionId(conditionSocial1Id)
+                                                                   .imageData("m0005")
                                                                    .name("Santo")
                                                                    .build());
 
