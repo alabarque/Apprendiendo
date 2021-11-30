@@ -18,7 +18,7 @@ public class UpdateLessonService {
     public Long execute(LessonDTO lessonDTO) {
         Lesson lesson = lessonRepository.getById(lessonDTO.getId());
         lesson.setName(lessonDTO.getName());
-        lesson.setDescription(lesson.getDescription());
+        lesson.setDescription(lessonDTO.getDescription());
         lesson.setDueDate(lessonDTO.getDueDate());
         lesson.setStartDate(lessonDTO.getStartDate());
         lesson.setPosition(lessonDTO.getPosition());
