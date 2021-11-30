@@ -16,5 +16,5 @@ public interface StudentActivityRepository extends JpaRepository<StudentActivity
 
     StudentActivity findByStudentIdAndActivityId(Long studentId, Long activityId);
 
-    StudentActivity deleteByActivityIdAndStudentId(Long activityId, Long studentId);
+    Integer deleteByActivityIdAndStudentId(Long activityId, Long studentId);
 }
