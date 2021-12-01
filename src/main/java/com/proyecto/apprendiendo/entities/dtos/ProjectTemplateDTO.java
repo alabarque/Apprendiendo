@@ -23,6 +23,6 @@ public class ProjectTemplateDTO {
 
     private MethodologyDTO methodology;
     private ArrayList<LessonTemplateDTO> lessons;
-    private ArrayList<RewardDTO> rewards;
+    private ArrayList<RewardTemplateDTO> rewards;
     private ArrayList<DocumentTemplateDTO> documents;
 }

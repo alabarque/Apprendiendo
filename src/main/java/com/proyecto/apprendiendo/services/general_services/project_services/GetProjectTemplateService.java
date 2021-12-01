@@ -10,6 +10,8 @@ import com.proyecto.apprendiendo.repositories.DocumentRepository;
 import com.proyecto.apprendiendo.repositories.LessonRepository;
 import com.proyecto.apprendiendo.repositories.ProjectRepository;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.lesson_services.GetLessonTemplateService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetRewardAsTemplateService;
 import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
 import com.proyecto.apprendiendo.services.mappers.ActivityMapper;
 import com.proyecto.apprendiendo.services.mappers.DocumentMapper;
@@ -31,50 +33,34 @@ public class GetProjectTemplateService {
 
     private ProjectRepository projectRepository;
     private LessonRepository lessonRepository;
-    private ActivityRepository activityRepository;
     private DocumentRepository documentRepository;
     private GetTargetRewardsService getTargetRewardsService;
-    private GetSourcesDocumentsService getSourcesDocumentsService;
+    private GetLessonTemplateService getLessonTemplateService;
+    private GetRewardAsTemplateService getRewardAsTemplateService;
 
     public ProjectTemplateDTO execute(Long projectId) {
         Project project = projectRepository.getById(projectId);
-        Map<Long, LessonTemplateDTO> lessons = lessonRepository.findByProjectId(project.getId())
-                                                               .stream()
-                                                               .collect(Collectors.toMap(l -> l.getId(), l -> LessonMapper.entityToTemplateDto(l)));
-
-        lessons.forEach((lid, l) -> {
-            Map<Long, ActivityTemplateDTO> activities = activityRepository.findByLessonId(lid)
-                                                                          .stream()
-                                                                          .collect(Collectors.toMap(a -> a.getId(), a -> ActivityMapper.entityToTemplateDto(a)));
-            activities.forEach((aid, a) -> a.setDocuments(documentRepository.findBySourceId(aid)
-                                                                            .stream()
-                                                                            .map(d -> DocumentMapper.entityToTemplateDto(d))
-                                                                            .sorted(Comparator.comparing(DocumentTemplateDTO::getPosition, Comparator.nullsFirst(Comparator.naturalOrder())))
-                                                                            .collect(Collectors.toCollection(ArrayList::new))));
-            activities.forEach((aid, a) -> a.setRewards(getTargetRewardsService.execute(aid)));
-            l.setActivities(activities.values()
-                                      .stream()
-                                      .sorted(Comparator.comparing(ActivityTemplateDTO::getPosition, Comparator.nullsFirst(Comparator.naturalOrder())))
-                                      .collect(Collectors.toCollection(ArrayList::new)));
-            l.setDocuments(getSourcesDocumentsService.execute(lid)
-                                                     .stream()
-                                                     .map(documentDTO -> DocumentMapper.dtoToTemplateDTO(documentDTO))
-                                                     .collect(Collectors.toCollection(ArrayList::new)));
-        });
-
         ProjectTemplateDTO projectTemplateDTO = ProjectMapper.entityToTemplateDto(project);
-        projectTemplateDTO.setLessons(lessons.values()
-                                             .stream()
+
+        ArrayList<LessonTemplateDTO> lessons = lessonRepository.findByProjectId(project.getId())
+                                                               .stream()
+                                                               .map(lesson -> getLessonTemplateService.execute(lesson.getId()))
+                                                               .collect(Collectors.toCollection(ArrayList::new));
+
+        projectTemplateDTO.setLessons(lessons.stream()
                                              .sorted(Comparator.comparing(LessonTemplateDTO::getPosition, Comparator.nullsFirst(Comparator.naturalOrder())))
                                              .collect(Collectors.toCollection(ArrayList::new)));
-        projectTemplateDTO.setRewards(getTargetRewardsService.execute(projectId));
 
-        projectTemplateDTO.setDocuments(getSourcesDocumentsService.execute(projectId)
-                                                              .stream()
-                                                              .map(documentDTO -> DocumentMapper.dtoToTemplateDTO(documentDTO))
-                                                              .collect(Collectors.toCollection(ArrayList::new)));
+        projectTemplateDTO.setDocuments(documentRepository.findBySourceId(projectId)
+                                                        .stream()
+                                                        .map(d -> DocumentMapper.entityToTemplateDto(d))
+                                                        .sorted(Comparator.comparing(DocumentTemplateDTO::getPosition, Comparator.nullsFirst(Comparator.naturalOrder())))
+                                                        .collect(Collectors.toCollection(ArrayList::new)));
 
-        projectTemplateDTO.setMethodologyId(project.getMethodologyId());
+        projectTemplateDTO.setRewards(getTargetRewardsService.execute(projectId)
+                                                           .stream()
+                                                           .map(reward -> getRewardAsTemplateService.execute(reward.getId()))
+                                                           .collect(Collectors.toCollection(ArrayList::new)));
 
         return projectTemplateDTO;
     }

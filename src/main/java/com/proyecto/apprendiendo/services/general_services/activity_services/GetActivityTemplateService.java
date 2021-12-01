@@ -9,6 +9,7 @@ import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.repositories.DocumentRepository;
 import com.proyecto.apprendiendo.repositories.LessonRepository;
 import com.proyecto.apprendiendo.services.general_services.document_services.GetSourcesDocumentsService;
+import com.proyecto.apprendiendo.services.general_services.reward_services.GetRewardAsTemplateService;
 import com.proyecto.apprendiendo.services.general_services.reward_services.GetTargetRewardsService;
 import com.proyecto.apprendiendo.services.mappers.ActivityMapper;
 import com.proyecto.apprendiendo.services.mappers.DocumentMapper;
@@ -30,6 +31,7 @@ public class GetActivityTemplateService {
     private ActivityRepository activityRepository;
     private DocumentRepository documentRepository;
     private GetTargetRewardsService getTargetRewardsService;
+    private GetRewardAsTemplateService getRewardAsTemplateService;
 
     public ActivityTemplateDTO execute(Long activityId) {
         Activity activity = activityRepository.getById(activityId);
@@ -41,7 +43,10 @@ public class GetActivityTemplateService {
                                                         .sorted(Comparator.comparing(DocumentTemplateDTO::getPosition, Comparator.nullsFirst(Comparator.naturalOrder())))
                                                         .collect(Collectors.toCollection(ArrayList::new)));
 
-        activityTemplate.setRewards(getTargetRewardsService.execute(activityId));
+        activityTemplate.setRewards(getTargetRewardsService.execute(activityId)
+                                                           .stream()
+                                                           .map(reward -> getRewardAsTemplateService.execute(reward.getId()))
+                                                           .collect(Collectors.toCollection(ArrayList::new)));
 
         return activityTemplate;
     }

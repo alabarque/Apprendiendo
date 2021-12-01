@@ -16,7 +16,7 @@ public class ActivityTemplateDTO {
     private Integer position;
     private LocalDateTime dueDate;
     private LocalDateTime startDate;
-    private ArrayList<RewardDTO> rewards;
+    private ArrayList<RewardTemplateDTO> rewards;
     private ArrayList<DocumentTemplateDTO> documents;
 
 }
