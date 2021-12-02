@@ -443,7 +443,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .mobilePhone("15 1234-5678")
                                                        .password("javi")
                                                        .avatarId(createAvatarService.execute(avatarDTO))
-                                                       .studentYear(5)
+                                                       .studentYear(6)
                                                        .studentDivision("B")
                                                        .build(), UserType.STUDENT);
         Long agusId = createUserService.execute(UserDTO.builder()
@@ -455,7 +455,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .mobilePhone("15 1234-5678")
                                                        .password("agus")
                                                        .avatarId(createAvatarService.execute(avatarDTO))
-                                                       .studentYear(5)
+                                                       .studentYear(6)
                                                        .studentDivision("B")
                                                        .build(), UserType.STUDENT);
         Long nazaId = createUserService.execute(UserDTO.builder()
@@ -467,7 +467,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .mobilePhone("15 1234-5678")
                                                        .password("naza")
                                                        .avatarId(createAvatarService.execute(avatarDTO))
-                                                       .studentYear(5)
+                                                       .studentYear(6)
                                                        .studentDivision("B")
                                                        .build(), UserType.STUDENT);
         Long paoId = createUserService.execute(UserDTO.builder()
@@ -479,7 +479,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                       .mobilePhone("15 1234-5678")
                                                       .password("pao")
                                                       .avatarId(createAvatarService.execute(avatarDTO))
-                                                      .studentYear(5)
+                                                      .studentYear(6)
                                                       .studentDivision("B")
                                                       .build(), UserType.STUDENT);
         Long mariId = createUserService.execute(UserDTO.builder()
@@ -491,7 +491,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                        .mobilePhone("15 1234-5678")
                                                        .password("mari")
                                                        .avatarId(createAvatarService.execute(avatarDTO))
-                                                       .studentYear(5)
+                                                       .studentYear(6)
                                                        .studentDivision("B")
                                                        .build(), UserType.STUDENT);
         Long apprendiendoUserId = createUserService.execute(UserDTO.builder()
@@ -502,26 +502,26 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         //CLASSROOMS
         Long mateCursoId = createClassroomService.execute(ClassroomDTO.builder()
                                                                       .teacherId(andreaId)
-                                                                      .division("A")
-                                                                      .year(3)
-                                                                      .subject("Matematica")
+                                                                      .division("B")
+                                                                      .year(6)
+                                                                      .subject("Matemática")
                                                                       .build());
         Long lenguaCursoId = createClassroomService.execute(ClassroomDTO.builder()
                                                                         .teacherId(andreaId)
-                                                                        .division("A")
-                                                                        .year(3)
+                                                                        .division("B")
+                                                                        .year(6)
                                                                         .subject("Lengua")
                                                                         .build());
         Long naturalesCursoId = createClassroomService.execute(ClassroomDTO.builder()
                                                                            .teacherId(andreaId)
                                                                            .division("B")
-                                                                           .year(3)
+                                                                           .year(6)
                                                                            .subject("Naturales")
                                                                            .build());
         Long socialesCursoId = createClassroomService.execute(ClassroomDTO.builder()
                                                                           .teacherId(pabloId)
                                                                           .division("B")
-                                                                          .year(3)
+                                                                          .year(6)
                                                                           .subject("Sociales")
                                                                           .build());
 
@@ -534,7 +534,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         invertedTemplate.setName("Aula Invertida: Planetas");
         invertedTemplate.setClassroomId(naturalesCursoId);
         Long ProyectoN2Id = createProjectFromTemplateService.execute(invertedTemplate);
-        pblTemplate.setName("Proyecto: Los Atomos");
+        pblTemplate.setName("Proyecto: Los Átomos");
         pblTemplate.setClassroomId(naturalesCursoId);
         Long ProyectoN3Id = createProjectFromTemplateService.execute(pblTemplate);
         pblTemplate.setName("Projecto: San Martin");
@@ -543,16 +543,16 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         pblTemplate.setName("Proyecto: El Cabildo");
         pblTemplate.setClassroomId(socialesCursoId);
         Long ProyectoN5Id = createProjectFromTemplateService.execute(pblTemplate);
-        invertedTemplate.setName("Aula Invertida: Division");
+        invertedTemplate.setName("Aula Invertida: División");
         invertedTemplate.setClassroomId(mateCursoId);
         Long ProyectoN6Id = createProjectFromTemplateService.execute(invertedTemplate);
-        pblTemplate.setName("Proyecto: Multiplicacion");
+        pblTemplate.setName("Proyecto: Multiplicación");
         pblTemplate.setClassroomId(mateCursoId);
         Long ProyectoN7Id = createProjectFromTemplateService.execute(pblTemplate);
         invertedTemplate.setName("Aula Invertida: Oraciones");
         invertedTemplate.setClassroomId(lenguaCursoId);
         Long ProyectoN8Id = createProjectFromTemplateService.execute(invertedTemplate);
-        pblTemplate.setName("Proyecto: Gramatica");
+        pblTemplate.setName("Proyecto: Gramática");
         pblTemplate.setClassroomId(lenguaCursoId);
         Long ProyectoN9Id = createProjectFromTemplateService.execute(pblTemplate);
 
@@ -651,7 +651,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         Long conditionCompletedTarget1DayEarlyId = createConditionService.execute(ConditionDTO.builder()
                                                                                               .conditionType(ConditionType.TARGET_COMPLETED_X_DAYS_BEFORE_DUE_DATE.getValue())
-                                                                                              .text("Completar la tarea un dia antes de tiempo")
+                                                                                              .text("Completar la tarea un día antes de tiempo")
                                                                                               .data("1")
                                                                                               .build());
 
@@ -713,7 +713,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                           .conditionId(conditionScoreHigherThan7InTargetId)
                                                                           .targetType(TargetType.PROJECT.getValue())
                                                                           .targetId(ProyectoN1Id)
-                                                                          .text("Sabes mucho de dinos!")
+                                                                          .text("Sabés mucho de dinos!")
                                                                           .imageData("mc0013")
                                                                           .name("Dinoexperto")
                                                                           .build());
@@ -762,7 +762,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza1Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.ACHIEVEMENT.getValue())
-                                                                  .text("Te ganaste esto, por completar algun curso")
+                                                                  .text("Te ganaste esto, por completar algún curso")
                                                                   .name("Logro al mejor... algo... 5")
                                                                   .targetId(mateCursoId)
                                                                   .targetType("CLASSROOM")
@@ -772,7 +772,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza2Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.ACHIEVEMENT.getValue())
-                                                                  .text("Te ganaste esto, por completar algun curso")
+                                                                  .text("Te ganaste esto, por completar algún curso")
                                                                   .name("Logro al mejor... algo... 6")
                                                                   .targetId(mateCursoId)
                                                                   .targetType("CLASSROOM")
@@ -782,7 +782,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza3Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
-                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .text("Te ganaste esto, por completar algún proyecto")
                                                                   .name("Reto del mejor... algo... 7")
                                                                   .targetId(ProyectoN6Id)
                                                                   .targetType("PROJECT")
@@ -792,7 +792,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza4Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
-                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .text("Te ganaste esto, por completar algún proyecto")
                                                                   .name("Reto del mejor... algo... 8")
                                                                   .targetId(ProyectoN7Id)
                                                                   .targetType("PROJECT")
@@ -802,7 +802,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza5Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
-                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .text("Te ganaste esto, por completar algún proyecto")
                                                                   .name("Reto del mejor... algo... 9")
                                                                   .targetId(ProyectoN6Id)
                                                                   .targetType("PROJECT")
@@ -812,7 +812,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardNaza6Id = createRewardService.execute(RewardDTO.builder()
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
-                                                                  .text("Te ganaste esto, por completar algun proyecto")
+                                                                  .text("Te ganaste esto, por completar algún proyecto")
                                                                   .name("Reto del mejor... algo... 10")
                                                                   .targetId(ProyectoN7Id)
                                                                   .targetType("PROJECT")
@@ -907,7 +907,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         var storedTemplate1Id =
                 createStoredTemplateService.execute(StoredTemplateDTO.builder()
                                                              .templateType("PROJECT")
-                                                             .description("Template para la creacion de un proyecto basado en PBL")
+                                                             .description("Template para la creación de un proyecto basado en PBL")
                                                              .name("Proyecto basado en PBL v0.1.0")
                                                              .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(proyectoMethodologyId)))
                                                              .ownerId(apprendiendoUserId)
@@ -915,7 +915,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         var storedTemplate2Id =
                 createStoredTemplateService.execute(StoredTemplateDTO.builder()
                                                              .templateType("PROJECT")
-                                                             .description("Template para la creacion de un proyecto basado en Aula Invertida")
+                                                             .description("Template para la creación de un proyecto basado en Aula Invertida")
                                                              .name("Proyecto basado en Inverted Classroom v0.1.0")
                                                              .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(aulaInvertidaMethodologyId)))
                                                              .ownerId(apprendiendoUserId)
@@ -923,7 +923,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         var storedTemplate3Id =
                 createStoredTemplateService.execute(StoredTemplateDTO.builder()
                                                              .templateType("PROJECT")
-                                                             .description("Template para la creacion de un proyecto basado en TBL")
+                                                             .description("Template para la creación de un proyecto basado en TBL")
                                                              .name("Proyecto basado en TBL v0.1.0")
                                                              .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(pensamientoMethodologyId)))
                                                              .ownerId(apprendiendoUserId)
@@ -931,21 +931,21 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         addTemplateReviewService.execute(TemplateReviewDTO.builder()
                                                           .score(3)
-                                                          .review("esta ok")
+                                                          .review("está ok")
                                                           .reviewerId(andreaId)
                                                           .templateId(storedTemplate1Id)
                                                           .build());
 
         addTemplateReviewService.execute(TemplateReviewDTO.builder()
                                                           .score(3)
-                                                          .review("esta ok")
+                                                          .review("está ok")
                                                           .reviewerId(andreaId)
                                                           .templateId(storedTemplate2Id)
                                                           .build());
 
         addTemplateReviewService.execute(TemplateReviewDTO.builder()
                                                           .score(3)
-                                                          .review("esta ok")
+                                                          .review("está ok")
                                                           .reviewerId(andreaId)
                                                           .templateId(storedTemplate3Id)
                                                           .build());
@@ -966,7 +966,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         addTemplateReviewService.execute(TemplateReviewDTO.builder()
                                                           .score(3)
-                                                          .review("esta ok")
+                                                          .review("está ok")
                                                           .reviewerId(pabloId)
                                                           .templateId(storedTemplate3Id)
                                                           .build());
