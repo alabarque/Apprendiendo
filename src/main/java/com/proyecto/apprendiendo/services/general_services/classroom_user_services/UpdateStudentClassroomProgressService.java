@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -27,6 +28,8 @@ public class UpdateStudentClassroomProgressService {
         studentClassroom.setGrade(studentClassroomDTO.getGrade());
         studentClassroom.setPercentageCompleted(studentClassroomDTO.getPercentageCompleted());
         studentClassroom.setDateCompleted(studentClassroomDTO.getDateCompleted());
+        if (studentClassroom.getPercentageCompleted() == 100.00 & studentClassroom.getDateCompleted() == null) studentClassroom.setDateCompleted(LocalDateTime.now());
+
         studentClassroomRepository.save(studentClassroom);
         automaticRewardGrantingService.execute(studentId, classroomId, "CLASSROOM");
         return studentClassroomDTO.getId();

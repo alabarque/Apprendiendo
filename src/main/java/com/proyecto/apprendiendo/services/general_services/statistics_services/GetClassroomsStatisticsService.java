@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -66,7 +67,11 @@ public class GetClassroomsStatisticsService {
 
     private Double getAverageGrade(ArrayList<StudentClassroomDTO> classroomDTOs){
         if(classroomDTOs.size() == 0 ) return null;
-        else return classroomDTOs.stream().mapToDouble(StudentClassroomDTO::getGrade).average().getAsDouble();
+
+        OptionalDouble averageGrade = classroomDTOs.stream().filter(sp -> sp.getGrade() != null).mapToDouble(StudentClassroomDTO::getGrade).average();
+
+        if (averageGrade.isPresent()) return averageGrade.getAsDouble();
+        else return null;
     }
 
 
