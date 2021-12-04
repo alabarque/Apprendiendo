@@ -143,7 +143,7 @@ public class UserController {
 
     @PostMapping(path = "user/{userId}/project/{projectId}/document")
     public ResponseEntity<Long> addStudentProjectDocument(@PathVariable("projectId") Long projectId, @PathVariable("userId") Long userId, @RequestBody DocumentDTO documentDTO) {
-        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, projectId, "PROJECT", documentDTO));
+        return responseDecorator.decorate(() -> addStudentTargetDocumentService.execute(userId, projectId, "STUDENT_PROJECT", documentDTO));
     }
 
     @GetMapping(path = "user/{userId}/classroom/{classroomId}/documents")
