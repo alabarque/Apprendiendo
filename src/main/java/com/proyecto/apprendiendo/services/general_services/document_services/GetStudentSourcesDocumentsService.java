@@ -4,6 +4,9 @@ import com.proyecto.apprendiendo.entities.Document;
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
 import com.proyecto.apprendiendo.entities.enums.DocumentSourceType;
 import com.proyecto.apprendiendo.repositories.*;
+import com.proyecto.apprendiendo.services.general_services.classroom_user_services.GetStudentClassroomProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_activity_services.GetStudentActivityProgressService;
+import com.proyecto.apprendiendo.services.general_services.student_project_services.GetStudentProjectProgressService;
 import com.proyecto.apprendiendo.services.mappers.DocumentMapper;
 import lombok.AllArgsConstructor;
 import org.hibernate.boot.jaxb.SourceType;
@@ -20,9 +23,9 @@ import java.util.stream.Collectors;
 public class GetStudentSourcesDocumentsService {
 
     private GetSourcesDocumentsService getSourcesDocumentsService;
-    private StudentActivityRepository studentActivityRepository;
-    private StudentProjectRepository studentProjectRepository;
-    private StudentClassroomRepository studentClassroomRepository;
+    private GetStudentActivityProgressService getStudentActivityProgressService;
+    private GetStudentProjectProgressService getStudentProjectProgressService;
+    private GetStudentClassroomProgressService getStudentClassroomProgressService;
 
     public ArrayList<DocumentDTO> execute(Long studentId, Long sourceId, String sourceType) {
         return execute(studentId, sourceId, sourceType, "FULL");
@@ -34,10 +37,11 @@ public class GetStudentSourcesDocumentsService {
 
     public ArrayList<DocumentDTO> execute(Long studentId, Long sourceId, String sourceType, String mode, String documentType) {
         Long studentSourceId = 0L;
-        if (sourceType.equals(DocumentSourceType.ACTIVITY.getValue())) studentSourceId = studentActivityRepository.findByStudentIdAndActivityId(studentId, sourceId).getId();
-        if (sourceType.equals(DocumentSourceType.PROJECT.getValue())) studentSourceId = studentProjectRepository.findByStudentIdAndProjectId(studentId, sourceId).getId();
-        if (sourceType.equals(DocumentSourceType.CLASSROOM.getValue())) studentSourceId = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, sourceId).getId();
+        if (sourceType.equals(DocumentSourceType.ACTIVITY.getValue())) studentSourceId = getStudentActivityProgressService.execute(studentId, sourceId).getId();
+        if (sourceType.equals(DocumentSourceType.PROJECT.getValue())) studentSourceId = getStudentProjectProgressService.execute(studentId, sourceId).getId();
+        if (sourceType.equals(DocumentSourceType.CLASSROOM.getValue())) studentSourceId = getStudentClassroomProgressService.execute(studentId, sourceId).getId();
 
+        if (studentSourceId == null) return new ArrayList<>();
         return getSourcesDocumentsService.execute(studentSourceId, mode, documentType);
     }
 }
