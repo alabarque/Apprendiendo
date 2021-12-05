@@ -20,9 +20,11 @@ import com.proyecto.apprendiendo.services.general_services.student_project_servi
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -107,7 +109,11 @@ public class GetProjectsStatisticsService {
 
     private Double getAverageGrade(ArrayList<StudentProjectDTO> projectDTOs){
         if(projectDTOs.size() == 0 ) return null;
-        else return projectDTOs.stream().mapToDouble(StudentProjectDTO::getGrade).average().getAsDouble();
+
+        OptionalDouble averageGrade = projectDTOs.stream().filter(sp -> sp.getGrade() != null).mapToDouble(StudentProjectDTO::getGrade).average();
+
+        if (averageGrade.isPresent()) return averageGrade.getAsDouble();
+        else return null;
     }
 
 

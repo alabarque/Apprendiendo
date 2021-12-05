@@ -110,7 +110,7 @@ public class ResponseDTOBuilder {
         if (simpleDTO.getClass().equals(ActivityDTO.class)){
             ActivityDTO dto = (ActivityDTO) simpleDTO;
             if (dto.getLessonId() != null) if (!dto.getLessonId().equals(0L)) dto.setLesson(getLessonService.execute(dto.getLessonId()));
-            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "ACTIVITY"));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "SELECTIVE"));
             dto.setRewards(getTargetRewardsService.execute(dto.getId()));
             dto.setStudentsProgress(getActivityStudentsProgressService.execute(dto.getId()));
             return dto;
@@ -118,7 +118,7 @@ public class ResponseDTOBuilder {
         if (simpleDTO.getClass().equals(LessonDTO.class)){
             LessonDTO dto = (LessonDTO) simpleDTO;
             if (dto.getProjectId() != null) if (!dto.getProjectId().equals(0L)) dto.setProject(getProjectService.execute(dto.getProjectId()));
-            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "LESSON"));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "SELECTIVE"));
             dto.setStudentsProgress(getLessonStudentsProgressService.execute(dto.getId()));
             dto.setActivities(getLessonActivitiesService.execute(dto.getId()));
             return dto;
@@ -127,7 +127,7 @@ public class ResponseDTOBuilder {
             ProjectDTO dto = (ProjectDTO) simpleDTO;
             if (dto.getMethodologyId() != null) if (!dto.getMethodologyId().equals(0L)) dto.setMethodology(getMethodologyService.execute(dto.getMethodologyId()));
             if (dto.getClassroomId() != null) if (!dto.getClassroomId().equals(0L)) dto.setClassroom(getClassroomService.execute(dto.getClassroomId()));
-            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "PROJECT}"));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "SELECTIVE}"));
             dto.setRewards(getTargetRewardsService.execute(dto.getId()));
             dto.setStudentsProgress(getProjectStudentsProgressService.execute(dto.getId()));
             dto.setLessons(getProjectLessonsService.execute(dto.getId()));
@@ -137,7 +137,7 @@ public class ResponseDTOBuilder {
         if (simpleDTO.getClass().equals(ClassroomDTO.class)){
             ClassroomDTO dto = (ClassroomDTO) simpleDTO;
             if (dto.getTeacherId() != null) if (!dto.getTeacherId().equals(0L)) dto.setTeacher(getUserService.execute(dto.getTeacherId()));
-            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "CLASSROOM"));
+            dto.setDocuments(getSourcesDocumentsService.execute(dto.getId(), "SELECTIVE"));
             dto.setRewards(getTargetRewardsService.execute(dto.getId()));
             dto.setStudentsProgress(getClassroomStudentsProgressService.execute(dto.getId()));
             dto.setProjects(getClassroomProjectsService.execute(dto.getId()));

@@ -20,6 +20,7 @@ public class TemplateController {
     private GetStoredTemplateService getStoredTemplateService;
     private GetStoredTemplatesService getStoredTemplatesService;
     private AddTemplateReviewService addTemplateReviewService;
+    private GetTemplateReviewsService getTemplateReviewsService;
 
     @PostMapping(path = "template")
     public ResponseEntity<Long> newTemplate(@RequestBody StoredTemplateDTO storedTemplateDTO) {
@@ -33,6 +34,11 @@ public class TemplateController {
     @GetMapping(path = "template/{templateId}")
     public ResponseEntity<StoredTemplateDTO> getTemplate(@PathVariable Long templateId) {
         return responseDecorator.decorate(() -> getStoredTemplateService.execute(templateId));
+    }
+
+    @GetMapping(path = "template/{templateId}/reviews")
+    public ResponseEntity<ArrayList<TemplateReviewDTO>> getTemplateReviews(@PathVariable Long templateId) {
+        return responseDecorator.decorate(() -> getTemplateReviewsService.execute(templateId));
     }
 
     @GetMapping(path = "templates/projects")

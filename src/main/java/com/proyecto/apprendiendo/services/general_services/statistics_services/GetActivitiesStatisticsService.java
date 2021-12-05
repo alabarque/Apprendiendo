@@ -3,6 +3,7 @@ package com.proyecto.apprendiendo.services.general_services.statistics_services;
 import com.proyecto.apprendiendo.entities.Activity;
 import com.proyecto.apprendiendo.entities.dtos.StatisticDTO;
 import com.proyecto.apprendiendo.entities.dtos.StudentActivityDTO;
+import com.proyecto.apprendiendo.entities.dtos.StudentClassroomDTO;
 import com.proyecto.apprendiendo.repositories.ActivityRepository;
 import com.proyecto.apprendiendo.services.general_services.activity_services.GetActivityClassroomService;
 import com.proyecto.apprendiendo.services.general_services.activity_services.GetActivityLessonService;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -128,7 +130,11 @@ public class GetActivitiesStatisticsService {
 
     private Double getAverageGrade(ArrayList<StudentActivityDTO> activities){
         if(activities.size() == 0 ) return null;
-        else return activities.stream().mapToDouble(StudentActivityDTO::getGrade).average().getAsDouble();
+
+        OptionalDouble averageGrade = activities.stream().filter(sp -> sp.getGrade() != null).mapToDouble(StudentActivityDTO::getGrade).average();
+
+        if (averageGrade.isPresent()) return averageGrade.getAsDouble();
+        else return null;
     }
 
 

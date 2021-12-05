@@ -24,6 +24,7 @@ public class GetGroupProgressService {
 
         Group group = groupRepository.getById(groupId);
         ArrayList<GroupStudentDTO> students = getGroupStudentsService.execute(groupId);
+        if (students.size() == 0) return 0.00;
 
         return students.stream()
                        .mapToDouble(student -> getStudentProjectProgressService.execute(student.getStudentId(),group.getProjectId()).getPercentageCompleted())

@@ -3,6 +3,7 @@ package com.proyecto.apprendiendo.services.general_services.lesson_services;
 import com.proyecto.apprendiendo.entities.dtos.ActivityDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonDTO;
 import com.proyecto.apprendiendo.entities.dtos.LessonTemplateDTO;
+import com.proyecto.apprendiendo.services.general_services.activity_services.CreateActivityFromTemplateService;
 import com.proyecto.apprendiendo.services.general_services.activity_services.CreateActivityService;
 import com.proyecto.apprendiendo.services.general_services.document_services.CreateDocumentService;
 import com.proyecto.apprendiendo.services.mappers.ActivityMapper;
@@ -18,8 +19,8 @@ import javax.transaction.Transactional;
 @Transactional
 public class CreateLessonFromTemplateService {
     private CreateLessonService createLessonService;
-    private CreateActivityService createActivityService;
     private CreateDocumentService createDocumentService;
+    private CreateActivityFromTemplateService createActivityFromTemplateService;
 
 
     @Transactional(rollbackOn = Exception.class)
@@ -27,17 +28,18 @@ public class CreateLessonFromTemplateService {
         LessonDTO lessonDTO = LessonMapper.templateDtoToDto(lessonTemplateDTO);
         lessonDTO.setProjectId(projectId);
         Long lessonId = createLessonService.execute(lessonDTO);
-        lessonTemplateDTO.getDocuments().forEach(document -> {
-            createDocumentService.execute(DocumentMapper.templateDtoToDto(document, lessonId, "LESSON"));
-        });
-        lessonTemplateDTO.getActivities().forEach(activity -> {
-            ActivityDTO activityDTO = ActivityMapper.templateDtoToDto(activity);
-                activityDTO.setLessonId(lessonId);
-                Long newActivityId = createActivityService.execute(activityDTO);
-                activity.getDocuments().forEach(document -> {
-                    createDocumentService.execute(DocumentMapper.templateDtoToDto(document, newActivityId, "ACTIVITY"));
-                });
+
+        if (lessonTemplateDTO.getDocuments() != null) {
+            lessonTemplateDTO.getDocuments().forEach(document -> {
+                createDocumentService.execute(DocumentMapper.templateDtoToDto(document, lessonId, "LESSON"));
             });
+        }
+
+        if (lessonTemplateDTO.getActivities() != null) {
+            lessonTemplateDTO.getActivities().forEach(activity -> {
+                createActivityFromTemplateService.execute(activity, lessonId);
+            });
+        }
 
         return lessonId;
     }

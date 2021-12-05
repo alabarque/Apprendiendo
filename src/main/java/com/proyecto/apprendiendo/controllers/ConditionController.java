@@ -1,14 +1,13 @@
 package com.proyecto.apprendiendo.controllers;
 
 import com.proyecto.apprendiendo.entities.dtos.ConditionDTO;
-import com.proyecto.apprendiendo.services.general_services.condition_services.CreateConditionService;
-import com.proyecto.apprendiendo.services.general_services.condition_services.DeleteConditionService;
-import com.proyecto.apprendiendo.services.general_services.condition_services.GetConditionService;
-import com.proyecto.apprendiendo.services.general_services.condition_services.UpdateConditionService;
+import com.proyecto.apprendiendo.services.general_services.condition_services.*;
 import com.proyecto.apprendiendo.utils.ResponseDecorator;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @AllArgsConstructor
@@ -19,6 +18,7 @@ public class ConditionController {
     private DeleteConditionService deleteConditionService;
     private UpdateConditionService updateConditionService;
     private ResponseDecorator responseDecorator;
+    private GetConditionsService getConditionsService;
 
     @PostMapping(path = "condition")
     public ResponseEntity<Long> newCondition(@RequestBody ConditionDTO ConditionDTO) {
@@ -28,6 +28,11 @@ public class ConditionController {
     @GetMapping(path = "condition/{ConditionId}")
     public ResponseEntity<ConditionDTO> getCondition(@PathVariable Long ConditionId) {
         return responseDecorator.decorate(() -> getConditionService.execute(ConditionId));
+    }
+
+    @GetMapping(path = "conditions")
+    public ResponseEntity<ArrayList<ConditionDTO>> getConditions() {
+        return responseDecorator.decorate(() -> getConditionsService.execute());
     }
 
     @DeleteMapping(path = "condition/{ConditionId}")

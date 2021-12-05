@@ -16,7 +16,7 @@ public interface StudentProjectRepository extends JpaRepository<StudentProject, 
 
     StudentProject findByStudentIdAndProjectId(Long studentId, Long projectId);
 
-    StudentProject deleteByProjectIdAndStudentId(Long projectId, Long studentId);
+    Integer deleteByProjectIdAndStudentId(Long projectId, Long studentId);
 
 
 }

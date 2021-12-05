@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
@@ -29,6 +30,7 @@ public class UpdateStudentProjectProgressService {
         studentProject.setGrade(studentProjectDTO.getGrade());
         studentProject.setPercentageCompleted(studentProjectDTO.getPercentageCompleted());
         studentProject.setDateCompleted(studentProjectDTO.getDateCompleted());
+        if (studentProject.getPercentageCompleted() == 100.00 & studentProject.getDateCompleted() == null) studentProject.setDateCompleted(LocalDateTime.now());
         studentProjectRepository.save(studentProject);
 
         automaticRewardGrantingService.execute(studentId, projectId, "PROJECT");

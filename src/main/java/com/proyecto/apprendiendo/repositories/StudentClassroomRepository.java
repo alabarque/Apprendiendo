@@ -16,5 +16,5 @@ public interface StudentClassroomRepository extends JpaRepository<StudentClassro
 
     StudentClassroom findByStudentIdAndClassroomId(Long studentId, Long classroomId);
 
-    StudentClassroom deleteByClassroomIdAndStudentId(Long classroomId, Long studentId);
+    Integer deleteByClassroomIdAndStudentId(Long classroomId, Long studentId);
 }

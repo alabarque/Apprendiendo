@@ -1,6 +1,9 @@
 package com.proyecto.apprendiendo.services.general_services.document_services;
 
 import com.proyecto.apprendiendo.entities.Document;
+import com.proyecto.apprendiendo.entities.StudentActivity;
+import com.proyecto.apprendiendo.entities.StudentClassroom;
+import com.proyecto.apprendiendo.entities.StudentProject;
 import com.proyecto.apprendiendo.entities.dtos.DocumentDTO;
 import com.proyecto.apprendiendo.entities.enums.DocumentSourceType;
 import com.proyecto.apprendiendo.repositories.*;
@@ -34,9 +37,18 @@ public class GetStudentSourcesDocumentsService {
 
     public ArrayList<DocumentDTO> execute(Long studentId, Long sourceId, String sourceType, String mode, String documentType) {
         Long studentSourceId = 0L;
-        if (sourceType.equals(DocumentSourceType.ACTIVITY.getValue())) studentSourceId = studentActivityRepository.findByStudentIdAndActivityId(studentId, sourceId).getId();
-        if (sourceType.equals(DocumentSourceType.PROJECT.getValue())) studentSourceId = studentProjectRepository.findByStudentIdAndProjectId(studentId, sourceId).getId();
-        if (sourceType.equals(DocumentSourceType.CLASSROOM.getValue())) studentSourceId = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, sourceId).getId();
+        if (sourceType.equals(DocumentSourceType.ACTIVITY.getValue())) {
+            StudentActivity studentActivity = studentActivityRepository.findByStudentIdAndActivityId(studentId, sourceId);
+            if (studentActivity != null) studentSourceId = studentActivity.getId();
+        }
+        if (sourceType.equals(DocumentSourceType.PROJECT.getValue())) {
+            StudentProject studentActivity = studentProjectRepository.findByStudentIdAndProjectId(studentId, sourceId);
+            if (studentActivity != null) studentSourceId = studentActivity.getId();
+        }
+        if (sourceType.equals(DocumentSourceType.CLASSROOM.getValue())) {
+            StudentClassroom studentActivity = studentClassroomRepository.findByStudentIdAndClassroomId(studentId, sourceId);
+            if (studentActivity != null) studentSourceId = studentActivity.getId();
+        }
 
         return getSourcesDocumentsService.execute(studentSourceId, mode, documentType);
     }

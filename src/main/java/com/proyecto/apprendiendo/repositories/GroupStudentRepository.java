@@ -17,5 +17,5 @@ public interface GroupStudentRepository extends JpaRepository<GroupStudent, Long
 
     ArrayList<GroupStudent> findByGroupId(Long studentId);
 
-    GroupStudent deleteByStudentIdAndGroupId(Long studentId, Long groupId);
+    Integer deleteByStudentIdAndGroupId(Long studentId, Long groupId);
 }
