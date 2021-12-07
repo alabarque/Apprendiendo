@@ -188,7 +188,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                               .build());
         createDocumentService.execute(DocumentDTO.builder()
                                                  .dataType("CUESTIONARIO")
-                                                 .name("Descripción: Clase 1")
+                                                 .name("Cuestionario: Clase 1")
                                                  .data(cuestionario1)
                                                  .sourceId(templateAulaInvertidaClase1ActivityId)
                                                  .documentSourceType("ACTIVITY")
@@ -205,7 +205,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                               .build());
         createDocumentService.execute(DocumentDTO.builder()
                                                  .dataType("CUESTIONARIO")
-                                                 .name("Descripcion: Clase 2")
+                                                 .name("Cuestionario: Clase 2")
                                                  .data(cuestionario1)
                                                  .sourceId(templateAulaInvertidaClase2ActivityId)
                                                  .documentSourceType("ACTIVITY")
@@ -363,7 +363,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
                                                  .dataType("CUESTIONARIO")
-                                                 .name("Descripcion: Clase 1")
+                                                 .name("Cuestionario: Clase 1")
                                                  .data(cuestionario1)
                                                  .sourceId(templateTBLClase1ActivityId)
                                                  .documentSourceType("ACTIVITY")
@@ -380,7 +380,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
                                                  .dataType("CUESTIONARIO")
-                                                 .name("Descripcion: Clase 2")
+                                                 .name("Cuestionario: Clase 2")
                                                  .data(cuestionario1)
                                                  .sourceId(templateTBLClase2ActivityId)
                                                  .documentSourceType("ACTIVITY")
