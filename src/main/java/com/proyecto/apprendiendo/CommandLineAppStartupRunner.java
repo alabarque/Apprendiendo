@@ -148,6 +148,10 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        String cuestionario1 = "[{\"question\":\"Cuanto es 2 + 2?\"},{\"question\":\"En que año fue anexada la República Popular de Tannu Tuvá por la U.R.S.S.?\"}]";
+
+
+
         //METODOLOGIAS
         Long proyectoMethodologyId = createMethodologyService.execute(MethodologyDTO.builder()
                                                                                     .name("Basada en Proyectos")
@@ -159,7 +163,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                        .name("Basada en el Pensamiento")
                                                                                        .build());
         Long estandarMethodologyId = createMethodologyService.execute(MethodologyDTO.builder()
-                                                                                    .name("Proyecto Estandar")
+                                                                                    .name("Proyecto Estándar")
                                                                                     .build());
 
 
@@ -167,7 +171,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long proyectoTemplateAulaInvertidaId = createProjectService.execute(ProjectDTO.builder()
                                                                                       .classroomId(0L)
                                                                                       .name("Nuevo Proyecto de Aula Invertida")
-                                                                                      .description("Este es un proyecto con la metodologia de Aula Invertida")
+                                                                                      .description("Este es un proyecto con la metodología de Aula Invertida")
                                                                                       .methodologyId(aulaInvertidaMethodologyId)
                                                                                       .active(Boolean.TRUE)
                                                                                       .build());
@@ -183,9 +187,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                               .lessonId(templateAulaInvertidaClase1Id)
                                                                                               .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
-                                                 .name("Descripcion: Clase 1")
-                                                 .data("la descripcion del primer dia de aula invertida va aca")
+                                                 .dataType("CUESTIONARIO")
+                                                 .name("Descripción: Clase 1")
+                                                 .data(cuestionario1)
                                                  .sourceId(templateAulaInvertidaClase1ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -200,9 +204,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                               .lessonId(templateAulaInvertidaClase2Id)
                                                                                               .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Descripcion: Clase 2")
-                                                 .data("la descripcion del segundo dia de aula invertida va aca")
+                                                 .data(cuestionario1)
                                                  .sourceId(templateAulaInvertidaClase2ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -228,9 +232,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templatePBLClase1Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Pregunta inicial")
-                                                 .data(" En esta etapa, el docente selecciona un tema que esté \nligado a la realidad de los alumnos, y debe plantear una \npregunta abierta que despierte su interés y los motive a \naprender.\n El objetivo en este punto es detectar conocimientos \nprevios y que el alumno  piense qué debe investigar  y cómo\nresolver la cuestión. \\n Mediante la opción \\\"Adjuntar Material\\\" puede proporcionar\\nel material que crea conveniente a sus alumnos, tales como \\ndocumentos en formato word, excel, pdf, o incluso videos!\n\n¿Qué pregunta desea plantear?:")
+                                                 .data(cuestionario1)
                                                  .sourceId(templatePBLClase1ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -245,9 +249,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templatePBLClase2Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Formando Equipos")
-                                                 .data(" En base a las respuestas obtenidas en la clase \nanterior, el docente deberá formar equipos de 3 o 4\nintegrantes con diversidad de perfiles. Dándoles la \nposibilidad de que cada uno desempeñe un rol.\n También se definirá cuál es el producto o proyecto final \nque los alumnos desarrollaran en función de las \ncompetencias que se quieran alcanzar(Puede ser un folleto,\nuna presentación, una investigación científica). Se \nrecomienda que se les proporciones las rúbricas donde \nfiguren los objetivos a alcanzar y cómo se los va a \nevaluar.\n\nIngrese en el siguiente box la comunicación a los alumnos\nsobre el producto a desarrollar\\n Mediante la opción \\\"Crear equipos\\\" puede definir los \\nintegrantes de cada equipo y asignarles un nombre. Esto \\npermitirá que los alumnos colaboren y compartan tareas.")
+                                                 .data(cuestionario1)
                                                  .sourceId(templatePBLClase2ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -262,9 +266,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templatePBLClase3Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Planificacion")
-                                                 .data(" En esta clase se les pide a los alumnos  que armen un \nplan de trabajo, donde presenten las tareas previstas, \nel encargado de realizarlas y las fechas de resolución \nesperadas.\nEsta clase contará con un box de entregas para que los \nalumnos puedan subir el plan que crearon. Recuerde que a\npartir de esta clase, las entregas son por equipo!\nPuede ingresar un texto en el siguiente cuadro que se \nvisualizará en la pantalla de los alumnos junto con la \nconsigna mencionada anteriormente: ")
+                                                 .data(cuestionario1)
                                                  .sourceId(templatePBLClase3ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -279,9 +283,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templatePBLClase4Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Investigacion")
-                                                 .data("la descripcion del cuarto dia del PBL va aca")
+                                                 .data(cuestionario1)
                                                  .sourceId(templatePBLClase4ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -296,9 +300,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templatePBLClase5Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Puesta en comun y Debate")
-                                                 .data("la descripcion del quinto dia del PBL va aca")
+                                                 .data(cuestionario1)
                                                  .sourceId(templatePBLClase5ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -313,9 +317,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templatePBLClase6Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Elaboracion del producto")
-                                                 .data("la descripcion del sexto dia del PBL va aca")
+                                                 .data(cuestionario1)
                                                  .sourceId(templatePBLClase6ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -330,9 +334,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templatePBLClase7Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Presentacion del Producto")
-                                                 .data("la descripcion del septimo dia del PBL va aca")
+                                                 .data(cuestionario1)
                                                  .sourceId(templatePBLClase7ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -358,9 +362,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templateTBLClase1Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Descripcion: Clase 1")
-                                                 .data("la descripcion del primer dia del TBL va aca")
+                                                 .data(cuestionario1)
                                                  .sourceId(templateTBLClase1ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -375,9 +379,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                                     .lessonId(templateTBLClase2Id)
                                                                                     .build());
         createDocumentService.execute(DocumentDTO.builder()
-                                                 .dataType("TEXT")
+                                                 .dataType("CUESTIONARIO")
                                                  .name("Descripcion: Clase 2")
-                                                 .data("la descripcion del segundo dia del TBL va aca")
+                                                 .data(cuestionario1)
                                                  .sourceId(templateTBLClase2ActivityId)
                                                  .documentSourceType("ACTIVITY")
                                                  .build());
@@ -730,32 +734,32 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         Long rewardBadge1Id = createRewardService.execute(RewardDTO.builder()
                                                                    .conditionId(conditionSocial1Id)
                                                                    .rewardType(RewardType.BADGE.getValue())
-                                                                   .text("Te ganaste esto, por que? no se...")
-                                                                   .name("Insignia al mejor... algo... 1")
+                                                                   .text("Ganaste esto, por...")
+                                                                   .name("Insignia al mejor...")
                                                                    .imageData("m0001")
                                                                    .build());
 
         Long rewardBadge2Id = createRewardService.execute(RewardDTO.builder()
                                                                    .conditionId(conditionSocial1Id)
                                                                    .rewardType(RewardType.BADGE.getValue())
-                                                                   .text("Te ganaste esto, por que? no se...")
-                                                                   .name("Insignia al mejor... algo... 2")
+                                                                   .text("Ganaste esto, por...")
+                                                                   .name("Insignia al mejor...")
                                                                    .imageData("m0002")
                                                                    .build());
 
         Long rewardBadge3Id = createRewardService.execute(RewardDTO.builder()
                                                                    .conditionId(conditionSocial1Id)
                                                                    .rewardType(RewardType.BADGE.getValue())
-                                                                   .text("Te ganaste esto, por que? no se...")
-                                                                   .name("Insignia al mejor... algo... 3")
+                                                                   .text("Ganaste esto, por...")
+                                                                   .name("Insignia al mejor...")
                                                                    .imageData("m0003")
                                                                    .build());
 
         Long rewardBadge4Id = createRewardService.execute(RewardDTO.builder()
                                                                    .conditionId(conditionSocial1Id)
                                                                    .rewardType(RewardType.BADGE.getValue())
-                                                                   .text("Te ganaste esto, por que? no se...")
-                                                                   .name("Insignia al mejor... algo... 4")
+                                                                   .text("Ganaste esto, por...")
+                                                                   .name("Insignia al mejor...")
                                                                    .imageData("m0004")
                                                                    .build());
 
@@ -763,7 +767,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.ACHIEVEMENT.getValue())
                                                                   .text("Te ganaste esto, por completar algún curso")
-                                                                  .name("Logro al mejor... algo... 5")
+                                                                  .name("Logro al mejor...")
                                                                   .targetId(mateCursoId)
                                                                   .targetType("CLASSROOM")
                                                                   .imageData("mc0005")
@@ -773,7 +777,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.ACHIEVEMENT.getValue())
                                                                   .text("Te ganaste esto, por completar algún curso")
-                                                                  .name("Logro al mejor... algo... 6")
+                                                                  .name("Logro al mejor...")
                                                                   .targetId(mateCursoId)
                                                                   .targetType("CLASSROOM")
                                                                   .imageData("mc0006")
@@ -783,7 +787,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
                                                                   .text("Te ganaste esto, por completar algún proyecto")
-                                                                  .name("Reto del mejor... algo... 7")
+                                                                  .name("Reto del mejor...")
                                                                   .targetId(ProyectoN6Id)
                                                                   .targetType("PROJECT")
                                                                   .imageData("mc0007")
@@ -793,7 +797,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
                                                                   .text("Te ganaste esto, por completar algún proyecto")
-                                                                  .name("Reto del mejor... algo... 8")
+                                                                  .name("Reto del mejor...")
                                                                   .targetId(ProyectoN7Id)
                                                                   .targetType("PROJECT")
                                                                   .imageData("mc0008")
@@ -803,7 +807,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
                                                                   .text("Te ganaste esto, por completar algún proyecto")
-                                                                  .name("Reto del mejor... algo... 9")
+                                                                  .name("Reto del mejor...")
                                                                   .targetId(ProyectoN6Id)
                                                                   .targetType("PROJECT")
                                                                   .imageData("mc0009")
@@ -813,7 +817,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
                                                                   .text("Te ganaste esto, por completar algún proyecto")
-                                                                  .name("Reto del mejor... algo... 10")
+                                                                  .name("Reto del mejor...")
                                                                   .targetId(ProyectoN7Id)
                                                                   .targetType("PROJECT")
                                                                   .imageData("mc0010")
@@ -829,7 +833,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
                                                                   .text("Te ganaste esto, por completar alguna actividad")
-                                                                  .name("Reto del mejor... algo... 11")
+                                                                  .name("Reto del mejor... 11")
                                                                   .targetId(activityId)
                                                                   .targetType("ACTIVITY")
                                                                   .imageData("mc0011")
@@ -839,10 +843,34 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .conditionId(conditionSocial1Id)
                                                                   .rewardType(RewardType.CHALLENGE.getValue())
                                                                   .text("Te ganaste esto, por completar alguna actividad")
-                                                                  .name("Reto del mejor... algo... 12")
+                                                                  .name("Reto del mejor... 12")
                                                                   .targetId(activityId)
                                                                   .targetType("ACTIVITY")
                                                                   .imageData("mc0012")
+                                                                  .build());
+
+        Long rewardNazaAvatar1Id = createRewardService.execute(RewardDTO.builder()
+                                                                        .conditionId(conditionSocial1Id)
+                                                                        .rewardType("AVATAR")
+                                                                        .text("Te ganaste esto, por...")
+                                                                        .name("Reto del mejor...")
+                                                                        .imageData("b0002")
+                                                                        .build());
+
+        Long rewardNazaAvatar2Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType("AVATAR")
+                                                                  .text("Te ganaste esto, por...")
+                                                                  .name("Reto del mejor...")
+                                                                  .imageData("o0003")
+                                                                  .build());
+
+        Long rewardNazaAvatar3Id = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionSocial1Id)
+                                                                  .rewardType("AVATAR")
+                                                                  .text("Te ganaste esto, por...")
+                                                                  .name("Reto del mejor...")
+                                                                  .imageData("r0001")
                                                                   .build());
 
 
@@ -896,9 +924,13 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addRewardStudentService.execute(rewardNaza7Id, nazaId);
         addRewardStudentService.execute(rewardNaza8Id, nazaId);
 
+        addRewardStudentService.execute(rewardNazaAvatar1Id, nazaId);
+        addRewardStudentService.execute(rewardNazaAvatar2Id, nazaId);
+        addRewardStudentService.execute(rewardNazaAvatar3Id, nazaId);
+
         //CREACION DE GRUPO PARA PROYECTO DE DINOSAURIOS
         Long groupId = createGroupService.execute(GroupDTO.builder().name("NUEVO GRUPO").projectId(ProyectoN1Id).build());
-        addGroupStudentService.execute(groupId, nazaId, "Infra");
+        addGroupStudentService.execute(groupId, nazaId, "Lider");
         addGroupStudentService.execute(groupId, mariId, "Analista");
 
 
