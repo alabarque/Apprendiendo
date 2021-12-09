@@ -861,27 +861,27 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .build());
 
         Long rewardNazaAvatar2Id = createRewardService.execute(RewardDTO.builder()
-                                                                  .conditionId(conditionSocial1Id)
-                                                                  .rewardType("AVATAR")
-                                                                  .text("Te ganaste esto, por...")
-                                                                  .name("Reto del mejor...")
-                                                                  .data("o0003")
-                                                                  .build());
+                                                                        .conditionId(conditionSocial1Id)
+                                                                        .rewardType("AVATAR")
+                                                                        .text("Te ganaste esto, por...")
+                                                                        .name("Reto del mejor...")
+                                                                        .data("o0003")
+                                                                        .build());
 
         Long rewardNazaAvatar3Id = createRewardService.execute(RewardDTO.builder()
-                                                                  .conditionId(conditionSocial1Id)
-                                                                  .rewardType("AVATAR")
-                                                                  .text("Te ganaste esto, por...")
-                                                                  .name("Reto del mejor...")
-                                                                  .data("l0004")
-                                                                  .build());
+                                                                        .conditionId(conditionSocial1Id)
+                                                                        .rewardType("AVATAR")
+                                                                        .text("Te ganaste esto, por...")
+                                                                        .name("Reto del mejor...")
+                                                                        .data("l0004")
+                                                                        .build());
 
         Long rewardNazaAvatar4Id = createRewardService.execute(RewardDTO.builder()
                                                                         .conditionId(conditionSocial1Id)
                                                                         .rewardType("AVATAR")
                                                                         .text("Te ganaste esto, por...")
                                                                         .name("Reto del mejor...")
-                                                                        .data("r0001")
+                                                                        .data("r0004")
                                                                         .build());
 
 
@@ -938,6 +938,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addRewardStudentService.execute(rewardNazaAvatar1Id, nazaId);
         addRewardStudentService.execute(rewardNazaAvatar2Id, nazaId);
         addRewardStudentService.execute(rewardNazaAvatar3Id, nazaId);
+        addRewardStudentService.execute(rewardNazaAvatar4Id, nazaId);
 
         //CREACION DE GRUPO PARA PROYECTO DE DINOSAURIOS
         Long groupId = createGroupService.execute(GroupDTO.builder().name("NUEVO GRUPO").projectId(ProyectoN1Id).build());
