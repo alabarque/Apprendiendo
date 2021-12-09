@@ -854,7 +854,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                         .rewardType("AVATAR")
                                                                         .text("Te ganaste esto, por...")
                                                                         .name("Reto del mejor...")
-                                                                        .imageData("b0002")
+                                                                        .data("b0002")
                                                                         .build());
 
         Long rewardNazaAvatar2Id = createRewardService.execute(RewardDTO.builder()
@@ -862,7 +862,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .rewardType("AVATAR")
                                                                   .text("Te ganaste esto, por...")
                                                                   .name("Reto del mejor...")
-                                                                  .imageData("o0003")
+                                                                  .data("o0003")
                                                                   .build());
 
         Long rewardNazaAvatar3Id = createRewardService.execute(RewardDTO.builder()
@@ -870,7 +870,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .rewardType("AVATAR")
                                                                   .text("Te ganaste esto, por...")
                                                                   .name("Reto del mejor...")
-                                                                  .imageData("r0001")
+                                                                  .data("")
                                                                   .build());
 
 
