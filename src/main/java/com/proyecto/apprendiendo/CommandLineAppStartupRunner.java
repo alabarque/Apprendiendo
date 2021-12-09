@@ -148,6 +148,9 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+
+        if(userRepository.findByUsername("andrea") != null || userRepository.existsById(42L)) return; //hardcodeo el id de andrea
+
         String cuestionario1 = "[{\"question\":\"Cuanto es 2 + 2?\"},{\"question\":\"En que año fue anexada la República Popular de Tannu Tuvá por la U.R.S.S.?\"}]";
 
 
