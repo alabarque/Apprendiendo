@@ -20,7 +20,7 @@ public class GetStudentAvailableAvatarPartsService {
     public ArrayList<String> execute(Long studentId) {
         var rewards = studentRewardRepository.findByStudentIdAndRewardType(studentId, "AVATAR");
         var list=  rewards.stream()
-                      .map(r -> rewardRepository.getById(r.getRewardId()).getImageData())
+                      .map(r -> rewardRepository.getById(r.getRewardId()).getData())
                       .collect(Collectors.toCollection(ArrayList::new));
 
         list.add("b0001");
