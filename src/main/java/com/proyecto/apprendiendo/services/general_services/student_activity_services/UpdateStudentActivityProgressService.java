@@ -9,13 +9,14 @@ import com.proyecto.apprendiendo.services.general_services.project_services.GetP
 import com.proyecto.apprendiendo.services.general_services.reward_services.AutomaticRewardGrantingService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
 @Service
 @AllArgsConstructor
-@Transactional
+@Transactional(isolation = Isolation.SERIALIZABLE)
 public class UpdateStudentActivityProgressService {
 
     private StudentActivityRepository studentActivityRepository;
