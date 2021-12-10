@@ -33,9 +33,6 @@ public class AddStudentTargetDocumentService {
     private StudentClassroomRepository studentClassroomRepository;
     private StudentProjectRepository studentProjectRepository;
     private StudentActivityRepository studentActivityRepository;
-    private AddActivityStudentsService addActivityStudentsService;
-    private AddProjectStudentsService addProjectStudentsService;
-    private AddClassroomStudentService addClassroomStudentService;
     private CreateDocumentService createDocumentService;
 
     public Long execute(Long studentId, Long targetId, String targetType, DocumentDTO documentDTO) {
@@ -43,8 +40,13 @@ public class AddStudentTargetDocumentService {
         Long newDocumentId = 0L;
 
         if (targetType.equals(TargetType.STUDENT_PROJECT.toString())) {
-            addProjectStudentsService.execute(targetId, studentId);
             StudentProject target = studentProjectRepository.findByStudentIdAndProjectId(studentId,targetId);
+            if ( target == null){
+                target = studentProjectRepository.save(StudentProject.builder()
+                                                                       .projectId(targetId)
+                                                                       .studentId(studentId)
+                                                                       .build());
+            }
             documentDTO.setDocumentSourceType("STUDENT_PROJECT");
             documentDTO.setSourceId(target.getId());
             newDocumentId = createDocumentService.execute(documentDTO);
@@ -52,16 +54,26 @@ public class AddStudentTargetDocumentService {
         }
 
         if (targetType.equals(TargetType.STUDENT_ACTIVITY.toString())) {
-            addActivityStudentsService.execute(targetId, studentId);
             StudentActivity target = studentActivityRepository.findByStudentIdAndActivityId(studentId,targetId);
+            if ( target == null){
+                target = studentActivityRepository.save(StudentActivity.builder()
+                                                                                .activityId(targetId)
+                                                                                .studentId(studentId)
+                                                                                .build());
+            }
             documentDTO.setDocumentSourceType("STUDENT_ACTIVITY");
             documentDTO.setSourceId(target.getId());
             newDocumentId = createDocumentService.execute(documentDTO);
         }
 
         if (targetType.equals(TargetType.STUDENT_CLASSROOM.toString())) {
-            addClassroomStudentService.execute(targetId, studentId);
             StudentClassroom target = studentClassroomRepository.findByStudentIdAndClassroomId(studentId,targetId);
+            if ( target == null){
+                target = studentClassroomRepository.save(StudentClassroom.builder()
+                                                                       .classroomId(targetId)
+                                                                       .studentId(studentId)
+                                                                       .build());
+            }
             documentDTO.setDocumentSourceType("STUDENT_CLASSROOM");
             documentDTO.setSourceId(target.getId());
             newDocumentId = createDocumentService.execute(documentDTO);

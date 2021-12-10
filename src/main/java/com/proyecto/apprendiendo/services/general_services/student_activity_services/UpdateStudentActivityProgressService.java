@@ -20,30 +20,45 @@ public class UpdateStudentActivityProgressService {
 
     private StudentActivityRepository studentActivityRepository;
     private AutomaticRewardGrantingService automaticRewardGrantingService;
-    private AddActivityStudentsService addActivityStudentsService;
     private GetProjectService getProjectService;
     private GetActivityService getActivityService;
     private GetLessonService getLessonService;
 
     public Long execute(Long studentId, Long activityId, StudentActivityDTO studentActivityDTO) {
         StudentActivity studentActivity = studentActivityRepository.findByStudentIdAndActivityId(studentId, activityId);
+
         if (studentActivity == null) {
-            addActivityStudentsService.execute(activityId, studentId);
-            studentActivity = studentActivityRepository.findByStudentIdAndActivityId(studentId, activityId);
+            studentActivity = studentActivityRepository.save(StudentActivity.builder()
+                                                          .activityId(activityId)
+                                                          .studentId(studentId)
+                                                          .grade(studentActivityDTO.getGrade())
+                                                          .percentageCompleted(studentActivityDTO.getPercentageCompleted())
+                                                          .dateCompleted(dateCompleted(studentActivityDTO))
+                                                          .build());
         }
-        studentActivity.setGrade(studentActivityDTO.getGrade());
-        studentActivity.setPercentageCompleted(studentActivityDTO.getPercentageCompleted());
-        studentActivity.setDateCompleted(studentActivityDTO.getDateCompleted());
+        else {
+            studentActivity.setGrade(studentActivityDTO.getGrade());
+            studentActivity.setPercentageCompleted(studentActivityDTO.getPercentageCompleted());
+            studentActivity.setDateCompleted(dateCompleted(studentActivityDTO));
+            studentActivityRepository.save(studentActivity);
+        }
 
-        if (studentActivity.getPercentageCompleted() == 100.00 & studentActivity.getDateCompleted() == null) studentActivity.setDateCompleted(LocalDateTime.now());
-
-
-        studentActivityRepository.save(studentActivity);
         automaticRewardGrantingService.execute(studentId, activityId, "ACTIVITY");
         automaticRewardGrantingService.execute(studentId, getLessonService.execute(getActivityService.execute(activityId).getLessonId()).getProjectId(), "PROJECT");
         automaticRewardGrantingService.execute(studentId, getProjectService.execute(getLessonService.execute(getActivityService.execute(activityId).getLessonId()).getProjectId()).getClassroomId(), "CLASSROOM");
 
-
         return studentActivityDTO.getId();
     }
+
+    LocalDateTime dateCompleted(StudentActivityDTO studentActivityDTO) {
+        if(studentActivityDTO.getPercentageCompleted() != null){
+            if(studentActivityDTO.getPercentageCompleted().equals(100.00)) {
+                if(studentActivityDTO.getDateCompleted() == null) return LocalDateTime.now();
+                else return studentActivityDTO.getDateCompleted();
+            }
+        }
+        return null;
+    }
 }
+
+
