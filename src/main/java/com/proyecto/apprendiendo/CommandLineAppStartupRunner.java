@@ -581,6 +581,8 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
         addClassroomStudentsService.execute(socialesCursoId, mariId);
         addClassroomStudentsService.execute(socialesCursoId, paoId);
         addClassroomStudentsService.execute(socialesCursoId, nazaId);
+        addClassroomStudentsService.execute(socialesCursoId, agusId);
+        addClassroomStudentsService.execute(socialesCursoId, javiId);
 
 
         //CREACION DE CONDICIONES PRESETEADAS
@@ -826,7 +828,14 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .imageData("mc0010")
                                                                   .build());
 
-
+        Long badgeFirstActivity = createRewardService.execute(RewardDTO.builder()
+                                                                  .conditionId(conditionCompleted1ActivityId)
+                                                                  .rewardType(RewardType.BADGE.getValue())
+                                                                  .text("Te ganaste esto, por completar tu primera actividad")
+                                                                  .name("Insignia por completar la primera actividad")
+                                                                  .targetType("BADGE")
+                                                                  .imageData("mc0020")
+                                                                  .build());
 
         //CREACIONES DE RECOMPENZAS PARA USER NAZA
         Long lessonId = getProjectLessonsService.execute(ProyectoN6Id).stream().findFirst().get().getId();
