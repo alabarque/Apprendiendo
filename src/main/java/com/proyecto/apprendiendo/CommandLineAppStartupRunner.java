@@ -956,28 +956,31 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
 
         var storedTemplate1Id =
                 createStoredTemplateService.execute(StoredTemplateDTO.builder()
-                                                             .templateType("PROJECT")
-                                                             .description("Template para la creación de un proyecto basado en PBL")
-                                                             .name("Proyecto basado en PBL v0.1.0")
-                                                             .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(proyectoMethodologyId)))
-                                                             .ownerId(apprendiendoUserId)
-                                                             .build());
+                                                                     .templateType("PROJECT")
+                                                                     .description("Template para la creación de un proyecto basado en PBL")
+                                                                     .name("Proyecto basado en PBL v0.1.0")
+                                                                     .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(proyectoMethodologyId)))
+                                                                     .ownerId(apprendiendoUserId)
+                                                                     .methodologyId(proyectoMethodologyId)
+                                                                     .build());
         var storedTemplate2Id =
                 createStoredTemplateService.execute(StoredTemplateDTO.builder()
-                                                             .templateType("PROJECT")
-                                                             .description("Template para la creación de un proyecto basado en Aula Invertida")
-                                                             .name("Proyecto basado en Inverted Classroom v0.1.0")
-                                                             .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(aulaInvertidaMethodologyId)))
-                                                             .ownerId(apprendiendoUserId)
-                                                             .build());
+                                                                     .templateType("PROJECT")
+                                                                     .description("Template para la creación de un proyecto basado en Aula Invertida")
+                                                                     .name("Proyecto basado en Inverted Classroom v0.1.0")
+                                                                     .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(aulaInvertidaMethodologyId)))
+                                                                     .ownerId(apprendiendoUserId)
+                                                                     .methodologyId(aulaInvertidaMethodologyId)
+                                                                     .build());
         var storedTemplate3Id =
                 createStoredTemplateService.execute(StoredTemplateDTO.builder()
-                                                             .templateType("PROJECT")
-                                                             .description("Template para la creación de un proyecto basado en TBL")
-                                                             .name("Proyecto basado en TBL v0.1.0")
-                                                             .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(pensamientoMethodologyId)))
-                                                             .ownerId(apprendiendoUserId)
-                                                             .build());
+                                                                     .templateType("PROJECT")
+                                                                     .description("Template para la creación de un proyecto basado en TBL")
+                                                                     .name("Proyecto basado en TBL v0.1.0")
+                                                                     .template(convertToJson(getProjectTemplateByMethodologyIdService.execute(pensamientoMethodologyId)))
+                                                                     .ownerId(apprendiendoUserId)
+                                                                     .methodologyId(pensamientoMethodologyId)
+                                                                     .build());
 
         addTemplateReviewService.execute(TemplateReviewDTO.builder()
                                                           .score(3)

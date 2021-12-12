@@ -31,8 +31,8 @@ public class CreateStoredTemplateService {
 
     private Long getMethodologyId(StoredTemplateDTO storedTemplateDTO){
         if(storedTemplateDTO.getTemplateType().equals("PROJECT")){
-            ProjectTemplateDTO template = new Gson().fromJson(storedTemplateDTO.getTemplate(), ProjectTemplateDTO.class);
-            return template.getMethodologyId();
+            //ProjectTemplateDTO template = new Gson().fromJson(storedTemplateDTO.getTemplate(), ProjectTemplateDTO.class);
+            return storedTemplateDTO.getMethodologyId();
         }
         return null;
     }
