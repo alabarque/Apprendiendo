@@ -966,7 +966,7 @@ public class CommandLineAppStartupRunner implements CommandLineRunner {
                                                                   .text("Te ganaste esto, por completar tu primera actividad")
                                                                   .name("Insignia por completar la primera actividad")
                                                                   .targetType("BADGE")
-                                                                  .imageData("mc0020")
+                                                                  .imageData("m0005")
                                                                   .build());
 
         //CREACIONES DE RECOMPENZAS PARA USER NAZA
